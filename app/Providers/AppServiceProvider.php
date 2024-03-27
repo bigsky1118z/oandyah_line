@@ -21,11 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // if (config('app.env') === 'production') { //追記
-        //     URL::forceScheme('https');
-        // }
-        if (App::environment(['local', 'production'])) {
+        if (config('app.env') === 'production') { //追記
             URL::forceScheme('https');
         }
+        // if (App::environment(['local', 'production'])) {
+        //     URL::forceScheme('https');
+        // }
     }
 }
