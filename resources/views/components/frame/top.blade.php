@@ -13,10 +13,9 @@
         @endif --}}
         <title>{{ $title }}</title>
         <meta name="description" content="{{ $description }}" />
-        {{-- <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/header.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <link rel="stylesheet" href="/css/sns/style.css"> --}}
+        <link rel="stylesheet" href="/css/style.css">
+        {{-- <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css"> --}}
         {{-- @if (isset($id) && file_exists(public_path("css/sns/$id.css")))
             <link rel="stylesheet" href="/css/sns/{{ $id }}.css">
         @endif --}}
@@ -41,6 +40,7 @@
                     <span onclick="this.closest('form').submit();">logout</span>
                 </form>
             @endauth --}}
+            <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</p>
         </footer>
         {!! isset($script) ? $script :null !!}
     </body>

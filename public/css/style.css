@@ -1,0 +1,18 @@
+* {
+    padding: 0;
+    margin: 0;
+    size: 0;
+    font-size: 10px;
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+body {
+    width: auto;
+    max-width: 1920px;
+}
+
+footer > div#copyright {
+    text-align: center;
+    font-size: 8px;
+}
