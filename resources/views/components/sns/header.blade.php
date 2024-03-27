@@ -1,1 +1,0 @@
-<h1><a href="/sns">SNS O&Yah</a></h1>
