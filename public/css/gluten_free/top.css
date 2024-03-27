@@ -1,0 +1,23 @@
+body#gluten_free > main#top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body#gluten_free > main#top > * {
+    width: 90vw;
+}
+
+body#gluten_free > main#top > section#index > dl#dl-index > dd {
+    margin-bottom: 10px;
+}
+
+body#gluten_free > main#top > section#index > dl#dl-index > dd:last-child {
+    margin-bottom: unset;
+}
+
+body#gluten_free > main#top > section#index > dl#dl-index > dd > dl.dl-flex.dl-index-card {
+    justify-content: space-between;
+    border: 5px solid #FFFFFF;
+    padding: 20px;
+}

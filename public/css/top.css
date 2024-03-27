@@ -1,0 +1,304 @@
+body > main#top > section {
+    margin: 10px;
+}
+
+
+body > main#top > section > div > h2 {
+    border-bottom: 5px solid #FFFFFF;
+    margin-bottom: 10px;
+}
+
+body > main#top > section > div > div,
+body > main#top > section > div > dl {
+    margin: 0 10px;
+}
+
+/* single */
+/* default */
+body > main#top > section > div.top-single > div.body >  ul > li {
+    margin-left: 10px;
+}
+
+/* multiple */
+/* option = default, title */
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article > dd.dd-top-multiple-article-values {
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article > dd.dd-top-multiple-article-values > dl {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article > dd.dd-top-multiple-article-values > dl > dd.dd-top-multiple-article-values-date {
+    font-size: 12px;
+    width: 15em;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article > dd.dd-top-multiple-article-values > dl > dt.dt-top-multiple-article-values-title {
+    width: 100%;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article > dd.dd-top-multiple-article-values > dl > dt.dt-top-multiple-article-values-title > a {
+    display: inline-block;
+    width: 100%;
+}
+body > main#top > section > div.top-multiple > p.p-top-multiple-article-list {
+    font-size: 12px;
+    text-align: right;
+}
+
+/* option = article */
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-article > dd.dd-top-multiple-article-values > dl > dd.dd-top-multiple-article-values-article {
+    font-size: 14px;
+    width: 100%;
+    margin: 0 10px;
+}
+
+/* option = card */
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    /* border: 1px solid rgba(0, 0, 0, 0.5); */
+    border: unset;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values {
+    margin: 0 0 10px 0;    
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values.card-1, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values.card-1 {
+    width: 98%;
+    max-height: 50vw;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values.card-2, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values.card-2 {
+    width: 48%;
+    max-height: 50vw;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values.card-3,
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values.card-3,
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values.card-6, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values.card-6 {
+    width: 31%;
+    max-height: 33vw;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values.card-4, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values.card-4 {
+    width: 23%;
+    max-height: 25vw;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card > dd.dd-top-multiple-article-values > img.img-top-multiple-article-values-card, 
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values > img.img-top-multiple-article-values-card {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+}
+body > main#top > section > div.top-multiple > dl.dl-top-multiple-article.dl-top-multiple-article-card_title > dd.dd-top-multiple-article-values > dl > dt.dt-top-multiple-article-values-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+}
+
+
+/* menu */
+/* default */
+body > main#top > section > div.top-menu > dl.dl-top-menu-link {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+body > main#top > section > div.top-menu > dl.dl-top-menu-link > dd.dd-top-menu-link-values {
+    width: 100%;
+    height: 3em;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    margin: 5px 10px;
+}
+body > main#top > section > div.top-menu > dl.dl-top-menu-link > dd.dd-top-menu-link-values > a {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+body > main#top > section > div.top-menu > dl.dl-top-menu-link > dd.dd-top-menu-link-values > a:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+body > main#top > section > div.top-menu > dl.dl-top-menu-link > dd.dd-top-menu-link-values > a > span.span-top-menu-link-values-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* option menu-description */
+
+body > main#top > section > div.top-menu > dl.dl-top-menu-link.dl-top-menu-link-description > dd.dd-top-menu-link-values {
+    width: 100%;
+    height: 10em;
+}
+body > main#top > section > div.top-menu > dl.dl-top-menu-link.dl-top-menu-link-description > dd.dd-top-menu-link-values > a > span.span-top-menu-link-values-title {
+    position: absolute;
+    top: 25%;
+}
+body > main#top > section > div.top-menu > dl.dl-top-menu-link.dl-top-menu-link-description > dd.dd-top-menu-link-values > a > span.span-top-menu-link-values-description {
+    position: absolute;
+    top: 50%;
+    font-size: 11px;
+    padding: 0 10px;
+}
+
+
+
+
+
+
+
+
+div.menu-bar, div.menu-card100x100 {
+    width: 100%;
+}
+div.menu-bar nav {
+    width: 100%;
+}
+div.menu-bar nav > ul {
+    display: flex;
+    background-color: #FF9999;
+    flex-wrap: nowrap;
+}
+div.menu-bar nav > ul > li {
+    width: 100%;
+    font-size: 16px;
+}
+div.menu-bar nav > ul > li > a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+div.menu-card100x100 {
+    display: flex;
+    background-color: #99FF99;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+div.menu-card100x100 > dl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #99FFFF;
+    padding: 10px;
+}
+
+div.menu-card100x100 > dl > dd > img {
+    width: 100px;
+    height: 100px;
+}
+
+
+
+div.menu-card100x100 > ul {
+    display: flex;
+    background-color: #99FF99;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+div.menu-card100x100 > ul > li {
+    width: 33%;
+    height: 200px;
+}
+div.menu-card100x100 > ul > li > a {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 0;
+}
+div.menu-card100x100 > ul > li > a > div >img {
+    width: 100px;
+    height: 100px;
+}
+div.menu-card100x100 > dl:hover,
+div.menu-bar nav > ul > li > a:hover,
+div.menu-card100x100 > ul > li > a:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+
+
+div.image-header {
+    width: 100%;
+    text-align: center;
+}
+div.image-header-max > img {
+    width: 100%;
+}
+
+div.header-title {
+    width: 100%;
+}
+div.header-title.header-title-center {
+    text-align: center;
+}
+div.header-title.header-title-left {
+    text-align: left;
+}
+div.top-single-default {
+    background-color: #9999FF;
+}
+div.top-single-default > h2 {
+    background-color: #FF99FF;
+}
+div.top-single-default > h2,
+div.top-single-default > div.body {
+    padding: 10px 15px;
+}
+
+div.top-multiple-default {
+    background-color: #0099FF;
+}
+
+div.top-multiple-default > h2,
+div.top-multiple-default > div.list,
+div.top-multiple-default > p.link {
+    padding: 10px 15px;
+}
+
+div.top-multiple-default > h2 {
+    background-color: #FF9900;
+}
+div.top-multiple-default > div.list > dl {
+    display: flex;
+}
+div.top-multiple-default > div.list > dl > dd.date {
+    width: 150px;
+}
+div.top-multiple-default > div.list > dl > dt.title {
+    width: 100%;
+}
+div.top-multiple-default > p.link {
+    text-align: right;
+}
+
+div.footer-column {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 15px 20px;
+}

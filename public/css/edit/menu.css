@@ -1,0 +1,112 @@
+/* section#index */
+body#edit > main#menu > section#index > dl > dt > dl.dl-menu-index-header > dd {
+    text-align: center;
+}
+
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu-index-id {
+    width: 2em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu-index-page_path {
+    width: 10em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu-index-page_title {
+    width: 10em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu-index-links {
+    width: 5em;
+}
+body#edit > main#menu > section#index > dl > dd > dl.dl-menu-index-body > dd.dd-menu-index-links {
+    text-align: right;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu-index-button {
+    width: 10em;
+}
+
+/* section#create */
+
+body#edit > main#menu > section#create > form > dl > * > dl > dt.dt-menu-create-item,
+body#edit > main#menu > section#create > form > dl > * > dl > dt.dt-menu-create-item {
+    width: 10em;
+}
+body#edit > main#menu > section#create > form > dl > * > dl > dd.dd-menu-create-value,
+body#edit > main#menu > section#create > form > dl > * > dl > dd.dd-menu-create-value {
+    width: 30em;
+}
+body#edit > main#menu > section#create > form > dl > * > dl > dd.dd-menu-create-value > span {
+    display: inline-block;
+    width: 10em;
+}
+body#edit > main#menu > section#create > form > dl > * > dl > dd.dd-menu-create-value > input[name="page_path"] {
+    width: 15em;
+}
+body#edit > main#menu > section#create > form > dl > * > dl > dd.dd-menu-create-value > input[name="page_title"] {
+    width: 27em;
+}
+body#edit > main#menu > section#create > form > dl > * > dl > dd.dd-menu-create-value > textarea[name="page_description"] {
+    width: 100%;
+    height: 5em;
+}
+
+
+/* menu_link */
+/* section#index */
+body#edit > main#menu > section#index > dl > dt > dl.dl-menu_link-index-header > dd {
+    text-align: center;
+}
+
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu_link-index-path {
+    width: 15em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu_link-index-title {
+    width: 10em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu_link-index-thumbnail {
+    width: 5em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu_link-index-thumbnail > img {
+    max-width: 100%;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu_link-index-description {
+    width: 15em;
+}
+body#edit > main#menu > section#index > dl > * > dl > dd.dd-menu_link-index-button {
+    width: 10em;
+}
+
+/* section#link */
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd{
+    text-align: center;
+}
+
+
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd.dd-menu-link-path,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-path {
+    width: 15em;
+}
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd.dd-menu-link-title,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-title {
+    width: 10em;
+}
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd.dd-menu-link-thumbnail,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-thumbnail {
+    width: 10em;
+}
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd.dd-menu-link-description,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-description {
+    width: 15em;
+}
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd.dd-menu-link-order,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-order {
+    display: none;
+}
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dt > dl > dd.dd-menu-link-button,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-button {
+    width: 10em;
+}
+
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-path > input,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-title > input,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-thumbnail > input,
+body#edit > main#menu > section#link > form > dl#dl-menu-link > dd > dl > dd > dl > dd.dd-menu-link-description > textarea {
+    width: 100%;
+}

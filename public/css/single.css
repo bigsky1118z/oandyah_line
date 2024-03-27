@@ -1,0 +1,90 @@
+body > main#single > section {
+    margin: 0 20px;
+}
+
+
+body > main#single > section > h2 {
+    padding: 15px 0;
+}
+
+body > main#single > section > div.single-body {
+    margin: 0 10px;
+}
+
+body > main#single > section > div.single-body > * {
+    margin-bottom: 1em;
+}
+body > main#single > section > div.single-body > :last-child {
+    margin-bottom: unset;
+}
+
+body > main#single > section > div.single-body > ul,
+body > main#single > section > div.single-body > ol,
+body > main#single > section > div.single-body > dl,
+body > main#single > section > div.single-body > table {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+body > main#single > section.layout-001 > h2 {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 1em;
+}
+
+
+/* body > main#multiple > section#index {
+    margin: 0 10px;
+}
+
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body {
+    height: 180px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl {
+    display: flex;
+}
+
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 240px;
+}
+
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-thumbnail > img {
+    max-width: 200px;
+    max-height: 160px;
+}
+
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-values {
+    width: 100%;
+}
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-values > dl {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+}
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-values > dl > dd.dd-multiple-index-body-values-title {
+    width: 100%;
+}
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-values > dl > dd.dd-multiple-index-body-values-title > h3 > a {
+    display: inline-block;
+    width: 100%;
+}
+
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-values > dl > dd.dd-multiple-index-body-values-article {
+    width: 100%;
+    height: 100%;
+
+}
+body > main#multiple > section#index > dl#dl-multiple-index > dd.dd-multiple-index-body > dl > dd.dd-multiple-index-body-values > dl > dd.dd-multiple-index-body-values-date {
+    width: 100%;
+    margin-top: auto;
+    text-align: right;
+} */

@@ -1,0 +1,20 @@
+/* section#index */
+body#edit > main#subdirectory > section#index > dl#dl-subdirectory-index > dt > dl.dl-subdirectory-index-header,
+body#edit > main#subdirectory > section#index > dl#dl-subdirectory-index > dd > dl.dl-subdirectory-index-body {
+    display: flex;
+}
+
+
+body#edit > main#subdirectory > section#index > dl#dl-subdirectory-index > dt > dl.dl-subdirectory-index-header > dd {
+    text-align: center;
+}
+
+body#edit > main#subdirectory > section#index > dl#dl-subdirectory-index > * > dl > dd.dd-subdirectory-index-path {
+    width: 10em;
+}
+body#edit > main#subdirectory > section#index > dl#dl-subdirectory-index > * > dl > dd.dd-subdirectory-index-title {
+    width: 20em;
+}
+body#edit > main#subdirectory > section#index > dl#dl-subdirectory-index > * > dl > dd.dd-subdirectory-index-button {
+    width: 8em;
+}

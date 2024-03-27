@@ -1,0 +1,200 @@
+/* index */
+    body#kbox > main#company > section#index > dl#dl-companies > dt > dl.dl-company-header {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl > dd.dd-company-code {
+        width: 3em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl > dt.dt-company-name {
+        width: 18em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl > dd.dd-company-kana {
+        width: 18em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl > dd.dd-company-address {
+        width: 18em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl > dd.dd-company-contact {
+        width: 18em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl > dd.dd-company-web {
+        width: 18em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > dt > dl > dd > dl.dl-company-header-3 > dd.dd-company-button {
+        width: 7em;
+    }
+
+    body#kbox > main#company > section#index > dl#dl-companies > * > dl > dd > dl.dl-company-content-3 > dd.dd-company-button {
+        width: 3.5em;
+    }
+
+/* show */
+    body#kbox > main#company > section#name > dl#dl-names > dt > dl.dl-name-header > dd,
+    body#kbox > main#company > section#billing > dl#dl-billings > dt > dl.dl-billing-header > dd,
+    body#kbox > main#company > section#address > dl#dl-addresses > dt > dl.dl-address-header > dd,
+    body#kbox > main#company > section#contact > dl#dl-contacts > dt > dl.dl-contact-header > dd {
+        text-align: center;
+        font-weight: bold;
+    }
+    /* section#name */
+        body#kbox > main#company > section#name > dl#dl-names > dd > dl > dd.dd-name-code,
+        body#kbox > main#company > section#name > dl#dl-names > dd > dl > dd.dd-name-company_type {
+            text-align: center;
+        }
+
+        body#kbox > main#company > section#name > dl#dl-names > * > dl > dd.dd-name-code {
+            width: 5em;
+        }
+        body#kbox > main#company > section#name > dl#dl-names > * > dl > dd.dd-name-name {
+            width: 16em;
+        }
+        body#kbox > main#company > section#name > dl#dl-names > * > dl > dd.dd-name-kana {
+            width: 16em;
+        }
+        body#kbox > main#company > section#name > dl#dl-names > * > dl > dd.dd-name-company_type {
+            width: 8em;
+        }
+
+    /* section#billing */
+        body#kbox > main#company > section#billing > dl#dl-billings > dd > dl > dd.dd-billing-closing_date,
+        body#kbox > main#company > section#billing > dl#dl-billings > dd > dl > dd.dd-billing-payment_date,
+        body#kbox > main#company > section#billing > dl#dl-billings > dd > dl > dd.dd-billing-billing_to {
+            text-align: center;
+        }
+
+        body#kbox > main#company > section#billing > dl#dl-billings > * > dl > dd.dd-billing-closing_date {
+            width: 8em;
+        }
+        body#kbox > main#company > section#billing > dl#dl-billings > * > dl > dd.dd-billing-payment_date {
+            width: 8em;
+        }
+        body#kbox > main#company > section#billing > dl#dl-billings > * > dl > dd.dd-billing-billing_to {
+            width: 10em;
+        }
+        body#kbox > main#company > section#billing > dl#dl-billings > * > dl > dd.dd-billing-description {
+            width: 16em;
+        }
+
+
+    /* section#address */
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > dl > dd.dd-address-name,
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > dl > dd.dd-address-zip_code,
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > dl > dd.dd-address-button {
+            text-align: center;
+        }
+
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-name,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-name {
+            width: 5em;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-zip_code,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-zip_code {
+            width: 5em;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-prefecture,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-prefecture {
+            width: 5em;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-city,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-city {
+            width: 8em;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-town,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-town {
+            width: 8em;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-other,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-other {
+            width: 10em;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > * > dl > dd.dd-address-button,
+        body#kbox > main#company > section#address > dl#dl-addresses > * > form > dl > dd.dd-address-button {
+            width: 8em;
+        }
+
+
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > form > dl.dl-flex.dl-address-form {
+            align-items: center;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > form > dl.dl-address-form > dd {
+            text-align: center;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > form > dl.dl-address-form > dd > input,
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > form > dl.dl-address-form > dd > textarea {
+            width: 100%;
+        }
+
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > form > dl.dl-address-form > dd.dd-address-zip_code > input[name="zip_code[0]"] {
+            width: 2em;
+        }
+        body#kbox > main#company > section#address > dl#dl-addresses > dd > form > dl.dl-address-form > dd.dd-address-zip_code > input[name="zip_code[1]"] {
+            width: 2.5em;
+        }
+
+
+
+    /* section#contact */
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > dl > dd.dd-contact-type,
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > dl > dd.dd-contact-category,
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > dl > dd.dd-contact-name,
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > dl > dd.dd-contact-button {
+            text-align: center;
+        }
+
+
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > dl > dd.dd-contact-type,
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > form > dl > dd.dd-contact-type {
+            width: 5em;
+        }
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > dl > dd.dd-contact-category,
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > form > dl > dd.dd-contact-category {
+            width: 5em;
+        }
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > dl > dd.dd-contact-name,
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > form > dl > dd.dd-contact-name {
+            width: 6em;
+        }
+
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > dl > dd.dd-contact-value,
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > form > dl > dd.dd-contact-value {
+            width: 15em;
+        }
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > dl > dd.dd-contact-description,
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > form > dl > dd.dd-contact-description {
+            width: 10em;
+        }
+
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > dl > dd.dd-contact-button,
+        body#kbox > main#company > section#contact > dl#dl-contacts > * > form > dl > dd.dd-contact-button {
+            width: 8em;
+        }
+
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > form > dl.dl-flex.dl-contact-form {
+            align-items: center;
+        }
+
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > form > dl.dl-contact-form > dd {
+            text-align: center;
+        }
+
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > form > dl.dl-contact-form > dd > input,
+        body#kbox > main#company > section#contact > dl#dl-contacts > dd > form > dl.dl-contact-form > dd > textarea {
+            width: 100%;
+        }

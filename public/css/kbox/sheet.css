@@ -1,0 +1,66 @@
+body#kbox > main#sheet > section#index > dl#dl-sheets > dt > dl.dl-sheet-header {
+    font-weight: bold;
+    text-align: center;
+
+}
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > * > dl > dd.dd-sheet-name {
+    width: 8em;
+}
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > * > dl > dd.dd-sheet-color {
+    width: 4em;
+}
+body#kbox > main#sheet > section#index > dl#dl-sheets > dd > dl.dl-sheet-content > dd.dd-sheet-color {
+    text-align: center;
+}
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > * > dl > dd.dd-sheet-price {
+    width: 8em;
+}    
+body#kbox > main#sheet > section#index > dl#dl-sheets > dd > dl.dl-sheet-content > dd.dd-sheet-price > dl > dd {
+    width: 2em;
+    text-align: right;
+}
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > * > dl > dd.dd-sheet-supplier {
+    width: 10em;
+}
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > dd > dl.dl-sheet-content > dd.dd-sheet-supplier {
+    text-align: center;
+}
+
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > * > dl > dd.dd-sheet-manufacturer {
+    width: 10em;
+}
+
+body#kbox > main#sheet > section#index > dl#dl-sheets > dd > dl.dl-sheet-content > dd.dd-sheet-manufacturer {
+    text-align: center;
+}
+
+
+/* show */
+    body#kbox > main#sheet > section#size > dl#dl-sizes > dt > dl.dl-size-header {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    body#kbox > main#sheet > section#size > dl#dl-sizes > * > dl > dd.dd-size-gauge,
+    body#kbox > main#sheet > section#size > dl#dl-sizes > * > dl > dd.dd-size-width,
+    body#kbox > main#sheet > section#size > dl#dl-sizes > * > dl > dd.dd-size-length {
+        width: 4em;
+    }
+
+    body#kbox > main#sheet > section#size > dl#dl-sizes > * > dl > dd.dd-size-grammage {
+        width: 6em;
+    }
+
+    body#kbox > main#sheet > section#size > dl#dl-sizes > dd > dl.dl-size-content > dd.dd-size-gauge,
+    body#kbox > main#sheet > section#size > dl#dl-sizes > dd > dl.dl-size-content > dd.dd-size-width,
+    body#kbox > main#sheet > section#size > dl#dl-sizes > dd > dl.dl-size-content > dd.dd-size-length,
+    body#kbox > main#sheet > section#size > dl#dl-sizes > dd > dl.dl-size-content > dd.dd-size-grammage {
+        text-align: right;
+    }
+

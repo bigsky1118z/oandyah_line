@@ -1,0 +1,35 @@
+/* section#index */
+body#edit > main#page > section#index > dl#dl-page-list > dd > dl.dl-page-list-value {
+    display: flex;
+}
+body#edit > main#page > section#index > dl#dl-page-list > dd > dl.dl-page-list-value > dt.dt-page-list-value-title {
+    width: 10em;
+}
+body#edit > main#page > section#index > dl#dl-page-list > dd > dl.dl-page-list-value > dd.dd-page-list-value-button {
+    width: 4em;
+}
+
+
+body#edit > main#page > section#index > dl#dl-page-index > dt > dl.dl-page-index-header,
+body#edit > main#page > section#index > dl#dl-page-index > dt > dl.dl-page-index-body {
+    display: flex;
+}
+body#edit > main#page > section#index > dl#dl-page-index > dt > dl.dl-page-index-header > dd {
+    text-align: center;
+}
+body#edit > main#page > section#index > dl#dl-page-index > * > dl > dd.dd-page-index-type {
+    width: 10em;
+}
+body#edit > main#page > section#index > dl#dl-page-index > * > dl > dd.dd-page-index-path {
+    width: 10em;
+}
+body#edit > main#page > section#index > dl#dl-page-index > * > dl > dd.dd-page-index-title {
+    width: 20em;
+}
+body#edit > main#page > section#index > dl#dl-page-index > * > dl > dd.dd-page-index-status {
+    width: 5em;
+}
+body#edit > main#page > section#index > dl#dl-page-index > * > dl > dd.dd-page-index-button {
+    width: 8em;
+}
+

@@ -1,0 +1,59 @@
+/* section#directory */
+body#edit > main#image > section#directory > dl#dl-image-directory > * > dl > dd.dd-image-directory-name,
+body#edit > main#image > section#directory > dl#dl-image-directory > * > form > dl > dd.dd-image-directory-name {
+    width: 15em;
+}
+body#edit > main#image > section#directory > dl#dl-image-directory > * > form > dl > dd.dd-image-directory-name > input {
+    width: 100%;
+}
+
+
+body#edit > main#image > section#directory > dl#dl-image-directory > * > dl > dd.dd-image-directory-button {
+    width: 10em;
+}
+body#edit > main#image > section#directory > dl#dl-image-directory > * > dl > dd.dd-image-directory-value > img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+body#edit > main#image > section#file > dl#dl-image-directory-file {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: left;
+}
+
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd {
+    width: 20%;
+    margin: 2.5%;
+}
+
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dt.dt-image-directory-file-value-image,
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-name,
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-button {
+    width: 100%;
+}
+
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dt.dt-image-directory-file-value-image > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-name {
+    white-space: nowrap;
+}
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-name > input {
+    width: calc(100% - 3em);
+}
+
+
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-button > dl {
+    display: flex;
+    flex-direction: column;
+}
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-button > dl > dd {
+    width: 100%;
+}
+body#edit > main#image > section#file > dl#dl-image-directory-file > dd > dl.dl-image-directory-file-value > dd.dd-image-directory-file-value-button > dl > dd > button {
+    width: 100%;
+}

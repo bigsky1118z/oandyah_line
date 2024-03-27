@@ -1,0 +1,39 @@
+/* section#index */
+body#edit > main#config > section#index > dl > * > dl > dt.dt-config-index-name {
+    width: 15em;
+}
+body#edit > main#config > section#index > dl > * > dl > dd.dd-config-index-value {
+    width: 25em;
+}
+body#edit > main#config > section#index > dl > * > dl > dd.dd-config-index-value > img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* section#create */
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-before {
+    width: 15em;
+}
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-before > img {
+    max-width: 100%;
+    max-height: 15em;
+}
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-after {
+    width: 15em;
+}
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-after > input,
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-after > textarea,
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-after > select {
+    width: 100%;
+}
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-after > textarea {
+    height: 20em;
+}
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-after > dl > dd > img {
+    max-width: 100%;
+    max-height: 15em;
+}
+
+body#edit > main#config > section#create > form > dl > * > dl > dd.dd-config-create-button {
+    width: 5em;
+}

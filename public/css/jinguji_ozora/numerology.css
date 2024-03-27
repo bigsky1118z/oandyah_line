@@ -1,0 +1,125 @@
+/* numerology */
+    main#numerology {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main#numerology > h2 {
+        text-align: center;
+    }
+
+
+    main#numerology > h2,
+    main#numerology > section {
+        min-width: 480px;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    main#numerology > section > h3 {
+        color: #FFFFFF;
+        background: #ffe259;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+}
+    main#numerology > section#form > dl#dl-forms,
+    main#numerology > section#result > dl#dl-results {
+        background: #FFEEEE;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #DDEFBB, #FFEEEE);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #DDEFBB, #FFEEEE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        margin: 5px;
+        padding: 5px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    main#numerology > section#form > dl#dl-forms > dd,
+    main#numerology > section#form > dl#dl-forms > dd > dl > dd.dd-numerology-form-value > dl > dd,
+    main#numerology > section#result > dl#dl-results > dd {
+        margin: 10px 0;
+    }
+
+    main#numerology > section#form > dl#dl-forms > dd > dl > dt.dt-numerology-form-title,
+    main#numerology > section#result > dl#dl-results > dd > dl > dt.dt-numerology-result-title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+/* section#form */
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dt.dt-numerology-form-title {
+        font-size: 20px;
+        font-weight: bold;
+        width: 150px;
+    }
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value {
+        font-size: 18px;
+    }
+
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value input,
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value select {
+        color: #000000;
+        font-size: 18px;
+        background-color: #FFFFFF;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value > dl.dl-numerology-form-option > dt.dt-numerology-form-option-title{
+        width: 130px;
+        font-weight: bold;
+    }
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value > dl.dl-numerology-form-option > dt.dt-numerology-form-option-title,
+    main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value > dl > dd.dd-numerology-form-option-value{
+        font-size: 16px;
+    }
+
+/* section#reuslt */
+
+    main#numerology > section#result > dl#dl-results > dd > dl > dd.dd-numerology-result-value {
+        width: 100%;
+        text-align: center;
+    }
+
+    main#numerology > section#result > dl#dl-results > dd > dl > dd.dd-numerology-result-value > dl > dd > dl > dt.dt-numerology-result-value-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    main#numerology > section#result > dl#dl-results > dd > dl > dd.dd-numerology-result-value > dl > dd > dl > dd.dd-numerology-result-value-number {
+        font-size: 30px;
+    }
+    main#numerology > section#result > dl#dl-results > dd > dl > dd.dd-numerology-result-value > dl > dd > dl > dd.dd-numerology-result-value-note {
+        font-size: 8px;
+    }
+
+/* section#button */
+
+    main#numerology > section#button > dl#dl-buttons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    @media screen and (max-width:720px) {
+        main#numerology > h2,
+        main#numerology > section {
+            min-width: unset;
+            width: 100%;
+        }
+        main#numerology > section#form > dl > dd > dl.dl-flex-left > dt.dt-numerology-form-title {
+            width: 100%;
+        }
+        main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value > dl.dl-numerology-form-option{
+            padding: 0 20px;
+        }
+    
+        main#numerology > section#form > dl > dd > dl.dl-flex-left > dd.dd-numerology-form-value > dl.dl-numerology-form-option > dt.dt-numerology-form-option-title{
+            width: 100%;
+        }
+    }

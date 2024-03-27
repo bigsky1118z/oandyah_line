@@ -1,0 +1,1 @@
+<p id="copyright">Copyright {{ $title }}&copy; {{ date("Y") }} All Rights Reserved</p>

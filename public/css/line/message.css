@@ -1,0 +1,219 @@
+/*  body#line > main#message > section#index */
+    body#line > main#message > section {
+        width: 100%;
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    body#line > main#message > section > h2 {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    body#line > main#message > section#index > dl#dl-line-message-index {
+        width: 500px;
+        margin: 0 auto;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-body > dl > dd {
+        margin: 10px 0;
+        padding: 10px 0;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    body#line > main#message > section#index > dl#dl-line-message-index > *,
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl,
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group,
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl > dd  {
+        width: 100%;
+    }
+
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group {
+        margin: 10px 0;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group,
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl {
+        display: flex;
+        align-items: center;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl {
+        flex-direction: column;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > dt.dt-line-message-index-header > dl > dd.dd-line-message-index-group > dl > dd {
+        text-align: center;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0 {
+        width: 100px;
+    }    
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0 > dd {
+        text-align: center;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0 > dd.dd-line-message-index-icon > img {
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-body > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0 > dd.dd-line-message-index-name {
+        font-size: 12px;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-1 {
+        width: 200px;
+    }    
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-body > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-1 > dd {
+        text-align: left;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-body > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-1 > dd.dd-line-message-index-description {
+        font-size: 12px;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-2 {
+        width: 100px;
+    }    
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-body > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-2 > dd {
+        text-align: right;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-button {
+        width: 100px;
+    }    
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-body > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-button > dd {
+        text-align: center;
+    }
+    body#line > main#message > section#index > dl#dl-line-message-index > dd.dd-line-message-index-footer > dl > dd.dd-line-message-index-group {
+        justify-content: center;
+    }
+    
+    @media screen and (max-width:540px) {
+        body#line > main#message > section#index > dl#dl-line-message-index {
+            width: 100%;
+            margin: 0 auto;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > dt.dt-line-message-index-header {
+            display: none;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl {
+            width: 90%;
+            margin: 0 auto;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group {
+            flex-direction: column;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0,
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-1,
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-button {
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0,
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-button {
+            flex-direction: row;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-0 > dd,
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl.dl-line-message-index-group-button > dd {
+            margin: 0 10px;
+        }
+        body#line > main#message > section#index > dl#dl-line-message-index > * > dl > dd.dd-line-message-index-group > dl > dd {
+            width: unset;
+        }
+    }
+
+
+
+/*  body#line > main#message > section#create */
+    body#line > main#message > section#create > form > dl#dl-line-message-create {
+        display: flex;
+        flex-direction: column;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * {
+        margin-bottom: 10px;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > *:last-child {
+        margin-bottom: unset;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > dt.dt-line-message-create-header > dl,
+    body#line > main#message > section#create > form > dl#dl-line-message-create > dd.dd-line-message-create-body > dl,
+    body#line > main#message > section#create > form > dl#dl-line-message-create > dd.dd-line-message-create-footer > dl {
+        display: flex;
+        flex-wrap: nowrap;
+        width: fit-content;
+    }    
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dt.dt-line-message-create-title {
+        min-width: 150px;
+        text-align: center;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value {
+        width: 100px;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-preview {
+        width: 250px;
+    }
+    /* body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > input,
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > select,
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > textarea {
+        width: 280px;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > textarea {
+        height: 3em;
+    } */
+    body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-message {
+        width: 420px;
+        text-align: center;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > dd > dl.dl-line-message-create-footer {
+        justify-content: center;
+        align-items: center;
+    }
+    body#line > main#message > section#create > form > dl#dl-line-message-create > dd > dl.dl-line-message-create-footer > * {
+        margin: 0 10px;
+    }
+
+    body#line > div#iframe {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100vw;
+        height: 100vh;
+        inset: 0;
+        margin: auto;
+        z-index: 1;
+    }
+    body#line > div#iframe > iframe {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        width: 80%;
+        height: 80%;
+    }
+    body#line > div#iframe > button#iframe-button-close {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+    }
+    @media screen and (max-width:540px) {
+        body#line > main#message > section#create > form > dl#dl-line-message-create > dt,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > dd {
+            width: 100%;
+        }
+        body#line > main#message > section#create > form > dl#dl-line-message-create > dt > dl.dl-line-message-create-header,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > dd > dl.dl-line-message-create-body,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > dd > dl.dl-line-message-create-footer {
+            flex-direction: column;
+            width: 100%;
+        }
+        body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dt.dt-line-message-create-title,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-message {
+            width: 100%;
+            text-align: center;
+        }
+        body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > input,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > select,
+        body#line > main#message > section#create > form > dl#dl-line-message-create > * > dl > dd.dd-line-message-create-value > textarea {
+            width: 80%;
+        }
+    
+    }
+

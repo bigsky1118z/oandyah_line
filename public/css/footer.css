@@ -1,0 +1,25 @@
+footer > div#copyright {
+    font-size: 10px;
+    text-align: center;
+    /* width: 100%; */
+}
+
+footer > div#footer-guide {
+    font-size: 10px;
+}
+footer > div#footer-guide > dl {
+    display: flex;
+    justify-content: right;
+}
+
+footer > div#footer-guide > dl > dd > span,
+footer > div#footer-guide > dl > dd > form > span {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+footer > div#footer-columns {
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+}

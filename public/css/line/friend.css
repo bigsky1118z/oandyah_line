@@ -1,0 +1,192 @@
+/*  body#line > main#friend > section#index */
+    body#line > main#friend > section {
+        width: 100%;
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    body#line > main#friend > section > h2 {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    body#line > main#friend > section#index > dl#dl-line-friend-index {
+        width: 500px;
+        margin: 0 auto;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-body > dl > dd {
+        margin: 10px 0;
+        padding: 10px 0;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    body#line > main#friend > section#index > dl#dl-line-friend-index > *,
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl,
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group,
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl > dd  {
+        width: 100%;
+    }
+
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group {
+        margin: 10px 0;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group,
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl {
+        display: flex;
+        align-items: center;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl {
+        flex-direction: column;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dt.dt-line-friend-index-header > dl > dd.dd-line-friend-index-group > dl > dd {
+        text-align: center;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0 {
+        width: 100px;
+    }    
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0 > dd {
+        text-align: center;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0 > dd.dd-line-friend-index-icon > img {
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-body > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0 > dd.dd-line-friend-index-name {
+        font-size: 12px;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-1 {
+        width: 200px;
+    }    
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-body > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-1 > dd {
+        text-align: left;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-body > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-1 > dd.dd-line-friend-index-description {
+        font-size: 12px;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-2 {
+        width: 100px;
+    }    
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-body > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-2 > dd {
+        text-align: right;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-button {
+        width: 100px;
+    }    
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-body > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-button > dd {
+        text-align: center;
+    }
+    body#line > main#friend > section#index > dl#dl-line-friend-index > dd.dd-line-friend-index-footer > dl > dd.dd-line-friend-index-group {
+        justify-content: center;
+    }
+    
+    @media screen and (max-width:540px) {
+        body#line > main#friend > section#index > dl#dl-line-friend-index {
+            width: 100%;
+            margin: 0 auto;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > dt.dt-line-friend-index-header {
+            display: none;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl {
+            width: 90%;
+            margin: 0 auto;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group {
+            flex-direction: column;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0,
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-1,
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-button {
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0,
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-button {
+            flex-direction: row;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-0 > dd,
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl.dl-line-friend-index-group-button > dd {
+            margin: 0 10px;
+        }
+        body#line > main#friend > section#index > dl#dl-line-friend-index > * > dl > dd.dd-line-friend-index-group > dl > dd {
+            width: unset;
+        }
+    }
+
+
+
+/*  body#line > main#friend > section#login */
+    body#line > main#friend > section#login > form > dl#dl-line-login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > * {
+        margin-bottom: 10px;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > *:last-child {
+        margin-bottom: unset;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > dt > dl.dl-line-login-header,
+    body#line > main#friend > section#login > form > dl#dl-line-login > dd > dl.dl-line-login-body,
+    body#line > main#friend > section#login > form > dl#dl-line-login > dd > dl.dl-line-login-footer {
+        display: flex;
+        flex-wrap: nowrap;
+        width: fit-content;
+    }    
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dt.dt-line-login-title {
+        min-width: 120px;
+        text-align: center;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value {
+        width: 300px;
+        text-align: center;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > input,
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > select,
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > textarea {
+        width: 280px;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > textarea {
+        height: 3em;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-message {
+        width: 420px;
+        text-align: center;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > dd > dl.dl-line-login-footer {
+        justify-content: center;
+        align-items: center;
+    }
+    body#line > main#friend > section#login > form > dl#dl-line-login > dd > dl.dl-line-login-footer > * {
+        margin: 0 10px;
+    }
+    @media screen and (max-width:540px) {
+        body#line > main#friend > section#login > form > dl#dl-line-login > dt,
+        body#line > main#friend > section#login > form > dl#dl-line-login > dd {
+            width: 100%;
+        }
+        body#line > main#friend > section#login > form > dl#dl-line-login > dt > dl.dl-line-login-header,
+        body#line > main#friend > section#login > form > dl#dl-line-login > dd > dl.dl-line-login-body,
+        body#line > main#friend > section#login > form > dl#dl-line-login > dd > dl.dl-line-login-footer {
+            flex-direction: column;
+            width: 100%;
+        }
+        body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dt.dt-line-login-title,
+        body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value,
+        body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-message {
+            width: 100%;
+            text-align: center;
+        }
+        body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > input,
+        body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > select,
+        body#line > main#friend > section#login > form > dl#dl-line-login > * > dl > dd.dd-line-login-value > textarea {
+            width: 80%;
+        }
+    
+    }
+
