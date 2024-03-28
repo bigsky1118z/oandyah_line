@@ -10,7 +10,7 @@ class AppWebhook extends Model
     use HasFactory;
 
     protected $fillable =   [
-        "line_id",
+        "app_id",
 
         "ip_address",
         "request_host",
