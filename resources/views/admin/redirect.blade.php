@@ -1,7 +1,6 @@
-<x-frame.top>
+<x-frame.admin>
     <x-slot name="id">redirect</x-slot>
-    <x-slot name="title">[管理画面]LINE公式アプリ応援屋</x-slot>
-    <x-slot name="description">『[管理画面]LINE公式アプリ応援屋』のトップページにリダイレクトします</x-slot>
+    <x-slot name="title">LINE公式アプリ応援屋</x-slot>
 
     <x-slot name="head">
     </x-slot>
@@ -24,4 +23,4 @@
             setInterval(() => location.href = "/admin", 2000);
         </script>
     </x-slot>
-</x-frame.top>
+</x-frame.admin>
