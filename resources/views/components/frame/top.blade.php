@@ -19,22 +19,21 @@
         {{-- @if (isset($id) && file_exists(public_path("css/sns/$id.css")))
             <link rel="stylesheet" href="/css/sns/{{ $id }}.css">
         @endif --}}
-        {!! isset($head) ? $head :null !!}
+        {!! $head ?? null !!}
     </head>
     <body @isset($id) id="{{ $id }}" @endisset>
         <header>
-            {{-- {{ isset($header) ? $header : null }} --}}
             {{ $header ?? null }}
         </header>
         <main>
-            {{ isset($main) ? $main : null }}
+            {{ $main ?? null }}
             {{ $slot }}
         </main>
         {{-- <div style="display:none;">
             {{ isset($hidden) ? $hidden :null }}
         </div> --}}
         <footer>
-            {{ isset($footer) ? $footer : null }}
+            {{ $footer ?? null }}
             {{-- @auth
                 <form action="/sns/logout" method="post">
                     @csrf
@@ -43,6 +42,6 @@
             @endauth --}}
             <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</p>
         </footer>
-        {!! isset($script) ? $script :null !!}
+        {!! $script ?? null !!}
     </body>
 </html>
