@@ -5,11 +5,7 @@
     <x-slot name="header">
     </x-slot>
     <x-slot name="main">
-        <h2>ユーザーページ - TOP</h2>
-        <ul>
-            <li>{{ $user }}</li>
-            <li>{{ $app }}</li>
-        </ul>
+        <h2>{{ $app->diplay_name ?? $app->app_name }}</h2>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
