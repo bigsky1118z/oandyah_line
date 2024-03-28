@@ -32,15 +32,15 @@
                         <tr>
                             <th>名前</th>
                             <td>
-                                <span>姓</span><input type="text" class="user_name" name="name[last_name]" value="{{ $user->get_config("last_name") }}">
-                                <span>名</span><input type="text" class="user_name" name="name[first_name]" value="{{ $user->get_config("first_name") }}">
+                                <span>姓</span><input type="text" class="user_name" name="name[last_name]" value="{{ $user->get_config("last_name")->value }}">
+                                <span>名</span><input type="text" class="user_name" name="name[first_name]" value="{{ $user->get_config("first_name")->value }}">
                             </td>
                         </tr>
                         <tr>
                             <th>フリガナ</th>
                             <td>
-                                <span>セイ</span><input type="text" class="user_name" name="name[last_name_kana]" value="{{ $user->get_config("last_name_kana") }}">
-                                <span>メイ</span><input type="text" class="user_name" name="name[first_name_kana]" value="{{ $user->get_config("first_name_kana") }}">
+                                <span>セイ</span><input type="text" class="user_name" name="name[last_name_kana]" value="{{ $user->get_config("last_name_kana")->value }}">
+                                <span>メイ</span><input type="text" class="user_name" name="name[first_name_kana]" value="{{ $user->get_config("first_name_kana")->value }}">
                             </td>
                         </tr>
                         <tr>
