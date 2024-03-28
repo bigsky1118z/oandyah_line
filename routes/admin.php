@@ -22,7 +22,7 @@ Route::prefix("admin")->group(function(){
     Route::prefix("user")->group(function(){
         Route::get("/",[AdminUserController::class,"index"]);
         Route::prefix("{user_id}")->group(function(){
-            Route::get("/",[AdminUserController::class,"show"]);
+            Route::get("/",[AdminUserController::class,"create"]);
         });
     });
 

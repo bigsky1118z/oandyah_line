@@ -15,8 +15,12 @@ class AdminUserController extends Controller
         return view("admin.user.index", $data);
     }
 
-    public function show($user_id)
+    public function create($user_id = null)
     {
-        return User::find($user_id);
+        $data   =   array(
+            "user"  =>  User::find($user_id) ?? new User(),
+        );
+        return view("admin.user.create", $data);
+        
     }
 }

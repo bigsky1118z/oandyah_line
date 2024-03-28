@@ -19,10 +19,10 @@ body {
 /* color */
 body > header > a > h1 {
     color: #FFFFFF;
-    background-color: greenyellow;
+    background-color: green;
 }
 body > footer > div#copyright {
-    background-color: greenyellow;
+    background-color: green;
 }
 
 /* header */
