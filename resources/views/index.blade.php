@@ -13,6 +13,10 @@
                 @auth
                     <li>{{ auth()->user()->user_name }}</li>
                 @endauth
+                @guest
+                    <li><a href="register">会員登録</a></li>
+                    <li><a href="login">ログイン</a></li>
+                @endguest
             </ul>
         </nav>
         @auth
