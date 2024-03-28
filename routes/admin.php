@@ -20,8 +20,8 @@ Route::prefix("admin")->group(function(){
     Route::get('redirect', function () {
         return view('redirect');
     });
-    
+
     Route::fallback(function() {
-        return redirect("redirect");
+        return redirect("admin/redirect");
     });    
 });
