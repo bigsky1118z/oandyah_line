@@ -26,17 +26,23 @@
             <table>
                 <tbody>
                     <tr>
-                        <th>氏名</th>
+                        <th>名前</th>
                         <td>
-                            <span>氏</span><input type="text" class="user_name" name="last_name" value="">
+                            <span>姓</span><input type="text" class="user_name" name="last_name" value="">
                             <span>名</span><input type="text" class="user_name" name="first_name" value="">
                         </td>
                     </tr>
                     <tr>
-                        <th>氏名</th>
+                        <th>フリガナ</th>
                         <td>
-                            <span>氏</span><input type="text" class="user_name" name="last_name_kana" value="">
-                            <span>名</span><input type="text" class="user_name" name="first_name_kana" value="">
+                            <span>セイ</span><input type="text" class="user_name" name="last_name_kana" value="">
+                            <span>メイ</span><input type="text" class="user_name" name="first_name_kana" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>生年月日</th>
+                        <td>
+                            <input type="date" name="birthday" value="">
                         </td>
                     </tr>
                 </tbody>
