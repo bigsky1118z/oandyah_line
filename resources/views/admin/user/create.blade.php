@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <th>user name</th>
-                        <td><input type="text" name="user_name" value="{{ $user->user name }}"></td>
+                        <td><input type="text" name="user_name" value="{{ $user->user_name }}"></td>
                     </tr>
                 </tbody>
             </table>
