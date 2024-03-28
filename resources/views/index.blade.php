@@ -5,13 +5,13 @@
     </x-slot>
     <x-slot name="header">
         <a href="/"><h1>LINE公式アプリ応援屋</h1></a>
-        <nav id="header_nav">
-            <ul id="header_nav_ul">
+        <nav id="header-nav">
+            <ul id="header-nav-ul">
                 <li>メニュー1</li>
                 <li>メニュー2</li>
                 <li>メニュー3</li>
                 @auth
-                    <li>{{ auth()->user()->user_name }}</li>
+                    <li><a href="{{ auth()->user()->user_name }}">マイページ</a></li>
                     <li>
                         <form action="logout" method="post" style="cursor: pointer">
                             @csrf
