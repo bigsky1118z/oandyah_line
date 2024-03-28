@@ -48,13 +48,25 @@ class User extends Authenticatable
         "password"          => "hashed",
     ];
 
-    public function config($key)
+    public function get_config($key)
     {
         if(isset($key)){
             return $this->hasOne(UserConfig::class)->where("key",$key);
         } else {
             return $this->hasMany(UserConfig::class);
         }
+    }
+    public function post_config($key,$value = null, $description = null, $enable = true)
+    {
+        $user_config =  UserConfig::updateOrCreate(array(
+            "user_id"   =>  $this->id,
+            "key"       =>  $key,
+        ),array(
+            "value"         =>  $value,
+            "description"   =>  $description,
+            "enable"        =>  $enable,
+        ));
+        return $user_config;
     }
 
     public function roles()

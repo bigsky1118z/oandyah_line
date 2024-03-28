@@ -21,6 +21,20 @@ class UserSeeder extends Seeder
             "password"          =>  Hash::make("abc5news4-Z"),
             "user_name"         =>  "bigsky1118z",
         ));
+        $user->post_config("last_name","北角");
+        $user->post_config("first_name","大空");
+        $user->post_config("last_name_kana","キタズミ");
+        $user->post_config("first_name_kana","ダイスケ");
+
+        // $configs    =   array(
+        //     "last_name"         =>  "北角",
+        //     "first_name"        =>  "大空",
+        //     "last_name_kana"    =>  "キタズミ",
+        //     "first_name_kana"   =>  "ダイスケ",
+        // );
+        // foreach($configs as $key => $value){
+        //     $user->post_config($key,$value);
+        // }
 
         $user   =   User::updateOrCreate(array(
             "email"             =>  "bigsky1118@gmail.com",
