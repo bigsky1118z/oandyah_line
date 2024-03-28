@@ -11,6 +11,7 @@
                 <li><a href="/{{ $user->user_name }}/{{ $app->app_name }}" target="_blank" rel="noopener noreferrer">{{ $app->display_name ?? $app->app_name }}</a></li>
             @endforeach
         </ul>
+        {{ $route }}
     </x-slot>
     <x-slot name="footer">
     </x-slot>
