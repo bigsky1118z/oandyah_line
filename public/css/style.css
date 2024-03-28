@@ -41,6 +41,12 @@ body > header > nav#header-nav > ul#header-nav-ul {
 }
 body > header > nav#header-nav > ul#header-nav-ul > li {
     width: 100%;
+    text-align: center;
+}
+body > header > nav#header-nav > ul#header-nav-ul > li > a {
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 /* footer */
