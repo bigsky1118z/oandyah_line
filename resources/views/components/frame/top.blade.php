@@ -11,8 +11,8 @@
         {{-- @if (file_exists(public_path("storage/image/website/favicon.ico")))
             <link rel="shortcut icon" href="/storage/image/website/favicon.ico">
         @endif --}}
-        <title>{{ $title }}</title>
-        <meta name="description" content="{{ $description }}" />
+        <title>{{ $title ?? "O&Yah" }}</title>
+        @isset($description)<meta name="description" content="{{ $description }}" />@endisset
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="css/style.css">
         {{-- <link rel="stylesheet" href="/css/header.css">
