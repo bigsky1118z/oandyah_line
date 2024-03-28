@@ -23,7 +23,8 @@
     </head>
     <body>
         <header>
-            {{ isset($header) ? $header : null }}
+            {{-- {{ isset($header) ? $header : null }} --}}
+            {{ $header ?? null }}
         </header>
         <main>
             {{ isset($main) ? $main : null }}

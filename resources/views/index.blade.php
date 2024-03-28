@@ -3,9 +3,9 @@
     <x-slot name="description">『LINE公式アプリ応援屋』はLINE Messaging APIを簡単に利用できるようにするサービスです</x-slot>
     <x-slot name="head">
     </x-slot>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h1>LINE公式アプリ応援屋</h1>
-    </x-slot>
+    </x-slot> --}}
     <x-slot name="main">
         <section>
             <h2>LINE公式アプリを使って集客</h2>

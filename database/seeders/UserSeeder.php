@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             "email"             =>  "bigsky1118z@gmail.com",
             "email_verified_at" =>  now(),
             "password"          =>  Hash::make("abc5news4-Z"),
+            "user_name"         =>  "bigsky1118z",
         ));
 
     }
