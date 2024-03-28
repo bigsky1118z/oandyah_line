@@ -16,9 +16,18 @@ class UserSeeder extends Seeder
     {
         $user   =   User::updateOrCreate(array(
             "email"             =>  "bigsky1118z@gmail.com",
+        ),array(
             "email_verified_at" =>  now(),
             "password"          =>  Hash::make("abc5news4-Z"),
             "user_name"         =>  "bigsky1118z",
+        ));
+
+        $user   =   User::updateOrCreate(array(
+            "email"             =>  "bigsky1118@gmail.com",
+        ),array(
+            "email_verified_at" =>  now(),
+            "password"          =>  Hash::make("abc5news4-Z"),
+            "user_name"         =>  "bigsky1118",
         ));
 
     }
