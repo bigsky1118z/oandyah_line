@@ -14,10 +14,29 @@
         </nav>
     </x-slot>
     <x-slot name="main">
-        <section>user</section>
-        @foreach ($users as $user)
-            {{ $user }}
-        @endforeach
+        <section>
+            <h2>user</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>email</th>
+                        <th>user name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->user_name }}</td>
+                            <td><a href="/admin/user/{{ $user->id }}">詳細</a></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
