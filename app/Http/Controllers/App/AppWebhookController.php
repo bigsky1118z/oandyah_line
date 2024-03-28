@@ -27,30 +27,30 @@ class AppWebhookController extends Controller
             ));
             if($request->exists("events")){
                 $events =   $request->get("events");
-                // if(!empty($events)){
-                //     foreach($events as $event){
-                //         // $webhook->line_user_id      =   $event["source"]["userId"]                  ??  null;
-                //         // $webhook->line_group_id     =   $event["source"]["groupId"]                 ??  null;
-                //         // $webhook->line_room_id      =   $event["source"]["roomId"]                  ??  null;
-                //         // $webhook->type              =   $event["type"]                              ??  null;
-                //         // $webhook->mode              =   $event["mode"]                              ??  null;
-                //         // $webhook->Receive_erent_id  =   $event["ReceiverventId"]                    ??  null;
-                //         // $webhook->reply_token       =   $event["replyToken"]                        ??  null;
-                //         // $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
-                //         // $webhook->event             =   $event[$event["type"]]                      ??  null;
+                if(!empty($events)){
+                    foreach($events as $event){
+                        // $webhook->line_user_id      =   $event["source"]["userId"]                  ??  null;
+                        // $webhook->line_group_id     =   $event["source"]["groupId"]                 ??  null;
+                        // $webhook->line_room_id      =   $event["source"]["roomId"]                  ??  null;
+                        // $webhook->type              =   $event["type"]                              ??  null;
+                        // $webhook->mode              =   $event["mode"]                              ??  null;
+                        // $webhook->Receive_erent_id  =   $event["ReceiverventId"]                    ??  null;
+                        // $webhook->reply_token       =   $event["replyToken"]                        ??  null;
+                        // $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
+                        // $webhook->event             =   $event[$event["type"]]                      ??  null;
 
-                //         isset($event["source"]["userId"])                   ?   $webhook->line_user_id      =   $event["source"]["userId"]                  :   null;
-                //         isset($event["source"]["groupId"])                  ?   $webhook->line_group_id     =   $event["source"]["groupId"]                 :   null;
-                //         isset($event["source"]["roomId"])                   ?   $webhook->line_room_id      =   $event["source"]["roomId"]                  :   null;
-                //         isset($event["type"])                               ?   $webhook->type              =   $event["type"]                              :   null;
-                //         isset($event["mode"])                               ?   $webhook->mode              =   $event["mode"]                              :   null;
-                //         isset($event["ReceiverventId"])                     ?   $webhook->Receive_erent_id  =   $event["ReceiverventId"]                    :   null;
-                //         isset($event["replyToken"])                         ?   $webhook->reply_token       =   $event["replyToken"]                        :   null;
-                //         isset($event['deliveryContext']['isRedelivery'])    ?   $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   :   null;
-                //         isset($event[$event["type"]])                       ?   $webhook->event             =   $event[$event["type"]]                      :   null;
-                //     }
-                // }
-                $webhook->type  =   "hello";
+                        isset($event["source"]["userId"])                   ?   $webhook->line_user_id      =   $event["source"]["userId"]                  :   null;
+                        isset($event["source"]["groupId"])                  ?   $webhook->line_group_id     =   $event["source"]["groupId"]                 :   null;
+                        isset($event["source"]["roomId"])                   ?   $webhook->line_room_id      =   $event["source"]["roomId"]                  :   null;
+                        isset($event["type"])                               ?   $webhook->type              =   $event["type"]                              :   null;
+                        isset($event["mode"])                               ?   $webhook->mode              =   $event["mode"]                              :   null;
+                        isset($event["ReceiverventId"])                     ?   $webhook->Receive_erent_id  =   $event["ReceiverventId"]                    :   null;
+                        isset($event["replyToken"])                         ?   $webhook->reply_token       =   $event["replyToken"]                        :   null;
+                        isset($event['deliveryContext']['isRedelivery'])    ?   $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   :   null;
+                        isset($event[$event["type"]])                       ?   $webhook->event             =   $event[$event["type"]]                      :   null;
+                    }
+                    $webhook->type  =   "hello";
+                }
             }
             $webhook->save();
         }
