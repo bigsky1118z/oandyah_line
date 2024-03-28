@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,5 +13,9 @@ class AdminController extends Controller
             "users"  =>  User::all(),
         );
         return view("admin.index", $data);
+    }
+    public function redirect()
+    {
+        return view("admin.redirect");
     }
 }

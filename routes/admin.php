@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("admin")->group(function(){
     Route::get("/",[AdminController::class,"index"]);
-    Route::get('redirect', function () {
-        return view('admin.redirect');
+    Route::get("redirect",[AdminController::class,"redirect"]);
+    Route::prefix("{user_name}")->group(function(){
+
     });
+
 
     Route::fallback(function() {
         return redirect("admin/redirect");
