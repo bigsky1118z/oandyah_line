@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="main">
         <section>
-            <h2>user</h2>
+            <h2>ユーザー一覧</h2>
             <table>
                 <thead>
                     <tr>
