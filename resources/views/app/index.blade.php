@@ -6,22 +6,11 @@
     </x-slot>
     <x-slot name="main">
         <h2>ユーザーページ - TOP</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>APP ID</th>
-                    <th>APPタイトル</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
+        <ul>
             @foreach ($user->apps as $app)
-                <tr>
-                    <td>{{ $app->app_name }}</td>
-                    <td>{{ $app->display_name }}</td>
-                    <td><a href="/{{ $user->user_name }}/{{ $app->app_name }}" target="_blank" rel="noopener noreferrer">アプリ</a></td>
-                </tr>
+                <li><a href="/{{ $user->user_name }}/{{ $app->app_name }}" target="_blank" rel="noopener noreferrer">{{ $app->display_name ?? $app->app_name }}</a></li>
             @endforeach
-        </table>
+        </ul>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
