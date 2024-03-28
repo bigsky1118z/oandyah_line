@@ -15,14 +15,15 @@ class AppWebhookController extends Controller
         $app    =   App::whereAppName($app_name)->first();
         if($user && $app && $user->id == $app->user_id){
             $webhook    =   AppWebhook::updateOrCreate(array(
-                "app_id"            =>   $app->id,
-                "ip_address"        =>   $request->header("x-forwarded-for"),
-                "request_host"      =>   $request->host(),
-                "request_path"      =>   $request->path(),
-                "request_method"    =>   $request->method(),
-                "x_line_signature"  =>   $request->header("x_line_signature"),
-                "destination"       =>   $request->get("destination"),
-                "query_string"      =>   $request->get("query_string"),
+                "app_id"            =>  $app->id,
+                "ip_address"        =>  $request->header("x-forwarded-for"),
+                "request_host"      =>  $request->host(),
+                "request_path"      =>  $request->path(),
+                "request_method"    =>  $request->method(),
+                "x_line_signature"  =>  $request->header("x_line_signature"),
+                "destination"       =>  $request->get("destination"),
+                "query_string"      =>  $request->get("query_string"),
+                "event"             =>  $request->get("events") ?? null,
             ));
             if($request->exists("events")){
                 $events =   $request->get("events");
