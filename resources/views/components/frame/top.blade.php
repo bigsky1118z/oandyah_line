@@ -21,7 +21,7 @@
         @endif --}}
         {!! isset($head) ? $head :null !!}
     </head>
-    <body>
+    <body @isset($id) id="{{ $id }}" @endisset>
         <header>
             {{-- {{ isset($header) ? $header : null }} --}}
             {{ $header ?? null }}
