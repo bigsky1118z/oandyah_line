@@ -26,6 +26,7 @@ class AppController extends Controller
 
     public function webhook(Request $request,$user_name,$app_name)
     {
+        
         return response()->json([],200);
     }
 
