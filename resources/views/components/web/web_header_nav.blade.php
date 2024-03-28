@@ -1,5 +1,5 @@
-<nav id="admin-header-nav">
-    <ul id="admin-header-nav-ul">
+<nav id="header-nav">
+    <ul id="header-nav-ul">
         <li><a href="/">TOP</a></li>
         <li>メニュー1</li>
         <li>メニュー2</li>
