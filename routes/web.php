@@ -26,6 +26,7 @@ require __DIR__.'/app.php';
 require __DIR__.'/admin.php';
 
 Route::get("new",[WebController::class,"create"]);
+Route::post("new",[WebController::class,"store"]);
 
 // Route::prefix("dashboard")->group(function(){
 //     return view('dashboard');

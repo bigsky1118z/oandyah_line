@@ -18,9 +18,9 @@ class WebController extends Controller
     {
         return view("create");
     }
-    public function store()
+    public function store(Request $request)
     {
-
+        return $request->all();
         return redirect("user_name");
     }
 }

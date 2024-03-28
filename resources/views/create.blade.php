@@ -23,7 +23,11 @@
                 </tr>
                 <tr>
                     <th>ユーザー名</th>
-                    <td><input type="text" name="user_name"></td>
+                    <td><input type="text" name="user_name" required></td>
+                </tr>
+                <tr>
+                    <th>生年月日</th>
+                    <td><input type="date" name="birthday" required></td>
                 </tr>
                 {{-- 利用規約 --}}
                 <tr>
