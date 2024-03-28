@@ -39,7 +39,7 @@ Route::middleware('auth')->prefix("{user_name}")->group(function(){
 
 
 Route::fallback(function() {
-    return view("index");
+    return redirect("/");
 });
 
 // Route::get('/', function () {
