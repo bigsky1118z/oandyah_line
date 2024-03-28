@@ -7,7 +7,7 @@
     <x-slot name="main">
         <h2>webhook - TOP</h2>
         <ul>
-            @foreach ($webhooks->$webhook)
+            @foreach ($webhooks as $webhook)
                 <li>{{ $webhook }}</li>
             @endforeach
         </ul>
