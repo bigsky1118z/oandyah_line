@@ -48,13 +48,19 @@ class User extends Authenticatable
         "password"          => "hashed",
     ];
 
-    public function cpnfig()
+    public function config($key)
     {
-        return $this->hasOne(UserConfig::class);
+        if(isset($key)){
+            return $this->hasOne(UserConfig::class)->where("key",$key);
+        } else {
+            return $this->hasMany(UserConfig::class);
+        }
     }
 
     public function roles()
     {
         return $this->hasMany(UserRole::class);
     }
+
+
 }
