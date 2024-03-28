@@ -12,6 +12,12 @@
                 <li>メニュー3</li>
                 @auth
                     <li>{{ auth()->user()->user_name }}</li>
+                    <li>
+                        <form action="logout" method="post" style="cursor: pointer">
+                            @csrf
+                            <span onclick="this.closest('form').submit();">ログアウト</span>
+                        </form>
+                    </li>
                 @endauth
                 @guest
                     <li><a href="register">会員登録</a></li>
