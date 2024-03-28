@@ -24,11 +24,13 @@ Route::get('redirect', function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 
 Route::prefix("dashboard")->group(function(){
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->prefix("profile")->group(function(){
     Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
