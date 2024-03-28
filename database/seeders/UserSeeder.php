@@ -27,9 +27,10 @@ class UserSeeder extends Seeder
         $user->post_config("first_name","大空");
         $user->post_config("last_name_kana","キタズミ");
         $user->post_config("first_name_kana","ダイスケ");
-        App::Create(array(
+        App::updateOrCreate(array(
             "user_id"               =>  $user->id,
-            "app_name"              =>  "first_app",            
+            "app_name"              =>  "first_app",
+        ),array(            
             "channel_access_token"  =>  "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=",
         ));
 
