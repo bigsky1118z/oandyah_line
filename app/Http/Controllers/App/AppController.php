@@ -24,10 +24,4 @@ class AppController extends Controller
         return view("app.show", $data);
     }
 
-    public function webhook(Request $request,$user_name,$app_name)
-    {
-        
-        return response()->json([],200);
-    }
-
 }
