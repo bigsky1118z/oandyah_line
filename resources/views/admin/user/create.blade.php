@@ -16,6 +16,7 @@
                             <th>ID</th>
                             <th>メールアドレス</th>
                             <th>ユーザー名</th>
+                            <th>生年月日</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,7 @@
                             <td>{{ $user->id }}</td>
                             <td><input type="email" name="email" value="{{ $user->email }}"></td>
                             <td><input type="text" name="user_name" value="{{ $user->user_name }}"></td>
+                            <td><input type="date" name="birthday" value="{{ $user->birthday }}"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -41,12 +43,6 @@
                             <td>
                                 <span>セイ</span><input type="text" class="user_name" name="name[last_name_kana]" value="{{ $user->get_config("last_name_kana")->value }}">
                                 <span>メイ</span><input type="text" class="user_name" name="name[first_name_kana]" value="{{ $user->get_config("first_name_kana")->value }}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>生年月日</th>
-                            <td>
-                                <input type="date" name="birthday" value="">
                             </td>
                         </tr>
                     </tbody>

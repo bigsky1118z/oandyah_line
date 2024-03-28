@@ -13,6 +13,7 @@
                         <th>id</th>
                         <th>email</th>
                         <th>user name</th>
+                        <th>birthday</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->user_name }}</td>
+                            <td>{{ $user->birthday }}</td>
                             <td><a href="/admin/user/{{ $user->id }}">詳細</a></td>
                         </tr>
                     @endforeach
