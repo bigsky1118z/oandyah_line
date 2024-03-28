@@ -14,8 +14,9 @@ body {
     margin: 0 auto;
 }
 
-/* background-color */
-body > header > h1 {
+/* color */
+body > header > a > h1 {
+    color: #FFFFFF;
     background-color: greenyellow;
 }
 body > footer > div#copyright {
@@ -24,9 +25,8 @@ body > footer > div#copyright {
 
 /*  */
 
-body > header > h1 {
+body > header > a > h1 {
     text-align: center;
-    color: white;
     font-size: 30px;
 }
 
