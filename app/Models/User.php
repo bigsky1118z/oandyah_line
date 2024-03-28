@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\User\UserConfig;
+use App\Models\User\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,5 +51,10 @@ class User extends Authenticatable
     public function cpnfig()
     {
         return $this->hasOne(UserConfig::class);
+    }
+
+    public function roles()
+    {
+        return $this->hasMany(UserRole::class);
     }
 }

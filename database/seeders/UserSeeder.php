@@ -30,5 +30,13 @@ class UserSeeder extends Seeder
             "user_name"         =>  "bigsky1118",
         ));
 
+        $user   =   User::updateOrCreate(array(
+            "email"             =>  "jingujiozora@gmail.com",
+        ),array(
+            "email_verified_at" =>  now(),
+            "password"          =>  Hash::make("abc5news4-Z"),
+            "user_name"         =>  "jingujiozora",
+        ));
+
     }
 }
