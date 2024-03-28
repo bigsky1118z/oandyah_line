@@ -13,8 +13,8 @@
         @endif --}}
         <title>[管理画面]{{ $title ?? "O&Yah" }}</title>
         <meta name="robots" content="noindex" />
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="/css/admin/style.css">
+        <link rel="stylesheet" href="css/admin/style.css">
         {{-- <link rel="stylesheet" href="/css/header.css">
         <link rel="stylesheet" href="/css/footer.css"> --}}
         {{-- @if (isset($id) && file_exists(public_path("css/sns/$id.css")))

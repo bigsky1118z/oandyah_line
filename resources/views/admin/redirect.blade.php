@@ -1,7 +1,6 @@
 <x-frame.admin>
     <x-slot name="id">redirect</x-slot>
     <x-slot name="title">LINE公式アプリ応援屋</x-slot>
-
     <x-slot name="head">
     </x-slot>
     <x-slot name="header">
