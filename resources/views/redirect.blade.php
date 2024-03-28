@@ -6,7 +6,6 @@
     <x-slot name="head">
     </x-slot>
     <x-slot name="header">
-        <h1>LINE公式アプリ応援屋</h1>
     </x-slot>
     <x-slot name="main">
         <div>

@@ -4,12 +4,12 @@
     <x-slot name="head">
     </x-slot>
     <x-slot name="header">
-        <a href="/"><h1>LINE公式アプリ応援屋</h1></a>
         <nav id="header-nav">
             <ul id="header-nav-ul">
                 <li>メニュー1</li>
                 <li>メニュー2</li>
                 <li>メニュー3</li>
+                <li>メニュー4</li>
                 @auth
                     <li><a href="{{ auth()->user()->user_name }}">マイページ</a></li>
                     <li>

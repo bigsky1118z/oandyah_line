@@ -14,6 +14,7 @@
         <title>{{ $title }}</title>
         <meta name="description" content="{{ $description }}" />
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         {{-- <link rel="stylesheet" href="/css/header.css">
         <link rel="stylesheet" href="/css/footer.css"> --}}
         {{-- @if (isset($id) && file_exists(public_path("css/sns/$id.css")))
@@ -23,6 +24,7 @@
     </head>
     <body @isset($id) id="{{ $id }}" @endisset>
         <header>
+            <a href="/"><h1>LINE公式アプリ応援屋</h1></a>
             {{ $header ?? null }}
         </header>
         <main>

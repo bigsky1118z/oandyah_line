@@ -21,6 +21,8 @@ class User extends Authenticatable
         // "name",
         "email",
         "password",
+
+        "user_name",
     ];
 
     /**
@@ -43,8 +45,8 @@ class User extends Authenticatable
         "password"          => "hashed",
     ];
 
-    public function name()
+    public function cpnfig()
     {
-        return $this->hasOne(UserName::class);
+        return $this->hasOne(UserConfig::class);
     }
 }
