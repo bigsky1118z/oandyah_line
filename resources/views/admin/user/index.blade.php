@@ -23,7 +23,7 @@
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->user_name }}</td>
-                            <td>{{ date("Y-m-d",$user->birthday) }}</td>
+                            <td>{{ $user->birthday }}</td>
                             <td><a href="/admin/user/{{ $user->id }}">詳細</a></td>
                         </tr>
                     @endforeach
