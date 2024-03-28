@@ -51,7 +51,7 @@ class User extends Authenticatable
     public function get_config($key)
     {
         if(isset($key)){
-            return $this->hasOne(UserConfig::class)->where("key",$key);
+            return $this->hasOne(UserConfig::class)->where("key",$key)->first();
         } else {
             return $this->hasMany(UserConfig::class);
         }
