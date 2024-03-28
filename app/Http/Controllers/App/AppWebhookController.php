@@ -2,17 +2,31 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Models\App\App;
 use App\Models\App\AppWebhook;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AppWebhookController extends Controller
 {
     public function post(Request $request, $user_name, $app_name)
     {
-        AppWebhook::updateOrCreate(array(
-            "app_id"    =>  1,
-            "event"     =>  $request->all(),
-        ));
+        $user   =   User::whereUserName($user_name)->first();
+        $app    =   App::whereAppName($app_name)->first();
+        if($user && $app && $user->id == $app->user_id){
+            $webhook    =   AppWebhook::updateOrCreate(array(
+                "app_id"            =>   $app->id,
+                "ip_address"        =>   $request->header("x-forwarded-for"),
+                "request_host"      =>   $request->host(),
+                "request_path"      =>   $request->path(),
+                "request_method"    =>   $request->method(),
+                "x_line_signature"  =>   $request->header("x_line_signature"),
+                "destination"       =>   $request->get("destination"),
+                "query_string"      =>   $request->get("query_string"),
+    
+                "event"             =>  $request->all(),
+            ));
+        }
         return response()->json([],200);
     }
 

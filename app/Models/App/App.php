@@ -20,4 +20,9 @@ class App extends Model
         "chat_mode",
         "mark_as_read_mode",
     ];
+
+    public function get_app($user,$app_name)
+    {
+        return App::whereUserId($user->id)->whereAppName($app_name)->first();
+    }
 }
