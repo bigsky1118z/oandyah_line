@@ -1,3 +1,4 @@
+/* common */
 * {
     padding: 0;
     margin: 0;
@@ -13,7 +14,23 @@ body {
     margin: 0 auto;
 }
 
-footer > div#copyright {
+/* background-color */
+body > header > h1 {
+    background-color: greenyellow;
+}
+body > div#copyright {
+    background-color: greenyellow;
+}
+
+/*  */
+
+body > header > h1 {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+body > div#copyright {
     text-align: center;
     font-size: 8px;
 }

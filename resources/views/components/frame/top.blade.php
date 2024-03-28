@@ -34,12 +34,6 @@
         </div> --}}
         <footer>
             {{ $footer ?? null }}
-            {{-- @auth
-                <form action="/sns/logout" method="post">
-                    @csrf
-                    <span onclick="this.closest('form').submit();">logout</span>
-                </form>
-            @endauth --}}
             <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</p>
         </footer>
         {!! $script ?? null !!}
