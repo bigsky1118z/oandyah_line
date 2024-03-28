@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix("admin")->group(function(){
     Route::get("/",[AdminController::class,"index"]);
     Route::get('redirect', function () {
-        return view('redirect');
+        return view('admin.redirect');
     });
 
     Route::fallback(function() {
