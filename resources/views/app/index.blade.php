@@ -7,9 +7,18 @@
     <x-slot name="main">
         <h2>ユーザーページ - TOP</h2>
         <table>
-            @foreach (auth()->user()->apps as $app)
+            <thead>
                 <tr>
-                    <td>{{ $app }}</td>
+                    <th>APP ID</th>
+                    <th>APPタイトル</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            @foreach ($user->apps as $app)
+                <tr>
+                    <td>{{ $app->app_name }}</td>
+                    <td>{{ $app->display_name }}</td>
+                    <td><a href="/{{ $user->user_name }}/{{ $app->app_name }}" target="_blank" rel="noopener noreferrer">アプリ</a></td>
                 </tr>
             @endforeach
         </table>
