@@ -21,6 +21,10 @@ class AdminUserController extends Controller
             "user"  =>  User::find($user_id) ?? new User(),
         );
         return view("admin.user.create", $data);
-        
+    }
+
+    public function store(Request $request, $user_id = null)
+    {
+        return $request->all();
     }
 }
