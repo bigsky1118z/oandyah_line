@@ -22,5 +22,7 @@ Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::get("/",[AppController::class,"index"]);
     Route::prefix("{app_name}")->group(function(){
         Route::get("/",[AppController::class,"show"]);
+        
+        Route::get("webhook",[AppWebhookController::class,"index"]);
     });
 });
