@@ -11,7 +11,7 @@ class AppController extends Controller
         $user   =   auth()->user();
         if($user->user_name == $user_name){
             $data   =   array(
-                "users"  =>  $user,
+                "user"  =>  $user,
             );
             return view("app.index", $data);
         } else {
