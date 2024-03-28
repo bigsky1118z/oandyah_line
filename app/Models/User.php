@@ -26,6 +26,7 @@ class User extends Authenticatable
         "password",
 
         "user_name",
+        "birthday",
     ];
 
     /**
@@ -46,6 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         "email_verified_at" => "datetime",
         "password"          => "hashed",
+
+        "birthday"          => "date",
     ];
 
     public function get_config($key)

@@ -14,16 +14,16 @@
                     <td><input type="email" name="email" required></td>
                 </tr>
                 <tr>
-                    <th>ユーザー名</th>
-                    <td><input type="text" name="user_name" ></td>
-                </tr>
-                <tr>
                     <th>パスワード</th>
                     <td><input type="password" name="password" required></td>
                 </tr>
                 <tr>
                     <th>パスワード</th>
                     <td><input type="password" name="password_confirm" required></td>
+                </tr>
+                <tr>
+                    <th>ユーザー名</th>
+                    <td><input type="text" name="user_name"></td>
                 </tr>
                 {{-- 利用規約 --}}
                 <tr>
