@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,34 +17,33 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [WebsiteController::class,'index']);
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('redirect', function () {
-    return view('redirect');
-});
+Route::get("/",[WebController::class,"index"]);
+Route::get("redirect",[WebController::class,"redirect"]);
+
 
 require __DIR__.'/auth.php';
+require __DIR__.'/app.php';
 require __DIR__.'/admin.php';
 
+Route::get("new",[WebController::class,"create"]);
 
-Route::prefix("dashboard")->group(function(){
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::prefix("dashboard")->group(function(){
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware('auth')->prefix("profile")->group(function(){
-    Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->prefix("profile")->group(function(){
+//     Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-Route::middleware('auth')->prefix("{user_name}")->group(function(){
-    return "login";
-    // Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->prefix("{user_name}")->group(function(){
+//     return "login";
+//     // Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+//     // Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+//     // Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 
 

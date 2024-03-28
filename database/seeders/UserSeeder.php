@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\App\App;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,16 +26,12 @@ class UserSeeder extends Seeder
         $user->post_config("first_name","大空");
         $user->post_config("last_name_kana","キタズミ");
         $user->post_config("first_name_kana","ダイスケ");
+        App::Create(array(
+            "user_id"               =>  $user->id,
+            "app_name"              =>  "first_app",            
+            "channel_access_token"  =>  "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=",
+        ));
 
-        // $configs    =   array(
-        //     "last_name"         =>  "北角",
-        //     "first_name"        =>  "大空",
-        //     "last_name_kana"    =>  "キタズミ",
-        //     "first_name_kana"   =>  "ダイスケ",
-        // );
-        // foreach($configs as $key => $value){
-        //     $user->post_config($key,$value);
-        // }
 
         $user   =   User::updateOrCreate(array(
             "email"             =>  "bigsky1118@gmail.com",
