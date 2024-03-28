@@ -23,6 +23,8 @@ Route::get('redirect', function () {
     return view('redirect');
 });
 
+require __DIR__.'/auth.php';
+
 
 Route::prefix("dashboard")->group(function(){
     return view('dashboard');
