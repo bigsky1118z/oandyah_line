@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\App\App;
 use App\Models\User\UserConfig;
 use App\Models\User\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -75,6 +76,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->hasMany(UserRole::class);
+    }
+
+    public function apps()
+    {
+        return $this->hasMany(App::class);
     }
 
 

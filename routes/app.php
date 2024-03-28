@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,14 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix("new")->group(function(){
-    Route::get("/",[AdminController::class,"index"]);
-    Route::get("redirect",[AdminController::class,"redirect"]);
-    Route::prefix("user")->group(function(){
-        Route::get("/",[AdminUserController::class,"index"]);
-        Route::prefix("{user_id}")->group(function(){
-            Route::get("/",[AdminUserController::class,"create"]);
-            Route::post("/",[AdminUserController::class,"store"]);
-        });
-    });
+Route::prefix("{user_name}")->group(function(){
+    Route::get("/",[AppController::class,"index"]);
 });

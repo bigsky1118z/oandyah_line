@@ -4,30 +4,6 @@
     <x-slot name="head">
     </x-slot>
     <x-slot name="header">
-        <nav id="header-nav">
-            <ul id="header-nav-ul">
-                <li>メニュー1</li>
-                <li>メニュー2</li>
-                <li>メニュー3</li>
-                <li>メニュー4</li>
-                @auth
-                    <li><a href="{{ auth()->user()->user_name }}">マイページ</a></li>
-                    <li>
-                        <form action="logout" method="post" style="cursor: pointer">
-                            @csrf
-                            <span onclick="this.closest('form').submit();">ログアウト</span>
-                        </form>
-                    </li>
-                @endauth
-                @guest
-                    <li><a href="register">会員登録</a></li>
-                    <li><a href="login">ログイン</a></li>
-                @endguest
-            </ul>
-        </nav>
-        @auth
-            
-        @endauth
     </x-slot>
     <x-slot name="main">
         <section>

@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class App extends Model
 {
     use HasFactory;
+
+    protected $fillable =   [
+        "user_id",
+        "app_name",
+        "channel_access_token",
+        "line_user_id",
+        "basic_id",
+        "display_name",
+        "picture_url",
+        "chat_mode",
+        "mark_as_read_mode",
+    ];
 }

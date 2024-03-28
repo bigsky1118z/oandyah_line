@@ -11,8 +11,8 @@
         {{-- @if (file_exists(public_path("storage/image/website/favicon.ico")))
             <link rel="shortcut icon" href="/storage/image/website/favicon.ico">
         @endif --}}
-        <title>{{ $title ?? "O&Yah" }}</title>
-        @isset($description)<meta name="description" content="{{ $description }}" />@endisset
+        <title>[管理画面]{{ $title ?? "O&Yah" }}</title>
+        <meta name="robots" content="noindex" />
         <link rel="stylesheet" href="/css/style.css">
         <link rel="stylesheet" href="css/style.css">
         {{-- <link rel="stylesheet" href="/css/header.css">
@@ -24,9 +24,7 @@
     </head>
     <body @isset($id) id="{{ $id }}" @endisset>
         <header>
-            <a href="/"><h1>LINE公式アプリ応援屋</h1></a>
-            <x-web.web_header_nav />
-
+            <a href="/admin"><h1>[管理画面]LINE公式アプリ応援屋</h1></a>
             {{ $header ?? null }}
         </header>
         <main>

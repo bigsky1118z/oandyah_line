@@ -22,12 +22,12 @@ Route::get("redirect",[WebController::class,"redirect"]);
 
 
 require __DIR__.'/auth.php';
-require __DIR__.'/app.php';
 require __DIR__.'/admin.php';
 
 Route::get("new",[WebController::class,"create"]);
 Route::post("new",[WebController::class,"store"]);
 
+require __DIR__.'/app.php';
 // Route::prefix("dashboard")->group(function(){
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
