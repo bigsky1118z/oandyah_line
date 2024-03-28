@@ -8,14 +8,9 @@ class AppController extends Controller
 {
     public function index($user_name)
     {
-        $user   =   auth()->user();
-        if($user->user_name == $user_name){
-            $data   =   array(
-                "user"  =>  $user,
-            );
-            return view("app.index", $data);
-        } else {
-            return redirect("new");
-        }
+        $data   =   array(
+            "user"  =>  auth()->user(),
+        );
+        return view("app.index", $data);
     }
 }
