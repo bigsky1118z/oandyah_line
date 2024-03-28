@@ -34,7 +34,7 @@
         </div> --}}
         <footer>
             {{ $footer ?? null }}
-            <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</p>
+            <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</div>
         </footer>
         {!! $script ?? null !!}
     </body>
