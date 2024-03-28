@@ -24,7 +24,7 @@
                             <td>{{ $user->id }}</td>
                             <td><input type="email" name="email" value="{{ $user->email }}"></td>
                             <td><input type="text" name="user_name" value="{{ $user->user_name }}"></td>
-                            <td><input type="date" name="birthday" value="{{ $user->birthday }}"></td>
+                            <td><input type="date" name="birthday" value="{{ date("Y-m-d",$user->birthday) }}"></td>
                         </tr>
                     </tbody>
                 </table>
