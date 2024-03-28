@@ -35,6 +35,7 @@ Route::middleware('auth')->prefix("profile")->group(function(){
 });
 
 Route::middleware('auth')->prefix("{user_name}")->group(function(){
+    return "login";
     // Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
     // Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
