@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -10,8 +11,18 @@ class AppController extends Controller
     {
         $data   =   array(
             "user"  =>  auth()->user(),
-            "route" => $request->route("user_name"),
         );
         return view("app.index", $data);
     }
+    public function show(Request $request,$user_name,$app_name)
+    {
+        return $user_name . "/////" . $app_name;
+        $user   =   User::find(auth()->user()->id);
+        $data   =   array(
+            "user"  =>  $user,
+            "app"   =>  $user->apps($app_name),
+        );
+        return view("app.show", $data);
+    }
+
 }

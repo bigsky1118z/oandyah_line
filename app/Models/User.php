@@ -78,9 +78,9 @@ class User extends Authenticatable
         return $this->hasMany(UserRole::class);
     }
 
-    public function apps()
+    public function apps($app_name = null)
     {
-        return $this->hasMany(App::class);
+        return $app_name ? $this->hasOne(App::class)->where("app_name",$app_name)->first() : $this->hasMany(App::class);
     }
 
 
