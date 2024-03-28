@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('redirect', function () {
+    return view('redirect');
+});
+
 
 Route::prefix("dashboard")->group(function(){
     return view('dashboard');
