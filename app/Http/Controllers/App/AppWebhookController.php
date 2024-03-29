@@ -30,12 +30,11 @@ class AppWebhookController extends Controller
             if($request->exists("events")){
                 $webhook->mode  =   "B";
                 $events         =   $request->get("events");
-                $webhook->type  =   gettype($events);
-                $webhook->save();
-
+                $webhook->type  =   is_array($events);
                 // ここではじかれている
-                if(!empty($events)){
+                if(is_array($events)){
                     $webhook->mode  =   "C";
+                    $webhook->save();
 
                     foreach($events as $event){
                         // $webhook->line_user_id      =   $event["source"]["userId"]                  ??  null;
