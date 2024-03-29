@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text("picture_url")->nullable();
             $table->string("chat_mode")->nullable();
             $table->string("mark_as_read_mode")->nullable();
+            $table->string("status")->default("active");
             $table->timestamps();
         });
     }
