@@ -23,7 +23,7 @@
                         </dl>
                     </a>
                 </li>
-            @endforeach
+            @endfor
         </ul>
         <h3><a href="/{{ $user->name }}/message">メッセージボックス</a></h3>
         <ul>
@@ -36,7 +36,7 @@
                         </dl>
                     </a>
                 </li>
-            @endforeach
+            @endfor
         </ul>
     </x-slot>
     <x-slot name="footer">
