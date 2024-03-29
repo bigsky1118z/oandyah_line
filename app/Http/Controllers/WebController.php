@@ -25,7 +25,6 @@ class WebController extends Controller
     // }
     public function show(Request $request, $user_name)
     {
-        return $user_name;
         $data   =   array(
             "user"  =>  auth()->user(),
         );
