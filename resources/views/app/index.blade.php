@@ -17,11 +17,11 @@
                 @foreach ($user->apps as $app)
                     <tr>
                         <td>{{ $app->app->name }}</td>
-                        <td>{{ $app->app->role }}</td>
+                        <td>{{ $app->role }}</td>
                     </tr>
                     <tr>
                         <td>{{ $app->app->name }}</td>
-                        <td>{{ $app->app->role }}</td>
+                        <td>{{ $app->role }}</td>
                     </tr>
                 @endforeach
             </tbody>
