@@ -26,10 +26,10 @@ Route::get("redirect",[WebController::class,"redirect"]);
 
 Route::get("new",[WebController::class,"create"]);
 Route::post("/",[WebController::class,"store"]);
-Route::get("{user_name}",[WebController::class,"show"]);
+Route::get("{user_name}",[WebController::class,"index"]);
 // Route::middleware("check_user_name")->get("{user_name}",[WebController::class,"show"]);
 
-require __DIR__.'/app.php';
+// require __DIR__.'/app.php';
 
 
 
