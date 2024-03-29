@@ -6,10 +6,26 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $user->diplay_name ?? $user->name }}</h2>
-        <form action="/{{ $user->name }}/{{ $app->name }}/webhook" method="post">
-            {{-- @csrf --}}
-            <button type="submit">post</button>
-        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($user->apps as $app)
+                    <tr>
+                        <td>{{ $app->app->name }}</td>
+                        <td>{{ $app->app->role }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ $app->app->name }}</td>
+                        <td>{{ $app->app->role }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
