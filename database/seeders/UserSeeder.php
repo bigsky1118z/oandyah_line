@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user   =   User::updateOrCreate(array(
+            "name"              =>  "bigsky1118z",
             "email"             =>  "bigsky1118z@gmail.com",
         ),array(
             "email_verified_at" =>  now(),
             "password"          =>  Hash::make("abc5news4-Z"),
-            "name"              =>  "bigsky1118z",
             "birthday"          =>  mktime(0, 0, 0, 11, 18, 1991),
         ));
         $user->post_config("last_name","神宮寺");
@@ -30,11 +30,11 @@ class UserSeeder extends Seeder
 
 
         $user   =   User::updateOrCreate(array(
+            "name"              =>  "bigsky1118z",
             "email"             =>  "bigsky1118@gmail.com",
         ),array(
             "email_verified_at" =>  now(),
             "password"          =>  Hash::make("abc5news4-Z"),
-            "name"              =>  "bigsky1118",
             "birthday"          =>  mktime(0, 0, 0, 11, 18, 1991),
         ));
         $user->post_config("last_name","北角");

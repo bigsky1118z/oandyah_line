@@ -15,7 +15,7 @@ class UserAppSeeder extends Seeder
      */
     public function run(): void
     {
-        $user   =   User::whereUserName("bigsky1118z")->first();
+        $user   =   User::whereName("bigsky1118z")->first();
         UserApp::updateOrCreate(array(
             "user_id"   =>  $user->id,
             "app_id"    =>  App::whereName("gluten_free")->first()->id,
