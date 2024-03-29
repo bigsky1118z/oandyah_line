@@ -21,7 +21,7 @@ class CheckUserName
         if($user && $user->user_name == $user_name){
             return $next($request);
         } else {
-            return redirect("new");
+            return redirect("login");
         }
     }
 }

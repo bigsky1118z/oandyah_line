@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\App\App;
+use App\Models\App;
 use App\Models\App\AppWebhook;
 use App\Models\User;
 use Illuminate\Http\Request;

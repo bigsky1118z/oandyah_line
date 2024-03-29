@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\App;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('app_users', function (Blueprint $table) {
+        Schema::create('user_apps', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->namespace()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(App::class)->namespace()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("user_id")->unique();
-            $table->string("status")->nullable();
-            $table->string("display_name")->nullable();
-            $table->string("language")->nullable();
-            $table->string("picture_url")->nullable();
-            $table->string("status_message")->nullable();
-            $table->string("naming")->nullable();
+            $table->unique(["user_id","app_id"]);
+            $table->string("role")->default("editor");
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('app_users');
+        Schema::dropIfExists('user_apps');
     }
 };

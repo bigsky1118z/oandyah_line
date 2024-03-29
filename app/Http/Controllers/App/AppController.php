@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\App\App;
+use App\Models\App;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -34,11 +34,14 @@ class AppController extends Controller
             "app_name"              => ["required","unique:apps,app_name","min:4","max:16"],
             "channel_access_token"  => ["required","unique:apps,channel_access_token"],
         ]);
+        $user                   =   auth()->user();
         $app_name               =   $request->get("app_name");
         $channel_access_token   =   $request->get("channel_access_token");
-        // $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
+        // status:200
+        $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
         $response               =   App::get_bot_channel_webhook_endpoint($channel_access_token);
         if($response->successful()){
+            // App::updateOrCreate()
             return $response;
         } else {
             return back();

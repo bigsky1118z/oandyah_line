@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("{user_name}/{app_name}/webhook",[AppWebhookController::class,"post"]);
+Route::post("webhook/{app_name}",[AppWebhookController::class,"post"]);
 
 Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::get("/",[AppController::class,"index"]);
@@ -24,7 +24,6 @@ Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::post("/",[AppController::class,"store"]);
     Route::prefix("{app_name}")->group(function(){
         Route::get("/",[AppController::class,"show"]);
-
         Route::get("webhook",[AppWebhookController::class,"index"]);
     });
 });

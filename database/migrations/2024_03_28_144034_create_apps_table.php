@@ -13,9 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('apps', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(User::class)->namespace()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            
+            $table->id();            
             $table->string("app_name")->unique();
             $table->string("channel_access_token")->unique();
 
