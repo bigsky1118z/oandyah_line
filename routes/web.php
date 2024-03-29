@@ -21,8 +21,8 @@ Route::get("/",[WebController::class,"index"]);
 Route::get("redirect",[WebController::class,"redirect"]);
 
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+// require __DIR__.'/auth.php';
+// require __DIR__.'/admin.php';
 
 Route::get("new",[WebController::class,"create"]);
 Route::post("/",[WebController::class,"store"]);
