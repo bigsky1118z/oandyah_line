@@ -27,6 +27,5 @@
             </tbody>
         </table>
     </x-slot>
-    <x-slot name="footer">
     </x-slot>
 </x-frame.web>

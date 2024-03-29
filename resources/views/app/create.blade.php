@@ -16,7 +16,7 @@
                 <tr>
                     <th>チャネルアクセストークン</th>
                     <td>
-                        <textarea name="channel_access_token"></textarea>
+                        <textarea name="channel_access_token" cols="30" rows="10" required></textarea>
                         <p>チャンネルアクセストークンの取得方法は<a href="#">こちら</a></p>
                     </td>
                 </tr>
