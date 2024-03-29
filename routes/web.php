@@ -26,8 +26,8 @@ require __DIR__.'/admin.php';
 
 Route::get("new",[WebController::class,"create"]);
 Route::post("/",[WebController::class,"store"]);
-// Route::middleware("check_user_name")->get("{user_name}",[WebController::class,"show"]);
 Route::get("{user_name}",[WebController::class,"show"]);
+// Route::middleware("check_user_name")->get("{user_name}",[WebController::class,"show"]);
 
 require __DIR__.'/app.php';
 

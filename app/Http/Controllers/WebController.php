@@ -23,8 +23,9 @@ class WebController extends Controller
         return $request->all();
         return redirect("/");
     }
-    public function show(Request $request,$name)
+    public function show(Request $request,$user_name)
     {
+        return $user_name;
         $data   =   array(
             "user"  =>  auth()->user(),
         );
