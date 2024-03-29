@@ -26,12 +26,12 @@ class AppWebhookController extends Controller
                 "event"             =>  $request->get("events") ?? null,
             ));
             $webhook->mode  =   "A";
-            $webhook->save();
-
+            
             if($request->exists("events")){
                 $webhook->mode  =   "B";
                 $events         =   $request->get("events");
                 $webhook->type  =   gettype($events);
+                $webhook->save();
 
                 // ここではじかれている
                 if(!empty($events)){
