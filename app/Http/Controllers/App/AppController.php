@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Models\App;
 use App\Models\User;
+use App\Models\UserApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -39,11 +40,20 @@ class AppController extends Controller
         $channel_access_token   =   $request->get("channel_access_token");
         // status:200
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
-        $response               =   App::put_bot_channel_webhook_endpoint($channel_access_token, $name);
-        return $response->status();
+        $response               =   App::post_oauth_verify_channel_access_token($channel_access_token);
+        return $response;
         if($response->successful()){
-            // App::updateOrCreate()
-            return $response;
+            $app    =   App::updateOrCreate(array(
+                "name"                  =>  $name,
+                "channel_access_token"  =>  $channel_access_token,
+            ));
+            UserApp::updateOrCreate(array(
+                "user_id"   =>  $user->id,
+                "app_id"    =>  $app->id,
+                "role"      =>  "admin",
+            ));
+            // $app->get_
+            return redirect("$user->name/app/$app->name");
         } else {
             return back();
         }

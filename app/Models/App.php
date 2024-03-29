@@ -21,14 +21,17 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
-    static function get_bot_channel_webhook_endpoint($channel_access_token)
+    static function post_oauth_verify_channel_access_token($channel_access_token)
     {
         $headers    =   array(
-            "Authorization" => "Bearer $channel_access_token",
-            "Content-Type"  =>  "application/json",
+            "Content-Type"  =>  "application/x-www-form-urlencoded",
+            // "Authorization" => "Bearer $channel_access_token",
         );
-        $url        =   "https://api.line.me/v2/bot/channel/webhook/endpoint";
-        $response   =   Http::withHeaders($headers)->get($url);
+        $data       =   array(
+            "access_token"  =>  $channel_access_token,
+        );
+        $url        =   "https://api.line.me/v2/oauth/verify";
+        $response   =   Http::withHeaders($headers)->post($url, $data);
         return $response;
     }
 
