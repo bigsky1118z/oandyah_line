@@ -28,7 +28,7 @@
                             <td>
                                 <ul>
                                     @foreach ($user->apps as $app)
-                                        <li>{{ $app }}[{{ $app->role }}]</li>
+                                        <li>{{ $app->app->name }}[{{ $app->role }}]</li>
                                     @endforeach
                                 </ul>
                             </td>
