@@ -30,17 +30,17 @@ class AppWebhookController extends Controller
                 if(is_array($events)){
                     
                     foreach($events as $event){
-                        $webhook->user_id      =   $event["source"]["userId"]                  ??  null;
-                        $webhook->group_id     =   $event["source"]["groupId"]                 ??  null;
-                        $webhook->room_id      =   $event["source"]["roomId"]                  ??  null;
+                        $webhook->user_id           =   $event["source"]["userId"]                  ??  null;
+                        $webhook->mode  =   "D";
+                        $webhook->save();
+                        $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
+                        $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
                         $webhook->type              =   $event["type"]                              ??  null;
                         $webhook->mode              =   $event["mode"]                              ??  null;
-                        $webhook->Receive_erent_id  =   $event["ReceiverventId"]                    ??  null;
+                        $webhook->receive_erent_id  =   $event["ReceiverventId"]                    ??  null;
                         $webhook->reply_token       =   $event["replyToken"]                        ??  null;
                         $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
                         $webhook->event             =   $event[$event["type"]]                      ??  null;
-                        $webhook->mode  =   "D";
-                        $webhook->save();
                         
                         // isset($event["source"]["userId"])                   ?   $webhook->user_id      =   $event["source"]["userId"]                  :   null;
                         // isset($event["source"]["groupId"])                  ?   $webhook->group_id     =   $event["source"]["groupId"]                 :   null;
