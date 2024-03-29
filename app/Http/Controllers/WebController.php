@@ -18,12 +18,12 @@ class WebController extends Controller
     {
         return view("create");
     }
-    public function store(Request $request)
-    {
-        return $request->all();
-        return redirect("/");
-    }
-    public function show(Request $request,$user_name)
+    // public function store(Request $request)
+    // {
+    //     return $request->all();
+    //     return redirect("/");
+    // }
+    public function show(Request $request, $user_name)
     {
         return $user_name;
         $data   =   array(
