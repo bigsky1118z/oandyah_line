@@ -29,6 +29,10 @@ Route::post("/",[WebController::class,"store"]);
 Route::middleware("check_user_name")->get("{user_name}",[WebController::class,"show"]);
 
 require __DIR__.'/app.php';
+
+
+
+
 // Route::prefix("dashboard")->group(function(){
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
