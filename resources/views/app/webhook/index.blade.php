@@ -6,11 +6,26 @@
     </x-slot>
     <x-slot name="main">
         <h2>webhook - TOP</h2>
-        <ul>
-            @foreach ($webhooks as $webhook)
-                <li>{{ $webhook }}</li>
-            @endforeach
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>time</th>
+                    <th>user</th>
+                    <th>type</th>
+                    <th>操作</th>
+                </tr>
+            </thead>    
+            <tbody>
+                @foreach ($webhooks as $webhook)
+                    <tr>
+                        <td>{{ $webhook->created_at }}</td>
+                        <td>{{ $webhook->user_id }}</td>
+                        <td>{{ $webhook->type }}</td>
+                        <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
