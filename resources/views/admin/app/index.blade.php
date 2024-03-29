@@ -11,13 +11,14 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th></th>
+                        <th>name</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($apps as $app)
                         <tr>
                             <td>{{ $app->id }}</td>
+                            <td>{{ $app->name }}</td>
                             <td><a href="/admin/app/{{ $app->id }}">詳細</a></td>
                         </tr>
                     @endforeach

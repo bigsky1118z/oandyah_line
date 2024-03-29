@@ -11,7 +11,7 @@ class App extends Model
     use HasFactory;
 
     protected $fillable =   [
-        "app_name",
+        "name",
         "channel_access_token",
         "line_user_id",
         "basic_id",
@@ -21,9 +21,9 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
-    public function get_app($app_name)
+    public function get_app($name)
     {
-        return App::whereAppName($app_name)->first();
+        return App::whereName($name)->first();
     }
 
     static function get_bot_channel_webhook_endpoint($channel_access_token)
@@ -38,9 +38,9 @@ class App extends Model
     }
 
 
-    public function put_bot_channel_webhook_endpoint($app_name)
+    public function put_bot_channel_webhook_endpoint($name)
     {
-        $endpoint   =   "https://oandyah.com/$app_name/webhook";
+        $endpoint   =   "https://oandyah.com/$name/webhook";
         $headers    =   array(
             "Authorization" => "Bearer ". $this->channel_access_token,
             "Content-Type"  =>  "application/json",

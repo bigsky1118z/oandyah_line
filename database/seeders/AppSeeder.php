@@ -14,7 +14,7 @@ class AppSeeder extends Seeder
     public function run(): void
     {
         App::updateOrCreate(array(
-            "app_name"              =>  "gluten_free",
+            "name"                  =>  "gluten_free",
         ),array(            
             "channel_access_token"  =>  "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=",
         ));

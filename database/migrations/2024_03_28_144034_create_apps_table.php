@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->id();            
-            $table->string("app_name")->unique();
+            $table->string("name")->unique();
             $table->string("channel_access_token")->unique();
 
             $table->string("line_user_id")->nullable();
