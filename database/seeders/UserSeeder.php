@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
 
 
         $user   =   User::updateOrCreate(array(
-            "name"              =>  "bigsky1118z",
+            "name"              =>  "bigsky1118",
             "email"             =>  "bigsky1118@gmail.com",
         ),array(
             "email_verified_at" =>  now(),
