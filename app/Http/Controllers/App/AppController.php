@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Models\App\App;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AppController extends Controller
 {
@@ -29,7 +31,11 @@ class AppController extends Controller
             "app_name"              => ["required","unique:apps,app_name","min:4","max:16"],
             "channel_access_token"  => ["required","unique:apps,channel_access_token"],
         ]);
-        return $validated;
+        $app_name               =   $request->get("app_name");
+        $channel_access_token   =   $request->get("channel_access_token");
+        $response               =   App::get_bot_channel_webhook_endpoint($channel_access_token);
+
+        return $response;
     }
 
 
