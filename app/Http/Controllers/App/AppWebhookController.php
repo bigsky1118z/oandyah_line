@@ -25,12 +25,17 @@ class AppWebhookController extends Controller
                 "query_string"      =>  $request->get("query_string"),
                 "event"             =>  $request->get("events") ?? null,
             ));
+            $webhook->mode  =   "A";
+
             if($request->exists("events")){
+                $webhook->mode  =   "B";
                 $events         =   $request->get("events");
                 $webhook->type  =   gettype($events);
 
                 // ここではじかれている
                 if(!empty($events)){
+                    $webhook->mode  =   "C";
+
                     foreach($events as $event){
                         // $webhook->line_user_id      =   $event["source"]["userId"]                  ??  null;
                         // $webhook->line_group_id     =   $event["source"]["groupId"]                 ??  null;
