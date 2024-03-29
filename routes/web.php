@@ -28,6 +28,8 @@ Route::get("new",[WebController::class,"create"]);
 Route::post("new",[WebController::class,"store"]);
 
 Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
+    Route::get("/",[WebController::class,"create"]);
+
     require __DIR__.'/app.php';
 });
 // Route::prefix("dashboard")->group(function(){
