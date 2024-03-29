@@ -26,6 +26,13 @@ Route::prefix("admin")->group(function(){
             Route::post("/",[AdminUserController::class,"store"]);
         });
     });
+    Route::prefix("app")->group(function(){
+        Route::get("/",[AdminUserController::class,"index"]);
+        Route::prefix("{user_id}")->group(function(){
+            Route::get("/",[AdminUserController::class,"create"]);
+            Route::post("/",[AdminUserController::class,"store"]);
+        });
+    });
 
 
     Route::fallback(function() {
