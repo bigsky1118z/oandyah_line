@@ -33,15 +33,15 @@ class App extends Model
     }
 
 
-    public function put_bot_channel_webhook_endpoint($name)
+    static function put_bot_channel_webhook_endpoint($channel_access_token, $app_name)
     {
-        $endpoint   =   "https://oandyah.com/$name/webhook";
+        $endpoint   =   "https://oandyah.com/app/$app_name";
         $headers    =   array(
-            "Authorization" => "Bearer ". $this->channel_access_token,
+            "Authorization" =>  "Bearer $channel_access_token",
             "Content-Type"  =>  "application/json",
         );
         $data       =   array(
-            "endpoint"  =>  $endpoint,
+            "endpoint"      =>  $endpoint,
         );
         $url        =   "https://api.line.me/v2/bot/channel/webhook/endpoint";
         $response   =   Http::withHeaders($headers)->put($url, $data);
