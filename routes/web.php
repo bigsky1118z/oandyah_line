@@ -25,7 +25,7 @@ require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 
 Route::get("new",[WebController::class,"create"]);
-Route::post("new",[WebController::class,"store"]);
+Route::post("/",[WebController::class,"store"]);
 
 Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::get("/",[WebController::class,"create"]);

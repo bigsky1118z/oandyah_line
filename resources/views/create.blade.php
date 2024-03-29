@@ -6,7 +6,7 @@
     <x-slot name="header">
     </x-slot>
     <x-slot name="main">
-        <form action="new" action="post">
+        <form action="/" action="post">
             @csrf
             <table>
                 <tr>
