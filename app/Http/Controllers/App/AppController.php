@@ -25,6 +25,10 @@ class AppController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            "app_name"              => ["required","unique:app_name","min:4","max:16"],
+            "channel_access_token"  => ["required","unique:channel_access_token"],
+        ]);   
         return $request->all();
     }
 
