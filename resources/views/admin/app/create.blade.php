@@ -20,7 +20,7 @@
                     <tbody>
                         <tr>
                             <td>{{ $app->id }}</td>
-                            <td><input type="text" name="app_name" value="{{ $app->app_name }}"></td>
+                            <td><input type="text" name="name" value="{{ $app->name }}"></td>
                         </tr>
                     </tbody>
                 </table>

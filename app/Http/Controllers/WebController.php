@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view("index");
     }
-    public function redirect()
+    public function redirect(Request $request)
     {
         return view("redirect");
     }
-    public function create()
+    public function create(Request $request)
     {
         return view("create");
     }
@@ -23,4 +23,12 @@ class WebController extends Controller
         return $request->all();
         return redirect("user_name");
     }
+    public function show(Request $request,$user_name)
+    {
+        $data   =   array(
+            "user"  =>  auth()->user(),
+        );
+        return view("show", $data);
+    }
+
 }

@@ -9,41 +9,38 @@ use Illuminate\Http\Request;
 
 class AppWebhookController extends Controller
 {
-    public function post(Request $request, $user_name, $app_name)
+    public function post(Request $request, $name)
     {
-        $user   =   User::whereUserName($user_name)->first();
-        $app    =   App::whereAppName($app_name)->first();
-        if($user && $app && $user->id == $app->user_id){
-            $webhook    =   AppWebhook::updateOrCreate(array(
-                "app_id"            =>  $app->id,
-                "ip_address"        =>  $request->header("x-forwarded-for"),
-                "request_host"      =>  $request->host(),
-                "request_path"      =>  $request->path(),
-                "request_method"    =>  $request->method(),
-                "x_line_signature"  =>  $request->header("x_line_signature"),
-                "destination"       =>  $request->get("destination"),
-                "query_string"      =>  $request->get("query_string"),
-                "event"             =>  $request->get("events") ?? null,
-            ));
-            if($request->exists("events")){
-                $events         =   $request->get("events");
-                if(is_array($events)){
-                    
-                    foreach($events as $event){
-                        $webhook->user_id           =   $event["source"]["userId"]                  ??  null;
-                        $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
-                        $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
-                        $webhook->type              =   $event["type"]                              ??  null;
-                        $webhook->mode              =   $event["mode"]                              ??  null;
-                        $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
-                        $webhook->reply_token       =   $event["replyToken"]                        ??  null;
-                        $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
-                        $webhook->event             =   $event[$event["type"]]                      ??  null;
-                    }
+        $app    =   App::whereName($name)->first();
+        $webhook    =   AppWebhook::updateOrCreate(array(
+            "app_id"            =>  $app->id,
+            "ip_address"        =>  $request->header("x-forwarded-for"),
+            "request_host"      =>  $request->host(),
+            "request_path"      =>  $request->path(),
+            "request_method"    =>  $request->method(),
+            "x_line_signature"  =>  $request->header("x_line_signature"),
+            "destination"       =>  $request->get("destination"),
+            "query_string"      =>  $request->get("query_string"),
+            "event"             =>  $request->get("events") ?? null,
+        ));
+        if($request->exists("events")){
+            $events         =   $request->get("events");
+            if(is_array($events)){
+                
+                foreach($events as $event){
+                    $webhook->user_id           =   $event["source"]["userId"]                  ??  null;
+                    $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
+                    $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
+                    $webhook->type              =   $event["type"]                              ??  null;
+                    $webhook->mode              =   $event["mode"]                              ??  null;
+                    $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
+                    $webhook->reply_token       =   $event["replyToken"]                        ??  null;
+                    $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
+                    $webhook->event             =   $event[$event["type"]]                      ??  null;
                 }
             }
-            $webhook->save();
         }
+        $webhook->save();
         return response()->json([],200);
     }
 

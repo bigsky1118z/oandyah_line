@@ -11,7 +11,7 @@
             <table>
                 <tr>
                     <th>アプリID</th>
-                    <td><input type="text" name="app_name" required></td>
+                    <td><input type="text" name="name" required></td>
                 </tr>
                 <tr>
                     <th>チャネルアクセストークン</th>
