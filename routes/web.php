@@ -27,7 +27,9 @@ require __DIR__.'/admin.php';
 Route::get("new",[WebController::class,"create"]);
 Route::post("new",[WebController::class,"store"]);
 
-require __DIR__.'/app.php';
+Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
+    require __DIR__.'/app.php';
+});
 // Route::prefix("dashboard")->group(function(){
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

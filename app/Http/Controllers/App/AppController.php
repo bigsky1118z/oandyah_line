@@ -19,7 +19,7 @@ class AppController extends Controller
         return view("app.index", $data);
     }
 
-    public function create(Request $request,$user_name, $app_name = null)
+    public function create(Request $request,$user_name, $name = null)
     {
         $data   =   array(
             "user"  =>  auth()->user(),
@@ -31,11 +31,11 @@ class AppController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "app_name"              => ["required","unique:apps,app_name","min:4","max:16"],
+            "name"                  => ["required","unique:apps,name","min:4","max:16"],
             "channel_access_token"  => ["required","unique:apps,channel_access_token"],
         ]);
         $user                   =   auth()->user();
-        $app_name               =   $request->get("app_name");
+        $name                   =   $request->get("name");
         $channel_access_token   =   $request->get("channel_access_token");
         // status:200
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
