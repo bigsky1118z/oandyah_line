@@ -29,9 +29,7 @@ Route::get("new",[WebController::class,"create"]);
 Route::post("/",[WebController::class,"store"]);
 Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::get("/",[WebController::class, "show"])->middleware("check_user_name");
-    Route::prefix("app")->group(function(){
-        require __DIR__.'/app.php';
-    });
+    require __DIR__.'/app.php';
 });
 
 

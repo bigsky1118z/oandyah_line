@@ -19,10 +19,6 @@
                         <td>{{ $app->app->name }}</td>
                         <td>{{ $app->role }}</td>
                     </tr>
-                    <tr>
-                        <td>{{ $app->app->name }}</td>
-                        <td>{{ $app->role }}</td>
-                    </tr>
                 @endforeach
             </tbody>
         </table>
