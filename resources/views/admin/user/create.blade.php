@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td><input type="email" name="email" value="{{ $user->email }}"></td>
-                            <td><input type="text" name="user_name" value="{{ $user->user_name }}"></td>
+                            <td><input type="text" name="name" value="{{ $user->name }}"></td>
                             <td><input type="date" name="birthday" value="{{ $user->birthday }}"></td>
                         </tr>
                     </tbody>
@@ -34,15 +34,15 @@
                         <tr>
                             <th>名前</th>
                             <td>
-                                <span>姓</span><input type="text" class="user_name" name="name[last_name]" value="{{ $user->get_config("last_name")->value }}">
-                                <span>名</span><input type="text" class="user_name" name="name[first_name]" value="{{ $user->get_config("first_name")->value }}">
+                                <span>姓</span><input type="text" class="name" name="config[last_name]" value="{{ $user->get_config("last_name")->value }}">
+                                <span>名</span><input type="text" class="name" name="config[first_name]" value="{{ $user->get_config("first_name")->value }}">
                             </td>
                         </tr>
                         <tr>
                             <th>フリガナ</th>
                             <td>
-                                <span>セイ</span><input type="text" class="user_name" name="name[last_name_kana]" value="{{ $user->get_config("last_name_kana")->value }}">
-                                <span>メイ</span><input type="text" class="user_name" name="name[first_name_kana]" value="{{ $user->get_config("first_name_kana")->value }}">
+                                <span>セイ</span><input type="text" class="name" name="config[last_name_kana]" value="{{ $user->get_config("last_name_kana")->value }}">
+                                <span>メイ</span><input type="text" class="name" name="config[first_name_kana]" value="{{ $user->get_config("first_name_kana")->value }}">
                             </td>
                         </tr>
                     </tbody>

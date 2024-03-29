@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         ),array(
             "email_verified_at" =>  now(),
             "password"          =>  Hash::make("abc5news4-Z"),
-            "user_name"         =>  "bigsky1118z",
+            "name"              =>  "bigsky1118z",
             "birthday"          =>  mktime(0, 0, 0, 11, 18, 1991),
         ));
         $user->post_config("last_name","神宮寺");
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         ),array(
             "email_verified_at" =>  now(),
             "password"          =>  Hash::make("abc5news4-Z"),
-            "user_name"         =>  "bigsky1118",
+            "name"              =>  "bigsky1118",
             "birthday"          =>  mktime(0, 0, 0, 11, 18, 1991),
         ));
         $user->post_config("last_name","北角");

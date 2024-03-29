@@ -8,7 +8,7 @@
         <h2>ユーザーページ - TOP</h2>
         <ul>
             @foreach ($user->apps as $app)
-                <li><a href="/{{ $user->user_name }}/{{ $app->name }}" target="_blank" rel="noopener noreferrer">{{ $app->app->display_name ?? $app->app->name }}</a></li>
+                <li><a href="/{{ $user->name }}/{{ $app->name }}" target="_blank" rel="noopener noreferrer">{{ $app->app->display_name ?? $app->app->name }}</a></li>
             @endforeach
         </ul>
     </x-slot>

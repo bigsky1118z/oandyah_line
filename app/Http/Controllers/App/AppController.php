@@ -11,7 +11,7 @@ use function PHPSTORM_META\elementType;
 
 class AppController extends Controller
 {
-    public function index(Request $request,$user_name)
+    public function index(Request $request)
     {
         $data   =   array(
             "user"  =>  auth()->user(),
@@ -19,7 +19,7 @@ class AppController extends Controller
         return view("app.index", $data);
     }
 
-    public function create(Request $request,$user_name, $name = null)
+    public function create(Request $request,$user_name, $app_name = null)
     {
         $data   =   array(
             "user"  =>  auth()->user(),

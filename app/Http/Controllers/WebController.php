@@ -21,9 +21,9 @@ class WebController extends Controller
     public function store(Request $request)
     {
         return $request->all();
-        return redirect("user_name");
+        return redirect("/");
     }
-    public function show(Request $request,$user_name)
+    public function show(Request $request,$name)
     {
         $data   =   array(
             "user"  =>  auth()->user(),

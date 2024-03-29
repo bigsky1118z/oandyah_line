@@ -4,7 +4,7 @@
         <li>メニュー1</li>
         <li>メニュー2</li>
         @auth
-            <li><a href="{{ auth()->user()->user_name }}">マイページ</a></li>
+            <li><a href="{{ auth()->user()->name }}">マイページ</a></li>
             <li>
                 <form action="logout" method="post" style="cursor: pointer">
                     @csrf

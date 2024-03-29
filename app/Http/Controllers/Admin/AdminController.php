@@ -19,8 +19,4 @@ class AdminController extends Controller
         return view("admin.redirect");
     }
 
-    public function user_name($user_name)
-    {
-        return $user_name;
-    }
 }

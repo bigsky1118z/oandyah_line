@@ -5,7 +5,7 @@
     <x-slot name="header">
     </x-slot>
     <x-slot name="main">
-        <h2>{{ $app->diplay_name ?? $app->name }}</h2>
+        <h2>{{ $user->diplay_name ?? $user->name }}</h2>
         <form action="/{{ $user->name }}/{{ $app->name }}/webhook" method="post">
             {{-- @csrf --}}
             <button type="submit">post</button>
