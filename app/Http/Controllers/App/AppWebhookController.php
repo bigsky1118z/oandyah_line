@@ -26,7 +26,10 @@ class AppWebhookController extends Controller
                 "event"             =>  $request->get("events") ?? null,
             ));
             if($request->exists("events")){
-                $events =   $request->get("events");
+                $events         =   $request->get("events");
+                $webhook->type  =   gettype($events);
+
+                // ここではじかれている
                 if(!empty($events)){
                     foreach($events as $event){
                         // $webhook->line_user_id      =   $event["source"]["userId"]                  ??  null;
@@ -49,7 +52,6 @@ class AppWebhookController extends Controller
                         isset($event['deliveryContext']['isRedelivery'])    ?   $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   :   null;
                         isset($event[$event["type"]])                       ?   $webhook->event             =   $event[$event["type"]]                      :   null;
                     }
-                    $webhook->type  =   "hello";
                 }
             }
             $webhook->save();
