@@ -31,17 +31,15 @@ class AppWebhookController extends Controller
                     
                     foreach($events as $event){
                         $webhook->user_id           =   $event["source"]["userId"]                  ??  null;
-                        $webhook->mode  =   "D";
-                        $webhook->save();
                         $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
                         $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
                         $webhook->type              =   $event["type"]                              ??  null;
                         $webhook->mode              =   $event["mode"]                              ??  null;
-                        $webhook->receive_erent_id  =   $event["ReceiverventId"]                    ??  null;
+                        $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
                         $webhook->reply_token       =   $event["replyToken"]                        ??  null;
                         $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
                         $webhook->event             =   $event[$event["type"]]                      ??  null;
-                        
+                                        
                         // isset($event["source"]["userId"])                   ?   $webhook->user_id      =   $event["source"]["userId"]                  :   null;
                         // isset($event["source"]["groupId"])                  ?   $webhook->group_id     =   $event["source"]["groupId"]                 :   null;
                         // isset($event["source"]["roomId"])                   ?   $webhook->room_id      =   $event["source"]["roomId"]                  :   null;
