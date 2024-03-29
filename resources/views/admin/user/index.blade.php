@@ -14,6 +14,7 @@
                         <th>email</th>
                         <th>user name</th>
                         <th>birthday</th>
+                        <th>apps</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -24,6 +25,13 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->user_name }}</td>
                             <td>{{ $user->birthday }}</td>
+                            <td>
+                                <ul>
+                                    @foreach ($user->apps as $app)
+                                        <li>{{ $app }}[{{ $app->role }}]</li>
+                                    @endforeach
+                                </ul>
+                            </td>
                             <td><a href="/admin/user/{{ $user->id }}">詳細</a></td>
                         </tr>
                     @endforeach
