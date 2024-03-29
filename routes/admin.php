@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAppController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\ProfileController;
@@ -27,10 +28,10 @@ Route::prefix("admin")->group(function(){
         });
     });
     Route::prefix("app")->group(function(){
-        Route::get("/",[AdminUserController::class,"index"]);
+        Route::get("/",[AdminAppController::class,"index"]);
         Route::prefix("{user_id}")->group(function(){
-            Route::get("/",[AdminUserController::class,"create"]);
-            Route::post("/",[AdminUserController::class,"store"]);
+            Route::get("/",[AdminAppController::class,"create"]);
+            Route::post("/",[AdminAppController::class,"store"]);
         });
     });
 
