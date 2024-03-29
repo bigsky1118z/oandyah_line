@@ -21,11 +21,6 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
-    public function get_app($name)
-    {
-        return App::whereName($name)->first();
-    }
-
     static function get_bot_channel_webhook_endpoint($channel_access_token)
     {
         $headers    =   array(

@@ -15,18 +15,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::post("app/{app_name}/webhook",[AppWebhookController::class,"post"]);
-// Route::get('/', [WebsiteController::class,'index']);
-
-Route::get("/",[WebController::class,"index"]);
-Route::get("redirect",[WebController::class,"redirect"]);
 
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 
-Route::get("new",[WebController::class,"create"]);
+Route::get("/",[WebController::class,"index"]);
+Route::get("create",[WebController::class,"create"]);
 Route::post("/",[WebController::class,"store"]);
+Route::get("app",[WebController::class,"app"]);
+Route::get("app/{app_name}",[AppWebhookController::class,"get"]);
+Route::post("app/{app_name}",[AppWebhookController::class,"post"]);
+
+Route::get("redirect",[WebController::class,"redirect"]);
+
 Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::get("/",[WebController::class, "show"])->middleware("check_user_name");
     require __DIR__.'/app.php';

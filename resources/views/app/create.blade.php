@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="main">
         <h2>アプリ登録</h2>
-        <form action="/{{ $user->name }}" method="post">
+        <form action="/{{ $user->name }}/app" method="post">
             @csrf
             <table>
                 <tr>

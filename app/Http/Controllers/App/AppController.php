@@ -40,6 +40,7 @@ class AppController extends Controller
         // status:200
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
         $response               =   App::get_bot_channel_webhook_endpoint($channel_access_token);
+        return $response->status();
         if($response->successful()){
             // App::updateOrCreate()
             return $response;
