@@ -20,7 +20,8 @@ Route::post("{user_name}/{app_name}/webhook",[AppWebhookController::class,"post"
 
 Route::prefix("{user_name}")->middleware("check_user_name")->group(function(){
     Route::get("/",[AppController::class,"index"]);
-    Route::post("/",[AppController::class,"create"]);
+    Route::get("create",[AppController::class,"create"]);
+    Route::post("/",[AppController::class,"store"]);
     Route::prefix("{app_name}")->group(function(){
         Route::get("/",[AppController::class,"show"]);
 
