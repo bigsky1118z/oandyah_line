@@ -18,7 +18,7 @@ class CheckUserName
     {
         $user       =   Auth::user();
         $user_name  =   $request->route("user_name");
-        if($user && $user->user_name == $user_name){
+        if($user && $user->name == $user_name){
             return $next($request);
         } else {
             return redirect("login");
