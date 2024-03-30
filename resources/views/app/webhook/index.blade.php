@@ -23,6 +23,7 @@
                         <td>{{ $webhook->type }}</td>
                         <td>{{ $webhook->response_status }}</td>
                         <td>{{ $webhook->query_string }}</td>
+                        <td>{{ $webhook->x_line_signature }}</td>
                         <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
                     </tr>
                 @endforeach
