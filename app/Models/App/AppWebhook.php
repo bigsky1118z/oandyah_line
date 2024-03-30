@@ -21,6 +21,7 @@ class AppWebhook extends Model
         "response_status",
         "destination",
         "query_string",
+        "request_body",
 
         "friend_id",
         "group_id",

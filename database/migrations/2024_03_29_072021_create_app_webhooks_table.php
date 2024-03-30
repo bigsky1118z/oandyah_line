@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer("response_status")->nullable();
             $table->string('destination')->nullable();
             $table->string("query_string")->nullable();
+            $table->longText("request_body")->nullable();
 
             $table->string('friend_id')->nullable();
             $table->string('group_id')->nullable();

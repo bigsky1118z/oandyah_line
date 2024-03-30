@@ -34,8 +34,9 @@ class AppWebhookController extends Controller
             "x_line_signature"  =>  $request->header("x_line_signature"),
             "destination"       =>  $request->get("destination"),
             "query_string"      =>  $request->get("query_string"),
-            "event"             =>  $request->get("events") ?? null,
+            "request_body"      =>  $request->getContent(),
         ));
+
         if($request->exists("events")){
             $events         =   $request->get("events");
             if(is_array($events)){
