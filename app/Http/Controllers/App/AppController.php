@@ -26,7 +26,7 @@ class AppController extends Controller
         $user       =   User::find(auth()->user()->id);
         $app        =   $user->app($app_name);
 
-        $response   =   App::put_bot_channel_webhook_endpoint($app->channel_access_token, $app->app_name);
+        $response   =   App::put_bot_channel_webhook_endpoint($app->app->channel_access_token, $app->app->app_name);
         return $response;
         $data       =   array(
             "user"  =>  $user,
