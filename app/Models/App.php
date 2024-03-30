@@ -32,6 +32,7 @@ class App extends Model
         $this->chat_mode            =   $info["chatMode"]       ?? $this->chat_mode;
         $this->mark_as_read_mode    =   $info["markAsReadMode"] ?? $this->mark_as_read_mode;
         $this->save();
+        return $info;
     }
 
     // bot

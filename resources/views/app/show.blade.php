@@ -70,7 +70,7 @@
                                 @case("editor")
                                     <dd>
                                         <input type="text" name="picture_url" value="{{ $app->picture_url }}">
-                                        <button type="button"></button>
+                                        <button type="button">画像変更</button>
                                     </dd>
                                     @break
                                 @default
