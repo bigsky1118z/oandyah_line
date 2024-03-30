@@ -25,10 +25,9 @@ class App extends Model
     {
         $headers    =   array(
             "Content-Type"  =>  "application/x-www-form-urlencoded",
-            // "Authorization" => "Bearer $channel_access_token",
         );
         $data       =   array(
-            "access_token"  =>  $channel_access_token,
+            "access_token"  =>  urlencode($channel_access_token),
         );
         $url        =   "https://api.line.me/v2/oauth/verify";
         $response   =   Http::withHeaders($headers)->post($url, $data);
