@@ -23,7 +23,7 @@
                         <td>{{ $friend->display_name }}</td>
                         <td>{{ $friend->naming }}</td>
                         <td>{{ $friend->status }}</td>
-                        <td><button type="button" onclick="lcation.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $friend->friend_id }}'">詳細</button></td>
+                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $friend->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
             </tbody>
