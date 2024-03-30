@@ -15,13 +15,16 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->frineds as $friend)
+                <tr>
+                    <td>{{ $app }}</td>
+                </tr>
+                {{-- @foreach ($app->frineds as $friend)
                     <tr>
                         <td>{{ $friend->created_at }}</td>
                         <td>{{ $friend->friend_id }}</td>
                         <td><button type="button" onclick="console.log('{{ $friend->id }}')">詳細</button></td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </x-slot>
