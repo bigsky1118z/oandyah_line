@@ -15,9 +15,11 @@
                 </tr>
             </thead>    
             <tbody>
-                <tr>
-                    <td>{{ $app }}</td>
-                </tr>
+                @foreach ($app->frinds as $friend)
+                    <tr>
+                        <td>{{ $friend }}</td>
+                    </tr>                    
+                @endforeach
             </tbody>
         </table>
     </x-slot>

@@ -10,8 +10,7 @@ class AppFriendController extends Controller
     public function index(Request $request, $user_name, $app_name)
     {
         $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name)->app->friends;
-        return $app;
+        $app    =   $user->app($app_name)->app;
         $data   =   array(
             "user"  =>  $user,
             "app"   =>  $app,
