@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\App\AppFriendController;
+use App\Http\Controllers\App\AppMessageController;
 use App\Http\Controllers\App\AppWebhookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,10 @@ Route::prefix("app")->group(function(){
         Route::prefix("friend")->group(function(){
             Route::get("/",[AppFriendController::class,"index"]);
             Route::get("{friend_id}",[AppFriendController::class,"show"]);
+        });
+        Route::prefix("message")->group(function(){
+            Route::get("/",[AppMessageController::class,"index"]);
+            Route::get("{id}",[AppMessageController::class,"show"]);
         });
     });
 });

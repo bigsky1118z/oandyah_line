@@ -13,13 +13,6 @@ class AppMessageObjectSeeder extends Seeder
      */
     public function run(): void
     {
-        AppMessageObject::Create(array(
-            "type"  =>  "text",
-            "text"  =>  "しんしんに興味しんしん",
-        ));
-        AppMessageObject::Create(array(
-            "type"  =>  "text",
-            "text"  =>  "あざっく更新中",
-        ));
+        //
     }
 }

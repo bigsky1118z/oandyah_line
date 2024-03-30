@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Http;
 class AppMessage extends Model
 {
     use HasFactory;
+    protected $fillable =   [
+        "app_id",
+        "status",
+        "app_message_object_1_id",
+        "app_message_object_2_id",
+        "app_message_object_3_id",
+        "app_message_object_4_id",
+        "app_message_object_5_id",
+    ];
+
+    public function message_object_1()
+    {
+        $this->hasOne(AppMessageObject::class,"id", "app_message_object_1_id");
+    }
+
 
     static function post_bot_message_reply($app, $reply_token)
     {
