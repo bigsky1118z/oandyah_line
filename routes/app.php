@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\App\AppController;
+use App\Http\Controllers\App\AppFriendController;
 use App\Http\Controllers\App\AppWebhookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,10 @@ Route::prefix("app")->group(function(){
     Route::prefix("{app_name}")->group(function(){
         Route::get("/",[AppController::class,"show"]);
         Route::get("webhook",[AppWebhookController::class,"index"]);
+        Route::prefix("friend")->group(function(){
+            Route::get("/",[AppFriendController::class,"index"]);
+            Route::get("{friend_id}",[AppFriendController::class,"show"]);
+        });
     });
 });
 Route::get("news",[AppController::class,"index"]);

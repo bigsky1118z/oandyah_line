@@ -6,8 +6,8 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
-        <h3>アプリ情報</h3>
-        <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
+        <h3>友だち情報</h3>
+        <form action="/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $friend->friend_id }}" method="post">
             @csrf
             <p>現在の権限 {{ $role }}</p>
             <table>

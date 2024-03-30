@@ -41,7 +41,7 @@ class App extends Model
 
     public function friend($frined_id)
     {
-
+        // id の検証
         $friend =   $frined_id ? AppFriend::updateOrCreate(array(
             "app_id"    =>  $this->id,
             "friend_id" =>  $frined_id,
