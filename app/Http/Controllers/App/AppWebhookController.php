@@ -12,7 +12,7 @@ class AppWebhookController extends Controller
 {
     public function get(Request $request)
     {
-        return $request->headers();
+        return $request->get_headers();
     }
 
     public function post(Request $request, $name)
