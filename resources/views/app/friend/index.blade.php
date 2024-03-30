@@ -9,15 +9,21 @@
         <table>
             <thead>
                 <tr>
-                    <th>time</th>
-                    <th>user</th>
+                    <th>アイコン</th>
+                    <th>LINE表示名</th>
+                    <th>登録名</th>
+                    <th>ステータス</th>
                     <th>操作</th>
                 </tr>
             </thead>    
             <tbody>
                 @foreach ($app->friends as $friend)
                     <tr>
-                        <td>{{ $friend }}</td>
+                        <td><img src="{{ $friend->picture_url }}" alt="" width="100px" height="100px"></td>
+                        <td>{{ $friend->display_name }}</td>
+                        <td>{{ $friend->naming }}</td>
+                        <td>{{ $friend->status }}</td>
+                        <td><button type="button">詳細</button></td>
                     </tr>                    
                 @endforeach
             </tbody>
