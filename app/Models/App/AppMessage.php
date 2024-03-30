@@ -22,7 +22,7 @@ class AppMessage extends Model
 
     public function message_object_1()
     {
-        $this->hasOne(AppMessageObject::class,"id", "app_message_object_1_id");
+        return $this->hasOne(AppMessageObject::class,"id", "app_message_object_1_id");
     }
 
 
