@@ -23,6 +23,7 @@ class AppFriendController extends Controller
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name)->app;
         $friend =   $app->friend($friend_id);
+        return $friend;
         $data       =   array(
             "user"      =>  $user,
             "app"       =>  $app,
