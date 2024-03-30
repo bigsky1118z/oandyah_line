@@ -11,6 +11,7 @@ class AppMessage extends Model
     use HasFactory;
     protected $fillable =   [
         "app_id",
+        "name",
         "status",
         "app_message_object_1_id",
         "app_message_object_2_id",

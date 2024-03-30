@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('app_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("name")->nullable();
             $table->string("status")->nullable();
             $table->timestamps();
         });

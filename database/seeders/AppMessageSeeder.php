@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\App;
 use App\Models\App\AppMessage;
 use App\Models\App\AppMessageObject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,8 +15,9 @@ class AppMessageSeeder extends Seeder
      */
     public function run(): void
     {
+        $app        =   App::whereName("gluten_free")->first();
         $message    =   AppMessage::Create(array(
-
+            "app_id"    =>  $app->id,
         ));
         $message_object_1   =   AppMessageObject::Create(array(
             "type"  =>  "text",
