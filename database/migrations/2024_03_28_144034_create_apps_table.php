@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("name")->unique();
             $table->string("channel_access_token")->unique();
 
-            $table->string("line_user_id")->nullable();
+            $table->string("user_id")->nullable();
             $table->string("basic_id")->nullable();
             $table->string("display_name")->nullable();
             $table->text("picture_url")->nullable();

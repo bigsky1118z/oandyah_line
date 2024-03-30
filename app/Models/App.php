@@ -23,14 +23,14 @@ class App extends Model
 
     public function latest()
     {
-        $channel_access_token   =   $this->channel_access_token;
-        $info                   =   $this->get_bot_info($channel_access_token);
-        $this->user_id          =   $info["userId"]         ?? $this->user_id;
-        $this->user_id          =   $info["basicId"]        ?? $this->user_id;
-        $this->user_id          =   $info["displayName"]    ?? $this->user_id;
-        $this->user_id          =   $info["chatMode"]       ?? $this->user_id;
-        $this->user_id          =   $info["markAsReadMode"] ?? $this->user_id;
-        
+        $channel_access_token       =   $this->channel_access_token;
+        $info                       =   $this->get_bot_info($channel_access_token);
+        $this->user_id              =   $info["userId"]         ?? $this->user_id;
+        $this->basic_id             =   $info["basicId"]        ?? $this->basic_id;
+        $this->display_name         =   $info["displayName"]    ?? $this->display_name;
+        $this->picture_url          =   $info["pictureUrl"]     ?? $this->picture_url;
+        $this->chat_mode            =   $info["chatMode"]       ?? $this->chat_mode;
+        $this->mark_as_read_mode    =   $info["markAsReadMode"] ?? $this->mark_as_read_mode;
         $this->save();
     }
 
