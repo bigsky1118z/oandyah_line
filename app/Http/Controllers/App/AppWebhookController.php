@@ -25,9 +25,10 @@ class AppWebhookController extends Controller
     public function post(Request $request, $name)
     {
         $app            =   App::whereName($name)->first();
-        $request_body   =   $request->getContent();
         /** 署名を検証 */
+        $request_body   =   $request->getContent();
         $hash           =   hash_hmac("sha256", $request_body, $app->channel_secret, true);
+        $signature      =   base64_encode($hash);
         $webhook        =   AppWebhook::updateOrCreate(array(
             "app_id"            =>  $app->id,
             "ip_address"        =>  $request->header("x-forwarded-for"),
@@ -37,6 +38,7 @@ class AppWebhookController extends Controller
             "x_line_signature"  =>  $request->header("x_line_signature"),
             "destination"       =>  $request->get("destination"),
             "query_string"      =>  $request->get("query_string"),
+            "query_string"      =>  $signature,
         ));
 
 

@@ -22,9 +22,7 @@
                         <td>{{ $webhook->user_id }}</td>
                         <td>{{ $webhook->type }}</td>
                         <td>{{ $webhook->response_status }}</td>
-                        <td>{{ $webhook->mode }}</td>
-                        <td>{{ $webhook->request_body }}</td>
-                        <td>{{ json_encode($webhook->event) }}</td>
+                        <td>{{ $webhook->query_string }}</td>
                         <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
                     </tr>
                 @endforeach
