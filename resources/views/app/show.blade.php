@@ -7,7 +7,7 @@
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
         <h3>insight</h3>
-        {{ $app->getinsight_message_delivery() }}
+        {{ $app->get_insight_message_delivery() }}
         <h3>アプリ情報</h3>
         <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
             @csrf
