@@ -83,7 +83,7 @@ class App extends Model
                 "date"  =>  $date,
             );
             $url        =   "https://api.line.me/v2/bot/insight/message/delivery";
-            $response   =   Http::asForm()->withHeaders($headers)->get($url);
+            $response   =   Http::asForm()->withHeaders($headers)->get($url, $data);
             return $response;
         }
 
