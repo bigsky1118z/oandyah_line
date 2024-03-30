@@ -9,6 +9,7 @@
         <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
             @csrf
             <p>現在の権限 {{ $role }}</p>
+            {{ $app->latest() }}
             <table>
                 <tr>
                     <th>name</th>
