@@ -15,7 +15,7 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->frinds as $friend)
+                @foreach ($app->friends as $friend)
                     <tr>
                         <td>{{ $friend }}</td>
                     </tr>                    
