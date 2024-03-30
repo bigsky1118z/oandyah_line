@@ -34,12 +34,16 @@ class App extends Model
     static function post_oauth_verify_channel_access_token($channel_access_token)
     {
         $headers    =   array(
-            "Content-Type"  =>  "application/x-www-form-urlencoded",
+            "Content-Type"  =>  "application/json",
+            // "Content-Type"  =>  "application/x-www-form-urlencoded",
         );
+        // $data       =   array(
+        //     "access_token"  =>  urlencode($channel_access_token),
+        // );
+        // $data       =   urlencode("access_token=$channel_access_token");
         $data       =   array(
-            "access_token"  =>  urlencode($channel_access_token),
+            "access_token"  =>  $channel_access_token,
         );
-        $data       =   urlencode("access_token=$channel_access_token");
         $url        =   "https://api.line.me/v2/oauth/verify";
         $response   =   Http::withHeaders($headers)->post($url, $data);
         return $response;
