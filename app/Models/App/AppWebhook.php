@@ -46,7 +46,9 @@ class AppWebhook extends Model
 
     public function reply()
     {
-        $app        =   $this->app;
+        $app                    =   $this->app;
+        $this->mode             =   $app->channel_access_token;
+        $this->save();
         switch($this->type){
             case("message"):
                 default:
