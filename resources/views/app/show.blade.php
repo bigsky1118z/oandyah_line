@@ -6,10 +6,12 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
+        <h3>insight</h3>
+        {{ $app->getinsight_message_delivery() }}
+        <h3>アプリ情報</h3>
         <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
             @csrf
             <p>現在の権限 {{ $role }}</p>
-            {{ $app->latest() }}
             <table>
                 <tr>
                     <th>name</th>
@@ -92,6 +94,7 @@
             </table>
             <button type="submit">post</button>
         </form>
+        <h4></h4>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
