@@ -28,7 +28,7 @@ class AppController extends Controller
         $role                   =   $app->role;
         $app                    =   $app->app->latest();
         $channel_access_token   =   $app->channel_access_token;
-        $app_name               =   $app->app_name;
+        $app_name               =   $app->name;
         App::put_bot_channel_webhook_endpoint($channel_access_token, $app_name);
         $data       =   array(
             "user"  =>  $user,
