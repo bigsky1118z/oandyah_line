@@ -39,14 +39,25 @@ class App extends Model
         return $this->hasMany(AppFriend::class);
     }
 
-    public function friend($frined_id)
+    public function friend($friend_id)
     {
-        // id の検証
-        $friend =   $frined_id ? AppFriend::updateOrCreate(array(
-            "app_id"    =>  $this->id,
-            "friend_id" =>  $frined_id,
-        )) : null;
-        return $friend;
+        $response   =   $this->get_bot_profile_friend($friend_id);
+        if($response->successful()){
+            $friend =   AppFriend::updateOrCreate(array(
+                "app_id"    =>  $this->id,
+                "friend_id" =>  $friend_id,
+            ),array(
+                "status"    =>  "follow",
+            ));
+            $friend->display_name   =   $response["displayName"]    ??  $friend->display_name;
+            $friend->language       =   $response["language"]       ??  $friend->language;
+            $friend->picture_url    =   $response["pictureUrl"]     ??  $friend->picture_url;
+            $friend->status_message =   $response["statusMessage"]  ??  $friend->status_message;
+            $friend->save();
+            return $friend;
+        } else {
+            return new AppFriend();
+        }
     }
 
 
@@ -214,7 +225,20 @@ class App extends Model
         }
 
 
-    // friend
+    // 
+    /** friend */
+        public function get_bot_profile_friend($friend_id)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+                "Content-Type"  =>  "application/json",
+            );
+            $url        =   "https://api.line.me/v2/bot/profile/$friend_id";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        
 
         
     
