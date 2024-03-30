@@ -12,15 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('app_users', function (Blueprint $table) {
+        Schema::create('app_friends', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->namespace()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("user_id")->unique();
+            $table->string("friend_id")->unique();
             $table->string("status")->nullable();
             $table->string("display_name")->nullable();
             $table->string("language")->nullable();
             $table->string("picture_url")->nullable();
             $table->string("status_message")->nullable();
+            
             $table->string("naming")->nullable();
             $table->timestamps();
         });

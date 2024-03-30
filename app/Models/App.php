@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\App\AppFriend;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
@@ -21,6 +22,27 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
+    public function users()
+    {
+        return $this->hasMany(UserApp::class,"app_id", "id");
+    }
+
+    public function friends()
+    {
+        return $this->hasMany(AppFriend::class);
+    }
+
+    public function friend($frined_id)
+    {
+
+        $friend =   $frined_id ? AppFriend::updateOrCreate(array(
+            "app_id"    =>  $this->id,
+            "friend_id" =>  $frined_id,
+        )) : null;
+        return $friend;
+    }
+
+
     public function latest()
     {
         $channel_access_token       =   $this->channel_access_token;
@@ -34,6 +56,8 @@ class App extends Model
         $this->save();
         return $this;
     }
+
+    
 
 
     /* channel access token */ 
@@ -93,8 +117,11 @@ class App extends Model
             $headers    =   array(
                 "Authorization" =>  "Bearer $this->channel_access_token",
             );
+            $data       =   array(
+                "date"  =>  $date,
+            );
             $url        =   "https://api.line.me/v2/bot/insight/followers?date=$date";
-            $response   =   Http::withHeaders($headers)->get($url);
+            $response   =   Http::asForm()->withHeaders($headers)->get($url, $data);
             return $response;
         }
 
@@ -108,17 +135,19 @@ class App extends Model
             return $response;
         }
 
+
+
         /** message に移動する可能性あり */
-        public function get_insight_message_event($request_id = null)
+        public function get_insight_message_event($request_id)
         {
             $headers    =   array(
                 "Authorization" =>  "Bearer $this->channel_access_token",
             );
             $data       =   array(
-
+                "requestId"  =>  $request_id,
             );
-            $url        =   "https://api.line.me/v2/bot/insight/message/event?requestId=$request_id";
-            $response   =   Http::withHeaders($headers)->get($url);
+            $url        =   "https://api.line.me/v2/bot/insight/message/event";
+            $response   =   Http::asForm()->withHeaders($headers)->get($url, $data);
             return $response;
         }
 
@@ -127,8 +156,38 @@ class App extends Model
             $headers    =   array(
                 "Authorization" =>  "Bearer $this->channel_access_token",
             );
-            $url        =   "https://api.line.me/v2/bot/insight/message/event/aggregation?requestId=$request_id";
+            $data       =   array(
+                "customAggregationUnit" =>  $request_id,
+                "from"                  =>  date("Ymd",  mktime(0, 0, 0, date("m"), date("d")-1, date("Y"))),
+                "to"                    =>  date("Ymd",  mktime(0, 0, 0, date("m"), date("d")-1, date("Y"))),
+            );
+            $url        =   "https://api.line.me/v2/bot/insight/message/event/aggregation";
+            $response   =   Http::asForm()->withHeaders($headers)->get($url, $data);
+            return $response;
+        }
+
+        public function get_insight_message_event_aggregation_info()
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+            );
+            $url        =   "https://api.line.me/v2/bot/message/aggregation/info";
             $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        public function get_insight_message_event_aggregation_list($limit = 100, $start = null)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+            );
+            $data       =   array(
+                "limit" =>  $limit,
+            );
+            $start      ?   $data["start"]  =   $start  : null;
+            
+            $url        =   "https://api.line.me/v2/bot/message/aggregation/list";
+            $response   =   Http::asForm()->withHeaders($headers)->get($url, $data);
             return $response;
         }
 

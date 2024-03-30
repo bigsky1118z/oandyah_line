@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Models\App;
+use App\Models\App\AppFriend;
 use App\Models\App\AppWebhook;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,6 +42,9 @@ class AppWebhookController extends Controller
             }
         }
         $webhook->save();
+        $friend =   $app->friend($webhook->user_id);
+        
+        
         return response()->json([],200);
     }
 
