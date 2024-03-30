@@ -11,6 +11,7 @@ class AppFriendController extends Controller
     {
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name);
+        return $app;
         $data   =   array(
             "user"  =>  $user,
             "app"   =>  $app,
