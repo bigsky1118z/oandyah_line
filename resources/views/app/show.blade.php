@@ -6,8 +6,6 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
-        <h3>insight</h3>
-        {{ $app->get_insight_message_delivery() }}
         <h3>アプリ情報</h3>
         <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
             @csrf
@@ -94,7 +92,12 @@
             </table>
             <button type="submit">post</button>
         </form>
-        <h4></h4>
+        <h3>友だち情報</h3>
+        <ul>
+            @foreach ($app->friends as $friend)
+                <li>{{ $friend }}</li>
+            @endforeach
+        </ul>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
