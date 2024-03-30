@@ -40,7 +40,6 @@ class AppController extends Controller
         $channel_access_token   =   $request->get("channel_access_token");
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
         $response               =   App::post_oauth_verify_channel_access_token($channel_access_token);
-        return App::bot_info($channel_access_token);
         if($response->successful()){
             $app    =   App::updateOrCreate(array(
                 "channel_access_token"  =>  $channel_access_token,
