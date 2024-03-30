@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{ $user }}
+                {{-- {{ $user }} --}}
                 {{-- @foreach ($app->frinds as $friend)
                     <tr>
                         <td>{{ $friend }}</td>
