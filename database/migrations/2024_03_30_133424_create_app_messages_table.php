@@ -16,18 +16,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("status")->nullable();
-            
-            $table->unsignedBigInteger('app_message_object_1_id')->nullable();
-            $table->foreign('app_message_object_1_id')->references('id')->on('app_message_objects');
-            $table->unsignedBigInteger('app_message_object_2_id')->nullable();
-            $table->foreign('app_message_object_2_id')->references('id')->on('app_message_objects');
-            $table->unsignedBigInteger('app_message_object_3_id')->nullable();
-            $table->foreign('app_message_object_3_id')->references('id')->on('app_message_objects');
-            $table->unsignedBigInteger('app_message_object_4_id')->nullable();
-            $table->foreign('app_message_object_4_id')->references('id')->on('app_message_objects');
-            $table->unsignedBigInteger('app_message_object_5_id')->nullable();
-            $table->foreign('app_message_object_5_id')->references('id')->on('app_message_objects');
-
             $table->timestamps();
         });
     }
