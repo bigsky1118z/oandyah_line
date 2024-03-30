@@ -99,7 +99,7 @@
         <h3>webhook情報</h3>
             <ul>
                 @foreach ($app->webhooks as $webhook)
-                    <li>{{ $webhook->event }}</li>
+                    <li>{{ $webhook->type }}</li>
                 @endforeach
             </ul>
         <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/friend">友だち情報</a></h3>
