@@ -21,6 +21,16 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
+    public function get_profile()
+    {
+        $headers    =   array(
+            "Authorization" =>  "Bearer $this->channel_access_token",
+        );
+        $url        =   "https://api.line.me/v2/profile";
+        $response   =   Http::withHeaders($headers)->get($url);
+        return $response;
+    }
+
     static function post_oauth_verify_channel_access_token($channel_access_token)
     {
         $headers    =   array(
@@ -29,7 +39,7 @@ class App extends Model
         $data       =   array(
             "access_token"  =>  urlencode($channel_access_token),
         );
-        $url        =   "https://api.line.me/v2/oauth/verify";
+        $url        =   "https://api.line.me/v2/oauth/verifyyy";
         $response   =   Http::withHeaders($headers)->post($url, $data);
         return $response;
     }
