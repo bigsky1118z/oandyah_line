@@ -15,12 +15,6 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- {{ $user }} --}}
-                {{-- @foreach ($app->frinds as $friend)
-                    <tr>
-                        <td>{{ $friend }}</td>
-                    </tr>                    
-                @endforeach --}}
             </tbody>
         </table>
     </x-slot>
