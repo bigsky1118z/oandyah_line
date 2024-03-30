@@ -26,6 +26,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>endpoint</th>
+                    <td>{{ $app->get_bot_channel_webhook_endpoint()["endpoint"] ?? null }}</td>
+                </tr>
+                <tr>
                     <th>channel_access_token</th>
                     <td>
                         @switch($role)

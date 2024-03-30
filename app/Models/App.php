@@ -67,7 +67,9 @@ class App extends Model
     
 
 
-    /* channel access token */ 
+    /* channel access token */
+
+
         static function post_oauth_verify_channel_access_token($channel_access_token)
         {
             $data       =   array(
@@ -92,6 +94,19 @@ class App extends Model
             $response   =   Http::withHeaders($headers)->put($url, $data);
             return $response;
         }
+
+        public function get_bot_channel_webhook_endpoint()
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+                "Content-Type"  =>  "application/json",
+            );
+            $url        =   "https://api.line.me/v2/bot/channel/webhook/endpoint";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+
 
     /* bot */ 
         static function get_bot_info($channel_access_token)

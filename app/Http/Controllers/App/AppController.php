@@ -21,6 +21,19 @@ class AppController extends Controller
         return view("app.index", $data);
     }
 
+    public function show(Request $request,$user_name,$app_name)
+    {
+        $user   =   User::find(auth()->user()->id);
+        $app    =   $user->app($app_name);
+        $data   =   array(
+            "user"  =>  $user,
+            "app"   =>  $app->app->latest(),
+            "role"  =>  $app->role,
+        );
+        return view("app.show", $data);
+    }
+
+
     public function create(Request $request,$user_name, $app_name = null)
     {
         $user   =   User::find(auth()->user()->id);
@@ -61,17 +74,5 @@ class AppController extends Controller
 
     }
 
-
-    public function show(Request $request,$user_name,$app_name)
-    {
-        $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name);
-        $data   =   array(
-            "user"  =>  $user,
-            "app"   =>  $app->app->latest(),
-            "role"  =>  $app->role,
-        );
-        return view("app.show", $data);
-    }
 
 }
