@@ -63,7 +63,9 @@ class App extends Model
 
     public function latest()
     {
+        $name                       =   $this->name;
         $channel_access_token       =   $this->channel_access_token;
+        $response                   =   App::put_bot_channel_webhook_endpoint($this, $name);
         $info                       =   $this->get_bot_info($channel_access_token);
         $this->user_id              =   $info["userId"]         ?? $this->user_id;
         $this->basic_id             =   $info["basicId"]        ?? $this->basic_id;
@@ -91,11 +93,11 @@ class App extends Model
             return $response;
         }
 
-        static function put_bot_channel_webhook_endpoint($channel_access_token, $app_name)
+        static function put_bot_channel_webhook_endpoint($app, $app_name)
         {
             $endpoint   =   "https://line.oandyah.com/app/$app_name";
             $headers    =   array(
-                "Authorization" =>  "Bearer $channel_access_token",
+                "Authorization" =>  "Bearer $app->channel_access_token",
                 "Content-Type"  =>  "application/json",
             );
             $data       =   array(

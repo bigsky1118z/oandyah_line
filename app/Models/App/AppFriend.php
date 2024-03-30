@@ -16,6 +16,5 @@ class AppFriend extends Model
         "language",
         "picture_url",
         "status_message",
-        "naming",
     ];
 }

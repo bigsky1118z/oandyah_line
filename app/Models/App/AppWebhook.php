@@ -2,6 +2,7 @@
 
 namespace App\Models\App;
 
+use App\Models\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +22,7 @@ class AppWebhook extends Model
         "destination",
         "query_string",
 
-        "user_id",
+        "friend_id",
         "group_id",
         "room_id",
 
@@ -37,6 +38,24 @@ class AppWebhook extends Model
     protected $casts    =   [
         "event" =>  "json",
     ];
+
+    public function app()
+    {
+        return $this->hasOne(App::class);
+    }
+
+    public function reply()
+    {
+        $app        =   $this->app();
+        $response   =   array();
+        switch($this->type){
+            case("text"):
+                $response   =   AppMessage::post_bot_message_reply($app,$this->reply_token);
+                break;
+        }
+        return $response;
+    }
+
 
 
 }

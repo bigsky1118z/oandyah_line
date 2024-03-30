@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string("display_name")->nullable();
             $table->string("language")->nullable();
             $table->string("picture_url")->nullable();
-            $table->string("status_message")->nullable();
-            
-            $table->string("naming")->nullable();
+            $table->string("status_message")->nullable();            
             $table->timestamps();
         });
     }

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('destination')->nullable();
             $table->string("query_string")->nullable();
 
-            $table->string('user_id')->nullable();
+            $table->string('friend_id')->nullable();
             $table->string('group_id')->nullable();
             $table->string('room_id')->nullable();
 

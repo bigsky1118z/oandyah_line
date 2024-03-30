@@ -24,12 +24,8 @@ class AppController extends Controller
     public function show(Request $request,$user_name,$app_name)
     {
         $user                   =   User::find(auth()->user()->id);
-        $app                    =   $user->app($app_name);
-        $role                   =   $app->role;
-        $app                    =   $app->app->latest();
-        $channel_access_token   =   $app->channel_access_token;
-        $app_name               =   $app->name;
-        App::put_bot_channel_webhook_endpoint($channel_access_token, $app_name);
+        $app                    =   $user->app($app_name)->app->latest();
+        $role                   =   $user->app($app_name)->role;
         $data       =   array(
             "user"  =>  $user,
             "app"   =>  $app,

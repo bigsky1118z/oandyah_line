@@ -14,6 +14,13 @@ class AppWebhookController extends Controller
     {
         return $app_name;
     }
+    public function index(Request $request, $user_name, $app_name)
+    {
+        $data   =   array(
+            "webhooks"  =>  AppWebhook::all(),
+        );
+        return view("app.webhook.index", $data);
+    }
 
     public function post(Request $request, $name)
     {
@@ -34,7 +41,7 @@ class AppWebhookController extends Controller
             if(is_array($events)){
                 
                 foreach($events as $event){
-                    $webhook->user_id           =   $event["source"]["userId"]                  ??  null;
+                    $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
                     $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
                     $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
                     $webhook->type              =   $event["type"]                              ??  null;
@@ -47,40 +54,16 @@ class AppWebhookController extends Controller
             }
         }
         $webhook->save();
-        $friend =   $app->friend($webhook->user_id);
+        $app->friend($webhook->friend_id);
+        $webhook->reply();
+
         return response()->json([],200);
         
         
     }
 
-    public function index(Request $request, $user_name, $app_name)
-    {
-        $data   =   array(
-            "webhooks"  =>  AppWebhook::all(),
-        );
-        return view("app.webhook.index", $data);
-    }
 
 
-    // public function index($line_name)
-    // {
-    //     $user   =   auth()->user();
-    //     if(!$user){
-    //         return redirect("/line");
-    //     }
-    //     $line   =   Line::whereUserId($user->id)->whereName($line_name)->first();
-    //     if(!$line){
-    //         return redirect("/line");
-    //     }
-    //     $data   =   array(
-    //         "line"  =>  $line,
-    //     );
-    //     return view("line.webhook.index", $data);
-    //     // return LineWebhook::all();
-    //     return LineWebhook::whereType("message")->latest()->first()->message->get_value();
-    //     // return LineWebhook::whereType("message")->latest()->first()->message->webhook->line;
-    //     // return LineWebhook::whereLineId($line->id)->get();
-    // }
 
     // public function webhook(Request $request, $user_name, $app_name)
     // {
