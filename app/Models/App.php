@@ -44,7 +44,7 @@ class App extends Model
             "access_token"  =>  $channel_access_token,
         );
         $url        =   "https://api.line.me/v2/oauth/verify";
-        $response   =   Http::asForm()->withHeaders($headers)->post($url, $data);
+        $response   =   Http::asForm()->post($url, $data);
         return $response;
     }
 
