@@ -14,6 +14,7 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
+                        <td>{{ $message->message_object_1 }}</td>
                         <td>{{ $message }}</td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
