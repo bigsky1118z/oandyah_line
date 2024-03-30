@@ -14,16 +14,18 @@ class AppController extends Controller
 {
     public function index(Request $request, $user_name)
     {
+        $user   =   User::find(auth()->user()->id);
         $data   =   array(
-            "user"  =>  auth()->user(),
+            "user"  =>  $user,
         );
         return view("app.index", $data);
     }
 
     public function create(Request $request,$user_name, $app_name = null)
     {
+        $user   =   User::find(auth()->user()->id);
         $data   =   array(
-            "user"  =>  auth()->user(),
+            "user"  =>  $user,
         );
         return view("app.create", $data);
     }

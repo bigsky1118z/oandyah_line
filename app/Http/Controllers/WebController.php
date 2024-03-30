@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -25,8 +26,9 @@ class WebController extends Controller
     // }
     public function show(Request $request, $user_name)
     {
+        $user   =   User::find(auth()->user()->id);
         $data   =   array(
-            "user"  =>  auth()->user(),
+            "user"  =>  $user,
         );
         return view("show", $data);
     }
