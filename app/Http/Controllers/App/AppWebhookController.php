@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class AppWebhookController extends Controller
 {
-    public function get(Request $request)
+    public function get(Request $request, $app_name)
     {
-        return $request->get_headers();
+        return $app_name;
     }
 
     public function post(Request $request, $name)
