@@ -24,8 +24,9 @@ class AppFriendController extends Controller
         $app    =   $user->app($app_name)->app;
         $friend =   $app->friend($friend_id);
         $data       =   array(
-            "user"  =>  $user,
-            "app"   =>  $app,
+            "user"      =>  $user,
+            "app"       =>  $app,
+            "friend"    =>  $friend,
         );
         return view("app.friend.show", $data);
     }
