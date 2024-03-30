@@ -25,13 +25,15 @@ class AppController extends Controller
     {
         $user                   =   User::find(auth()->user()->id);
         $app                    =   $user->app($app_name);
-        $channel_access_token   =   $app->app->channel_access_token;
-        $app_name               =   $app->app->app_name;
+        $role                   =   $app->role;
+        $app                    =   $app->app->latest();
+        $channel_access_token   =   $app->channel_access_token;
+        $app_name               =   $app->app_name;
         App::put_bot_channel_webhook_endpoint($channel_access_token, $app_name);
         $data       =   array(
             "user"  =>  $user,
-            "app"   =>  $app->app->latest(),
-            "role"  =>  $app->role,
+            "app"   =>  $app,
+            "role"  =>  $role,
         );
         return view("app.show", $data);
     }
