@@ -19,7 +19,7 @@
             <tbody>
                 @foreach ($app->friends as $friend)
                     <tr>
-                        <td><img src="{{ $friend->picture_url }}" alt="" width="100px" height="100px"></td>
+                        <td><img src="{{ $friend->picture_url }}" alt="" width="50px" height="50px"></td>
                         <td>{{ $friend->display_name }}</td>
                         <td>{{ $friend->naming }}</td>
                         <td>{{ $friend->status }}</td>
