@@ -73,7 +73,7 @@ class App extends Model
             return $response;
         }
 
-        public function getinsight_message_delivery($date)
+        public function get_insight_message_delivery($date = null)
         {
             return date("Ymd");
             $date       =   date("Ymd",$date ?? now()); 
