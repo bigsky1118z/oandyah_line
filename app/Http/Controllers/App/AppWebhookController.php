@@ -54,6 +54,9 @@ class AppWebhookController extends Controller
         }
         $webhook->save();
         $app->friend($webhook->friend_id);
+        $webhook->response_status  =   "A";
+        $webhook->save();
+
         $webhook->reply();
 
         return response()->json([],200);
