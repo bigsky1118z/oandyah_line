@@ -42,10 +42,10 @@ class AppWebhookController extends Controller
             }
         }
         $webhook->save();
+        return response()->json([],200);
         $friend =   $app->friend($webhook->user_id);
         
         
-        return response()->json([],200);
     }
 
     public function index(Request $request, $user_name, $app_name)

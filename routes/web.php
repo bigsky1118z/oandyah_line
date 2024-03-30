@@ -24,6 +24,7 @@ Route::get("/",[WebController::class,"index"]);
 Route::get("create",[WebController::class,"create"]);
 Route::post("/",[WebController::class,"store"]);
 Route::get("app",[WebController::class,"app"]);
+
 Route::get("app/{app_name}",[AppWebhookController::class,"get"]);
 Route::post("app/{app_name}",[AppWebhookController::class,"post"]);
 
