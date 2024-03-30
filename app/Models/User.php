@@ -81,7 +81,12 @@ class User extends Authenticatable
 
     public function apps()
     {
-        return $this->hasMany(UserApp::class,"user_id","id");
+        return $this->hasMany(UserApp::class,"user_id", "id");
     }
 
+    public function app($app_name)
+    {
+        $app    =   App::whereName($app_name)->first();
+        return UserApp::whereUserId($this->id)->whereAppId($app->id)->first();
+    }
 }

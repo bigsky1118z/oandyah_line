@@ -6,7 +6,10 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
-        <form action="/{{ $user->name }}/{{ $app->name }}/webhook" method="post">
+        <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
+            <p>現在の権限 {{ $role }}</p>
+            <select name="role" id="">
+            </select>
             {{-- @csrf --}}
             <button type="submit">post</button>
         </form>

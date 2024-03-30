@@ -62,10 +62,12 @@ class AppController extends Controller
 
     public function show(Request $request,$user_name,$app_name)
     {
-        $user   =   User::find(auth()->user()->id);
+        $user   =   User::find(auth()->user());
+        $app    =   $user->app($app_name);
         $data   =   array(
             "user"  =>  $user,
-            "app"   =>  $user->apps($app_name),
+            "app"   =>  $app->app,
+            "role"  =>  $app->role,
         );
         return view("app.show", $data);
     }
