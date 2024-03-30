@@ -70,7 +70,7 @@
                                 @case("admin")
                                 @case("editor")
                                     <dd>
-                                        <input type="text" name="picture_url" value="{{ $app->picture_url }}">
+                                        <input type="file" name="picture_url" value="{{ $app->picture_url }}">
                                         <button type="button">画像変更</button>
                                     </dd>
                                     @break
@@ -83,11 +83,11 @@
                 </tr>
                 <tr>
                     <th>chat_mode</th>
-                    <td>{{ $app->basic_id }}</td>
+                    <td>{{ $app->chat_mode }}</td>
                 </tr>
                 <tr>
                     <th>mark_as_read_mode</th>
-                    <td>{{ $app->basic_id }}</td>
+                    <td>{{ $app->mark_as_read_mode }}</td>
                 </tr>
             </table>
             <button type="submit">post</button>

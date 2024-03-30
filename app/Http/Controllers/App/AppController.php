@@ -68,7 +68,7 @@ class AppController extends Controller
         $app    =   $user->app($app_name);
         $data   =   array(
             "user"  =>  $user,
-            "app"   =>  $app->app,
+            "app"   =>  $app->app->latest(),
             "role"  =>  $app->role,
         );
         return view("app.show", $data);
