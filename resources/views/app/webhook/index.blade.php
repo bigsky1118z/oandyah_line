@@ -27,5 +27,4 @@
             </tbody>
         </table>
     </x-slot>
-    </x-slot>
 </x-frame.web>

@@ -39,7 +39,6 @@ class AppWebhookController extends Controller
         if($request->exists("events")){
             $events         =   $request->get("events");
             if(is_array($events)){
-                
                 foreach($events as $event){
                     $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
                     $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
