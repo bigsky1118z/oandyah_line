@@ -13,13 +13,14 @@
                     <th>user</th>
                     <th>操作</th>
                 </tr>
-            </thead>    
+            </thead>
             <tbody>
-                @foreach ($app->frinds as $friend)
+                {{ $user }}
+                {{-- @foreach ($app->frinds as $friend)
                     <tr>
                         <td>{{ $friend }}</td>
                     </tr>                    
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </x-slot>
