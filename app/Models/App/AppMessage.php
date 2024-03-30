@@ -24,6 +24,22 @@ class AppMessage extends Model
     {
         return $this->hasOne(AppMessageObject::class,"id", "app_message_object_1_id");
     }
+    public function message_object_2()
+    {
+        return $this->hasOne(AppMessageObject::class,"id", "app_message_object_2_id");
+    }
+    public function message_object_3()
+    {
+        return $this->hasOne(AppMessageObject::class,"id", "app_message_object_3_id");
+    }
+    public function message_object_4()
+    {
+        return $this->hasOne(AppMessageObject::class,"id", "app_message_object_4_id");
+    }
+    public function message_object_5()
+    {
+        return $this->hasOne(AppMessageObject::class,"id", "app_message_object_5_id");
+    }
 
 
     static function post_bot_message_reply($app, $reply_token)
