@@ -75,12 +75,11 @@ class App extends Model
 
         public function get_insight_message_delivery($date = null)
         {
-            $date       =   date("Ymd", $date ?? null);
-            return $date;
+            $date       =   $date ?? date("Ymd",  null);
             $headers    =   array(
                 "Authorization" =>  "Bearer $this->channel_access_token",
             );
-            $url        =   "https://api.line.me/v2/bot/insight/message/delivery?date={date}";
+            $url        =   "https://api.line.me/v2/bot/insight/message/delivery?date=$date";
             $response   =   Http::withHeaders($headers)->get($url);
             return $response;
         }
