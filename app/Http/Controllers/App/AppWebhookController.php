@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class AppWebhookController extends Controller
 {
+    public function get(Request $request)
+    {
+        return $request->headers();
+    }
+
     public function post(Request $request, $name)
     {
         return response()->json([],200);
