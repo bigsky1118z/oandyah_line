@@ -7,6 +7,7 @@
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
         <h3>友だち情報</h3>
+        {{ $friend }}
     </x-slot>
     <x-slot name="footer">
     </x-slot>

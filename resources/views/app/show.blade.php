@@ -105,7 +105,7 @@
         <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/friend">友だち情報</a></h3>
         <ul>
             @foreach ($app->friends as $friend)
-                <li>{{ $friend->friend_id }}</li>
+                <li>{{ $friend->display_name }}</li>
             @endforeach
         </ul>
     </x-slot>
