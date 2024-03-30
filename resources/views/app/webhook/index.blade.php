@@ -21,6 +21,7 @@
                         <td>{{ $webhook->created_at }}</td>
                         <td>{{ $webhook->user_id }}</td>
                         <td>{{ $webhook->type }}</td>
+                        <td>{{ $webhook->response_status }}</td>
                         <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
                     </tr>
                 @endforeach
