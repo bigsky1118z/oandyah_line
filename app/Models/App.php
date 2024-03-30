@@ -75,8 +75,8 @@ class App extends Model
 
         public function get_insight_message_delivery($date = null)
         {
-            return date("Ymd");
-            $date       =   date("Ymd",$date ?? now()); 
+            $date       =   date("Ymd", $date ?? null);
+            return $date;
             $headers    =   array(
                 "Authorization" =>  "Bearer $this->channel_access_token",
             );
