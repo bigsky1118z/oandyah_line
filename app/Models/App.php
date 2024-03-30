@@ -82,7 +82,7 @@ class App extends Model
 
         static function put_bot_channel_webhook_endpoint($channel_access_token, $app_name)
         {
-            $endpoint   =   "https://oandyah.com/app/$app_name";
+            $endpoint   =   "https://line.oandyah.com/app/$app_name";
             $headers    =   array(
                 "Authorization" =>  "Bearer $channel_access_token",
                 "Content-Type"  =>  "application/json",
