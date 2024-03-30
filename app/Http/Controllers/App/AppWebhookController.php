@@ -49,11 +49,9 @@ class AppWebhookController extends Controller
                     $webhook->reply_token       =   $event["replyToken"]                        ??  null;
                     $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
                     $webhook->event             =   $event[$event["type"]]                      ??  null;
-                    $webhook->response_status  =   "A";
                 }
             }
         }
-        $webhook->save();
         $app->friend($webhook->friend_id);
         $webhook->save();
 

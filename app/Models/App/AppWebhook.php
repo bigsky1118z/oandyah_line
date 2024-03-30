@@ -47,7 +47,7 @@ class AppWebhook extends Model
     public function reply()
     {
         $app        =   $this->app();
-        $this->response_status  =   "A";
+        $this->response_status  =   200;
         $this->save();
         switch($this->type){
             case("message"):
