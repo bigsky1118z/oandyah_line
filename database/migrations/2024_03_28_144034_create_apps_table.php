@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();            
             $table->string("name")->unique();
             $table->string("channel_access_token")->unique();
+            $table->string("channel_secret");
 
             $table->string("user_id")->nullable();
             $table->string("basic_id")->nullable();

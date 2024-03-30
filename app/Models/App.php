@@ -15,6 +15,7 @@ class App extends Model
     protected $fillable =   [
         "name",
         "channel_access_token",
+        "channel_secret",
         "user_id",
         "basic_id",
         "display_name",

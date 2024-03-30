@@ -50,17 +50,22 @@ class AppController extends Controller
         $validated = $request->validate([
             "name"                  => ["required","unique:apps,name","min:4","max:16"],
             "channel_access_token"  => ["required","unique:apps,channel_access_token"],
+            "channel_secret"        => ["required"],
         ]);
         $user                   =   auth()->user();
         $name                   =   $request->get("name");
         $channel_access_token   =   $request->get("channel_access_token");
+        $channel_secret         =   $request->get("channel_secret");
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
+        $channel_secret         =   "56b17adcc98c321d8f7fbaca5235ea55";
         $response               =   App::post_oauth_verify_channel_access_token($channel_access_token);
         if($response->successful()){
             $app    =   App::updateOrCreate(array(
                 "channel_access_token"  =>  $channel_access_token,
             ),array(
                 "name"                  =>  $name,
+                "channel_secret"        => ["required"],
+
             ));
             $app->latest();
             UserApp::updateOrCreate(array(
