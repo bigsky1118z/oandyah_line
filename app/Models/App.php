@@ -21,24 +21,24 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
-    static function profile($channel_access_token)
+    static function bot_info($channel_access_token)
     {
         $headers    =   array(
             "Authorization" =>  "Bearer $channel_access_token",
         );
-        $url        =   "https://api.line.me/v2/profile";
+        $url        =   "https://api.line.me/v2/bot/info";
         $response   =   Http::withHeaders($headers)->get($url);
         return $response;
         if($response->successful()){
         }
     }
 
-    public function get_profile()
+    public function get_bot_info()
     {
         $headers    =   array(
             "Authorization" =>  "Bearer $this->channel_access_token",
         );
-        $url        =   "https://api.line.me/v2/profile";
+        $url        =   "https://api.line.me/v2/bot/info";
         $response   =   Http::withHeaders($headers)->get($url);
         if($response->successful()){
             return $response;
