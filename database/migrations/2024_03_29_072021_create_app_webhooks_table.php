@@ -12,29 +12,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('app_webhooks', function (Blueprint $table) {
+        Schema::create("app_webhooks", function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('ip_address')->nullable();
-            $table->string('request_host')->nullable();
-            $table->string('request_path')->nullable();
-            $table->string('request_method')->nullable();
+            $table->string("ip_address")->nullable();
+            $table->string("request_host")->nullable();
+            $table->string("request_path")->nullable();
+            $table->string("request_method")->nullable();
+            $table->string("request_body")->nullable();
             $table->string("x_line_signature")->nullable();
             $table->integer("response_status")->nullable();
-            $table->string('destination')->nullable();
+            $table->string("destination")->nullable();
             $table->string("query_string")->nullable();
 
-            $table->string('friend_id')->nullable();
-            $table->string('group_id')->nullable();
-            $table->string('room_id')->nullable();
+            $table->string("friend_id")->nullable();
+            $table->string("group_id")->nullable();
+            $table->string("room_id")->nullable();
 
-            $table->string('type')->nullable();
-            $table->string('mode')->nullable();
-            $table->string('webhook_event_id')->nullable();
-            $table->string('reply_token')->nullable();
-            $table->boolean('is_redelivery')->nullable();
+            $table->string("type")->nullable();
+            $table->string("mode")->nullable();
+            $table->string("webhook_event_id")->nullable();
+            $table->string("reply_token")->nullable();
+            $table->boolean("is_redelivery")->nullable();
 
-            $table->json('event')->nullable();
+            $table->json("event")->nullable();
             $table->timestamps();
         });
     }
@@ -44,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('app_webhooks');
+        Schema::dropIfExists("app_webhooks");
     }
 };

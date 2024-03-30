@@ -17,6 +17,7 @@ class AppWebhook extends Model
         "request_host",
         "request_path",
         "request_method",
+        "request_body",
         "x_line_signature",
         "response_status",
         "destination",

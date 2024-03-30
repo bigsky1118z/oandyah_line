@@ -24,48 +24,49 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $name)
     {
-        $app            =   App::whereName($name)->first();
         /** 署名を検証 */
-        $request_body   =   $request->getContent();
-        $hash           =   hash_hmac("sha256", $request_body, $app->channel_secret, true);
-        $signature      =   base64_encode($hash);
-        $webhook        =   AppWebhook::updateOrCreate(array(
-            "app_id"            =>  $app->id,
-            "ip_address"        =>  $request->header("x-forwarded-for"),
-            "request_host"      =>  $request->host(),
-            "request_path"      =>  $request->path(),
-            "request_method"    =>  $request->method(),
-            "x_line_signature"  =>  $request->header("x_line_signature"),
-            "destination"       =>  $request->get("destination"),
-            "query_string"      =>  $request->get("query_string"),
-            "query_string"      =>  $signature,
-        ));
+        $app                =   App::whereName($name)->first();
+        $request_body       =   $request->getContent();
+        $hash               =   hash_hmac("sha256", $request_body, $app->channel_secret, true);
+        $signature          =   base64_encode($hash);
+        $x_line_signature   =   $request->header("x_line_signature");
 
-
-        if($request->exists("events")){
-            $events         =   $request->get("events");
-            if(is_array($events)){
-                foreach($events as $event){
-                    $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
-                    $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
-                    $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
-                    $webhook->type              =   $event["type"]                              ??  null;
-                    $webhook->mode              =   $event["mode"]                              ??  null;
-                    $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
-                    $webhook->reply_token       =   $event["replyToken"]                        ??  null;
-                    $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
-                    $webhook->event             =   $event[$event["type"]]                      ??  null;
+        if($signature == $x_line_signature){
+            $webhook        =   AppWebhook::updateOrCreate(array(
+                "app_id"            =>  $app->id,
+                "ip_address"        =>  $request->header("x-forwarded-for"),
+                "request_host"      =>  $request->host(),
+                "request_path"      =>  $request->path(),
+                "request_method"    =>  $request->method(),
+                "request_body"      =>  $request_body,
+                "x_line_signature"  =>  $request->header("x_line_signature"),
+                "destination"       =>  $request->get("destination"),
+                "query_string"      =>  $request->get("query_string"),
+            ));
+            if($request->exists("events")){
+                $events         =   $request->get("events");
+                if(is_array($events)){
+                    foreach($events as $event){
+                        $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
+                        $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
+                        $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
+                        $webhook->type              =   $event["type"]                              ??  null;
+                        $webhook->mode              =   $event["mode"]                              ??  null;
+                        $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
+                        $webhook->reply_token       =   $event["replyToken"]                        ??  null;
+                        $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
+                        $webhook->event             =   $event[$event["type"]]                      ??  null;
+                    }
                 }
             }
+
+            $webhook->save();
+            $app->friend($webhook->friend_id);
+            $webhook->reply();
+            return response()->json([],200);
+        } else {
+            return back();
         }
-        $webhook->save();
-        $app->friend($webhook->friend_id);
-        $webhook->reply();
-
-
-        return response()->json([],200);
-        
-        
     }
 
 
