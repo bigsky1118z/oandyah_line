@@ -41,18 +41,19 @@ class AppController extends Controller
         // status:200
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
         $response               =   App::post_oauth_verify_channel_access_token($channel_access_token);
-        return $response;
+
+        return App::profile($channel_access_token);
         if($response->successful()){
             $app    =   App::updateOrCreate(array(
                 "name"                  =>  $name,
                 "channel_access_token"  =>  $channel_access_token,
             ));
+            $app->get_profile();
             UserApp::updateOrCreate(array(
                 "user_id"   =>  $user->id,
                 "app_id"    =>  $app->id,
                 "role"      =>  "admin",
             ));
-            // $app->get_
             return redirect("$user->name/app/$app->name");
         } else {
             return back();

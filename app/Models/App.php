@@ -21,6 +21,18 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
+    static function profile($channel_access_token)
+    {
+        $headers    =   array(
+            "Authorization" =>  "Bearer $channel_access_token",
+        );
+        $url        =   "https://api.line.me/v2/profile";
+        $response   =   Http::withHeaders($headers)->get($url);
+        return $response;
+        if($response->successful()){
+        }
+    }
+
     public function get_profile()
     {
         $headers    =   array(
@@ -28,18 +40,13 @@ class App extends Model
         );
         $url        =   "https://api.line.me/v2/profile";
         $response   =   Http::withHeaders($headers)->get($url);
-        return $response;
+        if($response->successful()){
+            return $response;
+        }
     }
 
     static function post_oauth_verify_channel_access_token($channel_access_token)
     {
-        $headers    =   array(
-            "Content-Type"  =>  "application/x-www-form-urlencoded",
-        );
-        // $data       =   array(
-        //     "access_token"  =>  urlencode($channel_access_token),
-        // );
-        // $data       =   urlencode("access_token=$channel_access_token");
         $data       =   array(
             "access_token"  =>  $channel_access_token,
         );
