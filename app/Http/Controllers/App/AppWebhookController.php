@@ -17,8 +17,6 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $name)
     {
-        return response()->json([],200);
-
         $app    =   App::whereName($name)->first();
         $webhook    =   AppWebhook::updateOrCreate(array(
             "app_id"            =>  $app->id,
@@ -49,8 +47,9 @@ class AppWebhookController extends Controller
             }
         }
         $webhook->save();
-        return response()->json([],200);
+        // return response()->json([],200);
         $friend =   $app->friend($webhook->user_id);
+        return response()->json([],200);
         
         
     }
