@@ -12,6 +12,8 @@ class AppWebhookController extends Controller
 {
     public function post(Request $request, $name)
     {
+        return response()->json([],200);
+
         $app    =   App::whereName($name)->first();
         $webhook    =   AppWebhook::updateOrCreate(array(
             "app_id"            =>  $app->id,
