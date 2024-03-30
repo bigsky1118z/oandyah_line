@@ -41,7 +41,7 @@ class AppWebhook extends Model
 
     public function app()
     {
-        return $this->hasOne(App::class);
+        return $this->belongsTo(App::class);
     }
 
     public function reply()
