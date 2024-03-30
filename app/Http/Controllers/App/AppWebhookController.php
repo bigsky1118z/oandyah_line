@@ -24,7 +24,7 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $name)
     {
-        $app    =   App::whereName($name)->first();
+        $app        =   App::whereName($name)->first();
         $webhook    =   AppWebhook::updateOrCreate(array(
             "app_id"            =>  $app->id,
             "ip_address"        =>  $request->header("x-forwarded-for"),
@@ -36,6 +36,11 @@ class AppWebhookController extends Controller
             "query_string"      =>  $request->get("query_string"),
             "request_body"      =>  $request->getContent(),
         ));
+
+        /** 署名を検証 */
+        $hash   =   hash_hmac("sha256", $webhook->request_body, $app->channel_secret, true);
+        $webhook->event =   $hash;
+        $webhook->save();
 
         if($request->exists("events")){
             $events         =   $request->get("events");
