@@ -62,7 +62,7 @@ class App extends Model
             return $response;
         }
 
-    // bot
+    /* bot */ 
         static function get_bot_info($channel_access_token)
         {
             $headers    =   array(
@@ -75,14 +75,63 @@ class App extends Model
 
         public function get_insight_message_delivery($date = null)
         {
-            $date       =   $date ?? date("Ymd",  null);
+            $date       =   $date ?? date("Ymd",  mktime(0, 0, 0, date("m"), date("d")-1, date("Y")));
             $headers    =   array(
                 "Authorization" =>  "Bearer $this->channel_access_token",
             );
-            $url        =   "https://api.line.me/v2/bot/insight/message/delivery?date=$date";
+            $data       =   array(
+                "date"  =>  $date,
+            );
+            $url        =   "https://api.line.me/v2/bot/insight/message/delivery";
+            $response   =   Http::asForm()->withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        public function get_insight_followers($date = null)
+        {
+            $date       =   $date ?? date("Ymd",  mktime(0, 0, 0, date("m"), date("d")-1, date("Y")));
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+            );
+            $url        =   "https://api.line.me/v2/bot/insight/followers?date=$date";
             $response   =   Http::withHeaders($headers)->get($url);
             return $response;
         }
+
+        public function get_insight_demographic()
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+            );
+            $url        =   "https://api.line.me/v2/bot/insight/demographic";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        /** message に移動する可能性あり */
+        public function get_insight_message_event($request_id = null)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+            );
+            $data       =   array(
+
+            );
+            $url        =   "https://api.line.me/v2/bot/insight/message/event?requestId=$request_id";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        public function get_insight_message_event_aggregation($request_id = null)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $this->channel_access_token",
+            );
+            $url        =   "https://api.line.me/v2/bot/insight/message/event/aggregation?requestId=$request_id";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
 
     // friend
 
