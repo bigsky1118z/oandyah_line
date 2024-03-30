@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\App\AppFriend;
+use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
@@ -26,6 +27,12 @@ class App extends Model
     {
         return $this->hasMany(UserApp::class,"app_id", "id");
     }
+
+    public function webhooks()
+    {
+        return $this->hasMany(AppWebhook::class,"app_id", "id");
+    }
+
 
     public function friends()
     {

@@ -92,6 +92,12 @@
             </table>
             <button type="submit">post</button>
         </form>
+        <h3>webhook情報</h3>
+            <ul>
+                @foreach ($app->webhooks as $webhook)
+                    <li>{{ $webhook }}</li>
+                @endforeach
+            </ul>
         <h3>友だち情報</h3>
         <ul>
             @foreach ($app->friends as $friend)
