@@ -21,7 +21,21 @@ class App extends Model
         "mark_as_read_mode",
     ];
 
-    static function bot_info($channel_access_token)
+    public function latest()
+    {
+        $channel_access_token   =   $this->channel_access_token;
+        $info                   =   $this->get_bot_info($channel_access_token);
+        $this->user_id          =   $info["userId"]         ?? $this->user_id;
+        $this->user_id          =   $info["basicId"]        ?? $this->user_id;
+        $this->user_id          =   $info["displayName"]    ?? $this->user_id;
+        $this->user_id          =   $info["chatMode"]       ?? $this->user_id;
+        $this->user_id          =   $info["markAsReadMode"] ?? $this->user_id;
+        
+        $this->save();
+    }
+
+    // bot
+    static function get_bot_info($channel_access_token)
     {
         $headers    =   array(
             "Authorization" =>  "Bearer $channel_access_token",
@@ -29,22 +43,10 @@ class App extends Model
         $url        =   "https://api.line.me/v2/bot/info";
         $response   =   Http::withHeaders($headers)->get($url);
         return $response;
-        if($response->successful()){
-        }
     }
 
-    public function get_bot_info()
-    {
-        $headers    =   array(
-            "Authorization" =>  "Bearer $this->channel_access_token",
-        );
-        $url        =   "https://api.line.me/v2/bot/info";
-        $response   =   Http::withHeaders($headers)->get($url);
-        if($response->successful()){
-            return $response;
-        }
-    }
 
+    // channel access token
     static function post_oauth_verify_channel_access_token($channel_access_token)
     {
         $data       =   array(
@@ -54,7 +56,6 @@ class App extends Model
         $response   =   Http::asForm()->post($url, $data);
         return $response;
     }
-
 
     static function put_bot_channel_webhook_endpoint($channel_access_token, $app_name)
     {

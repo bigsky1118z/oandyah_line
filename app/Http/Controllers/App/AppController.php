@@ -29,7 +29,7 @@ class AppController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, $user_name, $app_name = null)
     {
         $validated = $request->validate([
             "name"                  => ["required","unique:apps,name","min:4","max:16"],
@@ -37,18 +37,17 @@ class AppController extends Controller
         ]);
         $user                   =   auth()->user();
         $name                   =   $request->get("name");
-        // $channel_access_token   =   $request->get("channel_access_token");
-        // status:200
+        $channel_access_token   =   $request->get("channel_access_token");
         $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
         $response               =   App::post_oauth_verify_channel_access_token($channel_access_token);
-
         return App::bot_info($channel_access_token);
         if($response->successful()){
             $app    =   App::updateOrCreate(array(
-                "name"                  =>  $name,
                 "channel_access_token"  =>  $channel_access_token,
+            ),array(
+                "name"                  =>  $name,
             ));
-            $app->get_profile();
+            $app->latest();
             UserApp::updateOrCreate(array(
                 "user_id"   =>  $user->id,
                 "app_id"    =>  $app->id,
