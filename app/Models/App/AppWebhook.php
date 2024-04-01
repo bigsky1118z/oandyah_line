@@ -46,4 +46,15 @@ class AppWebhook extends Model
         return $this->belongsTo(App::class);
     }
 
+    public function reply()
+    {
+        $app            =   $this->app;
+        $reply_token    =   $this->reply_token;
+        switch($this->type){
+            case("message"):
+                AppMessage::post_bot_message_reply($app, $reply_token);
+                break;
+        }
+    }
+
 }
