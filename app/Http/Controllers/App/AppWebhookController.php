@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Models\App;
+use App\Models\App\AppAuto;
 use App\Models\App\AppFriend;
 use App\Models\App\AppWebhook;
 use App\Models\User;
@@ -56,12 +57,14 @@ class AppWebhookController extends Controller
                         $webhook->reply_token       =   $event["replyToken"]                        ??  null;
                         $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
                         $webhook->event             =   $event[$event["type"]]                      ??  null;
+
+                        $event["type"] == "message" ?   $webhook->type  .=   "[".$webhook->event["type"]."]"    :   null;
                     }
                 }
             }
             $webhook->save();
             $app->friend($webhook->friend_id);
-            $webhook->reply();
+            AppAuto::reply($webhook);
             return response()->json([],200);
         } else {
             return back();
