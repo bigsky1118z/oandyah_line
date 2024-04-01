@@ -31,21 +31,21 @@ class AppWebhookController extends Controller
         $hash               =   hash_hmac("sha256", $request_body, $app->channel_secret, true);
         $signature          =   base64_encode($hash);
         $x_line_signature   =   $request->header("x_line_signature");
-
-        $webhook        =   AppWebhook::updateOrCreate(array(
-            "app_id"            =>  $app->id,
-            "ip_address"        =>  $request->header("x-forwarded-for"),
-            "request_host"      =>  $request->host(),
-            "request_path"      =>  $request->path(),
-            "request_method"    =>  $request->method(),
-            "request_body"      =>  $request_body,
-            "x_line_signature"  =>  $x_line_signature,
-            "destination"       =>  $request->get("destination"),
-            "query_string"      =>  $request->get("query_string"),
-        ));
+        
         if($signature == $x_line_signature){
+            $webhook        =   AppWebhook::updateOrCreate(array(
+                "app_id"            =>  $app->id,
+                "ip_address"        =>  $request->header("x-forwarded-for"),
+                "request_host"      =>  $request->host(),
+                "request_path"      =>  $request->path(),
+                "request_method"    =>  $request->method(),
+                "request_body"      =>  $request_body,
+                "x_line_signature"  =>  $x_line_signature,
+                "destination"       =>  $request->get("destination"),
+                "query_string"      =>  $request->get("query_string"),
+            ));
             if($request->exists("events")){
-                $events         =   $request->get("events");
+                $events =   $request->get("events");
                 if(is_array($events)){
                     foreach($events as $event){
                         $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
@@ -58,7 +58,7 @@ class AppWebhookController extends Controller
                         $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
                         $webhook->event             =   $event[$event["type"]]                      ??  null;
 
-                        $event["type"] == "message" ?   $webhook->type  .=   "[".$webhook->event["type"]."]"    :   null;
+                        $event["type"] == "message" ?   $webhook->type  .=   "-".$webhook->event["type"]    :   null;
                     }
                 }
             }
