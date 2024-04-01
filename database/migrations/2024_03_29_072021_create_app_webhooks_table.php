@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("request_host")->nullable();
             $table->string("request_path")->nullable();
             $table->string("request_method")->nullable();
-            $table->longText("request_body")->nullable();
+            $table->json("request_body")->nullable();
             $table->string("x_line_signature")->nullable();
             $table->integer("response_status")->nullable();
             $table->string("destination")->nullable();

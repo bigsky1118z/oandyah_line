@@ -37,7 +37,8 @@ class AppWebhook extends Model
     ];
 
     protected $casts    =   [
-        "event" =>  "json",
+        "request_body"  =>  "json",
+        "event"         =>  "json",
     ];
 
     public function app()
