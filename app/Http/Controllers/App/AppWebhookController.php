@@ -32,18 +32,18 @@ class AppWebhookController extends Controller
         $signature          =   base64_encode($hash);
         $x_line_signature   =   $request->header("x_line_signature");
 
+        $webhook        =   AppWebhook::updateOrCreate(array(
+            "app_id"            =>  $app->id,
+            "ip_address"        =>  $request->header("x-forwarded-for"),
+            "request_host"      =>  $request->host(),
+            "request_path"      =>  $request->path(),
+            "request_method"    =>  $request->method(),
+            "request_body"      =>  $request_body,
+            "x_line_signature"  =>  $request->header("x_line_signature"),
+            "destination"       =>  $request->get("destination"),
+            "query_string"      =>  $request->get("query_string"),
+        ));
         if($signature == $x_line_signature){
-            $webhook        =   AppWebhook::updateOrCreate(array(
-                "app_id"            =>  $app->id,
-                "ip_address"        =>  $request->header("x-forwarded-for"),
-                "request_host"      =>  $request->host(),
-                "request_path"      =>  $request->path(),
-                "request_method"    =>  $request->method(),
-                "request_body"      =>  $request_body,
-                "x_line_signature"  =>  $request->header("x_line_signature"),
-                "destination"       =>  $request->get("destination"),
-                "query_string"      =>  $request->get("query_string"),
-            ));
             if($request->exists("events")){
                 $events         =   $request->get("events");
                 if(is_array($events)){
