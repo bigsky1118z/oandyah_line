@@ -4,6 +4,7 @@ namespace App\Models\App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Http;
 
 class AppFriend extends Model
 {
@@ -38,7 +39,18 @@ class AppFriend extends Model
             $this->status           =   "unfollow";
         }
         $this->save();
-        return $this;            
+        return $this;
+    }
+
+    public function get_bot_profile_friend($friend_id)
+    {
+        $headers    =   array(
+            "Authorization" =>  "Bearer $this->channel_access_token",
+            "Content-Type"  =>  "application/json",
+        );
+        $url        =   "https://api.line.me/v2/bot/profile/$friend_id";
+        $response   =   Http::withHeaders($headers)->get($url);
+        return $response;
     }
 
 }

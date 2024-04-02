@@ -219,17 +219,6 @@ class App extends Model
 
 
     // 
-    /** friend */
-        public function get_bot_profile_friend($friend_id)
-        {
-            $headers    =   array(
-                "Authorization" =>  "Bearer $this->channel_access_token",
-                "Content-Type"  =>  "application/json",
-            );
-            $url        =   "https://api.line.me/v2/bot/profile/$friend_id";
-            $response   =   Http::withHeaders($headers)->get($url);
-            return $response;
-        }
 
         
 
