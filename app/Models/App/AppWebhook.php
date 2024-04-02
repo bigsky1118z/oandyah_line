@@ -54,8 +54,7 @@ class AppWebhook extends Model
 
     public function friend()
     {
-        $friend_id  =   $this->event["source"]["user_id"];
-        return $this->app->friend($friend_id);
+        return $this->app->friend($this->event["source"]["userId"] ?? null);
     }
 
 
