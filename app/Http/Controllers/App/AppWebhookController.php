@@ -22,7 +22,6 @@ class AppWebhookController extends Controller
             $data   =   array(
                 "webhooks"  =>  AppWebhook::whereAppId($app->id)->get(),
             );
-            return $data["webhooks"][count($data["webhooks"])-1]["request_body"];
             return view("app.webhook.index", $data);
         } else {
             return redirect("/");
