@@ -53,15 +53,15 @@ class AppWebhookController extends Controller
                 $events =   $request->get("events");
                 if(is_array($events)){
                     foreach($events as $event){
-                        $webhook->source            =   $event["source"]                            ??  null;                        
-                        $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
-                        $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
-                        $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
+                        // $webhook->source            =   $event["source"]                            ??  null;                        
+                        // $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
+                        // $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
+                        // $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
                         $webhook->type              =   $event["type"]                              ??  null;
                         $webhook->mode              =   $event["mode"]                              ??  null;
                         $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
                         $webhook->reply_token       =   $event["replyToken"]                        ??  null;
-                        $webhook->delivery_context  =   $event['deliveryContext']                   ??  null;
+                        // $webhook->delivery_context  =   $event['deliveryContext']                   ??  null;
                         $webhook->event             =   $event[$event["type"]]                      ??  null;
                     }
                 }
