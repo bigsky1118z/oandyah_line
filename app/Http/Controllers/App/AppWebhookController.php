@@ -52,6 +52,7 @@ class AppWebhookController extends Controller
                     "query_string"      =>  $request->get("query_string"),
                     "event"             =>  $event,
                 ));
+                // 友だち情報を最新にする
                 $webhook->get_friend()->latest();
 
             }

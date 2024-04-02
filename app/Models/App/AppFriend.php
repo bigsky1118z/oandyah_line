@@ -36,9 +36,6 @@ class AppFriend extends Model
     public function latest()
     {
         $response   =   $this->get_bot_profile_friend($this->friend_id);
-        // $this->status           =   $this->app->channel_access_token;
-        // $this->save();
-        // return $this;
         if($response->successful()){
             $this->status           =   "follow";
             $this->display_name     =   $response["displayName"]    ??  $this->display_name;
@@ -47,7 +44,6 @@ class AppFriend extends Model
             $this->status_message   =   $response["statusMessage"]  ??  $this->status_message;
         } else {
             $this->status           =   "unfollow";
-            $this->status           =   $this->app->channel_access_token;
         }
         $this->save();
         return $this;
