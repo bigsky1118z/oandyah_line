@@ -23,34 +23,39 @@ class AppWebhook extends Model
         "destination",
         "query_string",
 
-        "source",
-        "friend_id",
-        "group_id",
-        "room_id",
+        // "source",
+        // "friend_id",
+        // "group_id",
+        // "room_id",
 
-        "type",
-        "mode",
-        "webhook_event_id",
-        "reply_token",
+        // "type",
+        // "mode",
+        // "webhook_event_id",
+        // "reply_token",
 
-        "delivery_context",
+        // "delivery_context",
         
-        "events",
+        // "events",
         "event",
     ];
 
     protected $casts    =   [
         "request_body"      =>  "json",
-        "source"            =>  "json",
-        "delivery_context"  =>  "json",
+        // "source"            =>  "json",
+        // "delivery_context"  =>  "json",
 
         "event"             =>  "json",
-        "events"            =>  "json",
     ];
 
     public function app()
     {
         return $this->belongsTo(App::class);
+    }
+
+    public function friend()
+    {
+        $friend_id  =   $this->event["source"]["user_id"];
+        return $this->app->friend($friend_id);
     }
 
 
