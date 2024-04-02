@@ -20,7 +20,7 @@ class AppWebhookController extends Controller
         $app    =   $user->app($app_name);
         if($user && $app){
             $data   =   array(
-                "webhooks"  =>  AppWebhook::whereAppId($app->id),
+                "webhooks"  =>  AppWebhook::whereAppId($app->id)->get(),
             );
             return view("app.webhook.index", $data);
         } else {
