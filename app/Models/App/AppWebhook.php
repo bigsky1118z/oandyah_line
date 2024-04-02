@@ -52,11 +52,25 @@ class AppWebhook extends Model
         return $this->belongsTo(App::class);
     }
 
-    public function friend()
+    public function get_friend()
     {
         return $this->app->friend($this->event["source"]["userId"] ?? null);
     }
 
+    public function get_type()
+    {
+        return $this->event["type"] ?? null;
+    }
+
+    public function get_reply_token()
+    {
+        return $this->event["reply_token"] ?? null;
+    }
+
+    public function get_event($key)
+    {
+        return $this->event[$key] ?? null;
+    }
 
     public function action()
     {

@@ -27,9 +27,6 @@ return new class extends Migration
 
             $table->json("source")->nullable();
 
-            $table->string("friend_id")->nullable();
-            $table->string("group_id")->nullable();
-            $table->string("room_id")->nullable();
 
             $table->string("type")->nullable();
             $table->string("mode")->nullable();
