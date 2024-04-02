@@ -44,6 +44,7 @@ class AppFriend extends Model
             $this->status_message   =   $response["statusMessage"]  ??  $this->status_message;
         } else {
             $this->status           =   "unfollow";
+            $this->status           =   $this->app->channel_access_token;
         }
         $this->save();
         return $this;
