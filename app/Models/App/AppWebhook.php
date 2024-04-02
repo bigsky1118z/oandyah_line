@@ -56,11 +56,11 @@ class AppWebhook extends Model
     {
         $friend_id  =   $this->event["source"]["userId"] ?? null;
         $friend     =   $friend_id
-                    ?   new AppFriend()
-                    :   AppFriend::updateOrCreate(array(
+                    ?   AppFriend::updateOrCreate(array(
                             "app_id"    =>  $this->app->id,
                             "friend_id" =>  $friend_id,
-                        ));
+                        ))
+                    :   new AppFriend();
         return $friend;
     }
 
