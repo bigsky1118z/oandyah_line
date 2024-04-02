@@ -53,11 +53,6 @@ class AppWebhook extends Model
         return $this->belongsTo(App::class);
     }
 
-    public function user()
-    {
-        
-        return $webhook->
-    }
 
     public function action()
     {
