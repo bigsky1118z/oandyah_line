@@ -43,6 +43,9 @@ class App extends Model
 
     public function friend($friend_id)
     {
+        return $this->hasOne(AppFriend::class)->whereFriendId($friend_id);
+
+        
         $response   =   $this->get_bot_profile_friend($friend_id);
         if($response->successful()){
             $friend =   AppFriend::updateOrCreate(array(

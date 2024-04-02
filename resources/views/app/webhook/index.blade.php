@@ -19,7 +19,7 @@
                 @foreach ($webhooks as $webhook)
                     <tr>
                         <td>{{ $webhook->created_at }}</td>
-                        <td>{{ $webhook->friend() }}</td>
+                        <td>{{ $webhook->friend()->get_name() }}</td>
                         <td>{{ $webhook->type }}</td>
                         <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
                     </tr>
