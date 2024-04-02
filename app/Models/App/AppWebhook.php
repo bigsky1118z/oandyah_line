@@ -35,6 +35,7 @@ class AppWebhook extends Model
 
         "delivery_context",
         
+        "events",
         "event",
     ];
 
@@ -44,11 +45,18 @@ class AppWebhook extends Model
         "delivery_context"  =>  "json",
 
         "event"             =>  "json",
+        "events"            =>  "json",
     ];
 
     public function app()
     {
         return $this->belongsTo(App::class);
+    }
+
+    public function user()
+    {
+        
+        return $webhook->
     }
 
     public function action()

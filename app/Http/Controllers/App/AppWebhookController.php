@@ -22,6 +22,7 @@ class AppWebhookController extends Controller
             $data   =   array(
                 "webhooks"  =>  AppWebhook::whereAppId($app->id)->get(),
             );
+            return $data["webhooks"][count($data["webhooks"])-1]["request_body"];
             return view("app.webhook.index", $data);
         } else {
             return redirect("/");
@@ -47,25 +48,28 @@ class AppWebhookController extends Controller
                 "x_line_signature"  =>  $x_line_signature,
                 "destination"       =>  $request->get("destination"),
                 "query_string"      =>  $request->get("query_string"),
+                "events"            =>  $request->get("events"),
+                "event"             =>  $request->exists("events")  ? $request->events[0]   : null,
             ));
-            if($request->exists("events")){
-                $events =   $request->get("events");
-                if(is_array($events)){
-                    foreach($events as $event){
-                        // $webhook->source            =   $event["source"]                            ??  null;                        
-                        // $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
-                        // $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
-                        // $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
-                        $webhook->type              =   $event["type"]                              ??  null;
-                        $webhook->mode              =   $event["mode"]                              ??  null;
-                        $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
-                        $webhook->reply_token       =   $event["replyToken"]                        ??  null;
-                        // $webhook->delivery_context  =   $event['deliveryContext']                   ??  null;
-                        $webhook->event             =   $event[$event["type"]]                      ??  null;
-                    }
-                }
-            }
-            $webhook->save();
+
+            // if($request->exists("events")){
+            //     $events =   $request->get("events");
+            //     if(is_array($events)){
+            //         foreach($events as $event){
+            //             // $webhook->source            =   $event["source"]                            ??  null;                        
+            //             // $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
+            //             // $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
+            //             // $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
+            //             $webhook->type              =   $event["type"]                              ??  null;
+            //             $webhook->mode              =   $event["mode"]                              ??  null;
+            //             $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
+            //             $webhook->reply_token       =   $event["replyToken"]                        ??  null;
+            //             // $webhook->delivery_context  =   $event['deliveryContext']                   ??  null;
+            //             $webhook->event             =   $event[$event["type"]]                      ??  null;
+            //         }
+            //     }
+            // }
+            // $webhook->save();
             // $app->friend($webhook->friend_id);
             // $webhook->action();
             

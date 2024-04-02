@@ -37,7 +37,9 @@ return new class extends Migration
             $table->string("reply_token")->nullable();
 
             $table->json("delivery_context")->nullable();
+            $table->string("destination")->nullable();
             
+            $table->json("events")->nullable();
             $table->json("event")->nullable();
             $table->timestamps();
         });

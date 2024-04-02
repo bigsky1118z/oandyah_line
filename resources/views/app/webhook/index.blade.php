@@ -9,8 +9,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>time</th>
-                    <th>user</th>
+                    <th>時間</th>
+                    <th>ユーザー</th>
                     <th>type</th>
                     <th>操作</th>
                 </tr>
@@ -21,9 +21,6 @@
                         <td>{{ $webhook->created_at }}</td>
                         <td>{{ $webhook->user_id }}</td>
                         <td>{{ $webhook->type }}</td>
-                        <td>{{ $webhook->response_status }}</td>
-                        <td>{{ $webhook->query_string }}</td>
-                        <td>{{ $webhook->x_line_signature }}</td>
                         <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
                     </tr>
                 @endforeach
