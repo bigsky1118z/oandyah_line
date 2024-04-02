@@ -14,6 +14,7 @@ class AppWebhookController extends Controller
     {
         return $app_name;
     }
+
     public function index(Request $request, $user_name, $app_name)
     {
         $user   =   User::find(auth()->user()->id);
@@ -51,6 +52,7 @@ class AppWebhookController extends Controller
                     "query_string"      =>  $request->get("query_string"),
                     "event"             =>  $event,
                 ));
+                $webhook->get_friend()->latest();
 
             }
 

@@ -44,25 +44,6 @@ class App extends Model
     public function friend($friend_id)
     {
         return $this->hasOne(AppFriend::class)->whereFriendId($friend_id)->first();
-
-
-        $response   =   $this->get_bot_profile_friend($friend_id);
-        if($response->successful()){
-            $friend =   AppFriend::updateOrCreate(array(
-                "app_id"    =>  $this->id,
-                "friend_id" =>  $friend_id,
-            ),array(
-                "status"    =>  "follow",
-            ));
-            $friend->display_name   =   $response["displayName"]    ??  $friend->display_name;
-            $friend->language       =   $response["language"]       ??  $friend->language;
-            $friend->picture_url    =   $response["pictureUrl"]     ??  $friend->picture_url;
-            $friend->status_message =   $response["statusMessage"]  ??  $friend->status_message;
-            $friend->save();
-            return $friend;
-        } else {
-            return new AppFriend();
-        }
     }
 
     public function messages()
