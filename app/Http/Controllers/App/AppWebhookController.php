@@ -30,9 +30,6 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $app_name)
     {
-        $webhook        =   AppWebhook::updateOrCreate(array(
-            "app_id"            =>  1,
-    ));
         /** 署名を検証 */
         $app                =   App::whereName($app_name)->first();
         $request_body       =   $request->getContent();
