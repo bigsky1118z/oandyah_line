@@ -36,7 +36,9 @@ class AppWebhookController extends Controller
         $hash               =   hash_hmac("sha256", $request_body, $app->channel_secret, true);
         $signature          =   base64_encode($hash);
         $x_line_signature   =   $request->header("x_line_signature");
-        
+        $webhook        =   AppWebhook::updateOrCreate(array(
+            "app_id"            =>  $app->id,
+        ));
         if($signature == $x_line_signature){
             $webhook        =   AppWebhook::updateOrCreate(array(
                 "app_id"            =>  $app->id,
