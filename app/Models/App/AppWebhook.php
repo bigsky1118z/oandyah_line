@@ -64,7 +64,7 @@ class AppWebhook extends Model
 
     public function get_reply_token()
     {
-        return $this->event["reply_token"] ?? null;
+        return $this->event["replyToken"] ?? null;
     }
 
     public function get_event($key)
