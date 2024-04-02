@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string("destination")->nullable();
             $table->string("query_string")->nullable();
 
+            $table->json("source")->nullable();
+
             $table->string("friend_id")->nullable();
             $table->string("group_id")->nullable();
             $table->string("room_id")->nullable();
@@ -33,8 +35,9 @@ return new class extends Migration
             $table->string("mode")->nullable();
             $table->string("webhook_event_id")->nullable();
             $table->string("reply_token")->nullable();
-            $table->boolean("is_redelivery")->nullable();
 
+            $table->json("delivery_context")->nullable();
+            
             $table->json("event")->nullable();
             $table->timestamps();
         });

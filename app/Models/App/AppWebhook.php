@@ -23,6 +23,7 @@ class AppWebhook extends Model
         "destination",
         "query_string",
 
+        "source",
         "friend_id",
         "group_id",
         "room_id",
@@ -31,14 +32,18 @@ class AppWebhook extends Model
         "mode",
         "webhook_event_id",
         "reply_token",
-        "is_redelivery",
+
+        "delivery_context",
         
         "event",
     ];
 
     protected $casts    =   [
-        "request_body"  =>  "json",
-        "event"         =>  "json",
+        "request_body"      =>  "json",
+        "source"            =>  "json",
+        "delivery_context"  =>  "json",
+
+        "event"             =>  "json",
     ];
 
     public function app()
@@ -46,14 +51,23 @@ class AppWebhook extends Model
         return $this->belongsTo(App::class);
     }
 
-    public function reply()
+    public function action()
     {
         $app            =   $this->app;
-        $reply_token    =   $this->reply_token;
+        $type           =   $this->type;
+
         switch($this->type){
-            case("message"):
-                AppMessage::post_bot_message_reply($app, $reply_token);
-                break;
+            case("follow"):
+            case("unfollow"):
+                $friend =   AppFriend::createOrUpdate(array(
+                    "app_id"    =>  $app->id,
+                    "friend_id" =>  $this->friend_id,
+                ),array(
+                    "status"    =>  $this->type,
+                ));
+            // case("message"):
+            //     AppMessage::post_bot_message_reply($app, $reply_token);
+            //     break;
         }
     }
 

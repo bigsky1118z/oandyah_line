@@ -16,10 +16,16 @@ class AppWebhookController extends Controller
     }
     public function index(Request $request, $user_name, $app_name)
     {
-        $data   =   array(
-            "webhooks"  =>  AppWebhook::all(),
-        );
-        return view("app.webhook.index", $data);
+        $user   =   User::find(auth()->user()->id);
+        $app    =   $user->app($app_name);
+        if($user && $app){
+            $data   =   array(
+                "webhooks"  =>  AppWebhook::whereAppId($app->id),
+            );
+            return view("app.webhook.index", $data);
+        } else {
+            return redirect("/");
+        }
     }
 
     public function post(Request $request, $name)
@@ -47,6 +53,7 @@ class AppWebhookController extends Controller
                 $events =   $request->get("events");
                 if(is_array($events)){
                     foreach($events as $event){
+                        $webhook->source            =   $event["source"]                            ??  null;                        
                         $webhook->friend_id         =   $event["source"]["userId"]                  ??  null;
                         $webhook->group_id          =   $event["source"]["groupId"]                 ??  null;
                         $webhook->room_id           =   $event["source"]["roomId"]                  ??  null;
@@ -54,14 +61,14 @@ class AppWebhookController extends Controller
                         $webhook->mode              =   $event["mode"]                              ??  null;
                         $webhook->webhook_event_id  =   $event["webhookEventId"]                    ??  null;
                         $webhook->reply_token       =   $event["replyToken"]                        ??  null;
-                        $webhook->is_redelivery     =   $event['deliveryContext']['isRedelivery']   ??  null;
+                        $webhook->delivery_context  =   $event['deliveryContext']                   ??  null;
                         $webhook->event             =   $event[$event["type"]]                      ??  null;
                     }
                 }
             }
             $webhook->save();
-            $app->friend($webhook->friend_id);
-            $webhook->reply();
+            // $app->friend($webhook->friend_id);
+            // $webhook->action();
             
             return response()->json([],200);
         } else {
