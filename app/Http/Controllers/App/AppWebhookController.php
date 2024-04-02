@@ -30,11 +30,11 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $app_name)
     {
+        $webhook        =   AppWebhook::updateOrCreate(array(
+            "app_id"            =>  1,
+    ));
         /** 署名を検証 */
         $app                =   App::whereName($app_name)->first();
-        $webhook        =   AppWebhook::updateOrCreate(array(
-            "app_id"            =>  $app->id,
-    ));
         $request_body       =   $request->getContent();
         $hash               =   hash_hmac("sha256", $request_body, $app->channel_secret, true);
         $signature          =   base64_encode($hash);
