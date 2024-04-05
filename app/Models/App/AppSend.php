@@ -49,11 +49,6 @@ class AppSend extends Model
         return $this->belongsTo(App::class);
     }
 
-    // public function friend()
-    // {
-    //     return $this->belongsTo(AppFriend::class,"friend_id","friend_id")->whereAppId($this->app->id)->first();
-    // }
-
     public function message()
     {
         return $this->belongsTo(AppMessage::class)->whereAppId($this->app->id)->first();
@@ -73,9 +68,7 @@ class AppSend extends Model
 
     public function post_bot_message()
     {
-        $app            =   $this->app;
-        $this->status   =   $this->friend_id;
-        $this->save();
+        $app        =   $this->app;
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
@@ -112,29 +105,4 @@ class AppSend extends Model
         
         return $response;
     }
-
-    static function post_bot_message_reply($app, $reply_token)
-    {
-        $headers    =   array(
-            "Authorization" =>  "Bearer $app->channel_access_token",
-            "Content-Type"  =>  "application/json",
-        );
-        $data       =   array(
-            "replyToken"    =>  $reply_token,
-            "messages"      =>  [
-                array(
-                    "type"  =>  "text",
-                    "text"  =>  "興味しんしん",
-                ),
-                array(
-                    "type"  =>  "text",
-                    "text"  =>  "興味しんしんビーム",
-                ),
-            ],
-        );
-        $url        =   "https://api.line.me/v2/bot/message/reply";
-        $response   =   Http::withHeaders($headers)->post($url, $data);
-        return $response;
-    }
-
 }
