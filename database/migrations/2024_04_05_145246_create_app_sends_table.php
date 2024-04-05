@@ -25,13 +25,13 @@ return new class extends Migration
 
             $table->string("x_line_retry_key")->nullable();
     
-            $table->foreignIdFor(AppFriend::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(AppFriend::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("reply_token")->nullable();
             $table->json("recipient")->nullable();
             $table->json("filter")->nullable();
             $table->json("limit")->nullable();
     
-            $table->foreignIdFor(AppMessage::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(AppMessage::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
     
             $table->string("notification_disabled")->default(0);
             $table->string("custom_aggregation_units")->nullable();
