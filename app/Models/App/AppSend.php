@@ -79,7 +79,7 @@ class AppSend extends Model
             "recipient"     =>  $this->recipient        ??  null,
             "filter"        =>  $this->filter           ??  null,
             "limit"         =>  $this->limit            ??  null,
-            "messages"      =>  [
+            "message"      =>  [
                 array(
                     "type"  =>  "text",
                     "text"  =>  "興味しんしん",
@@ -100,6 +100,7 @@ class AppSend extends Model
             $this->sent_messages    =   $response["sentMessages"] ?? null;
         } else {
             $this->error_message    =   $response["message"];
+            $this->error_details    =   $response["details"];
         }
         $this->save();
         
