@@ -61,20 +61,16 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app        =   $this->app;
-        $this->status   =   "A";
-        $this->save();
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
         );
-        $this->status   =   "B";
-        $this->save();
         $data       =   array(
             "replyToken"    =>  $this->reply_token  ??  null,
-            "to"            =>  $this->friend       ?   $this->friend->friend_id    :   null,
-            "recipient"     =>  $this->recipient    ??  null,
-            "filter"        =>  $this->filter       ??  null,
-            "limit"         =>  $this->limit        ??  null,
+            // "to"            =>  $this->friend       ?   $this->friend->friend_id    :   null,
+            // "recipient"     =>  $this->recipient    ??  null,
+            // "filter"        =>  $this->filter       ??  null,
+            // "limit"         =>  $this->limit        ??  null,
             "messages"      =>  [
                 array(
                     "type"  =>  "text",
