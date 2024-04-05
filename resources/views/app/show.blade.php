@@ -12,7 +12,7 @@
             <p>現在の権限 {{ $role }}</p>
             <table>
                 <tr>
-                    <th>name</th>
+                    <th>アプリID</th>
                     <td>
                         @switch($role)
                             @case("admin")
@@ -34,7 +34,8 @@
                     <td>
                         @switch($role)
                             @case("admin")
-                                <textarea name="channel_access_token" cols="50" rows="5">{{ $app->channel_access_token }}</textarea>
+                                <textarea name="channel_access_token" cols="50" rows="5" readonly>{{ $app->channel_access_token }}</textarea>
+                                <input type="checkbox" onchange="document.querySelector('textarea[name=channel_access_token]').readOnly = !this.checked" checked>
                                 @break
                             @case("editor")
                             @default
@@ -52,18 +53,8 @@
                     <td>{{ $app->basic_id }}</td>
                 </tr>
                 <tr>
-                    <th>display_name</th>
-                    <td>
-                        @switch($role)
-                            @case("admin")
-                            @case("editor")
-                                <input type="text" name="display_name" value="{{ $app->display_name }}">
-                                @break
-                            @default
-                                {{ $app->display_name }}
-                                @break
-                        @endswitch
-                    </td>
+                    <th>表示名</th>
+                    <td>{{ $app->display_name }}</td>
                 </tr>
                 <tr>
                     <th>picture_url</th>
