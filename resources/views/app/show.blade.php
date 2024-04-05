@@ -34,7 +34,7 @@
                     <td>
                         @switch($role)
                             @case("admin")
-                                <textarea name="channel_access_token" cols="50" rows="5" readonly>{{ $app->channel_access_token }}</textarea>
+                                <textarea name="channel_access_token" cols="40" rows="5" readonly>{{ $app->channel_access_token }}</textarea>
                                 <input type="checkbox" id="checkbox_channel_access_token" onchange="document.querySelector('textarea[name=channel_access_token]').readOnly = this.checked" checked>
                                 <label for="checkbox_channel_access_token">保護</label>
                                 @break
