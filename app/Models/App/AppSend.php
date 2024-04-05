@@ -20,7 +20,7 @@ class AppSend extends Model
 
         "x_line_retry_key",
 
-        "app_firend_id",
+        "firend_id",
         "reply_token",
         "recipient",
         "filter",
@@ -61,7 +61,7 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app        =   $this->app;
-        $this->error_details   =   $this->friend_id;
+        $this->status   =   $this->friend_id;
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
