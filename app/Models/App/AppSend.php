@@ -61,10 +61,14 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app        =   $this->app;
+        $this->status   =   "A";
+        $this->save();
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
         );
+        $this->status   =   "B";
+        $this->save();
         $data       =   array(
             "replyToken"    =>  $this->reply_token  ??  null,
             "to"            =>  $this->friend       ?   $this->friend->friend_id    :   null,
@@ -84,10 +88,17 @@ class AppSend extends Model
             "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );
+        $this->status   =   "C";
+        $this->save();
 
         $endpoint   =   "https://api.line.me/v2/bot/message/" . $this->type;
+        $this->status   =   "D";
+        $this->save();
 
         $response   =   Http::withHeaders($headers)->post($endpoint, $data);
+        $this->status   =   "E";
+        $this->save();
+
         $this->response_code    =   $response->status();
         if($response->successful()){
 
