@@ -97,7 +97,7 @@ class AppSend extends Model
         $response               =   Http::withHeaders($headers)->post($endpoint, $data);
         $this->response_code    =   $response->status();
         if($response->successful()){
-
+            $this->sent_messages    =   $response->get("sentMessages") ?? null;
         } else {
             $this->error_message    =   $response->get("message");
         }
