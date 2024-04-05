@@ -79,7 +79,7 @@ class AppSend extends Model
             "recipient"     =>  $this->recipient        ??  null,
             "filter"        =>  $this->filter           ??  null,
             "limit"         =>  $this->limit            ??  null,
-            "message"      =>  [
+            "messages"      =>  [
                 array(
                     "type"  =>  "text",
                     "text"  =>  "興味しんしん",
