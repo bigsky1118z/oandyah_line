@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\App\AppFriend;
 use App\Models\App\AppMessage;
+use App\Models\App\AppSend;
 use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -49,6 +50,11 @@ class App extends Model
     public function messages()
     {
         return $this->hasMany(AppMessage::class);
+    }
+
+    public function sends()
+    {
+        return $this->hasMany(AppSend::class);
     }
 
 
