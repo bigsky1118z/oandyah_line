@@ -80,15 +80,13 @@ class AppWebhook extends Model
                             "friend_id"     =>  $friend->friend_id,
                             "type"          =>  "reply",
                             "reply_token"   =>  $this->get_reply_token(),
-                        ));
-                        $send->post_bot_message();
+                        ))->post_bot_message();
                     }
                 }
                 break;
-
-            // case("message"):
-            //     AppMessage::post_bot_message_reply($app, $reply_token);
-            //     break;
+            case("message"):
+                // AppMessage::post_bot_message_reply($app, $reply_token);
+                break;
         }
     }
 
