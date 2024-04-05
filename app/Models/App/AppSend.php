@@ -48,10 +48,11 @@ class AppSend extends Model
     {
         return $this->belongsTo(App::class);
     }
-    public function friend()
-    {
-        return $this->belongsTo(AppFriend::class,"friend_id","friend_id")->whereAppId($this->app->id)->first();
-    }
+
+    // public function friend()
+    // {
+    //     return $this->belongsTo(AppFriend::class,"friend_id","friend_id")->whereAppId($this->app->id)->first();
+    // }
 
     public function message()
     {
@@ -61,7 +62,7 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app            =   $this->app;
-        $this->status   =   $this->friend_id;
+        // $this->status   =   $this->friend_id;
         $this->save();
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
@@ -69,7 +70,7 @@ class AppSend extends Model
         );
         $data       =   array(
             "replyToken"    =>  $this->reply_token  ??  null,
-            "to"            =>  $this->friend       ?   $this->friend->friend_id    :   null,
+            // "to"            =>  $this->friend       ?   $this->friend->friend_id    :   null,
             "recipient"     =>  $this->recipient    ??  null,
             "filter"        =>  $this->filter       ??  null,
             "limit"         =>  $this->limit        ??  null,
