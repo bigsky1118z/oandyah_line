@@ -67,15 +67,15 @@ class AppWebhook extends Model
     {
         $app    =   $this->app;
         $type   =   $this->event["type"] ?? null;
+        $friend =   $this->get_friend();
         switch($type){
             case("follow"):
             case("unfollow"):
-                $friend         =   $this->get_friend();
-                $friend->status =   $type;
                 if($friend->id){
+                    $friend->status =   $type;
                     $friend->save();
                     if($type == "follow"){
-                        $send   =   AppSend::Create(array(
+                        AppSend::Create(array(
                             "app_id"        =>  $app->id,
                             "friend_id"     =>  $friend->friend_id,
                             "type"          =>  "reply",
@@ -85,7 +85,12 @@ class AppWebhook extends Model
                 }
                 break;
             case("message"):
-                // AppMessage::post_bot_message_reply($app, $reply_token);
+                AppSend::Create(array(
+                    "app_id"        =>  $app->id,
+                    "friend_id"     =>  $friend->friend_id,
+                    "type"          =>  "reply",
+                    "reply_token"   =>  $this->get_reply_token(),
+                ))->post_bot_message();
                 break;
         }
     }
