@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->string("x_line_retry_key")->nullable();
     
-            $table->foreignIdFor(AppFriend::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("friend_id")->nullable();
             $table->string("reply_token")->nullable();
             $table->json("recipient")->nullable();
             $table->json("filter")->nullable();

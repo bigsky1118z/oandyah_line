@@ -50,7 +50,7 @@ class AppSend extends Model
     }
     public function friend()
     {
-        return $this->belongsTo(AppFriend::class)->whereAppId($this->app->id)->first();
+        return $this->belongsTo(AppFriend::class,"friend_id","friend_id")->whereAppId($this->app->id)->first();
     }
 
     public function message()
@@ -84,17 +84,9 @@ class AppSend extends Model
             "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );
-        $this->status   =   "C";
-        $this->save();
 
         $endpoint   =   "https://api.line.me/v2/bot/message/" . $this->type;
-        $this->status   =   "D";
-        $this->save();
-
         $response   =   Http::withHeaders($headers)->post($endpoint, $data);
-        $this->status   =   "E";
-        $this->save();
-
         $this->response_code    =   $response->status();
         if($response->successful()){
 
