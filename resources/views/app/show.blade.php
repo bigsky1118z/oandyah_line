@@ -96,7 +96,7 @@
             </table>
             <button type="submit">post</button>
         </form>
-        <h3>webhook情報</h3>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/webhook">webhook情報</a></h3>
             <ul>
                 @foreach ($app->webhooks as $webhook)
                     <li>{{ $webhook->type }}</li>
