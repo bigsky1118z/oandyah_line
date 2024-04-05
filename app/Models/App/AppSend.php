@@ -61,6 +61,7 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app        =   $this->app;
+        $this->error_details   =   $this->friend;
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
@@ -85,8 +86,8 @@ class AppSend extends Model
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );
 
-        $endpoint   =   "https://api.line.me/v2/bot/message/" . $this->type;
-        $response   =   Http::withHeaders($headers)->post($endpoint, $data);
+        $endpoint               =   "https://api.line.me/v2/bot/message/" . $this->type;
+        $response               =   Http::withHeaders($headers)->post($endpoint, $data);
         $this->response_code    =   $response->status();
         if($response->successful()){
 
