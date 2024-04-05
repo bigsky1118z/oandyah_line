@@ -61,7 +61,6 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app            =   $this->app;
-        $this->status   =   "A";
         $this->status   =   $this->friend_id;
         $this->save();
         $headers    =   array(
