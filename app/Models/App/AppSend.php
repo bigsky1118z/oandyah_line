@@ -62,6 +62,7 @@ class AppSend extends Model
     {
         $app            =   $this->app;
         $this->status   =   $this->friend_id;
+        $this->save();
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
