@@ -57,7 +57,19 @@ class AppSend extends Model
     public function message()
     {
         return $this->belongsTo(AppMessage::class)->whereAppId($this->app->id)->first();
-    }    
+    }
+
+    public function get_friend()
+    {
+        $friend_id  =   $this->friend_id ?? null;
+        $friend     =   $friend_id
+                    ?   AppFriend::updateOrCreate(array(
+                            "app_id"    =>  $this->app->id,
+                            "friend_id" =>  $friend_id,
+                        ))
+                    :   new AppFriend();
+        return $friend;
+    }
 
     public function post_bot_message()
     {
@@ -69,11 +81,11 @@ class AppSend extends Model
             "Content-Type"  =>  "application/json",
         );
         $data       =   array(
-            "replyToken"    =>  $this->reply_token  ??  null,
-            // "to"            =>  $this->friend       ?   $this->friend->friend_id    :   null,
-            "recipient"     =>  $this->recipient    ??  null,
-            "filter"        =>  $this->filter       ??  null,
-            "limit"         =>  $this->limit        ??  null,
+            "replyToken"    =>  $this->reply_token      ??  null,
+            "to"            =>  $this->get_friend()->id ??  null,
+            "recipient"     =>  $this->recipient        ??  null,
+            "filter"        =>  $this->filter           ??  null,
+            "limit"         =>  $this->limit            ??  null,
             "messages"      =>  [
                 array(
                     "type"  =>  "text",
