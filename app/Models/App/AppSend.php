@@ -88,12 +88,13 @@ class AppSend extends Model
         $endpoint   =   "https://api.line.me/v2/bot/message/" . $this->type;
 
         $response   =   Http::withHeaders($headers)->post($endpoint, $data);
+        $this->response_code    =   $response->status();
         if($response->successful()){
 
         } else {
-            $this->error_message    =   $response->status();
-            $this->save();
+            $this->error_message    =   $response->get("message");
         }
+        $this->save();
         
         return $response;
     }
