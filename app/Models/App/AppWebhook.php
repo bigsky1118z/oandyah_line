@@ -22,28 +22,11 @@ class AppWebhook extends Model
         "response_status",
         "destination",
         "query_string",
-
-        // "source",
-        // "friend_id",
-        // "group_id",
-        // "room_id",
-
-        // "type",
-        // "mode",
-        // "webhook_event_id",
-        // "reply_token",
-
-        // "delivery_context",
-        
-        // "events",
         "event",
     ];
 
     protected $casts    =   [
         "request_body"      =>  "json",
-        // "source"            =>  "json",
-        // "delivery_context"  =>  "json",
-
         "event"             =>  "json",
     ];
 
@@ -80,20 +63,19 @@ class AppWebhook extends Model
     }
 
     /** POST 時の functions */
-    public function action()
+    public function auto_reply()
     {
-        $app            =   $this->app;
-        $type           =   $this->type;
-
-        switch($this->type){
+        $app    =   $this->app;
+        $type   =   $this->event["type"] ?? null;
+        switch($type){
             case("follow"):
             case("unfollow"):
-                $friend =   AppFriend::createOrUpdate(array(
-                    "app_id"    =>  $app->id,
-                    "friend_id" =>  $this->friend_id,
-                ),array(
-                    "status"    =>  $this->type,
-                ));
+                $friend         =   $this->get_friend();
+                $friend->status =   $type;
+                if($friend->id){
+                    $friend->save();
+                }
+
             // case("message"):
             //     AppMessage::post_bot_message_reply($app, $reply_token);
             //     break;
