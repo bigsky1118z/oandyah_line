@@ -78,9 +78,9 @@ class AppWebhook extends Model
                 if($type == "follow"){
                     $send   =   AppSend::Create(array(
                         "app_id"        =>  $app->id,
-                        "frined_id"     =>  $friend->id,
-                        "type"          =>  "reply",
-                        "reply_token"   =>  $this->get_reply_token(),
+                        // "frined_id"     =>  $friend->id,
+                        // "type"          =>  "reply",
+                        // "reply_token"   =>  $this->get_reply_token(),
                     ));
                     $send->post_bot_message();
                 }
