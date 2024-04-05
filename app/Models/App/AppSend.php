@@ -61,7 +61,7 @@ class AppSend extends Model
     public function post_bot_message()
     {
         $app        =   $this->app;
-        $this->error_details   =   $this->friend;
+        $this->error_details   =   $this->friend_id;
         $headers    =   array(
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
