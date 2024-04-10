@@ -64,7 +64,7 @@ class AppController extends Controller
                 "channel_access_token"  =>  $channel_access_token,
             ),array(
                 "name"                  =>  $name,
-                "channel_secret"        => ["required"],
+                "channel_secret"        =>  $channel_secret,
 
             ));
             $app->latest();

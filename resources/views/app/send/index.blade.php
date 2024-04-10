@@ -24,3 +24,4 @@
     <x-slot name="footer">
     </x-slot>
 </x-frame.web>
+
