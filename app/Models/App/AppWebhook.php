@@ -63,11 +63,12 @@ class AppWebhook extends Model
     }
 
     /** POST 時の functions */
-    public function auto_reply()
+    public function auto()
     {
         $app    =   $this->app;
         $type   =   $this->event["type"] ?? null;
         $friend =   $this->get_friend();
+        $autos  =   AppAuto::whereAppId($app->id)->whereType($type)->get();
         switch($type){
             case("follow"):
             case("unfollow"):
@@ -84,19 +85,20 @@ class AppWebhook extends Model
                                 "reply_token"   =>  $this->get_reply_token(),
                                 "message_id"    =>  $message->id,
                             ))->post_bot_message();
-
                         }
                     }
                 }
                 break;
             case("message"):
-                $message    =   null;
+                $auto       =   $autos()->first();
+                $message    =   $auto->message ?? null;
                 if($message){
                     AppSend::Create(array(
-                        "app_id"        =>  $app->id,
-                        "friend_id"     =>  $friend->friend_id,
-                        "type"          =>  "reply",
-                        "reply_token"   =>  $this->get_reply_token(),
+                        "app_id"            =>  $app->id,
+                        "friend_id"         =>  $friend->friend_id,
+                        "type"              =>  "reply",
+                        "reply_token"       =>  $this->get_reply_token(),
+                        "app_message_id"    =>  $message->id,
                     ))->post_bot_message();
                 }
                 break;

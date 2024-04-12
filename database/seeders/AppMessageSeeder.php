@@ -18,21 +18,14 @@ class AppMessageSeeder extends Seeder
         $app        =   App::whereName("gluten_free")->first();
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
+            "status"    =>  "draft",
+            "messages"  =>  array(
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  "新澤菜央様",
+                ),
+            ),
         ));
-        $message_object_1   =   AppMessageObject::Create(array(
-            "type"  =>  "text",
-            "text"  =>  "しんしんに興味しんしん",
-        ));
-        $message_object_2   =   AppMessageObject::Create(array(
-            "type"  =>  "text",
-            "text"  =>  "あざっく更新中",
-        ));
-        $message->app_message_object_1_id   =   $message_object_1->id;
-        $message->app_message_object_2_id   =   $message_object_2->id;
-        $message->app_message_object_3_id   =   $message_object_1->id;
-        $message->app_message_object_4_id   =   $message_object_2->id;
-        $message->app_message_object_5_id   =   $message_object_2->id;
-        $message->save();
 
     }
 }
