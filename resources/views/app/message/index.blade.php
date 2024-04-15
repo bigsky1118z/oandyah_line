@@ -2,7 +2,7 @@
     <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
     <x-slot name="head">
         <style>
-            ul#ul-index-message > li {
+            ul.ul-index-message > li {
                 border: 1px solid #000000;
                 border-radius: 10px;
                 background-color: greenyellow;
