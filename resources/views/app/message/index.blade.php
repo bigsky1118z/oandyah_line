@@ -14,8 +14,7 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
-                        <td>{{ $message->messages["messages"]["type"] ?? "" }}</td>
-                        <td>{{ $message->messages["messages"][$message->messages["messages"]["type"]] ?? "" }}</td>
+                        <td>{{ json_encode($message->messages) ?? "" }}</td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
