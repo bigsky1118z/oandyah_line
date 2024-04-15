@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('app_sends', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            // $table->string("status")->nullable();
             $table->string("type")->nullable();
             
             $table->integer("response_code")->nullable();
@@ -33,7 +32,7 @@ return new class extends Migration
     
             $table->foreignIdFor(AppMessage::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
     
-            $table->string("notification_disabled")->default(0);
+            $table->boolean("notification_disabled")->default(0);
             $table->string("custom_aggregation_units")->nullable();
     
             $table->json("sent_messages")->nullable();
