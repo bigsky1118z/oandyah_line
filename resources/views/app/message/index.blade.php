@@ -35,7 +35,6 @@
                                         @default
                                             @break
                                     @endswitch
-                                    <li></li>
                                 @endforeach
                             </ul>
                         </td>
