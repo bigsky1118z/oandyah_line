@@ -76,16 +76,14 @@ class AppWebhook extends Model
                     $friend->status =   $type;
                     $friend->save();
                     if($type == "follow"){
-                        $message    =   null;
-                        if($message){
-                            AppSend::Create(array(
-                                "app_id"        =>  $app->id,
-                                "friend_id"     =>  $friend->friend_id,
-                                "type"          =>  "reply",
-                                "reply_token"   =>  $this->get_reply_token(),
-                                "message_id"    =>  $message->id,
-                            ))->post_bot_message();
-                        }
+                        $message    =   AppMessage::first();
+                        AppSend::Create(array(
+                            "app_id"        =>  $app->id,
+                            "friend_id"     =>  $friend->friend_id,
+                            "type"          =>  "reply",
+                            "reply_token"   =>  $this->get_reply_token(),
+                            "message_id"    =>  $message->id,
+                        ))->post_bot_message();
                     }
                 }
                 break;

@@ -74,21 +74,22 @@ class AppSend extends Model
             "Content-Type"  =>  "application/json",
         );
         $data       =   array(
-            "replyToken"    =>  $this->reply_token      ??  null,
-            "to"            =>  $this->get_friend()->id ??  null,
-            "recipient"     =>  $this->recipient        ??  null,
-            "filter"        =>  $this->filter           ??  null,
-            "limit"         =>  $this->limit            ??  null,
-            "messages"      =>  [
-                array(
-                    "type"  =>  "text",
-                    "text"  =>  "興味しんしん",
-                ),
-                array(
-                    "type"  =>  "text",
-                    "text"  =>  "興味しんしんビーム",
-                ),
-            ],
+            "replyToken"    =>  $this->reply_token          ??  null,
+            "to"            =>  $this->get_friend()->id     ??  null,
+            "recipient"     =>  $this->recipient            ??  null,
+            "filter"        =>  $this->filter               ??  null,
+            "limit"         =>  $this->limit                ??  null,
+            "messages"      =>  $this->message->messages    ??  null,
+            // "messages"      =>  [
+            //     array(
+            //         "type"  =>  "text",
+            //         "text"  =>  "興味しんしん",
+            //     ),
+            //     array(
+            //         "type"  =>  "text",
+            //         "text"  =>  "興味しんしんビーム",
+            //     ),
+            // ],
             "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );

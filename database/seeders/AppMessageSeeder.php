@@ -22,11 +22,7 @@ class AppMessageSeeder extends Seeder
             "messages"  =>  array(
                 array(
                     "type"  =>  "text",
-                    "text"  =>  "新澤菜央様",
-                ),
-                array(
-                    "type"  =>  "text",
-                    "text"  =>  "天性のアイドルです。",
+                    "text"  =>  "新澤菜央様は天性のアイドルです。",
                 ),
                 array(
                     "type"      =>  "template",
