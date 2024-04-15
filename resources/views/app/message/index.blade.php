@@ -22,6 +22,8 @@
                                             <li><x-web.message_object.text :text="$message_object['text']" /></li>
                                             @break
                                         @case("template")                                            
+                                            <li><x-web.message_object.template :template="$message_object['template']" /></li>
+                                            @break
                                         @default
                                             @break
                                     @endswitch
