@@ -30,6 +30,12 @@ class AppMessage extends Model
         "draft" =>  "下書き",
     ];
 
+    public function message_objects()
+    {
+        
+
+    }
+
     // public function message_object_1()
     // {
     //     return $this->hasOne(AppMessageObject::class,"id", "app_message_object_1_id");
