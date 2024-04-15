@@ -1,7 +1,7 @@
 @switch($template["type"] ?? null)
     @case("buttons")
         <dl>
-            <dt>{{ $template["title"] ?? null }}</dt>
+            <dt><b>{{ $template["title"] ?? null }}</b></dt>
             <dd>{{ $template["text"] ?? null }}</dd>
             <dd>
                 <dl>
