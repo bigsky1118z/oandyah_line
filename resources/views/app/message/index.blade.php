@@ -22,22 +22,7 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
-                        <td>
-                            <ul class="ul-index-message">
-                                @foreach ($message->messages as $message_object)
-                                    @switch($message_object["type"])
-                                        @case("text")
-                                            <li><x-web.message_object.text :text="$message_object['text']" /></li>
-                                            @break
-                                        @case("template")                                            
-                                            <li><x-web.message_object.template :template="$message_object['template']" /></li>
-                                            @break
-                                        @default
-                                            @break
-                                    @endswitch
-                                @endforeach
-                            </ul>
-                        </td>
+                        <td><x-web.messages :messages="$message->messages" /></td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
