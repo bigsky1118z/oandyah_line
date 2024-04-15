@@ -19,13 +19,11 @@
                                 @foreach ($message->messages as $message_object)
                                     @switch($message_object["type"])
                                         @case("text")
-                                            <x-web.message_object.text :text="$message_object['text']">
+                                            <li><x-web.message_object.text :text="$message_object['text']"></li>
                                             @break
-                                        @case(2)
-                                            
-                                            @break
+                                        @case("template")                                            
                                         @default
-                                            
+                                            @break
                                     @endswitch
                                     <li></li>
                                 @endforeach
