@@ -51,7 +51,7 @@ class AppSend extends Model
 
     public function message()
     {
-        return $this->belongsTo(AppMessage::class);
+        return $this->belongsTo(AppMessage::class,"app_message_id","id");
         // return $this->belongsTo(AppMessage::class)->whereAppId($this->app->id)->first();
     }
 
