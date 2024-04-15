@@ -8,6 +8,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         {{-- @if (file_exists(public_path("storage/image/website/favicon.ico")))
             <link rel="shortcut icon" href="/storage/image/website/favicon.ico">
         @endif --}}
@@ -41,5 +43,8 @@
             <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</div>
         </footer>
         {!! $script ?? null !!}
+        <script>
+            // const token =   document.querySelector("meta[name='csrf-token']").getAttribute("content");
+        </script>
     </body>
 </html>

@@ -41,6 +41,7 @@ Route::prefix("app")->group(function(){
         Route::prefix("auto")->group(function(){
             Route::get("/",[AppAutoController::class,"index"]);
             Route::get("{id}",[AppAutoController::class,"show"]);
+            Route::post("enable",[AppAutoController::class,"enable"]);
         });
     });
 });
