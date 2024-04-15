@@ -48,9 +48,9 @@ class AppAutoSeeder extends Seeder
         $auto   =   AppAuto::updateOrCreate(array(
             "app_id"    =>  $app->id,
             "name"      =>  "元気づけるとき用",
-            "type"      =>  "postback",
+            "type"      =>  "message",
         ),array(
-            "priority"          =>  1,
+            "priority"          =>  2,
             "app_message_id"    =>  3,
         ));
 
