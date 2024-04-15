@@ -18,8 +18,20 @@ class AppMessageSeeder extends Seeder
         $app        =   App::whereName("gluten_free")->first();
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
+            "name"      =>  "友達追加",
             "status"    =>  "draft",
-            "messages"  =>  array(
+            "messages"  =>  [
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  "友達追加ありがとうございます！\nこれから役に立ついい情報を送りますね！",
+                ),
+            ],
+        ));
+
+        $message    =   AppMessage::Create(array(
+            "app_id"    =>  $app->id,
+            "status"    =>  "draft",
+            "messages"  =>  [
                 array(
                     "type"  =>  "text",
                     "text"  =>  "新澤菜央様は天性のアイドルです。",
@@ -50,7 +62,7 @@ class AppMessageSeeder extends Seeder
                         ),
                     ),
                 ),
-            ),
+            ],
         ));
 
     }
