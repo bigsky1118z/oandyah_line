@@ -27,6 +27,6 @@ class AppMessage extends Model
 
     public function num()
     {
-        return $this->messages->count();
+        return count($this->messages);
     }
 }
