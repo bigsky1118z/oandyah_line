@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(AppAuto::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("type");
-            $table->unique(["auto_app_id","type"]);
+            $table->unique(["app_auto_id","type"]);
             $table->timestamps();
         });
     }
