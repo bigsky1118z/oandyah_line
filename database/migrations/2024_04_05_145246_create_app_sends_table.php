@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('app_sends', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("status")->nullable();
+            // $table->string("status")->nullable();
             $table->string("type")->nullable();
             
             $table->integer("response_code")->nullable();
