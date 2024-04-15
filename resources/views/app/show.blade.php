@@ -103,7 +103,13 @@
         <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/message">メッセ―ジ情報</a></h3>
         <ul>
             @foreach ($app->messages as $message)
-                <li>{{ $message->display_name }}</li>
+                <li>{{ $message->name }}</li>
+            @endforeach
+        </ul>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/send">送信情報</a></h3>
+        <ul>
+            @foreach ($app->sends as $send)
+                <li>{{ $send->status }}</li>
             @endforeach
         </ul>
     </x-slot>
