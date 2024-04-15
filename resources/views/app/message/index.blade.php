@@ -17,8 +17,8 @@
                         <td>
                             @foreach ($message->messages as $message_object)
                                 <dl>
-                                    <dt>{{ json_encode($message_object["type"])}}</dt>
-                                    <dd>{{ json_encode($message_object[$message_object["type"]])}}</dd>
+                                    <dt>{{ $message_object["type"] ?? ""}}</dt>
+                                    <dd>{{ $message_object[$message_object["type"]] ?? ""}}</dd>
                                 </dl>
                             @endforeach
                         </td>
