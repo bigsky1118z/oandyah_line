@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $auto->type }}</td>
-                        <td>{{ $auto->message }}</td>
+                        <td>@isset($auto->message->messages )<x-web.messages :messages="$auto->message->messages" />@endisset</td>
                         <td>{{ $auto->default }}</td>
                         <td>{{ $auto->is_default() }}</td>
                         <td>{{ $auto }}</td>
