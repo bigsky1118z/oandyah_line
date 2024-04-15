@@ -16,7 +16,7 @@
                     <tr>
                         <td>
                             @if ($message->messages)
-                                @foreach ($$message->messages as $message_object)
+                                @foreach ($message->messages as $message_object)
                                     <dl>
                                         <dt>{{ json_encode($message_object)}}</dt>
                                     </dl>
