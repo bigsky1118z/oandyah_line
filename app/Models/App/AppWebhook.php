@@ -71,9 +71,8 @@ class AppWebhook extends Model
         $query      =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
         switch($type){
             case("message"):
-                if($query->exist()){
-
-                } else {
+                $query->whereName("name");
+                if($query->doesntExist()){
                     $query  =   AppAuto::whereAppId($app->id)->whereEnable(true);
                 }
                 break;
