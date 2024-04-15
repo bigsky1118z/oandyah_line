@@ -15,7 +15,7 @@
                 @foreach ($app->messages as $message)
                     <tr>
                         <td>
-                            @if ($message->messages->count())
+                            @if ($message->messages)
                                 @foreach ($$message->messages as $message_object)
                                     <dl>
                                         <dt>{{ json_encode($message_object)}}</dt>
