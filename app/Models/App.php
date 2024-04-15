@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\App\AppAuto;
 use App\Models\App\AppFriend;
 use App\Models\App\AppMessage;
 use App\Models\App\AppSend;
@@ -55,6 +56,11 @@ class App extends Model
     public function sends()
     {
         return $this->hasMany(AppSend::class);
+    }
+
+    public function autos()
+    {
+        return $this->hasMany(AppAuto::class);
     }
 
 
