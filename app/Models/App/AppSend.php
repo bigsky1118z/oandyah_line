@@ -52,7 +52,6 @@ class AppSend extends Model
     public function message()
     {
         return $this->belongsTo(AppMessage::class,"app_message_id","id")->whereAppId($this->app->id);
-        // return $this->belongsTo(AppMessage::class)->whereAppId($this->app->id)->first();
     }
 
     public function get_friend()
@@ -75,26 +74,15 @@ class AppSend extends Model
             "Content-Type"  =>  "application/json",
         );
         $data       =   array(
-            "replyToken"    =>  $this->reply_token          ??  null,
-            "to"            =>  $this->get_friend()->id     ??  null,
-            "recipient"     =>  $this->recipient            ??  null,
-            "filter"        =>  $this->filter               ??  null,
-            "limit"         =>  $this->limit                ??  null,
-            "messages"      =>  $this->message->messages    ??  null,
-            // "messages"      =>  [
-            //     array(
-            //         "type"  =>  "text",
-            //         "text"  =>  "興味しんしん",
-            //     ),
-            //     array(
-            //         "type"  =>  "text",
-            //         "text"  =>  "興味しんしんビーム",
-            //     ),
-            // ],
+            "replyToken"                =>  $this->reply_token              ??  null,
+            "to"                        =>  $this->get_friend()->id         ??  null,
+            "recipient"                 =>  $this->recipient                ??  null,
+            "filter"                    =>  $this->filter                   ??  null,
+            "limit"                     =>  $this->limit                    ??  null,
+            "messages"                  =>  $this->message->messages        ??  null,
             "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );
-
         $endpoint               =   "https://api.line.me/v2/bot/message/" . $this->type;
         $response               =   Http::withHeaders($headers)->post($endpoint, $data);
         $this->response_code    =   $response->status();

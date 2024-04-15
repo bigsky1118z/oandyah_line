@@ -14,11 +14,7 @@
             <tbody>
                 @foreach ($app->sends as $send)
                     <tr>
-                        <td>{{ $send->id }}</td>
-                        <td>{{ $send->app_message_id }}</td>
-                        <td>{{ $send->message }}</td>
-                        <td>{{ $send->app_id }}</td>
-                        <td>{{ $send->app }}</td>
+                        <td>{{ $send }}</td>
                         {{-- <td>{{ $send }}</td> --}}
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
                     </tr>                    
