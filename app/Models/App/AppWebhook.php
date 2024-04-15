@@ -68,9 +68,9 @@ class AppWebhook extends Model
         $app        =   $this->app;
         $type       =   $this->event["type"] ?? null;
         $friend     =   $this->get_friend();
-        $autos      =   AppAuto::whereAppId($app->id)->whereType($type)->get();
+        $autos      =   AppAuto::whereAppId($app->id)->whereType($type);
+        $message    =   $autos->first() ?   $autos->first()->message  : null;
         $message    =   $app->messages()->first();
-        $message    =   $autos()->first()   ?   $autos()->first()->message  : null;
         if($message){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
