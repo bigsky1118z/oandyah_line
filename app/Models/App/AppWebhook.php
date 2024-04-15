@@ -68,10 +68,10 @@ class AppWebhook extends Model
         $app    =   $this->app;
         $type   =   $this->event["type"] ?? null;
         $friend =   $this->get_friend();
-        if(($type == "follow" || $type == "unfollow") && $friend->id){
-            $friend->status =   $type;
-            $friend->save();
-        }
+        // if(($type == "follow" || $type == "unfollow") && $friend->id){
+        //     $friend->status =   $type;
+        //     $friend->save();
+        // }
         $autos      =   AppAuto::whereAppId($app->id)->whereType($type)->get();
         $message    =   $app->messages()->first();
         if($message){
@@ -84,7 +84,7 @@ class AppWebhook extends Model
             ))->post_bot_message();
         }
         return;
-        
+
         switch($type){
             case("follow"):
             case("unfollow"):

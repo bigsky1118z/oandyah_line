@@ -30,6 +30,7 @@ class AppMessageSeeder extends Seeder
 
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
+            "name"      =>  "新澤菜央様",
             "status"    =>  "draft",
             "messages"  =>  [
                 array(
