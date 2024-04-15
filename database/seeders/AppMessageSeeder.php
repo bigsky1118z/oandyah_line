@@ -66,5 +66,17 @@ class AppMessageSeeder extends Seeder
             ],
         ));
 
+        $message    =   AppMessage::Create(array(
+            "app_id"    =>  $app->id,
+            "name"      =>  "あいさつ文",
+            "status"    =>  "draft",
+            "messages"  =>  [
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  "今日も一日頑張ろうね。",
+                ),
+            ],
+        ));
+
     }
 }

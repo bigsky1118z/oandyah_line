@@ -45,5 +45,14 @@ class AppAutoSeeder extends Seeder
         ));
         $auto->set_default();
 
+        $auto   =   AppAuto::updateOrCreate(array(
+            "app_id"    =>  $app->id,
+            "name"      =>  "元気づけるとき用",
+            "type"      =>  "postback",
+        ),array(
+            "priority"          =>  1,
+            "app_message_id"    =>  3,
+        ));
+
     }
 }
