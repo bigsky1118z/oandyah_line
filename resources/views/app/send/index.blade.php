@@ -21,12 +21,11 @@
                 @foreach ($app->sends as $index => $send)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $send->type  ??  null }}</td>
-                        <td>{{ $send->get_friend()->get_name()  ??  null }}</td>
-                        <td>{{ $send->message->name ?? null}}({{ $send->message->num() ?? null }})</td>
-                        <td>{{ $send->response_code ??  null }}</td>
-                        <td>{{ json_encode($send->error_details) ?? null }}</td>
-                        <td>{{ json_encode($send->sent_messages) }}</td>
+                        <td>{{ $send->type  ??  "" }}</td>
+                        <td>{{ $send->get_friend()->get_name()  ??  "" }}</td>
+                        <td>{{ $send->message->name ?? ""}}({{ $send->message->num() ?? "" }})</td>
+                        <td>{{ $send->response_code ??  "" }}</td>
+                        <td>{{ json_encode($send->error_details) ?? "" }}</td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
