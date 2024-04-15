@@ -89,15 +89,21 @@
             <button type="submit">post</button>
         </form>
         <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/webhook">webhook情報</a></h3>
-            <ul>
-                @foreach ($app->webhooks as $webhook)
-                    <li>{{ $webhook->type }}</li>
-                @endforeach
-            </ul>
+        <ul>
+            @foreach ($app->webhooks as $webhook)
+                <li>{{ $webhook->type }}</li>
+            @endforeach
+        </ul>
         <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/friend">友だち情報</a></h3>
         <ul>
             @foreach ($app->friends as $friend)
                 <li>{{ $friend->display_name }}</li>
+            @endforeach
+        </ul>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/message">友だち情報</a></h3>
+        <ul>
+            @foreach ($app->messages as $message)
+                <li>{{ $message->display_name }}</li>
             @endforeach
         </ul>
     </x-slot>
