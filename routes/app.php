@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\AppAutoController;
 use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\App\AppFriendController;
 use App\Http\Controllers\App\AppMessageController;
@@ -36,6 +37,10 @@ Route::prefix("app")->group(function(){
         Route::prefix("send")->group(function(){
             Route::get("/",[AppSendController::class,"index"]);
             Route::get("{id}",[AppSendController::class,"show"]);
+        });
+        Route::prefix("auto")->group(function(){
+            Route::get("/",[AppAutoController::class,"index"]);
+            Route::get("{id}",[AppAutoController::class,"show"]);
         });
     });
 });
