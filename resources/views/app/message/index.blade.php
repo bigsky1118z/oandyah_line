@@ -15,14 +15,12 @@
                 @foreach ($app->messages as $message)
                     <tr>
                         <td>
-                            @if ($message->messages)
-                                @foreach ($message->messages as $message_object)
-                                    <dl>
-                                        <dt>{{ json_encode($message_object)}}</dt>
-                                    </dl>
-                                @endforeach
-                                
-                            @endif
+                            @foreach ($message->messages as $message_object)
+                                <dl>
+                                    <dt>{{ json_encode($message_object["type"])}}</dt>
+                                    <dd>{{ json_encode($message_object[$message_object["type"]])}}</dd>
+                                </dl>
+                            @endforeach
                         </td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
