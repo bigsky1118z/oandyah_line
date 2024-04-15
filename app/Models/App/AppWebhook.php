@@ -71,13 +71,12 @@ class AppWebhook extends Model
         $query      =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
         switch($type){
             case("message"):
-                $query->whereName("name");
-                if($query->doesntExist()){
-                    $query  =   AppAuto::whereAppId($app->id)->whereEnable(true);
-                }
                 break;
         }
-        $auto       =   $query->orderBy("priority")->first();
+        if($query->doesntExist()){
+            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true);
+        }
+        $auto   =   $query->orderBy("priority")->first();
         if($auto){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
