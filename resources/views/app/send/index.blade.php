@@ -9,11 +9,19 @@
         <table>
             <thead>
                 <tr>
+                    <th>index</th>
+                    <th>type</th>
+                    <th>response_code</th>
+                    <th>message</th>
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->sends as $send)
+                @foreach ($app->sends as $index => $send)
                     <tr>
+                        <td>{{ $index }}</td>
+                        <td>{{ $send->type }}</td>
+                        <td>{{ $send->response_code }}</td>
+                        <td>{{ $send->message }}</td>
                         <td>{{ $send }}</td>
                         {{-- <td>{{ $send }}</td> --}}
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
