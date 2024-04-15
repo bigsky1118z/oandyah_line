@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("type")->nullable();
+            $table->string("name")->nullable();
             $table->json("condition")->nullable();
             $table->integer("priority")->nullable();
             $table->foreignIdFor(AppMessage::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
