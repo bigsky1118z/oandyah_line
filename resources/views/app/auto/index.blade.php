@@ -11,8 +11,8 @@
                 <tr>
                     <th>index</th>
                     <th>type</th>
-                    <th>response_code</th>
                     <th>message</th>
+                    <th>default</th>
                 </tr>
             </thead>    
             <tbody>
@@ -21,9 +21,7 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $auto->type }}</td>
                         <td>@isset($auto->message->messages )<x-web.messages :messages="$auto->message->messages" />@endisset</td>
-                        <td>{{ $auto->default }}</td>
-                        <td>{{ $auto->is_default() }}</td>
-                        <td>{{ $auto }}</td>
+                        <td><input type="radio" name="{{ $auto->type }}" id="" @selected( $auto->is_default())></td>
                         {{-- <td>{{ $send }}</td> --}}
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $auto->id }}'">詳細</button></td>
                     </tr>                    
