@@ -48,6 +48,10 @@ body > footer > div#copyright {
     background-color: greenyellow;
 }
 
+body> main ul.ul-messages > li {
+    background-color: greenyellow;
+}
+
 /* header */
 
 body > header > a > h1 {
@@ -90,7 +94,6 @@ body > main h4 * {
 body> main ul.ul-messages > li {
     border: 1px solid #000000;
     border-radius: 10px;
-    background-color: greenyellow;
     padding: 5px;
 }
 
