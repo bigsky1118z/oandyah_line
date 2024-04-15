@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('app_auto_defaults', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(AppAuto::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("type");
             $table->unique(["app_id","type"]);
-            $table->foreignIdFor(AppAuto::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

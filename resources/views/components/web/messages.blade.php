@@ -12,11 +12,3 @@
         @endswitch
     @endforeach
 </ul>
-<style>
-    ul.ul-messages > li {
-        border: 1px solid #000000;
-        border-radius: 10px;
-        background-color: greenyellow;
-        padding: 5px;
-    }
-</style>

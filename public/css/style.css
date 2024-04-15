@@ -74,18 +74,26 @@ body > header > nav#header-nav > ul#header-nav-ul > li > a {
 
 /* mian */
 
-body > main  h2,
-body > main  h2 * {
+body > main h2,
+body > main h2 * {
     font-size: 24px;
 }
-body > main  h3,
-body > main  h3 * {
+body > main h3,
+body > main h3 * {
     font-size: 20px;
 }
-body > main  h4,
-body > main  h4 * {
+body > main h4,
+body > main h4 * {
     font-size: 18px;
 }
+
+body> main ul.ul-messages > li {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: greenyellow;
+    padding: 5px;
+}
+
 
 
 /* footer */
