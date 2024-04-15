@@ -14,7 +14,7 @@
                     <th>name</th>
                     <th>message</th>
                     <th>response_code</th>
-                    <th>response_id</th>
+                    <th>error</th>
                 </tr>
             </thead>    
             <tbody>
@@ -25,7 +25,8 @@
                         <td>{{ $send->get_friend()->get_name()  ??  null }}</td>
                         <td>{{ $send->message->name ?? null}}({{ $send->message->num() ?? null }})</td>
                         <td>{{ $send->response_code ??  null }}</td>
-                        <td>{{ $send->semt_messages["id"] ?? null}}</td>
+                        <td>{{ json_encode($send->error_details) ?? null }}</td>
+                        <td>{{ json_encode($send->sent_messages) }}</td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
