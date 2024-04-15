@@ -9,7 +9,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>index</th>
+                    <th>enable</th>
                     <th>type</th>
                     <th>message</th>
                     <th>default</th>
@@ -18,7 +18,7 @@
             <tbody>
                 @foreach ($app->autos as $index => $auto)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td><input type="checkbox" name="auto[{{ $auto->id }}][checkbox]" @checked($auto->enable)></td>
                         <td>{{ $auto->type }}</td>
                         <td>@isset($auto->message->messages )<x-web.messages :messages="$auto->message->messages" />@endisset</td>
                         <td><input type="radio" name="{{ $auto->type }}" id="" @checked( $auto->is_default())></td>
