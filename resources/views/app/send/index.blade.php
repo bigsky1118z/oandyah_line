@@ -25,7 +25,7 @@
                         <td>{{ $send->get_friend()->get_name()  ??  null }}</td>
                         <td>{{  $send->message->name ?? null}}({{ $send->message->num() ?? null }})</td>
                         <td>{{ $senrd->response_code ??  null }}</td>
-                        <td>{{  $send->semt_message["id"] ?? null}}</td>
+                        <td>{{  $send->semt_messages["id"] ?? null}}</td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
