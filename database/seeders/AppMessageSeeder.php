@@ -24,6 +24,36 @@ class AppMessageSeeder extends Seeder
                     "type"  =>  "text",
                     "text"  =>  "新澤菜央様",
                 ),
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  "天性のアイドルです。",
+                ),
+                array(
+                    "type"      =>  "template",
+                    "altText"   =>  "新澤菜央様は姫様です",
+                    "template"  =>  array(
+                        "type"      =>  "buttons",
+                        "title"     =>  "新澤菜央",
+                        "text"      =>  "しんしんに興味しんしん",
+                        "actions"   =>  array(
+                            array(
+                                "type"  =>   "message",
+                                "label" =>   "パンダといえば",
+                                "text"  =>   "シャンシャン",
+                            ),
+                            array(
+                                "type"  =>   "message",
+                                "label" =>   "NMBといえば",
+                                "text"  =>   "しんしん",
+                            ),
+                            array(
+                                "type"  =>   "postback",
+                                "label" =>   "どっちもみんな興味",
+                                "data"  =>   "function=menu",
+                            ),
+                        ),
+                    ),
+                ),
             ),
         ));
 
