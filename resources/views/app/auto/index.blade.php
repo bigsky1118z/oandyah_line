@@ -23,7 +23,7 @@
                         <td>{{ $auto->message }}</td>
                         <td>{{ $auto }}</td>
                         {{-- <td>{{ $send }}</td> --}}
-                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
+                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $auto->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
             </tbody>
