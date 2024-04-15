@@ -15,20 +15,21 @@
                 @foreach ($app->messages as $message)
                     <tr>
                         <td>
-                            @foreach ($message->messages as $message_object)
-                                <dl>
-                                    <dt>{{ $message_object["type"] ?? ""}}</dt>
+                            <ul>
+                                @foreach ($message->messages as $message_object)
                                     @switch($message_object["type"])
                                         @case("text")
-                                            <dd>{{ $message_object["text"] ?? ""}}</dd>
+                                            <x-web.message_object.text :text="$message_object['text']">
                                             @break
-                                        @case("template")
-                                            <dd>{{ json_encode($message_object["template"]) ?? ""}}</dd>                                            
+                                        @case(2)
+                                            
                                             @break
                                         @default
+                                            
                                     @endswitch
-                                </dl>
-                            @endforeach
+                                    <li></li>
+                                @endforeach
+                            </ul>
                         </td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    

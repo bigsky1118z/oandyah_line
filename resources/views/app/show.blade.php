@@ -112,6 +112,12 @@
                 <li>{{ $send->status }}</li>
             @endforeach
         </ul>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/auto">自動情報</a></h3>
+        <ul>
+            @foreach ($app->autos as $auto)
+                <li>{{ $auto->type }}</li>
+            @endforeach
+        </ul>
     </x-slot>
     <x-slot name="footer">
     </x-slot>

@@ -5,7 +5,7 @@
     <x-slot name="header">
     </x-slot>
     <x-slot name="main">
-        <h2>送信一覧 - TOP</h2>
+        <h2>自動一覧 - TOP</h2>
         <table>
             <thead>
                 <tr>
@@ -16,13 +16,12 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->sends as $index => $send)
+                @foreach ($app->autos as $index => $auto)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $send->type }}</td>
-                        <td>{{ $send->response_code }}</td>
-                        <td>{{ $send->message }}</td>
-                        <td>{{ $send }}</td>
+                        <td>{{ $auto->type }}</td>
+                        <td>{{ $auto->message }}</td>
+                        <td>{{ $auto }}</td>
                         {{-- <td>{{ $send }}</td> --}}
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $send->id }}'">詳細</button></td>
                     </tr>                    
