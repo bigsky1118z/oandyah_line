@@ -18,6 +18,7 @@ class AppAutoController extends Controller
         );
         $autos      =   AppAuto::whereAppId($app->id)->whereType("follow");
         $auto       =   $autos->first();
+        return $auto;
         return view("app.auto.index", $data);
     }
 }
