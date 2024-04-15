@@ -1,6 +1,14 @@
 <x-frame.web>
     <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
     <x-slot name="head">
+        <style>
+            ul#ul-index-message > li {
+                border: 1px solid #000000;
+                border-radius: 10px;
+                background-color: greenyellow;
+                padding: 5px;
+            }
+        </style>
     </x-slot>
     <x-slot name="header">
     </x-slot>
@@ -15,7 +23,7 @@
                 @foreach ($app->messages as $message)
                     <tr>
                         <td>
-                            <ul>
+                            <ul class="ul-index-message">
                                 @foreach ($message->messages as $message_object)
                                     @switch($message_object["type"])
                                         @case("text")
