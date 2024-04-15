@@ -14,7 +14,16 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
-                        <td>{{ json_encode($message->messages) ?? "" }}</td>
+                        <td>
+                            @if ($message->messages->count())
+                                @foreach ($$message->messages as $message_object)
+                                    <dl>
+                                        <dt>{{ json_encode($message_object)}}</dt>
+                                    </dl>
+                                @endforeach
+                                
+                            @endif
+                        </td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
