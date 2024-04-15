@@ -14,8 +14,9 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
-                        <td>{{ $message->messages["type"] ?? "" }}</td>
-                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $message->id }}'">詳細</button></td>
+                        <td>{{ $message->messages["messages"]["type"] ?? "" }}</td>
+                        <td>{{ $message->messages["messages"][$message->messages["messages"]["type"]] ?? "" }}</td>
+                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
             </tbody>
