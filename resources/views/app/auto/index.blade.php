@@ -21,6 +21,8 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $auto->type }}</td>
                         <td>{{ $auto->message }}</td>
+                        <td>{{ $auto->default }}</td>
+                        <td>{{ $auto->is_default() }}</td>
                         <td>{{ $auto }}</td>
                         {{-- <td>{{ $send }}</td> --}}
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/friend/{{ $auto->id }}'">詳細</button></td>

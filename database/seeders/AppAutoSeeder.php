@@ -15,7 +15,7 @@ class AppAutoSeeder extends Seeder
     public function run(): void
     {
         $app    =   App::whereName("gluten_free")->first();
-        AppAuto::updateOrCreate(array(
+        $auto   =   AppAuto::updateOrCreate(array(
             "app_id"    =>  $app->id,
             "name"      =>  "フォロー",
         ),array(
@@ -23,8 +23,9 @@ class AppAutoSeeder extends Seeder
             "priority"          =>  1,
             "app_message_id"    =>  1,
         ));
+        $auto->set_default();
 
-        AppAuto::updateOrCreate(array(
+        $auto   =   AppAuto::updateOrCreate(array(
             "app_id"    =>  $app->id,
             "name"      =>  "メッセージ自動応答",
             "type"      =>  "message",
@@ -32,8 +33,9 @@ class AppAutoSeeder extends Seeder
             "priority"          =>  1,
             "app_message_id"    =>  2,
         ));
+        $auto->set_default();
 
-        AppAuto::updateOrCreate(array(
+        $auto   =   AppAuto::updateOrCreate(array(
             "app_id"    =>  $app->id,
             "name"      =>  "ポストバック自動応答",
             "type"      =>  "postback",
@@ -41,5 +43,7 @@ class AppAutoSeeder extends Seeder
             "priority"          =>  1,
             "app_message_id"    =>  2,
         ));
+        $auto->set_default();
+
     }
 }
