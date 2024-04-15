@@ -30,6 +30,6 @@ class AppAuto extends Model
 
     public function message()
     {
-        return $this->belongsTo(AppMessage::class);
+        return $this->belongsTo(AppMessage::class,"app_message_id", "id");
     }
 }
