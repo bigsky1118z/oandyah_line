@@ -6,7 +6,7 @@
             <dd>
                 <dl>
                 @foreach ($template["actions"] as $action)
-                    <dd>{{ $action["label"] ?? null }}[{{ $action["type"] ?? null }}]</dd>
+                    <dd style="text-align: center">{{ $action["label"] ?? null }}[{{ $action["type"] ?? null }}]</dd>
                 @endforeach
                 </dl>                    
             </dd>
