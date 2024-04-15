@@ -68,8 +68,13 @@ class AppWebhook extends Model
         $app        =   $this->app;
         $type       =   $this->event["type"] ?? null;
         $friend     =   $this->get_friend();
-        // $message    =   $app->messages()->first();
-        $auto       =   AppAuto::whereAppId($app->id)->whereType($type)->first();
+        $query      =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
+        switch($type){
+            case("message"):
+                $query->whereName("abc");
+                break;
+        }
+        $auto       =   $query->orderBy("priority")->first();
         if($auto){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
@@ -80,38 +85,6 @@ class AppWebhook extends Model
             ))->post_bot_message();
         }
         return;
-
-        switch($type){
-            case("follow"):
-            case("unfollow"):
-                if($friend->id){
-                    if($type == "follow"){
-                        $message    =   $autos->first()->message->app->id;
-                        // $message    =   AppMessage::first();
-                        AppSend::Create(array(
-                            "app_id"            =>  $app->id,
-                            "friend_id"         =>  $friend->friend_id,
-                            "type"              =>  "reply",
-                            "reply_token"       =>  $this->get_reply_token(),
-                            "app_message_id"    =>  $message->id,
-                        ))->post_bot_message();
-                    }
-                }
-                break;
-            case("message"):
-                $auto       =   $autos()->first();
-                $message    =   $auto->message ?? null;
-                if($message){
-                    AppSend::Create(array(
-                        "app_id"            =>  $app->id,
-                        "friend_id"         =>  $friend->friend_id,
-                        "type"              =>  "reply",
-                        "reply_token"       =>  $this->get_reply_token(),
-                        "app_message_id"    =>  $message->id,
-                    ))->post_bot_message();
-                }
-                break;
-        }
     }
 
 }

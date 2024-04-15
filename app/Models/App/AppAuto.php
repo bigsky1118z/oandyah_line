@@ -11,8 +11,10 @@ class AppAuto extends Model
     protected $fillable =   [
         "app_id",
         "type",
-        "condition",
+        "name",
         "app_message_id",
+        "condition",
+        "priority",
         "enable",
     ];
 
