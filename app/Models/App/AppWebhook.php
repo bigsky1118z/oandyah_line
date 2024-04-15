@@ -70,7 +70,7 @@ class AppWebhook extends Model
         $friend     =   $this->get_friend();
         $autos      =   AppAuto::whereAppId($app->id)->whereType($type)->get();
         $message    =   $app->messages()->first();
-        $message    =   $autos->first() ?   $autos->first()->message    : null;
+        $message    =   $autos()->first()   ?   $autos()->first()->message  : null;
         if($message){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
