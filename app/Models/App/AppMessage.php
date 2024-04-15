@@ -24,4 +24,9 @@ class AppMessage extends Model
         "draft" =>  "下書き",
         "draft" =>  "下書き",
     ];
+
+    public function num()
+    {
+        return $this->messages->count();
+    }
 }
