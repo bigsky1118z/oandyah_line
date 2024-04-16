@@ -9,6 +9,7 @@
         <div>{{ json_encode($user) }}</div>
         <div>{{ json_encode($app) }}</div>
         <div>{{ json_encode($message) }}</div>
+        {{ $app->message(1) }}
 
         
     </x-slot>
