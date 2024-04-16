@@ -18,11 +18,11 @@ class AppWebhookController extends Controller
     public function index(Request $request, $user_name, $app_name)
     {
         $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name);
+        $app    =   $user->app($app_name)->app;
         if($user && $app){
             $data   =   array(
                 "user"      =>  $user,
-                "app"       =>  $app,    
+                "app"       =>  $app,
                 "webhooks"  =>  AppWebhook::whereAppId($app->id)->get(),
             );
             return view("app.webhook.index", $data);
