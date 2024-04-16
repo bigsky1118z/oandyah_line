@@ -18,6 +18,26 @@
             </thead>    
             <tbody>
                 @foreach ($autos->groupBy("type") as $type => $group)
+                    @foreach ($group as $auto)
+                    <tr>
+                        <td><input type="checkbox" name="" value="{{ $app->id }}" @checked($auto->enable) onclick="is_enable(this);"></td>
+                        <td>{{ $auto->type }}</td>
+                        @switch($auto->type)
+                            @case("message")
+                                <td>{{ $auto->condition["keyword"] ?? null }}</td>
+                                @break
+                            @case("postback")
+                                <td></td>
+                                @break
+                            @default
+                                <td></td>
+                        @endswitch
+                        </td>
+                        <td>@isset($auto->message->messages )<x-web.messages :messages="$auto->message->messages" />@endisset</td>
+                        <td><input type="radio" name="{{ $auto->type }}" id="" @checked( $auto->is_default())></td>
+                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/auto/{{ $auto->id }}'">詳細</button></td>
+                    </tr>                    
+                    @endforeach
                     {{ $type }}
                     {{ $group }}
                 @endforeach
