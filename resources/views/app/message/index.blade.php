@@ -12,7 +12,7 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->messages->groupBy("condition->type") as  $name => $message)
+                @foreach ($app->messages->groupBy(fn($message)=>$message->condition["type"]) as  $name => $message)
                     <tr>
                         <td>{{ $name }}</td>
                         {{-- <td>{{ $message->condition["type"] }}</td>
