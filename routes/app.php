@@ -22,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("app")->group(function(){
     Route::prefix("{app_name}")->group(function(){
-        Route::prefix("auto")->group(function(){
-            Route::post("enable",[AppAutoController::class,"enable"]);
-        });
+        Route::post("/auto/enable",[AppAutoController::class,"enable"]);
     });
 });
 
