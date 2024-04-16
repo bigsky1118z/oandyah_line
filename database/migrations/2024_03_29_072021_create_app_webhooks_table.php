@@ -24,18 +24,6 @@ return new class extends Migration
             $table->integer("response_status")->nullable();
             $table->string("destination")->nullable();
             $table->string("query_string")->nullable();
-
-            $table->json("source")->nullable();
-
-
-            $table->string("type")->nullable();
-            $table->string("mode")->nullable();
-            $table->string("webhook_event_id")->nullable();
-            $table->string("reply_token")->nullable();
-
-            $table->json("delivery_context")->nullable();
-            
-            $table->json("events")->nullable();
             $table->json("event")->nullable();
             $table->timestamps();
         });
