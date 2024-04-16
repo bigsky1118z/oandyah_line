@@ -6,18 +6,19 @@
     </x-slot>
     <x-slot name="main">
         <h2>自動一覧 - TOP</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>enable</th>
-                    <th>type</th>
-                    <th>trigger</th>
-                    <th>message</th>
-                    <th>default</th>
-                </tr>
-            </thead>    
-            <tbody>
-                @foreach ($autos->groupBy("type") as $type => $group)
+        @foreach ($autos->groupBy("type") as $type => $group)
+            <h3>{{ $type }}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>enable</th>
+                        <th>type</th>
+                        <th>trigger</th>
+                        <th>message</th>
+                        <th>default</th>
+                    </tr>
+                </thead>    
+                <tbody>
                     @foreach ($group as $auto)
                     <tr>
                         <td><input type="checkbox" name="" value="{{ $app->id }}" @checked($auto->enable) onclick="is_enable(this);"></td>
@@ -38,8 +39,7 @@
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/auto/{{ $auto->id }}'">詳細</button></td>
                     </tr>                    
                     @endforeach
-                @endforeach
-                @foreach ($app->autos as $type => $auto)
+                {{-- @foreach ($app->autos as $type => $auto)
                     <tr>
                         <td><input type="checkbox" name="" value="{{ $app->id }}" @checked($auto->enable) onclick="is_enable(this);"></td>
                         <td>{{ $auto->type }}</td>
@@ -58,9 +58,10 @@
                         <td><input type="radio" name="{{ $auto->type }}" id="" @checked( $auto->is_default())></td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/auto/{{ $auto->id }}'">詳細</button></td>
                     </tr>                    
-                @endforeach
-            </tbody>
-        </table>
+                @endforeach --}}
+                </tbody>
+            </table>
+        @endforeach
     </x-slot>
     <x-slot name="footer">
     </x-slot>
