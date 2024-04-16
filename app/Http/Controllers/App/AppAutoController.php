@@ -21,8 +21,8 @@ class AppAutoController extends Controller
 
     public function enable(Request $request, $user_name, $app_name)
     {
-        
-        return response();
+
+        return response()->json([],200);
         $user   =   User::whereUserName($user_name)->first();
         $app    =   $user->app($app_name)->app;
         $id     =   $request->get("id");
