@@ -36,15 +36,16 @@
             const token =   document.querySelector("meta[name='csrf-token']").getAttribute("content");
     
             function is_enable(checkbox){
-                const form  =   new FormData();
-                    form.append("_token", token);
-                    form.append("id", checkbox.value);
-                    form.append("enable", checkbox.checked);
-                const options   =   {
-                    "method"    :   "post",
-                    "body"      :   form,
-                };
-                fetch("/{{ $user->name }}/app/{{ $app->name }}/auto/enable", options).then(response => response.ok ? location.reload() : console.log(response));
+                console.log("standby");
+                // const form  =   new FormData();
+                //     form.append("_token", token);
+                //     form.append("id", checkbox.value);
+                //     form.append("enable", checkbox.checked);
+                // const options   =   {
+                //     "method"    :   "post",
+                //     "body"      :   form,
+                // };
+                // fetch("/{{ $user->name }}/app/{{ $app->name }}/auto/enable", options).then(response => response.ok ? location.reload() : console.log(response));
             }
         </script>
         </x-slot>

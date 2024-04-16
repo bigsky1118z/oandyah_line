@@ -83,6 +83,7 @@ class AppWebhook extends Model
                 "friend_id"         =>  $friend->friend_id,
                 "type"              =>  "reply",
                 "reply_token"       =>  $this->get_reply_token(),
+                "messages"          =>  $auto->message->messages,
                 "app_message_id"    =>  $auto->message->id,
             ))->post_bot_message();
         }

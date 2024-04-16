@@ -29,7 +29,8 @@ return new class extends Migration
             $table->json("recipient")->nullable();
             $table->json("filter")->nullable();
             $table->json("limit")->nullable();
-    
+
+            $table->json("messages")->nullable();
             $table->foreignIdFor(AppMessage::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
     
             $table->boolean("notification_disabled")->default(0);

@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post("bigsky1118z/app/gluten_free/auto/enable",[AppAutoController::class,"enable"]);
-
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

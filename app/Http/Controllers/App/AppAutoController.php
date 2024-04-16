@@ -19,15 +19,15 @@ class AppAutoController extends Controller
         return view("app.auto.index", $data);
     }
 
-    public function enable(Request $request, $user_name, $app_name)
-    {
+    // public function enable(Request $request, $user_name, $app_name)
+    // {
 
-        return response()->json([],200);
-        $user   =   User::whereUserName($user_name)->first();
-        $app    =   $user->app($app_name)->app;
-        $id     =   $request->get("id");
-        $enable =   $request->get("eneable");
-        // $app->auto($id)->set_enable($enable);
-        return response();
-    }
+    //     return response()->json([],200);
+    //     $user   =   User::whereUserName($user_name)->first();
+    //     $app    =   $user->app($app_name)->app;
+    //     $id     =   $request->get("id");
+    //     $enable =   $request->get("eneable");
+    //     // $app->auto($id)->set_enable($enable);
+    //     return response();
+    // }
 }

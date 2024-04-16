@@ -31,6 +31,7 @@ class AppSend extends Model
 
         "notification_disabled",
         "custom_aggregation_units",
+        "messages",
 
         "sent_messages",
         "error_message",
@@ -39,6 +40,7 @@ class AppSend extends Model
 
     protected $casts    =   [
         "notification_disabled" =>  "boolean",
+        "messages"              =>  "json",
         "sent_messages"         =>  "json",
         "error_details"         =>  "json",
 
@@ -79,7 +81,7 @@ class AppSend extends Model
             "recipient"                 =>  $this->recipient                ??  null,
             "filter"                    =>  $this->filter                   ??  null,
             "limit"                     =>  $this->limit                    ??  null,
-            "messages"                  =>  $this->message->messages        ??  null,
+            "messages"                  =>  $this->messages                 ??  null,
             "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );
