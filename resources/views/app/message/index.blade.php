@@ -56,8 +56,8 @@
         <script>
             function is_default(button){
                 const id    =   button.getAttribute("data-message-id");
-                const radio =   document.querySelector("input[type=radio][data-message-id="+id+"]");
                 console.log(id);
+                const radio =   document.querySelector("input[type=radio][data-message-id="+id+"]");
                 console.log(radio);
                 if(radio.checked){
                     radio.checked       = false;
