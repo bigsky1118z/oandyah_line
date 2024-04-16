@@ -40,8 +40,8 @@
                             <td><x-web.messages :messages="$message->messages" /></td>
                             <td>{{ $message->priority }}</td>
                             <td>
-                                <input class="hidden" type="radio" name="default[{{ $type }}]" id="" value="{{ $message->id }}" @checked($message->default)>
-                                <button>{{ $message->default ? "解除" : "設定" }}</button>
+                                <input class="hidden" type="radio" name="default[{{ $type }}]" id="" data-message-id="{{ $message->id }}" value="{{ $message->id }}" @checked($message->default)>
+                                <button data-message-id="{{ $message->id }}" onclick="is_default(this);">{{ $message->default ? "解除" : "設定" }}</button>
                             </td>
                             <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                         </tr>                    
@@ -51,5 +51,22 @@
         @endforeach
     </x-slot>
     <x-slot name="footer">
+    </x-slot>
+    <x-slot name="script">
+        <script>
+            function is_default(button){
+                const id    =   button.getAttribute("data-message-id");
+                const radio =   document.querySelector("input[type=radio][data-message-id="+id+"]");
+                console.log(id);
+                console.log(radio);
+                if(radio.checked){
+                    radio.checked       = false;
+                    button.textContent  = "設定";  
+                } else {
+                    radio.checked       = true;
+                    button.textContent  = "解除";
+                }
+            }
+        </script>
     </x-slot>
 </x-frame.web>

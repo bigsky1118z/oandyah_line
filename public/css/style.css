@@ -46,6 +46,9 @@ input[type="submit"],button {
     border-color: buttonborder;
     border-image: initial;
 }
+input[type="submit"],button:hover {
+    cursor: pointer;
+}
 
 /* color */
 body > header > a > h1 {
