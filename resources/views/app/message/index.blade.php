@@ -57,11 +57,12 @@
             function is_default(button){
                 const id        =   button.getAttribute("data-message-id");
                 const radio     =   document.querySelector("input[type=radio][data-message-id='"+id+"']");
-                console.log(radio.checked);
                 radio.checked   =   !radio.checked;
-                console.log(radio.checked);
                 document.querySelectorAll("input[type=radio]").forEach(input=>{
-                    document.querySelector("button[data-message-id='"+input.getAttribute("data-message-id")+"']").textContent = input.checked ? "解除" : "設定";
+                    const id            =   input.getAttribute("data-message-id");
+                    const button        =   document.querySelector("button[data-message-id='"+id+"']");
+                    button.textContent  =   input.checked ? "解除" : "設定";
+                    // document.querySelector("button[data-message-id='"+input.getAttribute("data-message-id")+"']").textContent = input.checked ? "解除" : "設定";
                 });
                 // if(radio.checked){
                 //     radio.checked       = false;
