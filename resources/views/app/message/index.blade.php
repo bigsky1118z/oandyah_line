@@ -14,6 +14,8 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
+                        <td><input type="checkbox" @checked($message->enable)></td>
+                        <td><input type="radio" name="" id=""></td>
                         <td><x-web.messages :messages="$message->messages" /></td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                     </tr>                    
