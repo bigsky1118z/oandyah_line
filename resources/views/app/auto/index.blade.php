@@ -38,8 +38,6 @@
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/auto/{{ $auto->id }}'">詳細</button></td>
                     </tr>                    
                     @endforeach
-                    {{ $type }}
-                    {{ $group }}
                 @endforeach
                 @foreach ($app->autos as $type => $auto)
                     <tr>
