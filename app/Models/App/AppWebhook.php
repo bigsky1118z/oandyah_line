@@ -69,19 +69,23 @@ class AppWebhook extends Model
         $type       =   $this->event["type"] ?? null;
         $friend     =   $this->get_friend();
         $query      =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type);
-        switch($type){
-            case("message"):
-                $text   =   $this->event["message"]["text"] ?? null;
-                $query->where(function ($query) use ($text) {
-                    $query
-                        // ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", $text . "%"))
-                        // ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%" . $text))
-                        // ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%" . $text . "%"))
-                        ->orWhere(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", $text));
-                });
+        $query->when($type=="message", function ($query) {
+            $text   =   $this->event["message"]["text"] ?? null;
+            $query->where("condition->keyword", "=", $text);
+        });
+        // switch($type){
+        //     case("message"):
+        //         $text   =   $this->event["message"]["text"] ?? null;
+        //         $query->where(function ($query) use ($text) {
+        //             $query
+        //                 // ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", $text . "%"))
+        //                 // ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%" . $text))
+        //                 // ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%" . $text . "%"))
+        //                 ->orWhere(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", $text));
+        //         });
           
-                break;
-        }
+        //         break;
+        // }
         if($query->doesntExist()){
             $query  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
         }
