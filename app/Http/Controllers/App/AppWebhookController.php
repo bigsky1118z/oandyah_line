@@ -64,7 +64,9 @@ class AppWebhookController extends Controller
                 ));
                 // 友だち情報を最新にする
                 $webhook->get_friend()->latest();
-                $webhook->auto();
+                $response   =   $webhook->auto();
+                // $webhook->response_status   =   $response;
+                // $webhook->save();
             }
             return response()->json([],200);
         } else {

@@ -72,11 +72,11 @@ class AppWebhook extends Model
         switch($type){
             case("message"):
                 $text   =   $this->event["message"]["text"] ?? null;
-                $query->where("condition.keyword", $text);
+                $query->where("condition->keyword", "=", $text);
                 break;
         }
         if($query->doesntExist()){
-            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type)->whereHas("default");
+            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
         }
         $auto   =   $query->orderBy("priority")->first();
         if($auto){
