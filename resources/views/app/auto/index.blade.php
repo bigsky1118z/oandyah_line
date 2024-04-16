@@ -17,7 +17,7 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->autos->groupBy("type")->get() as $type => $auto)
+                @foreach ($app->autos->groupBy("type") as $type => $auto)
                     <tr>
                         <td><input type="checkbox" name="" value="{{ $app->id }}" @checked($auto->enable) onclick="is_enable(this);"></td>
                         <td>{{ $auto->type }}</td>
