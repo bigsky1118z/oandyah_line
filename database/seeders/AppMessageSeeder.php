@@ -115,7 +115,7 @@ class AppMessageSeeder extends Seeder
             ),
             "priority"  =>  1,
             "enable"    =>  true,
-            "default"   =>  true,
+            "default"   =>  false,
         ));
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
@@ -132,7 +132,7 @@ class AppMessageSeeder extends Seeder
             ),
             "priority"  =>  2,
             "enable"    =>  true,
-            "default"   =>  false,
+            "default"   =>  true,
         ));
 
     }
