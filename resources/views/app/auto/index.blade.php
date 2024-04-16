@@ -18,10 +18,10 @@
             </thead>    
             <tbody>
                 {{ $autos }}
-                @foreach ($autos as $type => auto)
+                {{-- @foreach ($autos as $type => auto)
                     {{ $type }}
                     {{ $auto }}
-                @endforeach
+                @endforeach --}}
                 @foreach ($app->autos as $type => $auto)
                     <tr>
                         <td><input type="checkbox" name="" value="{{ $app->id }}" @checked($auto->enable) onclick="is_enable(this);"></td>
