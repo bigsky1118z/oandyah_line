@@ -8,7 +8,7 @@
         <h2>メッセージ一覧 - TOP</h2>
         @foreach ($app->messages->groupBy(fn($message)=>$message->condition["type"]) as  $type => $group)
             <h3>{{ $type }}</h3>
-            @foreach ($group->orderBy("default")->orderBy("priority")->orderBy("id") as $message)
+            @foreach ($group()->orderBy("default")->orderBy("priority")->orderBy("id") as $message)
                 <table>
                     <thead>
                         <tr>
