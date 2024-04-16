@@ -54,7 +54,7 @@ class App extends Model
     }
     public function message($message_id)
     {
-        return $this->hasOne(AppMessage::class)->whereAppId($this->id)->whereId($message_id);
+        return $this->hasOne(AppMessage::class)->whereAppId($this->id)->whereId($message_id)->first();
     }
 
 
