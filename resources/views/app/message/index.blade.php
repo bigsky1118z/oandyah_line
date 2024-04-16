@@ -12,6 +12,13 @@
                 <table>
                     <thead>
                         <tr>
+                            <th></th>
+                            <th>名前</th>
+                            <th>トリガー</th>
+                            <th>返答メッセージ</th>
+                            <th>優先度</th>
+                            <th>デフォルト返信</th>
+                            <th>操作</th>
                         </tr>
                     </thead>    
                     <tbody>

@@ -16,6 +16,10 @@ body {
     margin: 0 auto;
 }
 
+th {
+    text-align: center;
+}
+
 input[type="submit"],button {
     appearance: auto;
     text-rendering: auto;
