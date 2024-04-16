@@ -81,11 +81,29 @@ class AppMessageSeeder extends Seeder
             "enable"    =>  true,
             "default"   =>  true,
         ));
+        $message    =   AppMessage::Create(array(
+            "app_id"    =>  $app->id,
+            "name"      =>  "新澤菜央様",
+            "status"    =>  "",
+            "messages"  =>  [
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  "新澤菜央様がいれば世界が平和です。",
+                ),
+            ],
+            "condition" =>  array(
+                "type"  =>  "message",
+            ),
+            "priority"  =>  2,
+            "enable"    =>  true,
+            "default"   =>  false,
+        ));
+
 
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
-            "name"      =>  "あいさつ文",
-            "status"    =>  "draft",
+            "name"      =>  "応援",
+            "status"    =>  "",
             "messages"  =>  [
                 array(
                     "type"  =>  "text",
@@ -99,5 +117,23 @@ class AppMessageSeeder extends Seeder
             "enable"    =>  true,
             "default"   =>  true,
         ));
+        $message    =   AppMessage::Create(array(
+            "app_id"    =>  $app->id,
+            "name"      =>  "褒め",
+            "status"    =>  "",
+            "messages"  =>  [
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  "今日も一日頑張ったね。",
+                ),
+            ],
+            "condition" =>  array(
+                "type"  =>  "postback",
+            ),
+            "priority"  =>  2,
+            "enable"    =>  true,
+            "default"   =>  false,
+        ));
+
     }
 }

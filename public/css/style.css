@@ -92,6 +92,8 @@ body > main h4 * {
 }
 
 body> main ul.ul-messages > li {
+    width: 250px;
+    height: auto;
     border: 1px solid #000000;
     border-radius: 10px;
     padding: 5px;
