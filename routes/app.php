@@ -19,7 +19,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "admin" middleware group. Make something great!
 |
 */
+
 Route::prefix("app")->group(function(){
+    Route::prefix("{app_name}")->group(function(){
+        Route::prefix("auto")->group(function(){
+            Route::post("enable",[AppAutoController::class,"enable"]);
+        });
+    });
+});
+
+Route::prefix("app")->middleware("check_user_name")->group(function(){
     Route::get("/",[AppController::class,"index"]);
     Route::get("create",[AppController::class,"create"]);
     Route::post("/",[AppController::class,"store"]);
@@ -41,7 +50,6 @@ Route::prefix("app")->group(function(){
         Route::prefix("auto")->group(function(){
             Route::get("/",[AppAutoController::class,"index"]);
             Route::get("{id}",[AppAutoController::class,"show"]);
-            Route::post("enable",[AppAutoController::class,"enable"]);
         });
     });
 });
