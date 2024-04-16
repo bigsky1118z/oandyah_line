@@ -72,7 +72,7 @@ class AppWebhook extends Model
         switch($type){
             case("message"):
                 $text   =   $this->event["text"];
-                $query->where("condition->keyword", $text);
+                $query->where("condition.keyword", $text);
                 break;
         }
         if($query->doesntExist()){

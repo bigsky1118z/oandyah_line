@@ -22,7 +22,7 @@
                         <td>{{ $auto->type }}</td>
                         <td>@isset($auto->message->messages )<x-web.messages :messages="$auto->message->messages" />@endisset</td>
                         <td><input type="radio" name="{{ $auto->type }}" id="" @checked( $auto->is_default())></td>
-                        {{-- <td>{{ $send }}</td> --}}
+                        <td>{{ json_encode($auto->condition) }}</td>
                         <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/auto/{{ $auto->id }}'">詳細</button></td>
                     </tr>                    
                 @endforeach
