@@ -60,6 +60,9 @@
                 console.log(radio.checked);
                 radio.checked   =   !radio.checked;
                 console.log(radio.checked);
+                document.querySelectorAll("input[type=radio]").forEach(input=>{
+                    document.querySelector("button[data-message-id='"+input.getAttribute("data-message-id")+"']").textContent = input.checked ? "解除" : "設定";
+                });
                 // if(radio.checked){
                 //     radio.checked       = false;
                 //     button.textContent  = "設定";  
