@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\AppAutoController;
 use App\Http\Controllers\App\AppWebhookController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebController;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::post("bigsky1118z/app/gluten_free/auto/enable",[AppAutoController::class,"enable"]);
 
 
 require __DIR__.'/auth.php';
