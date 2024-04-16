@@ -17,7 +17,7 @@
                 </tr>
             </thead>    
             <tbody>
-                {{ $autos }}
+                {{ $autos->groupBy("type") }}
                 {{-- @foreach ($autos as $type => auto)
                     {{ $type }}
                     {{ $auto }}
