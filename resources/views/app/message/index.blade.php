@@ -57,9 +57,9 @@
             function is_default(button){
                 const id        =   button.getAttribute("data-message-id");
                 const radio     =   document.querySelector("input[type=radio][data-message-id='"+id+"']");
-                console.log(radio);
+                console.log(radio.checked);
                 radio.checked   =   !radio.checked;
-                console.log(radio);
+                console.log(radio.checked);
                 // if(radio.checked){
                 //     radio.checked       = false;
                 //     button.textContent  = "設定";  
