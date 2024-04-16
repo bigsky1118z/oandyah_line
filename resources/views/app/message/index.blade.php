@@ -12,13 +12,14 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->messages as $message)
+                @foreach ($app->messages->groupBy("name") as  $name => $message)
                     <tr>
-                        <td>{{ $message->condition["type"] }}</td>
+                        <td>{{ $name }}</td>
+                        {{-- <td>{{ $message->condition["type"] }}</td>
                         <td><input type="checkbox" @checked($message->enable)></td>
                         <td><input type="radio" name="" id=""></td>
                         <td><x-web.messages :messages="$message->messages" /></td>
-                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
+                        <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td> --}}
                     </tr>                    
                 @endforeach
             </tbody>
