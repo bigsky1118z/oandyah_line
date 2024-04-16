@@ -12,14 +12,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>名前</th>
-                            {{-- <th>ステータス</th> --}}
-                            <th>トリガー</th>
-                            <th>返答メッセージ</th>
-                            <th>優先度</th>
-                            <th>デフォルト返信</th>
-                            <th>操作</th>
+                            <th style="width=100px"></th>
+                            <th style="width=100px">名前</th>
+                            {{-- <th style="width=100px">ステータス</th> --}}
+                            <th style="width=100px">トリガー</th>
+                            <th style="width=100px">返答メッセージ</th>
+                            <th style="width=100px">優先度</th>
+                            <th style="width=100px">デフォルト返信</th>
+                            <th style="width=100px">操作</th>
                         </tr>
                     </thead>    
                     <tbody>
