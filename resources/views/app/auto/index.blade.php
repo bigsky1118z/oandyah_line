@@ -44,9 +44,6 @@
                     "method"    :   "post",
                     "body"      :   form,
                 };
-                console.log(token);
-                console.log(form);
-                return;
                 fetch("/{{ $user->name }}/app/{{ $app->name }}/auto/enable", options).then(response => response.ok ? location.reload() : console.log(response));
             }
         </script>
