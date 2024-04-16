@@ -73,9 +73,9 @@ class AppWebhook extends Model
             case("message"):
                 break;
         }
-        // if($query->doesntExist()){
-        //     $query  =   AppAuto::whereAppId($app->id)->whereEnable(true);
-        // }
+        if($query->doesntExist()){
+            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type)->whereHas("default");
+        }
         $auto   =   $query->orderBy("priority")->first();
         if($auto){
             AppSend::Create(array(
