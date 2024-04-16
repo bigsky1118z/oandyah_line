@@ -89,15 +89,15 @@ class AppWebhook extends Model
         if($query->doesntExist()){
             $query  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
         }
-        $auto   =   $query->orderBy("priority")->first();
-        if($auto){
+        $message   =   $query->orderBy("priority")->first();
+        if($message){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
                 "friend_id"         =>  $friend->friend_id,
                 "type"              =>  "reply",
                 "reply_token"       =>  $this->get_reply_token(),
-                "messages"          =>  $auto->message->messages,
-                "app_message_id"    =>  $auto->message->id,
+                "messages"          =>  $message->messages,
+                "app_message_id"    =>  $message->id,
             ))->post_bot_message();
         }
         return;
