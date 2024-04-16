@@ -18,7 +18,7 @@
                             <th style="width:100px;">トリガー</th>
                             <th style="width:300px;">返答メッセージ</th>
                             <th style="width:50px;">優先度</th>
-                            <th style="width:70px;">デフォルト<input type="radio" name="default[{{ $type }}]" id="" value="0"></th>
+                            <th style="width:70px;">デフォルト<input type="radio" class="hidden" name="default[{{ $type }}]" id="" value="0"></th>
                             <th style="width:50px;">操作</th>
                         </tr>
                     </thead>    
