@@ -73,7 +73,8 @@ class AppWebhook extends Model
             case("message"):
                 $text   =   $this->event["message"]["text"] ?? null;
                 $query->where(function ($query) use ($text) {
-                    $query->where(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", "$text"))
+                    $query
+                        ->orWhere(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", "$text"))
                         ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", "$text%"))
                         ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%$text"))
                         ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%$text%"));
