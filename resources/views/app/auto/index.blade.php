@@ -36,7 +36,7 @@
             const token =   document.querySelector("meta[name='csrf-token']").getAttribute("content");
     
             function is_enable(checkbox){
-                const form      =   new FormData();
+                const form  =   new FormData();
                     form.append("_token", token);
                     form.append("id", checkbox.value);
                     form.append("enable", checkbox.checked);
@@ -44,6 +44,9 @@
                     "method"    :   "post",
                     "body"      :   form,
                 };
+                console.log(token);
+                console.log(form);
+                return;
                 fetch("/{{ $user->name }}/app/{{ $app->name }}/auto/enable", options).then(response => response.ok ? location.reload() : console.log(response));
             }
         </script>
