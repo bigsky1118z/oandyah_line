@@ -92,7 +92,8 @@ class AppMessageSeeder extends Seeder
                 ),
             ],
             "condition" =>  array(
-                "type"  =>  "message",
+                "type"      =>  "message",
+                "keyword"   =>  "しんしん",
             ),
             "priority"  =>  2,
             "enable"    =>  true,
