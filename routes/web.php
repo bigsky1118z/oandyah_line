@@ -31,7 +31,7 @@ Route::post("app/{app_name}",[AppWebhookController::class,"post"]);
 Route::get("redirect",[WebController::class,"redirect"]);
 
 Route::prefix("{user_name}")->group(function(){
-    Route::get("/",[WebController::class, "show"])->middleware("check_user_name");
+    Route::middleware("check_user_name")->get("/",[WebController::class, "show"]);
     require __DIR__.'/app.php';
 });
 
