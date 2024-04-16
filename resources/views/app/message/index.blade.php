@@ -18,7 +18,7 @@
                             <th style="width:100px;">トリガー</th>
                             <th style="width:300px;">返答メッセージ</th>
                             <th style="width:50px;">優先度</th>
-                            <th style="width:70px;">デフォルト</th>
+                            <th style="width:70px;">デフォルト<input type="radio" name="default[{{ $type }}]" id="" value="0"></th>
                             <th style="width:50px;">操作</th>
                         </tr>
                     </thead>    
@@ -39,7 +39,10 @@
                             </td>
                             <td><x-web.messages :messages="$message->messages" /></td>
                             <td>{{ $message->priority }}</td>
-                            <td><input type="radio" name="default[{{ $type }}]" id="" @checked($message->default)></td>
+                            <td>
+                                <input class="hidden" type="radio" name="default[{{ $type }}]" id="" value="{{ $message->id }}" @checked($message->default)>
+                                <button>{{ $message->default ? "解除" : "設定" }}</button>
+                            </td>
                             <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
                         </tr>                    
                     @endforeach

@@ -10,6 +10,10 @@
     list-style: none;
 }
 
+.hidden {
+    display: none !important;
+}
+
 body {
     width: auto;
     max-width: 1920px;
