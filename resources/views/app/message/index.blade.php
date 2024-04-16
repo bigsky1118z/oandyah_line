@@ -55,17 +55,18 @@
     <x-slot name="script">
         <script>
             function is_default(button){
-                const id    =   button.getAttribute("data-message-id");
-                console.log(id);
-                const radio =   document.querySelector("input[type=radio][data-message-id='"+id+"']");
+                const id        =   button.getAttribute("data-message-id");
+                const radio     =   document.querySelector("input[type=radio][data-message-id='"+id+"']");
                 console.log(radio);
-                if(radio.checked){
-                    radio.checked       = false;
-                    button.textContent  = "設定";  
-                } else {
-                    radio.checked       = true;
-                    button.textContent  = "解除";
-                }
+                radio.checked   =   !radio.checked;
+                console.log(radio);
+                // if(radio.checked){
+                //     radio.checked       = false;
+                //     button.textContent  = "設定";  
+                // } else {
+                //     radio.checked       = true;
+                //     button.textContent  = "解除";
+                // }
             }
         </script>
     </x-slot>
