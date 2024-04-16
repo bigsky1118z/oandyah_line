@@ -12,7 +12,6 @@
                 <thead>
                     <tr>
                         <th>enable</th>
-                        <th>type</th>
                         <th>trigger</th>
                         <th>message</th>
                         <th>default</th>
@@ -22,7 +21,6 @@
                     @foreach ($group as $auto)
                     <tr>
                         <td><input type="checkbox" name="" value="{{ $app->id }}" @checked($auto->enable) onclick="is_enable(this);"></td>
-                        <td>{{ $auto->type }}</td>
                         @switch($auto->type)
                             @case("message")
                                 <td>{{ $auto->condition["keyword"] ?? null }}</td>
