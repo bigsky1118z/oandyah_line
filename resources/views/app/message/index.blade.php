@@ -14,6 +14,7 @@
             <tbody>
                 @foreach ($app->messages as $message)
                     <tr>
+                        <td>{{ $message->condition["type"] }}</td>
                         <td><input type="checkbox" @checked($message->enable)></td>
                         <td><input type="radio" name="" id=""></td>
                         <td><x-web.messages :messages="$message->messages" /></td>
