@@ -75,9 +75,9 @@ class AppWebhook extends Model
                 $query->where(function ($query) use ($text) {
                     $query
                         ->orWhere(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", "$text"))
-                        ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", "$text%"))
-                        ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%$text"))
-                        ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%$text%"));
+                        ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", "{$text}%"))
+                        ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%{$text}"))
+                        ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%{$text}%"));
                     });
                 break;
         }
