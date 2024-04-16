@@ -12,9 +12,11 @@ class AppAutoController extends Controller
     {
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name)->app;
+        $autos  =   AppAuto::whereAppId($app->id)->get()->groupBy("type");
         $data   =   array(
             "user"  =>  $user,
             "app"   =>  $app,
+            "autos" =>  $autos,
         );
         return view("app.auto.index", $data);
     }
