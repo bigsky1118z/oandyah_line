@@ -44,7 +44,7 @@
                     "method"    :   "post",
                     "body"      :   form,
                 };
-                fetch("/{{ $user->name }}/app/{{ $app->name }}/auto/enable", options).then(response => response.ok ? location.reload() : cosole.log(response));
+                fetch("/{{ $user->name }}/app/{{ $app->name }}/auto/enable", options).then(response => response.ok ? location.reload() : console.log(response));
             }
         </script>
         </x-slot>
