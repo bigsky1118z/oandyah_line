@@ -38,7 +38,7 @@ class AppAuto extends Model
 
     public function default()
     {
-        return $this->hasOne(AppAutoDefault::class)->whereType($this->type);
+        return $this->hasOne(AppAutoDefault::class);
     }
 
     public function message()
