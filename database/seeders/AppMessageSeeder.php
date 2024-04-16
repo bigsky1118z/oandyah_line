@@ -15,23 +15,33 @@ class AppMessageSeeder extends Seeder
      */
     public function run(): void
     {
+
         $app        =   App::whereName("gluten_free")->first();
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "友達追加",
-            "status"    =>  "draft",
+            "status"    =>  "",
             "messages"  =>  [
                 array(
                     "type"  =>  "text",
                     "text"  =>  "友達追加ありがとうございます！\nこれから役に立ついい情報を送りますね！",
                 ),
             ],
+            "condition" =>  array(
+                "type"  =>  "follow",
+            ),
+            "priority"  =>  1,
+            "enable"    =>  true,
+            "default"   =>  true,
         ));
+        
+
+
 
         $message    =   AppMessage::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "新澤菜央様",
-            "status"    =>  "draft",
+            "status"    =>  "",
             "messages"  =>  [
                 array(
                     "type"  =>  "text",
@@ -64,6 +74,12 @@ class AppMessageSeeder extends Seeder
                     ),
                 ),
             ],
+            "condition" =>  array(
+                "type"  =>  "message",
+            ),
+            "priority"  =>  1,
+            "enable"    =>  true,
+            "default"   =>  true,
         ));
 
         $message    =   AppMessage::Create(array(
@@ -76,7 +92,12 @@ class AppMessageSeeder extends Seeder
                     "text"  =>  "今日も一日頑張ろうね。",
                 ),
             ],
+            "condition" =>  array(
+                "type"  =>  "postback",
+            ),
+            "priority"  =>  1,
+            "enable"    =>  true,
+            "default"   =>  true,
         ));
-
     }
 }

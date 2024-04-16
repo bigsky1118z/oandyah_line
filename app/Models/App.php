@@ -58,11 +58,6 @@ class App extends Model
         return $this->hasMany(AppSend::class);
     }
 
-    public function autos()
-    {
-        return $this->hasMany(AppAuto::class);
-    }
-
 
     public function latest()
     {

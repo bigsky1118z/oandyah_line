@@ -68,7 +68,7 @@ class AppWebhook extends Model
         $app        =   $this->app;
         $type       =   $this->event["type"] ?? null;
         $friend     =   $this->get_friend();
-        $query      =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
+        $query      =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type);
         switch($type){
             case("message"):
                 $text   =   $this->event["message"]["text"] ?? null;
@@ -83,7 +83,7 @@ class AppWebhook extends Model
                 break;
         }
         if($query->doesntExist()){
-            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type)->whereHas("default");
+            $query  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
         }
         $auto   =   $query->orderBy("priority")->first();
         if($auto){
