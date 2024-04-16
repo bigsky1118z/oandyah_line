@@ -14,6 +14,7 @@
                         <tr>
                             <th></th>
                             <th>名前</th>
+                            <th>ステータス</th>
                             <th>トリガー</th>
                             <th>返答メッセージ</th>
                             <th>優先度</th>
@@ -25,7 +26,7 @@
                         <tr>
                             <td><input type="checkbox" @checked($message->enable)></td>
                             <td>{{ $message->name }}</td>
-                            <td>{{ $message->status }}</td>
+                            {{-- <td>{{ $message->status }}</td> --}}
                             <td>
                                 @switch($message->condition["type"])
                                     @case("message")
