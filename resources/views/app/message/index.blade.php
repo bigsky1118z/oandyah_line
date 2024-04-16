@@ -7,7 +7,6 @@
     <x-slot name="main">
         <h2>メッセージ一覧 - TOP</h2>
         @foreach (["follow","message","postback"] as $type)
-        {{-- $app->messages->groupBy(fn($message)=>$message->condition["type"]) as  $type => $group) --}}
             <h3>{{ $type }}</h3>
             @foreach ($app->messages->groupBy(fn($message)=>$message->condition["type"])[$type] as $message)
                 <table>
@@ -20,6 +19,16 @@
                             <td><input type="checkbox" @checked($message->enable)></td>
                             <td>{{ $message->name }}</td>
                             <td>{{ $message->status }}</td>
+                            <td>
+                                @switch($message->condition["type"])
+                                    @case("message")
+                                        {{ $message->condition["keyword"] ?? null }}
+                                        @break
+                                    @case("postback")
+                                        @break
+                                    @default
+                                @endswitch
+                            </td>
                             <td><x-web.messages :messages="$message->messages" /></td>
                             <td>{{ $message->priority }}</td>
                             <td><input type="radio" name="default[{{ $type }}]" id="" @checked($message->default)></td>
