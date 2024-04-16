@@ -40,7 +40,7 @@
                             <td><x-web.messages :messages="$message->messages" /></td>
                             <td>{{ $message->priority }}</td>
                             <td>
-                                <input class="hidden" type="radio" name="default[{{ $type }}]" id="" data-message-id="{{ $message->id }}" value="{{ $message->id }}" @checked($message->default)>
+                                <input class="hidden" type="radio" name="default[{{ $type }}]" data-message-id="{{ $message->id }}" value="{{ $message->id }}" @checked($message->default)>
                                 <button data-message-id="{{ $message->id }}" onclick="is_default(this);">{{ $message->default ? "解除" : "設定" }}</button>
                             </td>
                             <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
