@@ -17,6 +17,7 @@
                 </tr>
             </thead>    
             <tbody>
+                {{ $autos }}
                 @foreach ($autos as $type => auto)
                     {{ $type }}
                     {{ $auto }}
