@@ -72,11 +72,16 @@ class AppWebhook extends Model
         switch($type){
             case("message"):
                 $text   =   $this->event["message"]["text"] ?? null;
-                $query->where("condition->keyword", "=", $text);
+                $query->where(function ($query) use ($text) {
+                    $query->where(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", "$text"))
+                        ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", "$text%"))
+                        ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%$text"))
+                        ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%$text%"));
+                    });
                 break;
         }
         if($query->doesntExist()){
-            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
+            $query  =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type)->whereHas("default");
         }
         $auto   =   $query->orderBy("priority")->first();
         if($auto){

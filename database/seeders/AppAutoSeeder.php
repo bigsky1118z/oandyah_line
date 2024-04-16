@@ -57,6 +57,18 @@ class AppAutoSeeder extends Seeder
             "priority"          =>  2,
             "app_message_id"    =>  3,
         ));
+        $auto   =   AppAuto::updateOrCreate(array(
+            "app_id"    =>  $app->id,
+            "name"      =>  "元気づけるとき用",
+            "type"      =>  "message",
+            "condition" =>  array(
+                "match"     =>  "partial_match",
+                "keyword"   =>  "しんどい",
+            ),
+        ),array(
+            "priority"          =>  2,
+            "app_message_id"    =>  3,
+        ));
 
     }
 }
