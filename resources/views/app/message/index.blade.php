@@ -43,8 +43,11 @@
                                 <input type="radio" class="hidden" name="default[{{ $type }}]" data-message-id="{{ $message->id }}" value="{{ $message->id }}" @checked($message->default)>
                                 <button data-message-id="{{ $message->id }}" onclick="is_default(this);">{{ $message->default ? "解除" : "設定" }}</button>
                             </td>
-                            <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button></td>
-                        </tr>                    
+                            <td>
+                                <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/create?copy={{ $message->id }}'">複製</button>
+                                <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/message/{{ $message->id }}'">詳細</button>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -54,6 +57,9 @@
     </x-slot>
     <x-slot name="script">
         <script>
+            function is_enable(input){
+
+            }
             function is_default(button){
                 const id        =   button.getAttribute("data-message-id");
                 const radio     =   document.querySelector("input[type=radio][data-message-id='"+id+"']");
@@ -62,15 +68,8 @@
                     const id            =   input.getAttribute("data-message-id");
                     const button        =   document.querySelector("button[data-message-id='"+id+"']");
                     button.textContent  =   input.checked ? "解除" : "設定";
-                    // document.querySelector("button[data-message-id='"+input.getAttribute("data-message-id")+"']").textContent = input.checked ? "解除" : "設定";
                 });
-                // if(radio.checked){
-                //     radio.checked       = false;
-                //     button.textContent  = "設定";  
-                // } else {
-                //     radio.checked       = true;
-                //     button.textContent  = "解除";
-                // }
+                // 非同期通信
             }
         </script>
     </x-slot>

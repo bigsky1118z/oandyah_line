@@ -52,6 +52,11 @@ class App extends Model
     {
         return $this->hasMany(AppMessage::class)->orderByDesc("default")->orderByDesc("enable")->orderBy("priority")->orderBy("id");
     }
+    public function message($message_id)
+    {
+        return $this->hasOne(AppMessage::class)->whereAppId($this->id)->whereId($message_id);
+    }
+
 
     public function sends()
     {

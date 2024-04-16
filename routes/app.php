@@ -20,11 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix("app")->group(function(){
-    Route::prefix("{app_name}")->group(function(){
-        Route::post("/auto/enable",[AppAutoController::class,"enable"]);
-    });
-});
 
 Route::prefix("app")->middleware("check_user_name")->group(function(){
     Route::get("/",[AppController::class,"index"]);
@@ -43,15 +38,12 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
         });
         Route::prefix("message")->group(function(){
             Route::get("/",[AppMessageController::class,"index"]);
+            Route::get("create",[AppMessageController::class,"create"]);
             Route::get("{id}",[AppMessageController::class,"show"]);
         });
         Route::prefix("send")->group(function(){
             Route::get("/",[AppSendController::class,"index"]);
             Route::get("{id}",[AppSendController::class,"show"]);
-        });
-        Route::prefix("auto")->group(function(){
-            Route::get("/",[AppAutoController::class,"index"]);
-            Route::get("{id}",[AppAutoController::class,"show"]);
         });
     });
 });
