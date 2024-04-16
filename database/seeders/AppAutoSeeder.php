@@ -49,6 +49,10 @@ class AppAutoSeeder extends Seeder
             "app_id"    =>  $app->id,
             "name"      =>  "元気づけるとき用",
             "type"      =>  "message",
+            "condition" =>  array(
+                "match"     =>  "exact_match",
+                "keyword"   =>  "しんしん",
+            ),
         ),array(
             "priority"          =>  2,
             "app_message_id"    =>  3,
