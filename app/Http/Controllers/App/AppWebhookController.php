@@ -29,6 +29,13 @@ class AppWebhookController extends Controller
         }
     }
 
+    public function show(Request $request, $user_name, $app_name, $id)
+    {
+        $user   =   User::find(auth()->user()->id);
+        $app    =   $user->app($app_name);
+        return AppWebhook::whereAppId($app->id)->whereId($id)->first();
+    }
+
     public function post(Request $request, $app_name)
     {
         /** 署名を検証 */

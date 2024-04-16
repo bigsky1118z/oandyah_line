@@ -21,7 +21,7 @@
                         <td>{{ $webhook->created_at }}</td>
                         <td>{{ $webhook->get_friend()->get_name() }}</td>
                         <td>{{ $webhook->get_type() }}</td>
-                        <td><button type="button" onclick="console.log('{{ $webhook->id }}')">詳細</button></td>
+                        <td><button type="button" onclick="location.href='/{{ $user->name }}/aap/{{ $app->name }}/webhook/{{ $webhook->id }}'">詳細</button></td>
                     </tr>
                 @endforeach
             </tbody>

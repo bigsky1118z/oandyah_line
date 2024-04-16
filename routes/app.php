@@ -32,7 +32,11 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
     Route::post("/",[AppController::class,"store"]);
     Route::prefix("{app_name}")->group(function(){
         Route::get("/",[AppController::class,"show"]);
-        Route::get("webhook",[AppWebhookController::class,"index"]);
+        Route::prefix("webhook")->group(function(){
+            Route::get("/",[AppWebhookController::class,"index"]);
+            Route::get("{id}",[AppWebhookController::class,"show"]);
+        });
+
         Route::prefix("friend")->group(function(){
             Route::get("/",[AppFriendController::class,"index"]);
             Route::get("{friend_id}",[AppFriendController::class,"show"]);
