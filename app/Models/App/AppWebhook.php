@@ -71,7 +71,7 @@ class AppWebhook extends Model
         $query      =   AppAuto::whereAppId($app->id)->whereEnable(true)->whereType($type);
         switch($type){
             case("message"):
-                $text   =   $this->event["text"];
+                $text   =   $this->event["message"]["text"] ?? null;
                 $query->where("condition.keyword", $text);
                 break;
         }
