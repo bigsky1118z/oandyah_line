@@ -50,7 +50,7 @@ class App extends Model
 
     public function messages()
     {
-        return $this->hasMany(AppMessage::class)->orderBy("default")->orderBy("enable")->orderBy("id");
+        return $this->hasMany(AppMessage::class)->orderByDesc("default")->orderByDesc("enable")->orderBy("id");
     }
 
     public function sends()
