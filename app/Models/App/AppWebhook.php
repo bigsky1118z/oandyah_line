@@ -69,8 +69,8 @@ class AppWebhook extends Model
         $type       =   $this->event["type"] ?? null;
         $friend     =   $this->get_friend();
         $query      =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type);
-        $query->when($type=="message", function ($query) {
-            $text   =   $this->event["message"]["text"] ?? null;
+        $text       =   $this->event["message"]["text"] ?? null;
+        $query->when($type=="message", function ($query) use ($text) {
             $query->where("condition->keyword", "=", $text);
         });
         // switch($type){
