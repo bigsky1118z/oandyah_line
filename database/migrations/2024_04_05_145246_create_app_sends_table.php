@@ -2,7 +2,7 @@
 
 use App\Models\App;
 use App\Models\App\AppFriend;
-use App\Models\App\AppMessage;
+use App\Models\App\AppReply;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->json("limit")->nullable();
 
             $table->json("messages")->nullable();
-            $table->foreignIdFor(AppMessage::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(AppReply::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
     
             $table->boolean("notification_disabled")->default(0);
             $table->string("custom_aggregation_units")->nullable();
