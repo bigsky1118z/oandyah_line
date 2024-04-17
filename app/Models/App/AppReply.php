@@ -54,7 +54,7 @@ class AppReply extends Model
             "app_id"        =>  $this->app->id,
             "app_reply_id"  =>  $this->id,
             "type"          =>  $type,
-            "conditinon"    =>  $condition,
+            "condition"     =>  $condition,
         ),array(
             "priority"      =>  $priority,
             "enable"        =>  $enable,
