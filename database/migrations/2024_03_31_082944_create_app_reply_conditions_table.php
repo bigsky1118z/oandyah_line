@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(AppReply::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("type");
 
-            $table->json("condition")->default(array());
+            $table->json("condition")->nullable();
             $table->integer("priority")->nullable();
             $table->boolean("enable")->default(true);
             $table->boolean("default")->default(false);
