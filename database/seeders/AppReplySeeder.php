@@ -27,16 +27,9 @@ class AppReplySeeder extends Seeder
                     "text"  =>  "友達追加ありがとうございます！\nこれから役に立ついい情報を送りますね！",
                 ),
             ],
-            "condition" =>  array(
-                "type"  =>  "follow",
-            ),
-            "priority"  =>  1,
-            "enable"    =>  true,
-            "default"   =>  true,
         ));
-        
-
-
+        $condition  =   array();
+        $reply->set_condition("follow", $condition, 1, true, true);
 
         $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
@@ -68,19 +61,16 @@ class AppReplySeeder extends Seeder
                             array(
                                 "type"  =>   "postback",
                                 "label" =>   "どっちもみんな興味",
-                                "data"  =>   "function=menu",
+                                "data"  =>   "function=menu&menu=1",
                             ),
                         ),
                     ),
                 ),
             ],
-            "condition" =>  array(
-                "type"  =>  "message",
-            ),
-            "priority"  =>  1,
-            "enable"    =>  true,
-            "default"   =>  true,
         ));
+        $condition  =   array();
+        $reply->set_condition("message", $condition, 1, true, true);
+
         $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "新澤菜央様",
@@ -99,6 +89,16 @@ class AppReplySeeder extends Seeder
             "enable"    =>  true,
             "default"   =>  false,
         ));
+        $condition  =   array(
+            "keyword"   =>  "しんしん",
+            "match"     =>  "exact_match",
+        );
+        $reply->set_condition("message", $condition, 1, true, false);
+        $condition  =   array(
+            "keyword"   =>  "菜央",
+            "match"     =>  "partial_match",
+        );
+        $reply->set_condition("message", $condition, 1, true, false);
 
 
         $reply    =   AppReply::Create(array(
@@ -111,13 +111,12 @@ class AppReplySeeder extends Seeder
                     "text"  =>  "{name}今日も一日頑張ろうね。",
                 ),
             ],
-            "condition" =>  array(
-                "type"  =>  "postback",
-            ),
-            "priority"  =>  1,
-            "enable"    =>  true,
-            "default"   =>  false,
         ));
+        $condition  =   array(
+            "function"  =>  "menu",
+        );
+        $reply->set_condition("postback", $condition, 1, true, false);
+
         $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "褒め",
@@ -128,13 +127,9 @@ class AppReplySeeder extends Seeder
                     "text"  =>  "{name}今日も一日頑張ったね。",
                 ),
             ],
-            "condition" =>  array(
-                "type"  =>  "postback",
-            ),
-            "priority"  =>  2,
-            "enable"    =>  true,
-            "default"   =>  true,
         ));
+        $condition  =   array();
+        $reply->set_condition("postback", $condition, 1, true, true);
 
     }
 }

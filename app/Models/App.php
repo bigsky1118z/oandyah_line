@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\App\AppAuto;
 use App\Models\App\AppFriend;
-use App\Models\App\AppMessage;
+use App\Models\App\AppReply;
 use App\Models\App\AppSend;
 use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,13 +47,13 @@ class App extends Model
         return $this->hasOne(AppFriend::class)->whereFriendId($friend_id)->first();
     }
 
-    public function messages()
+    public function replies()
     {
-        return $this->hasMany(AppMessage::class)->orderByDesc("default")->orderByDesc("enable")->orderBy("priority")->orderBy("id");
+        return $this->hasMany(AppReply::class)->orderByDesc("default")->orderByDesc("enable")->orderBy("priority")->orderBy("id");
     }
-    public function message($message_id)
+    public function reply($reply_id)
     {
-        return $this->hasOne(AppMessage::class)->whereAppId($this->id)->whereId($message_id)->first();
+        return $this->hasOne(AppReply::class)->whereAppId($this->id)->whereId($reply_id)->first();
     }
 
 
