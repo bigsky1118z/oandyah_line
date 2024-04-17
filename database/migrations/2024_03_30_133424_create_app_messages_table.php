@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('app_messages', function (Blueprint $table) {
+        Schema::create('app_replies', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("name")->nullable();

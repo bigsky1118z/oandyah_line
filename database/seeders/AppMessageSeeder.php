@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\App;
-use App\Models\App\AppMessage;
+use App\Models\App\AppReply;
 use App\Models\App\AppMessageObject;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AppMessageSeeder extends Seeder
+class AppReplySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,8 @@ class AppMessageSeeder extends Seeder
     public function run(): void
     {
 
-        $app        =   App::whereName("gluten_free")->first();
-        $message    =   AppMessage::Create(array(
+        $app    =   App::whereName("gluten_free")->first();
+        $reply  =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "友達追加",
             "status"    =>  "",
@@ -38,7 +38,7 @@ class AppMessageSeeder extends Seeder
 
 
 
-        $message    =   AppMessage::Create(array(
+        $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "新澤菜央様",
             "status"    =>  "",
@@ -81,7 +81,7 @@ class AppMessageSeeder extends Seeder
             "enable"    =>  true,
             "default"   =>  true,
         ));
-        $message    =   AppMessage::Create(array(
+        $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "新澤菜央様",
             "status"    =>  "",
@@ -101,7 +101,7 @@ class AppMessageSeeder extends Seeder
         ));
 
 
-        $message    =   AppMessage::Create(array(
+        $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "応援",
             "status"    =>  "",
@@ -118,7 +118,7 @@ class AppMessageSeeder extends Seeder
             "enable"    =>  true,
             "default"   =>  false,
         ));
-        $message    =   AppMessage::Create(array(
+        $reply    =   AppReply::Create(array(
             "app_id"    =>  $app->id,
             "name"      =>  "褒め",
             "status"    =>  "",

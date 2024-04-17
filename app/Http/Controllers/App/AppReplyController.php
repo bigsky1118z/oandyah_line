@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\App\AppMessage;
+use App\Models\App\AppReply;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AppMessageController extends Controller
+class AppReplyController extends Controller
 {
     public function index(Request $request, $user_name, $app_name)
     {
@@ -16,14 +16,14 @@ class AppMessageController extends Controller
             "user"  =>  $user,
             "app"   =>  $app,
         );
-        return view("app.message.index", $data);
+        return view("app.reply.index", $data);
     }
 
     public function show(Request $request, $user_name, $app_name, $id)
     {
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name)->app;
-        return AppMessage::whereAppId($app->id)->whereId($id)->first();
+        return AppReply::whereAppId($app->id)->whereId($id)->first();
     }
 
     public function create(Request $request, $user_name, $app_name, $id = null)
@@ -33,9 +33,9 @@ class AppMessageController extends Controller
         $data   =   array(
             "user"      =>  $user,
             "app"       =>  $app,
-            "message"   =>  $app->message($id),
+            "reply"   =>  $app->reply($id),
         );
-        return view("app.message.create", $data);
+        return view("app.reply.create", $data);
 
     }
 }
