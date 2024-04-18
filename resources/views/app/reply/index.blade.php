@@ -11,8 +11,9 @@
                 <tr>
                     <th style="width:100px;">名前</th>
                     {{-- <th style="width:100px;">ステータス</th> --}}
-                    <th style="width:300px;">返答メッセージ</th>
-                    <th style="width:50px;">操作</th>
+                    <th style="width:280px;">返答メッセージ</th>
+                    <th style="width:250px;">条件</th>
+                    <th style="width:100px;">操作</th>
                 </tr>
             </thead>    
             <tbody>
@@ -26,8 +27,8 @@
                                 @foreach ($reply->conditions as $condition)
                                     <li>
                                         <dl style="display:flex;">
-                                            <dd style="width:150px">{{ $condition->type }}</dd>
-                                            <dd>{{ $condition->condition["keyword"] ?? null }}</dd>
+                                            <dd style="width:100px">{{ $condition->type }}</dd>
+                                            <dd style="width: auto">{{ $condition->condition["keyword"] ?? null }}</dd>
                                         </dl>
                                     </li>
                                 @endforeach
