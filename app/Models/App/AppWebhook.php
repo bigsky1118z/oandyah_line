@@ -82,10 +82,10 @@ class AppWebhook extends Model
                 $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
                 break;
         }
-        if(!$reply->messages){
-            $default    =   $app->reply_condition_defaults->where("type",$type)->first();
-            $reply      =   $default ? $default->reply : new AppReply();
-        }
+        // if(!$reply->messages){
+        //     $default    =   $app->reply_condition_defaults->where("type",$type)->first();
+        //     $reply      =   $default ? $default->reply : new AppReply();
+        // }
         if($reply->messages){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
