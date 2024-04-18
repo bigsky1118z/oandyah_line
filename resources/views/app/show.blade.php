@@ -100,10 +100,10 @@
                 <li>{{ $friend->display_name }}</li>
             @endforeach
         </ul>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/message">メッセ―ジ情報</a></h3>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/reply">メッセ―ジ情報</a></h3>
         <ul>
-            @foreach ($app->messages as $message)
-                <li>{{ $message->name }}</li>
+            @foreach ($app->replies as $reply)
+                <li>{{ $reply->name }}</li>
             @endforeach
         </ul>
         <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/send">送信情報</a></h3>

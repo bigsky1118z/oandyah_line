@@ -18,12 +18,6 @@ return new class extends Migration
             $table->string("name")->nullable();
             $table->string("status")->nullable();
             $table->json("messages")->nullable();
-            
-            $table->json("condition")->nullable();
-            $table->integer("priority")->nullable();
-            $table->boolean("enable")->default(true);
-            $table->boolean("default")->default(false);
-
             $table->timestamps();
         });
     }

@@ -6,12 +6,8 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
-        <div>{{ json_encode($user) }}</div>
-        <div>{{ json_encode($app) }}</div>
-        <div>{{ json_encode($message) }}</div>
-        {{ $app->message(1) }}
-
-        
+        <h3>友だち情報</h3>
+        {{ $reply }}
     </x-slot>
     <x-slot name="footer">
     </x-slot>
