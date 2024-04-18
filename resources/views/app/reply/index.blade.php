@@ -8,7 +8,7 @@
         <h2>メッセージ一覧 - TOP</h2>
         <h3>デフォルト返信</h3>
         @foreach (["follow","message","postback"] as $type)
-            <p>{{ $type }}{{ $defaults()->whereType($type)->first() }}</p>
+            <p>{{ $type }}{{ $defaults->where("type",$type)->first() }}</p>
         @endforeach
         {{ $defaults }}
         <table>
