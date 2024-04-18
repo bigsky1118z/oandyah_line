@@ -43,6 +43,7 @@
                 @endforeach
             </tbody>
         </table>
+        <p>{{ json_encode($keywords) ?? null }}</p>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
