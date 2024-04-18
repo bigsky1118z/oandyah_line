@@ -24,7 +24,12 @@
                         <td>
                             <ul>
                                 @foreach ($reply->conditions as $condition)
-                                    <li>{{ $condition }}</li>
+                                    <li>
+                                        <dl style="display:flex;">
+                                            <dd style="width:150px">{{ $condition->type }}</dd>
+                                            <dd>{{ $condition->condition["keyword"] ?? null }}</dd>
+                                        </dl>
+                                    </li>
                                 @endforeach
                             </ul>
                         </td>
