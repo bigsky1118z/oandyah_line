@@ -88,6 +88,11 @@ class AppReplySeeder extends Seeder
             ],
         ));
         $condition  =   array(
+            "keyword"   =>  "しんしん",
+            "match"     =>  "partial_match",
+        );
+        $reply->set_condition("message", $condition, 1, true, false);
+        $condition  =   array(
             "keyword"   =>  "新澤",
             "match"     =>  "forward_match",
         );
