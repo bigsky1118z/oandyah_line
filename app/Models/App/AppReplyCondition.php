@@ -27,7 +27,7 @@ class AppReplyCondition extends Model
     static function get_keywords($app_id)
     {
         $conditions =   AppReplyCondition::whereAppId($app_id)->whereType("message")->whereEnable(true)->whereNotNull("condition->keyword")->get();
-        $keywords   =   $conditions->pluck("condition->keyword");
+        $keywords   =   $conditions->pluck("condition");
         return $keywords;
 
     }
