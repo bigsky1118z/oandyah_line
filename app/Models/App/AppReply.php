@@ -15,17 +15,10 @@ class AppReply extends Model
         "name",
         "status",
         "messages",
-        "condition",
-        "priority",
-        "enable",
-        "default",
     ];
 
     protected $casts    =   [
         "messages"  =>  "json",
-        "condition" =>  "json",
-        "enable"    =>  "boolean",
-        "default"   =>  "boolean",
     ];
 
     protected $status   =   [
