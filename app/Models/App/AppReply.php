@@ -41,6 +41,11 @@ class AppReply extends Model
         return count($this->messages);
     }
 
+    public function default()
+    {
+        return $this->hasOne(AppReplyCondition::class)->whereEnable(true)->whereDefault(true)->orderBy("priority");
+    }
+
     public function set_condition($type, $condition = array(), $priority = 100, $enable = true, $default = false)
     {
         AppReplyCondition::updateOrCreate(array(

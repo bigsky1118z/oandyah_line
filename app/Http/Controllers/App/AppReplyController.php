@@ -18,6 +18,7 @@ class AppReplyController extends Controller
             "app"       =>  $app,
             "message"   =>  AppReplyCondition::find_reply_message($app->id, "新澤菜央"),
             "postback"  =>  AppReplyCondition::find_reply_postback($app->id, "function=menu&menu=food&id=1&action=confirm"),
+            "defaults"  =>  AppReplyCondition::whereAppId($app->id)->whereEnable(true)->whereDefault(true)->orderBy("priority")->get(),
         );
         return view("app.reply.index", $data);
     }

@@ -6,14 +6,16 @@
     </x-slot>
     <x-slot name="main">
         <h2>メッセージ一覧 - TOP</h2>
+        <h3>デフォルト返信</h3>
+        {{ $defaults }}
         <table>
             <thead>
                 <tr>
                     <th style="width:100px;">名前</th>
                     {{-- <th style="width:100px;">ステータス</th> --}}
                     <th style="width:280px;">返答メッセージ</th>
-                    <th style="width:300px;">条件</th>
                     <th style="width:100px;">操作</th>
+                    <th style="width:300px;">条件</th>
                 </tr>
             </thead>    
             <tbody>
@@ -22,6 +24,10 @@
                         <td>{{ $reply->name }}</td>
                         {{-- <td>{{ $reply->status }}</td> --}}
                         <td><x-web.messages :messages="$reply->messages" /></td>
+                        <td>
+                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ $reply->id }}'">複製</button>
+                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ $reply->id }}'">詳細</button>
+                        </td>    
                         <td>
                             <ul>
                                 @foreach ($reply->conditions as $condition)
@@ -36,10 +42,6 @@
                                 @endforeach
                                 <li><button type="button">新規条件追加</button></li>
                             </ul>
-                        </td>
-                        <td>
-                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ $reply->id }}'">複製</button>
-                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ $reply->id }}'">詳細</button>
                         </td>
                     </tr>
                 @endforeach
