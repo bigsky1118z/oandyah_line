@@ -24,6 +24,17 @@ class AppReplyCondition extends Model
         "default"   =>  "boolean",
     ];
 
+    static $matches =   array(
+        "forward_match"     =>  "前方一致",
+        "backward_match"    =>  "後方一致",
+        "partial_match"     =>  "部分一致",
+        "exact_match"       =>  "完全一致",
+    );
+
+    public function get_message_match()
+    {    
+        return $matches[$this->condition["match"]] ?? null;
+    }
 
     static function find_message($app_id, $type, $text = null)
     {
@@ -38,9 +49,9 @@ class AppReplyCondition extends Model
                     $keyword_length = strlen($keyword);
                     $text_length    = strlen($text);
                     return $keyword_length <= $text_length ? substr($text, -$keyword_length) === $keyword : false;
-               case"partial_match":
+                case "partial_match":
                     return strpos($text, $keyword) !== false;
-                case"exact_match":
+                case "exact_match":
                 default:
                     return $keyword == $text;
             }
