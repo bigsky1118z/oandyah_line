@@ -22,6 +22,13 @@
                         {{-- <td>{{ $reply->status }}</td> --}}
                         <td><x-web.messages :messages="$reply->messages" /></td>
                         <td>
+                            <ul>
+                                @foreach ($reply->conditions as $condition)
+                                    <li>{{ $condition }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td>
                             <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ $reply->id }}'">複製</button>
                             <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ $reply->id }}'">詳細</button>
                         </td>
