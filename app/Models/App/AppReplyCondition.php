@@ -24,11 +24,16 @@ class AppReplyCondition extends Model
         "default"   =>  "boolean",
     ];
 
-    static function get_keywords($app_id)
-    {
-        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType("message")->whereEnable(true)->whereNotNull("condition->keyword")->get();
-        $keywords   =   $conditions->pluck("condition");
-        return $keywords;
 
+    static function message($app_id, $text)
+    {
+        $conditions =   AppReplyCondition::conditions($app_id, "message");
+        $keywords   =   $conditions->pluck("condition")->map(fn($condition)=>$condition["keyword"] ?? null)->filter(fn($condition)=>$condition);
+        return $keywords;
+    }
+
+    static function conditions($app_id, $type)
+    {
+        return AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->get();
     }
 }
