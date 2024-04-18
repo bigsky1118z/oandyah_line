@@ -40,7 +40,7 @@ class AppReplyCondition extends Model
 
     static function find_reply($app_id, $type, $text = null)
     {
-        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->get();
+        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
         $result     =   $conditions->filter(function($condition) use($text) {
             $keyword    =   $condition->condition["keyword"]    ?? null;
             $match      =   $condition->condition["match"]      ?? null;
@@ -57,7 +57,7 @@ class AppReplyCondition extends Model
                 default:
                     return $keyword == $text;
             }
-        })->sortBy("priority")->sortByDesc("id")->first();
+        })->first();
 
         return $result;
     }
