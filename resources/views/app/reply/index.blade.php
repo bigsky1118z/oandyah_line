@@ -16,17 +16,19 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->replies as reply)
+                <tr>
+                    <td>{{ $app->replies }}</td>
+                </tr>
+                {{-- @foreach ($app->replies as reply)
                     <tr>
                         <td>{{ reply->name }}</td>
-                        {{-- <td>{{ reply->status }}</td> --}}
                         <td><x-web.messages :messages="reply->messages" /></td>
                         <td>
                             <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ reply->id }}'">複製</button>
                             <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ reply->id }}'">詳細</button>
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </x-slot>
