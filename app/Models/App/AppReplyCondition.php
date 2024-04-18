@@ -46,7 +46,7 @@ class AppReplyCondition extends Model
     {
         $query      =   AppReplyCondition::whereAppId($app_id)->whereType("follow")->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
         if($refollow){
-            $query->where("condition.refollow",true);
+            $query->where("condition->refollow",true);
         }
         $condition  =   $query->first();
         return $condition->reply ?? new AppReply();
