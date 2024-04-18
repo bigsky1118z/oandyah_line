@@ -82,7 +82,8 @@ class AppWebhook extends Model
                 break;
         }
         if(!$reply->messages){
-            // $reply  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
+            $default    =   $app->reply_condition_defaults->where("type",$type)->first();
+            $reply      =   $default ? $default->reply : new AppReply();
         }
         if($reply->messages){
             AppSend::Create(array(
