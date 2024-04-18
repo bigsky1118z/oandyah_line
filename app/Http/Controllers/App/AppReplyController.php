@@ -14,10 +14,8 @@ class AppReplyController extends Controller
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name)->app;
         $data   =   array(
-            "user"      =>  $user,
-            "app"       =>  $app,
-            "message"   =>  AppReplyCondition::find_reply_message($app->id, "新澤菜央"),
-            "postback"  =>  AppReplyCondition::find_reply_postback($app->id, "function=menu&menu=food&id=1&action=confirm"),
+            "user"  =>  $user,
+            "app"   =>  $app,
         );
         return view("app.reply.index", $data);
     }

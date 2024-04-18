@@ -63,6 +63,11 @@ class AppReplySeeder extends Seeder
                                 "label" =>   "どっちもみんな興味",
                                 "data"  =>   "function=menu&menu=1",
                             ),
+                            array(
+                                "type"  =>   "postback",
+                                "label" =>   "しんしん",
+                                "data"  =>   "function=tarot&menu=1",
+                            ),
                         ),
                     ),
                 ),

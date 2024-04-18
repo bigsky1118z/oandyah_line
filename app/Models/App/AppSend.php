@@ -26,7 +26,6 @@ class AppSend extends Model
         "filter",
         "limit",
 
-        // "app_message_id",
 
 
         "notification_disabled",
@@ -50,11 +49,6 @@ class AppSend extends Model
     {
         return $this->belongsTo(App::class);
     }
-
-    // public function message()
-    // {
-    //     return $this->belongsTo(AppMessage::class,"app_message_id","id")->whereAppId($this->app->id);
-    // }
 
     public function get_friend()
     {
