@@ -39,6 +39,7 @@ class AppReplyCondition extends Model
     public function get_match()
     {
         $match  =   $this->condition["match"] ?? null;
+        return $match;
         return $this->matches[$match] ?? null;
     }
 

@@ -44,7 +44,7 @@
             </tbody>
         </table>
         <p>{{ $message ?? null }}</p>
-        <p>{{ json_encode($postback) ?? null }}</p>
+        <p>{{ $postback ?? null }}</p>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
