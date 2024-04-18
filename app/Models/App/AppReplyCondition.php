@@ -2,6 +2,7 @@
 
 namespace App\Models\App;
 
+use App\Models\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,10 +38,10 @@ class AppReplyCondition extends Model
         return $this->matches[$match] ?? null;
     }
 
-    static function find_message($app_id, $type, $text = null)
+    static function find_reply($app_id, $type, $text = null)
     {
         $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->get();
-        $results    =   $conditions->filter(function($condition) use($text) {
+        $result     =   $conditions->filter(function($condition) use($text) {
             $keyword    =   $condition->condition["keyword"]    ?? null;
             $match      =   $condition->condition["match"]      ?? null;
             switch($match){
@@ -56,7 +57,10 @@ class AppReplyCondition extends Model
                 default:
                     return $keyword == $text;
             }
-        })->sortBy("priority");
-        return $results;
+        })->sortBy("priority")->sortBy("id")->first();
+        if(count($result)){            
+            $message    =   AppReply::whereAppId($app_id)->whereAppReplyId($result["app_reply_id"])->first();
+        }
+        return $result;
     }
 }
