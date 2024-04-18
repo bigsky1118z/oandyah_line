@@ -81,13 +81,6 @@ class AppReplySeeder extends Seeder
                     "text"  =>  "新澤菜央様がいれば世界が平和です。",
                 ),
             ],
-            "condition" =>  array(
-                "type"      =>  "message",
-                "keyword"   =>  "しんしん",
-            ),
-            "priority"  =>  2,
-            "enable"    =>  true,
-            "default"   =>  false,
         ));
         $condition  =   array(
             "keyword"   =>  "しんしん",
