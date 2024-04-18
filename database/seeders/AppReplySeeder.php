@@ -83,11 +83,6 @@ class AppReplySeeder extends Seeder
             ],
         ));
         $condition  =   array(
-            "keyword"   =>  "新澤菜央",
-            "match"     =>  "exact_match",
-        );
-        $reply->set_condition("message", $condition, 1, true, false);
-        $condition  =   array(
             "keyword"   =>  "新澤",
             "match"     =>  "forward_match",
         );
@@ -102,6 +97,11 @@ class AppReplySeeder extends Seeder
             "match"     =>  "partial_match",
         );
         $reply->set_condition("message", $condition, 1000, true, false);
+        $condition  =   array(
+            "keyword"   =>  "新澤菜央",
+            "match"     =>  "exact_match",
+        );
+        $reply->set_condition("message", $condition, 1, true, false);
 
 
         $reply    =   AppReply::Create(array(
