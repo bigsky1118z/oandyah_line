@@ -12,7 +12,7 @@
                     <th style="width:100px;">名前</th>
                     {{-- <th style="width:100px;">ステータス</th> --}}
                     <th style="width:280px;">返答メッセージ</th>
-                    <th style="width:250px;">条件</th>
+                    <th style="width:300px;">条件</th>
                     <th style="width:100px;">操作</th>
                 </tr>
             </thead>    
@@ -28,8 +28,8 @@
                                     <li>
                                         <dl style="display:flex;">
                                             <dd style="width:75px">{{ $condition->type }}</dd>
-                                            <dd style="width: 75px">{{ $condition->condition["match"] ?? null }}</dd>
-                                            <dd style="width: auto">{{ $condition->condition["keyword"] ?? null }}</dd>
+                                            <dd style="width: 100px">{{ $condition->condition["match"] ?? null }}</dd>
+                                            <dd style="width: 125px">{{ $condition->condition["keyword"] ?? null }}</dd>
                                         </dl>
                                     </li>
                                 @endforeach
