@@ -102,12 +102,21 @@ body > main h4 * {
     font-size: 18px;
 }
 
+/* ul#ul-messages */
 body> main ul.ul-messages > li {
     width: 250px;
     height: auto;
     border: 1px solid #000000;
     border-radius: 10px;
     padding: 5px;
+}
+
+body> main ul.ul-messages > li.li-messages-template > dl.li-messages-template-buttons > dd.li-messages-template-buttons-actions > dl > dd  {
+    text-align: center;
+}
+body> main ul.ul-messages > li.li-messages-template > dl.li-messages-template-buttons > dd.li-messages-template-buttons-actions > dl > dd:hover  {
+    background-color: #EEEEEE;
+    cursor: pointer;
 }
 
 

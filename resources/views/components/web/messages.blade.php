@@ -2,10 +2,10 @@
     @foreach ($messages as $message)
         @switch($message["type"])
             @case("text")
-                <li><x-web.messages.text :text="$message['text']" /></li>
+                <li class="li-messages-text"><x-web.messages.text :text="$message['text']" /></li>
                 @break
             @case("template")                                            
-                <li><x-web.messages.template :template="$message['template']" /></li>
+                <li class="li-messages-template"><x-web.messages.template :template="$message['template']" /></li>
                 @break
             @default
                 @break
