@@ -43,7 +43,7 @@
                 @endforeach
             </tbody>
         </table>
-        <p>{{ json_encode($keywords) ?? null }}</p>
+        <p>{{ json_encode($conditons) ?? null }}</p>
     </x-slot>
     <x-slot name="footer">
     </x-slot>

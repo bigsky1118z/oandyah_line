@@ -25,9 +25,9 @@ class AppReplyCondition extends Model
     ];
 
 
-    static function message($app_id, $text = null)
+    static function get_condition($app_id, $type, $text = null)
     {
-        $conditions =   AppReplyCondition::conditions($app_id, "message");
+        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->get();;
         $results    =   $conditions->filter(function($condition) use($text) {
             $keyword    =   $condition->condition["keyword"]    ?? null;
             $match      =   $condition->condition["match"]      ?? null;
@@ -40,10 +40,5 @@ class AppReplyCondition extends Model
             }
         });
         return $results;
-    }
-
-    static function conditions($app_id, $type)
-    {
-        return AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->get();
     }
 }

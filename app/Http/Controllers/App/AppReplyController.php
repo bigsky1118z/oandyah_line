@@ -16,7 +16,7 @@ class AppReplyController extends Controller
         $data   =   array(
             "user"      =>  $user,
             "app"       =>  $app,
-            "keywords"  =>  AppReplyCondition::message($app->id, ""),
+            "conditons" =>  AppReplyCondition::check_condition($app->id, "message", "しんしん"),
         );
         return view("app.reply.index", $data);
     }
