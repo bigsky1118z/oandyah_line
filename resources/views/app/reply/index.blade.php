@@ -27,12 +27,14 @@
                                 @foreach ($reply->conditions as $condition)
                                     <li>
                                         <dl style="display:flex;">
-                                            <dd style="width:75px">{{ $condition->type }}</dd>
-                                            <dd style="width: 125px">{{ $condition->get_match() ?? null }}</dd>
-                                            <dd style="width: 125px">{{ $condition->condition["keyword"] ?? null }}</dd>
+                                            <dd style="width: 75px">{{ $condition->type }}</dd>
+                                            <dd style="width: 75px">{{ $condition->get_match() ?? null }}</dd>
+                                            <dd style="width: 150px">{{ $condition->condition["keyword"] ?? null }}</dd>
+                                            <dd style="width: 50px"><button type="button">編集</button></dd>
                                         </dl>
                                     </li>
                                 @endforeach
+                                <li><button type="button">新規条件追加</button></li>
                             </ul>
                         </td>
                         <td>
