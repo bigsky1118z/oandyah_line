@@ -61,16 +61,16 @@ class AppReplyCondition extends Model
             $match      =   $condition->condition["match"]      ?? null;
             switch($match){
                 case "forward_match":
-                    return strpos($text, $keyword) === 0;
+                    return $text && strpos($text, $keyword) === 0;
                 case "backward_match":
                     $keyword_length = strlen($keyword);
                     $text_length    = strlen($text);
-                    return $keyword_length <= $text_length ? substr($text, -$keyword_length) === $keyword : false;
+                    return $text && $keyword_length <= $text_length ? substr($text, -$keyword_length) === $keyword : false;
                 case "partial_match":
-                    return strpos($text, $keyword) !== false;
+                    return $text && strpos($text, $keyword) !== false;
                 case "exact_match":
                 default:
-                    return $keyword == $text;
+                    return $text && $keyword == $text;
             }
         })->first();
         return $condition->reply ?? new AppReply();

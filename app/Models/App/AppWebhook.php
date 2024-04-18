@@ -72,7 +72,7 @@ class AppWebhook extends Model
         switch($type){
             case("follow")  :
                 $reply  =   AppReplyCondition::find_reply_follow($app->id);
-                break;
+                // break;
             case("message") :
                 $text   =   $this->event["message"]["text"] ?? null;
                 $reply  =   AppReplyCondition::find_reply_message($app->id, $text);
