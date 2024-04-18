@@ -42,9 +42,10 @@ class AppReplyCondition extends Model
         return $this->matches[$match] ?? null;
     }
 
-    static function find_reply($app_id, $type, $text = null)
+
+    static function find_reply_message($app_id, $text = null)
     {
-        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
+        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType("message")->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
         $condition  =   $conditions->filter(function($condition) use($text) {
             $keyword    =   $condition->condition["keyword"]    ?? null;
             $match      =   $condition->condition["match"]      ?? null;
@@ -61,6 +62,18 @@ class AppReplyCondition extends Model
                 default:
                     return $keyword == $text;
             }
+        })->first();
+        return $condition->reply ?? new AppReply();
+    }
+
+    static function find_reply_postback($app_id, $data = null)
+    {
+        parse_str($data, $params);
+        return $params;
+        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType("message")->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
+        $condition  =   $conditions->filter(function($condition) use($data) {
+            $keyword    =   $condition->condition["keyword"]    ?? null;
+            $match      =   $condition->condition["match"]      ?? null;
         })->first();
         return $condition->reply ?? new AppReply();
     }

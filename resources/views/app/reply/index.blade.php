@@ -43,7 +43,8 @@
                 @endforeach
             </tbody>
         </table>
-        <p>{{ $conditons ?? null }}</p>
+        <p>{{ $message ?? null }}</p>
+        <p>{{ json_encode($postback) ?? null }}</p>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
