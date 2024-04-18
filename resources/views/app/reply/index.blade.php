@@ -16,9 +16,11 @@
                 </tr>
             </thead>    
             <tbody>
-                <tr>
-                    <td>{{ $app->replies }}</td>
-                </tr>
+                @foreach ($app->replies as $reply)
+                    <tr>
+                        <td>{{ $reply }}</td>
+                    </tr>                    
+                @endforeach
                 {{-- @foreach ($app->replies as reply)
                     <tr>
                         <td>{{ reply->name }}</td>
