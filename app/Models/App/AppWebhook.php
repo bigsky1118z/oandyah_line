@@ -70,6 +70,8 @@ class AppWebhook extends Model
         $friend     =   $this->get_friend();
         $reply      =   new AppReply();
         switch($type){
+            case("follow")  :
+                $reply  =   AppReplyCondition::find_reply_follow($app->id);
             case("message") :
                 $text   =   $this->event["message"]["text"] ?? null;
                 $reply  =   AppReplyCondition::find_reply_message($app->id, $text);
@@ -79,19 +81,6 @@ class AppWebhook extends Model
                 $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
                 break;
         }
-        // switch($type){
-        //     case("message"):
-        //         $text   =   $this->event["message"]["text"] ?? null;
-        //         $query->where(function ($query) use ($text) {
-        //             $query
-        //                 // ->orWhere(fn ($query) => $query->where("condition->match", "forward_match")->where("condition->keyword", "like", $text . "%"))
-        //                 // ->orWhere(fn ($query) => $query->where("condition->match", "backward_match")->where("condition->keyword", "like", "%" . $text))
-        //                 // ->orWhere(fn ($query) => $query->where("condition->match", "partial_match")->where("condition->keyword", "like", "%" . $text . "%"))
-        //                 ->orWhere(fn ($query) => $query->where("condition->match", "exact_match")->where("condition->keyword", "=", $text));
-        //         });
-          
-        //         break;
-        // }
         if(!$reply->messages){
             // $reply  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
         }

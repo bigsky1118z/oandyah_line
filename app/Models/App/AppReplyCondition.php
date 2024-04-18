@@ -42,6 +42,16 @@ class AppReplyCondition extends Model
         return self::$matches[$match] ?? null;
     }
 
+    static function find_reply_follow($app_id, $refollow = false)
+    {
+        $query      =   AppReplyCondition::whereAppId($app_id)->whereType("follow")->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
+        if($refollow){
+            $query->where("condition.refollow",true);
+        }
+        $condition  =   $query->first();
+        return $condition->reply ?? new AppReply();
+    }
+
 
     static function find_reply_message($app_id, $text = null)
     {
