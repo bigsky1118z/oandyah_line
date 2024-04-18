@@ -68,11 +68,17 @@ class AppWebhook extends Model
         $app        =   $this->app;
         $type       =   $this->event["type"] ?? null;
         $friend     =   $this->get_friend();
-        $query      =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type);
-        $text       =   $this->event["message"]["text"] ?? null;
-        $query->when($type=="message", function ($query) use ($text) {
-            $query->where("condition->keyword", "=", $text);
-        });
+        $reply      =   new AppReply();
+        switch($type){
+            case("message") :
+                $text   =   $this->event["message"]["text"] ?? null;
+                $reply  =   AppReplyCondition::find_reply_message($app->id, $text);
+                break;
+            case("postback") :
+                $data   =   $this->event["postback"]["data"] ?? null;
+                $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
+                break;
+        }
         // switch($type){
         //     case("message"):
         //         $text   =   $this->event["message"]["text"] ?? null;
@@ -86,18 +92,16 @@ class AppWebhook extends Model
           
         //         break;
         // }
-        if($query->doesntExist()){
-            $query  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
+        if(!$reply->messages){
+            // $reply  =   AppMessage::whereAppId($app->id)->whereEnable(true)->where("condition->type",$type)->whereDefault(true);
         }
-        $message   =   $query->orderBy("priority")->first();
-        if($message){
+        if($reply->messages){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
                 "friend_id"         =>  $friend->friend_id,
                 "type"              =>  "reply",
                 "reply_token"       =>  $this->get_reply_token(),
-                "messages"          =>  $message->messages,
-                "app_message_id"    =>  $message->id,
+                "messages"          =>  $reply->messages,
             ))->post_bot_message();
         }
         return;

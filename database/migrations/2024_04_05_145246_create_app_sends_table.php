@@ -31,7 +31,7 @@ return new class extends Migration
             $table->json("limit")->nullable();
 
             $table->json("messages")->nullable();
-            $table->foreignIdFor(AppReply::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            // $table->foreignIdFor(AppReply::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
     
             $table->boolean("notification_disabled")->default(0);
             $table->string("custom_aggregation_units")->nullable();
