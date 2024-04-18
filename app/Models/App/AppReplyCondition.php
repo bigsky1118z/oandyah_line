@@ -25,7 +25,7 @@ class AppReplyCondition extends Model
     ];
 
 
-    static function get_condition($app_id, $type, $text = null)
+    static function find_message($app_id, $type, $text = null)
     {
         $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->get();;
         $results    =   $conditions->filter(function($condition) use($text) {
