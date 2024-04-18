@@ -62,6 +62,6 @@ class AppReplyCondition extends Model
                     return $keyword == $text;
             }
         })->first();
-        return $condition->reply ?? array();
+        return $condition->reply ?? new AppReply();
     }
 }
