@@ -32,8 +32,8 @@ class AppReplyCondition extends Model
     );
 
     public function get_match()
-    {    
-        return $matches[$this->condition["match"]] ?? null;
+    {
+        return $this->matches[$this->condition["match"]] ?? null;
     }
 
     static function find_message($app_id, $type, $text = null)
