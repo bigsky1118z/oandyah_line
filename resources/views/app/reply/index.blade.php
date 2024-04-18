@@ -16,7 +16,7 @@
                 </tr>
             </thead>    
             <tbody>
-                @foreach ($app->replies as reply)
+                @foreach ($app->replies as $reply)
                     <tr>
                         <td>{{ $reply->name }}</td>
                         {{-- <td>{{ $reply->status }}</td> --}}
