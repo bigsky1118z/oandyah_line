@@ -58,9 +58,9 @@ class AppReplyCondition extends Model
                     return $keyword == $text;
             }
         })->sortBy("priority")->sortBy("id")->first();
-        if(count($result)){            
-            $message    =   AppReply::whereAppId($app_id)->whereAppReplyId($result["app_reply_id"])->first();
-        }
+        // if(count($result)){            
+        //     $message    =   AppReply::whereAppId($app_id)->whereAppReplyId($result["app_reply_id"])->first();
+        // }
         return $result;
     }
 }
