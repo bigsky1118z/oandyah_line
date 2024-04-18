@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\App\AppFriend;
 use App\Models\App\AppReply;
+use App\Models\App\AppReplyCondition;
 use App\Models\App\AppSend;
 use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,10 +52,15 @@ class App extends Model
     {
         return $this->hasMany(AppReply::class);
     }
-    public function reply($reply_id)
+    public function reply_conditions()
     {
-        return $this->hasOne(AppReply::class)->whereAppId($this->id)->whereId($reply_id)->first();
+        return $this->hasMany(AppReplyCondition::class);
     }
+    public function reply_condition_defults()
+    {
+        return $this->hasMany(AppReplyCondition::class)->whereEnable(true)->whereDefault(true)->orderBy("priority");
+    }
+    
 
 
     public function sends()
