@@ -72,7 +72,7 @@ class AppWebhook extends Model
         switch($type){
             case("follow")  :
                 $reply  =   AppReplyCondition::find_reply_follow($app->id);
-                // break;
+                break;
             case("message") :
                 $text   =   $this->event["message"]["text"] ?? null;
                 $reply  =   AppReplyCondition::find_reply_message($app->id, $text);
@@ -82,10 +82,10 @@ class AppWebhook extends Model
                 $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
                 break;
         }
-        // if(!$reply->messages){
-        //     $default    =   $app->reply_condition_defaults->where("type",$type)->first();
-        //     $reply      =   $default ? $default->reply : new AppReply();
-        // }
+        if(!$reply->messages){
+            $default    =   $app->reply_condition_defaults->where("type",$type)->first();
+            $reply      =   $default ? $default->reply : new AppReply();
+        }
         if($reply->messages){
             AppSend::Create(array(
                 "app_id"            =>  $app->id,
