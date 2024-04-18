@@ -57,10 +57,8 @@ class AppReplyCondition extends Model
                 default:
                     return $keyword == $text;
             }
-        })->sortBy("priority")->sortBy("id")->first();
-        // if(count($result)){            
-        //     $message    =   AppReply::whereAppId($app_id)->whereAppReplyId($result["app_reply_id"])->first();
-        // }
+        })->sortBy("priority")->sortByDesc("id")->first();
+
         return $result;
     }
 }
