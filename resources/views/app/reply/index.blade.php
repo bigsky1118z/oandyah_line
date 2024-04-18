@@ -29,7 +29,7 @@
                                         <dl style="display:flex;">
                                             <dd style="width: 75px">{{ $condition->type }}</dd>
                                             <dd style="width: 75px">{{ $condition->get_match() ?? null }}</dd>
-                                            <dd style="width: 150px">{{ $condition->condition["keyword"] ?? null }}</dd>
+                                            <dd style="width: 100px">{{ $condition->condition["keyword"] ?? null }}</dd>
                                             <dd style="width: 50px"><button type="button">編集</button></dd>
                                         </dl>
                                     </li>
