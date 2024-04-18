@@ -25,11 +25,21 @@ class AppReplyCondition extends Model
     ];
 
 
-    static function message($app_id, $text)
+    static function message($app_id, $text = null)
     {
         $conditions =   AppReplyCondition::conditions($app_id, "message");
-        $keywords   =   $conditions->pluck("condition")->map(fn($condition)=>$condition["keyword"] ?? null)->filter(fn($condition)=>$condition);
-        return $keywords;
+        $results    =   $conditions->filter(function($condition) use($text) {
+            $keyword    =   $condition->condition["keyword"]    ?? null;
+            $match      =   $condition->condition["match"]      ?? null;
+            switch($match){
+                case"partial_match":
+                    return false;
+                case"exact_match":
+                default:
+                    return $keyword == $text;
+            }
+        });
+        return $results;
     }
 
     static function conditions($app_id, $type)
