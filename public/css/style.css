@@ -111,10 +111,10 @@ body> main ul.ul-messages > li {
     padding: 5px;
 }
 
-body> main ul.ul-messages > li.li-messages-template > dl.li-messages-template-buttons > dd.li-messages-template-buttons-actions > dl > dd  {
+body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-buttons > dd.dd-messages-template-buttons-actions > dl > dd  {
     text-align: center;
 }
-body> main ul.ul-messages > li.li-messages-template > dl.li-messages-template-buttons > dd.li-messages-template-buttons-actions > dl > dd:hover  {
+body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-buttons > dd.dd-messages-template-buttons-actions > dl > dd:hover  {
     background-color: #EEEEEE;
     cursor: pointer;
 }
