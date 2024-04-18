@@ -27,7 +27,8 @@
                                 @foreach ($reply->conditions as $condition)
                                     <li>
                                         <dl style="display:flex;">
-                                            <dd style="width:100px">{{ $condition->type }}</dd>
+                                            <dd style="width:75px">{{ $condition->type }}</dd>
+                                            <dd style="width: 75px">{{ $condition->condition["match"] ?? null }}</dd>
                                             <dd style="width: auto">{{ $condition->condition["keyword"] ?? null }}</dd>
                                         </dl>
                                     </li>
