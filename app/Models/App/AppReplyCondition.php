@@ -25,13 +25,17 @@ class AppReplyCondition extends Model
         "default"   =>  "boolean",
     ];
 
+    public function reply()
+    {
+        return $this->belongsTo(AppReply::class, "app_reply_id", "id");
+    }
+
     static $matches =   array(
         "forward_match"     =>  "前方一致",
         "backward_match"    =>  "後方一致",
         "partial_match"     =>  "部分一致",
         "exact_match"       =>  "完全一致",
     );
-
     public function get_match()
     {
         $match  =   $this->condition["match"] ?? null;
@@ -41,7 +45,7 @@ class AppReplyCondition extends Model
     static function find_reply($app_id, $type, $text = null)
     {
         $conditions =   AppReplyCondition::whereAppId($app_id)->whereType($type)->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
-        $result     =   $conditions->filter(function($condition) use($text) {
+        $condition  =   $conditions->filter(function($condition) use($text) {
             $keyword    =   $condition->condition["keyword"]    ?? null;
             $match      =   $condition->condition["match"]      ?? null;
             switch($match){
@@ -58,7 +62,7 @@ class AppReplyCondition extends Model
                     return $keyword == $text;
             }
         })->first();
+    return        $condition->reply;
 
-        return $result;
     }
 }
