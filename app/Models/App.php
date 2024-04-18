@@ -56,7 +56,7 @@ class App extends Model
     {
         return $this->hasMany(AppReplyCondition::class);
     }
-    public function reply_condition_defults()
+    public function reply_condition_defaults()
     {
         return $this->hasMany(AppReplyCondition::class)->whereEnable(true)->whereDefault(true)->orderBy("priority");
     }
