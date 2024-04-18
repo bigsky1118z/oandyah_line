@@ -49,7 +49,7 @@ class App extends Model
 
     public function replies()
     {
-        return $this->hasMany(AppReply::class)->orderByDesc("default")->orderByDesc("enable")->orderBy("priority")->orderBy("id");
+        return $this->hasMany(AppReply::class);
     }
     public function reply($reply_id)
     {
