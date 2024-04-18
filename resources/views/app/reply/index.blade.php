@@ -6,7 +6,6 @@
     </x-slot>
     <x-slot name="main">
         <h2>メッセージ一覧 - TOP</h2>
-    @foreach ($app->replies as reply)
         <table>
             <thead>
                 <tr>
@@ -17,16 +16,19 @@
                 </tr>
             </thead>    
             <tbody>
-                <tr>
-                    <td>{{ reply->name }}</td>
-                    {{-- <td>{{ reply->status }}</td> --}}
-                    <td><x-web.messages :messages="reply->messages" /></td>
-                    <td>
-                        <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ reply->id }}'">複製</button>
-                        <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ reply->id }}'">詳細</button>
-                    </td>
-                </tr>
-    @endforeach
+                @foreach ($app->replies as reply)
+                    <tr>
+                        <td>{{ reply->name }}</td>
+                        {{-- <td>{{ reply->status }}</td> --}}
+                        <td><x-web.messages :messages="reply->messages" /></td>
+                        <td>
+                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ reply->id }}'">複製</button>
+                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ reply->id }}'">詳細</button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
