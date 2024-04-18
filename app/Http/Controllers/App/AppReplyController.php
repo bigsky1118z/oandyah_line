@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App;
 
 use App\Models\App\AppReply;
+use App\Models\App\AppReplyCondition;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class AppReplyController extends Controller
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name)->app;
         $data   =   array(
-            "user"  =>  $user,
-            "app"   =>  $app,
+            "user"      =>  $user,
+            "app"       =>  $app,
+            "keywords"  =>  AppReplyCondition::get_keywords($app->id),
         );
         return view("app.reply.index", $data);
     }

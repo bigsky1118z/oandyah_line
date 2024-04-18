@@ -24,7 +24,7 @@ class AppReplyCondition extends Model
         "default"   =>  "boolean",
     ];
 
-    static function keywords($app_id)
+    static function get_keywords($app_id)
     {
         $conditions =   AppReplyCondition::whereAppId($app_id)->whereType("message")->whereEnable(true)->whereNotNull("condition->keyword");
         return $conditions;
