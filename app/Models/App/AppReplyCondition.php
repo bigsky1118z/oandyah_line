@@ -33,7 +33,7 @@ class AppReplyCondition extends Model
             $match      =   $condition->condition["match"]      ?? null;
             switch($match){
                 case"partial_match":
-                    return false;
+                    return strpos($text, $keyword) !== false;
                 case"exact_match":
                 default:
                     return $keyword == $text;
