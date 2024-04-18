@@ -31,7 +31,7 @@ class AppReplyCondition extends Model
         "exact_match"       =>  "完全一致",
     );
 
-    public function get_message_match()
+    public function get_match()
     {    
         return $matches[$this->condition["match"]] ?? null;
     }

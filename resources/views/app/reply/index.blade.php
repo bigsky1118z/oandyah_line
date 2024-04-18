@@ -28,7 +28,7 @@
                                     <li>
                                         <dl style="display:flex;">
                                             <dd style="width:75px">{{ $condition->type }}</dd>
-                                            <dd style="width: 125px">{{ $condition->condition["match"] ?? null }}</dd>
+                                            <dd style="width: 125px">{{ $condition->get_match() ?? null }}</dd>
                                             <dd style="width: 125px">{{ $condition->condition["keyword"] ?? null }}</dd>
                                         </dl>
                                     </li>
