@@ -69,12 +69,9 @@ class AppReplyCondition extends Model
     static function find_reply_postback($app_id, $data = null)
     {
         parse_str($data, $params);
-        return $params;
-        $conditions =   AppReplyCondition::whereAppId($app_id)->whereType("message")->whereEnable(true)->orderBy("priority")->orderByDesc("id")->get();
-        $condition  =   $conditions->filter(function($condition) use($data) {
-            $keyword    =   $condition->condition["keyword"]    ?? null;
-            $match      =   $condition->condition["match"]      ?? null;
-        })->first();
+        $query  =   AppReplyCondition::whereAppId($app_id)->whereType("postback")->whereEnable(true)->orderBy("priority")->orderByDesc("id");
+        $query->when(isset($params["function"]),fn($query)=> $query->where("condition->function",$params["function"]));
+        $condition  =   $query->first();
         return $condition->reply ?? new AppReply();
     }
 }
