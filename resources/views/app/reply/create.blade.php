@@ -22,9 +22,11 @@
                         <tr>
                             <td>
                                 <select name="messages[{{ $i }}][type]" onchange="confirm_change(this);" @required($i===1)>
-                                    <option value="">---</option>
+                                    @if ($i !== 1)
+                                        <option value="">---</option>
+                                    @endif
                                     <option value="text" @selected($i===1)>テキスト</option>
-                                    {{-- <option value="template">テンプレート</option> --}}
+                                    <option value="template">テンプレート</option>
                                 </select>
                             </td>
                             <td>
