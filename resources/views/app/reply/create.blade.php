@@ -65,7 +65,7 @@
                     select.setAttribute("data-previous-value", value);
                     const div   =   document.getElementById(`messages-sumple-${value}`).cloneNode(true);
                     div.id      =   `messages-${index}-${value}`;
-                    div.children.forEach(child=>{
+                    div.querySelectorAll("textarea").forEach(child=>{
                         child.name  =   child.name.replace("sumple",index);
                     });
                     const td    =   document.getElementById(`td-messages-${index}-message`);
