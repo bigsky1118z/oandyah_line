@@ -42,6 +42,8 @@
     </x-slot>
     <x-slot name="footer">
     </x-slot>
+    <x-slot name="hidden">
+    </x-slot>
     <x-slot name="script">
         <script>
             function confirm_change(select){

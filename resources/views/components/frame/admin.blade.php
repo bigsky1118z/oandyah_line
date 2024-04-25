@@ -31,10 +31,10 @@
         <main>
             {{ $main ?? null }}
             {{ $slot }}
+            <div class="hidden" style="display: none;">
+                {{ $hidden ?? null }}
+            </div>
         </main>
-        {{-- <div style="display:none;">
-            {{ isset($hidden) ? $hidden :null }}
-        </div> --}}
         <footer>
             {{ $footer ?? null }}
             <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</div>
