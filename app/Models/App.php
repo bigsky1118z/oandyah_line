@@ -52,6 +52,12 @@ class App extends Model
     {
         return $this->hasMany(AppReply::class);
     }
+    public function reply($id)
+    {
+        return $this->hasOne(AppReply::class)->whereId($id)->first();
+    }
+
+
     public function reply_conditions()
     {
         return $this->hasMany(AppReplyCondition::class);
