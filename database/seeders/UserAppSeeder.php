@@ -22,5 +22,11 @@ class UserAppSeeder extends Seeder
         ),array(
             "role"      =>  "admin",
         ));
+        UserApp::updateOrCreate(array(
+            "user_id"   =>  $user->id,
+            "app_id"    =>  App::whereName("jinguji_ozora")->first()->id,
+        ),array(
+            "role"      =>  "admin",
+        ));
     }
 }
