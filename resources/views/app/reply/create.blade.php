@@ -21,7 +21,7 @@
                     @for ($i = 1; $i <= 5; $i++)
                         <tr>
                             <td>
-                                <select name="messages[{{ $i }}][type]" onchange="confirm_change(this);" @required($i===1)>
+                                <select name="messages[{{ $i }}][type]" onchange="confirm_change(this);" data-previous-value="{{ $i===1 ? "text" : "" }}" @required($i===1)>
                                     @if ($i !== 1)
                                         <option value="">---</option>
                                     @endif
@@ -31,7 +31,7 @@
                             </td>
                             <td>
                                 @if ($i===1)
-                                    <textarea name="messages[{{ $i }}][text]" cols="30" rows="10"></textarea>
+                                    <textarea name="messages[{{ $i }}][text]" cols="50" rows="5"></textarea>
                                 @endif
                             </td>
                         </tr>
@@ -51,6 +51,7 @@
                     const name      =   select.name;
                     console.log("true", value);
                 } else {
+                    select.value    =   select.getAttribute("data-previous-value");
                     console.log("false", value);
                 }
             }
