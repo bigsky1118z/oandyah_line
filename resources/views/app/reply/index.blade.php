@@ -5,11 +5,14 @@
     <x-slot name="header">
     </x-slot>
     <x-slot name="main">
-        <h2>メッセージ一覧 - TOP</h2>
-        <h3>デフォルト返信</h3>
+        <h2>{{ $app->display_name }}</h2>
+        <h3>自動返信 一覧</h3>
+        {{-- <h3>デフォルト返信</h3>
         @foreach (["follow","message","postback"] as $type)
             <p>{{ $type }}{{ $app->reply_condition_defaults->where("type",$type)->first() }}</p>
-        @endforeach
+        @endforeach --}}
+        <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create'">新規作成</button>
+        <h3></h3>
         <table>
             <thead>
                 <tr>
