@@ -63,7 +63,7 @@
                 const result    =   window.confirm("タイプを変更すると対象のメッセージの内容が失われます。\nタイプを変更しますか？");
                 if(result || previous == ""){
                     select.setAttribute("data-previous-value", value);
-                    const div   =   document.getElementById(`messages-sumple-${value}`).clone();
+                    const div   =   document.getElementById(`messages-sumple-${value}`).cloneNode();
                     div.id      =   `messages-${index}-${value}`;
                     document.getElementById(`td-messages-${id}-message`).innerHTML = div;
                 } else {
