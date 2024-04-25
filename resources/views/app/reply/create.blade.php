@@ -21,10 +21,10 @@
                     @for ($i = 1; $i <= 5; $i++)
                         <tr>
                             <td>
-                                <select name="messages[{{ $i }}][type]" @required($i===1)>
+                                <select name="messages[{{ $i }}][type]" onchange="confirm_change(this);" @required($i===1)>
                                     <option value="">---</option>
                                     <option value="text" @selected($i===1)>テキスト</option>
-                                    <option value="template">テンプレート</option>
+                                    {{-- <option value="template">テンプレート</option> --}}
                                 </select>
                             </td>
                             <td>
@@ -41,5 +41,17 @@
     <x-slot name="footer">
     </x-slot>
     <x-slot name="script">
+        <script>
+            function confirm_change(select){
+                const value     =   select.value;
+                const result    =   window.confirm("タイプを変更すると対象のメッセージの内容が失われます。\nタイプを変更しますか？");
+                if(result || value ==""){
+                    const name      =   select.name;
+                    console.log("true", value);
+                } else {
+                    console.log("false", value);
+                }
+            }
+        </script>
     </x-slot>
 </x-frame.web>

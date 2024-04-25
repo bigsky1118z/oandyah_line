@@ -38,6 +38,7 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
         });
         Route::prefix("reply")->group(function(){
             Route::get("/",[AppReplyController::class,"index"]);
+            Route::post("/",[AppReplyController::class,"store"]);
             Route::get("create",[AppReplyController::class,"create"]);
             Route::get("{id}",[AppReplyController::class,"show"]);
         });

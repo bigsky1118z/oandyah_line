@@ -37,6 +37,12 @@ class AppReplyController extends Controller
             "reply"   =>  $app->reply($id),
         );
         return view("app.reply.create", $data);
+    }
+
+    public function store(Request $request, $user_name, $app_name, $id = null)
+    {
+        return $request->all();
+        return redirect("/$user_name/app/$app_name/reply");
 
     }
 }
