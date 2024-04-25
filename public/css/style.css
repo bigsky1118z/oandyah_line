@@ -50,6 +50,10 @@ input[type="submit"],button:hover {
     cursor: pointer;
 }
 
+textarea {
+    resize: none;
+}
+
 /* color */
 body > header > a > h1 {
     color: #FFFFFF;
