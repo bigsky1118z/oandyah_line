@@ -65,7 +65,11 @@
                     select.setAttribute("data-previous-value", value);
                     const div   =   document.getElementById(`messages-sumple-${value}`).cloneNode();
                     div.id      =   `messages-${index}-${value}`;
-                    document.getElementById(`td-messages-${index}-message`).innerHTML = div;
+                    const td    =   document.getElementById(`td-messages-${index}-message`);
+                    while(td.firstChild){
+                        td.removeChild(td.firstChild);
+                    }
+                    td.appendChild(div);
                 } else {
                     select.value    =   previous;
                 }
