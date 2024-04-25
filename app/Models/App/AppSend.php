@@ -69,13 +69,16 @@ class AppSend extends Model
             "Authorization" =>  "Bearer $app->channel_access_token",
             "Content-Type"  =>  "application/json",
         );
+        $friend     =   $this->get_friend();
+        $messages   =   $this->messages ??  array();
+        $messages   =   $this->convert_messages($messages, $friend);
         $data       =   array(
             "replyToken"                =>  $this->reply_token              ??  null,
-            "to"                        =>  $this->get_friend()->id         ??  null,
+            "to"                        =>  $friend->id                     ??  null,
             "recipient"                 =>  $this->recipient                ??  null,
             "filter"                    =>  $this->filter                   ??  null,
             "limit"                     =>  $this->limit                    ??  null,
-            "messages"                  =>  $this->messages                 ??  null,
+            "messages"                  =>  $messages                       ??  null,
             "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
             "notificationDisabled"      =>  $this->notification_disabled    ??  false,
         );
@@ -91,5 +94,33 @@ class AppSend extends Model
         $this->save();
         
         return $response;
+    }
+
+    static function convert_messages($messages,$friend = null)
+    {
+        $name       =   $friend->display_name . "さん" ?? "あなた";
+        $messages   =   $messages->map(function($message) use($name) {
+            $type   =   $message["type"]    ??  null;
+            switch($type){
+                case("text"):
+                    if(isset($message["text"])){
+                        $message["text"] = str_replace("{name}", $name, $message["text"]);
+                    }
+                    break;
+                case("template"):
+                    if(isset($message["template"]["action"],$message["template"]["action"]["data"])){
+
+                    }
+                    if(isset($message["template"]["defaultAction"],$message["template"]["defaultAction"]["data"])){
+
+                    }
+                    if(isset($message["template"]["actions"])){
+
+                    }
+
+            }
+            return $message;
+        });
+        return $messages;
     }
 }

@@ -121,7 +121,7 @@ class AppReplySeeder extends Seeder
             "messages"  =>  [
                 array(
                     "type"  =>  "text",
-                    "text"  =>  "{name}今日も一日頑張ろうね。",
+                    "text"  =>  "{name}、今日も一日頑張ろうね。",
                 ),
             ],
         ));
