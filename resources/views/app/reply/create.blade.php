@@ -64,8 +64,7 @@
                 if(result || previous == ""){
                     select.setAttribute("data-previous-value", value);
                     const div   =   document.getElementById(`messages-sumple-${value}`).cloneNode(true);
-                    console.log(div);
-                    // div.id      =   `messages-${index}-${value}`;
+                    div.id      =   `messages-${index}-${value}`;
                     const td    =   document.getElementById(`td-messages-${index}-message`);
                     while(td.firstChild){
                         td.removeChild(td.firstChild);
