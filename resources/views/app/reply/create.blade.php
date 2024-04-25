@@ -48,7 +48,7 @@
                 const value     =   select.value;
                 const result    =   window.confirm("タイプを変更すると対象のメッセージの内容が失われます。\nタイプを変更しますか？");
                 if(result || value ==""){
-                    select.value    =   select.setAttribute("data-previous-value", value);
+                    select.setAttribute("data-previous-value", value);
                     console.log("true", value);
                 } else {
                     select.value    =   select.getAttribute("data-previous-value");
