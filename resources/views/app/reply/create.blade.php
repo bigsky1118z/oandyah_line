@@ -21,14 +21,14 @@
                     @for ($i = 1; $i <= 5; $i++)
                         <tr>
                             <td>
-                                <select name="messages[{{ $i }}][type]" @required($loop->first)>
+                                <select name="messages[{{ $i }}][type]" @required(loop->first)>
                                     <option value="">---</option>
-                                    <option value="text" @selected($loop->first)>テキスト</option>
+                                    <option value="text" @selected(loop->first)>テキスト</option>
                                     <option value="template">テンプレート</option>
                                 </select>
                             </td>
                             <td>
-                                @if ($loop->first)
+                                @if (loop->first)
                                     <textarea name="messages[{{ $i }}][text]" cols="30" rows="10"></textarea>
                                 @endif
                             </td>

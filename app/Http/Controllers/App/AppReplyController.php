@@ -32,8 +32,8 @@ class AppReplyController extends Controller
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($app_name)->app;
         $data   =   array(
-            "user"      =>  $user,
-            "app"       =>  $app,
+            "user"    =>  $user,
+            "app"     =>  $app,
             "reply"   =>  $app->reply($id),
         );
         return view("app.reply.create", $data);
