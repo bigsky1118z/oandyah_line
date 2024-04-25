@@ -24,7 +24,7 @@ class UserAppSeeder extends Seeder
         ));
         UserApp::updateOrCreate(array(
             "user_id"   =>  $user->id,
-            "app_id"    =>  App::whereName("jinugji_ozora")->first()->id,
+            "app_id"    =>  App::whereName("jinguji_ozora")->first()->id,
         ),array(
             "role"      =>  "admin",
         ));

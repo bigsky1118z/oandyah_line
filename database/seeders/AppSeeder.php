@@ -21,7 +21,7 @@ class AppSeeder extends Seeder
         ));
 
         App::updateOrCreate(array(
-            "name"                  =>  "jinugji_ozora",
+            "name"                  =>  "jinguji_ozora",
         ),array(            
             "channel_access_token"  =>  "DevGS+xmzvpISz1LGy8LxAnjxCY15MFSXRljWAXFXvgJDkWVshk+96bkn4JIPaaB0s+2xKTuJbYlch10BctkIjTHIwEPcCirPr5S1JFgfQgf9MaMQb2YQowhEBGT5eBkVHIDCAeddeimB03lpslywAdB04t89/1O/w1cDnyilFU=",
             "channel_secret"        =>  "998481f4b73c4e7a6785d9158e798e58",
