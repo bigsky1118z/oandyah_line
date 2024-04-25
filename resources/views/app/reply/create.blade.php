@@ -65,6 +65,9 @@
                     select.setAttribute("data-previous-value", value);
                     const div   =   document.getElementById(`messages-sumple-${value}`).cloneNode(true);
                     div.id      =   `messages-${index}-${value}`;
+                    div.children.forEach(child=>{
+                        child.name  =   child.name.replace("sumple",index);
+                    });
                     const td    =   document.getElementById(`td-messages-${index}-message`);
                     while(td.firstChild){
                         td.removeChild(td.firstChild);
