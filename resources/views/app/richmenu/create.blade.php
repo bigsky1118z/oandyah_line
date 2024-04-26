@@ -7,38 +7,56 @@
     <x-slot name="main">
         <h2>{{ $app->display_name }}</h2>
         <h3>自動返信 新規作成</h3>
-        <form action="/{{ $user->name }}/app/{{ $app->name }}/reply" method="post">
+        <form action="/{{ $user->name }}/app/{{ $app->name }}/richmenu" method="post">
             @csrf
             <p><button type="submit">保存</button></p>
             <p><input type="text" name="name" required></p>
             <table>
+                <tbody>
+                    <tr>
+                        <th>名前</th>
+                        <td><input type="text" name="name" required></td>
+                        <th>サイズ</th>
+                        <td>横<input type="number" name="size[width]" required value="2500"> × 縦<input type="number" name="size[height]" required value="1686"></td>
+                        <th>メニューに表示されるテキスト</th>
+                        <td><input type="checkbox" name="chatBarText" required></td>
+                        <th>デフォルト表示</th>
+                        <td><input type="checkbox" name="selected" @selected(true)></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
                 <thead>
                     <tr>
+                        <th colspan="2">開始位置</th>
+                        <th colspan="2">大きさ</th>
+                        <th colspan="3">動作</th>
+                    </tr>
+                    <tr>
+                        <th>X軸</th>
+                        <th>Y軸</th>
+                        <th>横</th>
+                        <th>縦</th>
+                        <th>ラベル</th>
                         <th>タイプ</th>
-                        <th>メッセージ</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 1; $i <= 5; $i++)
-                        <tr>
-                            <td id="td-messages-{{ $i }}-type">
-                                <select name="messages[{{ $i }}][type]" onchange="change_message_type(this);" data-previous-value="{{ $i===1 ? "text" : "" }}" data-index="{{ $i }}" @required($i===1)>
-                                    @if ($i !== 1)
-                                        <option value="">---</option>
-                                    @endif
-                                    <option value="text" @selected($i===1)>テキスト</option>
-                                    <option value="template">テンプレート</option>
-                                </select>
-                            </td>
-                            <td id="td-messages-{{ $i }}-message">
-                                @if ($i===1)
-                                    <div id="messages-{{ $i }}-text">
-                                        <textarea name="messages[{{ $i }}][text]" cols="50" rows="5"></textarea>
-                                    </div>
-                                @endif
-                            </td>
-                        </tr>
-                    @endfor
+                    <tr>
+                        <td><input type="number" name="bounds[x]" value="0"></td>
+                        <td><input type="number" name="bounds[y]" value="0"></td>
+                        <td><input type="number" name="bounds[width]" value="100"></td>
+                        <td><input type="number" name="bounds[height]" value="100"></td>
+                        <td><input type="text" name="action[label]"></td>
+                        <td><input type="text" name=""></td>
+                        <td>
+                            <select name="action[type]">
+                                <option value="postback"></option>
+                            </select>
+                        </td>
+                        <td><input type="text" name="action[data]"></td>
+                    </tr>
                 </tbody>
             </table>
             <p><button type="submit">保存</button></p>
