@@ -17,6 +17,7 @@ class AppRichmenuController extends Controller
             "app"       =>  $app,
             "richmenus" =>   AppRichmenu::get_richmenus($app->channel_access_token),
         );
+        return $data["richmenus"];
         return view("app.richmenu.index", $data);
     }
 

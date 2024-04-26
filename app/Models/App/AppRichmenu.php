@@ -18,7 +18,7 @@ class AppRichmenu extends Model
         );
         $url        =   "https://api.line.me/v2/bot/richmenu/list";
         $response   =   Http::withHeaders($headers)->get($url);
-        return $response["richmenus"] ?? array();
+        return $response;
     }
 
 }
