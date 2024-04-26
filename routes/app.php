@@ -4,6 +4,7 @@ use App\Http\Controllers\App\AppAutoController;
 use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\App\AppFriendController;
 use App\Http\Controllers\App\AppReplyController;
+use App\Http\Controllers\App\AppRichmenuController;
 use App\Http\Controllers\App\AppSendController;
 use App\Http\Controllers\App\AppWebhookController;
 use App\Http\Controllers\ProfileController;
@@ -45,6 +46,12 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
         Route::prefix("send")->group(function(){
             Route::get("/",[AppSendController::class,"index"]);
             Route::get("{id}",[AppSendController::class,"show"]);
+        });
+        Route::prefix("richmenu")->group(function(){
+            Route::get("/",[AppRichmenuController::class,"index"]);
+            Route::post("/",[AppRichmenuController::class,"store"]);
+            Route::get("create",[AppRichmenuController::class,"create"]);
+            Route::get("{id}",[AppRichmenuController::class,"show"]);
         });
     });
 });
