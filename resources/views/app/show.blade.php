@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->diplay_name ?? $app->name }}</h2>
-        <h3>アプリ情報</h3>
+        <h3>アプリ</h3>
         <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
             @csrf
             <p>現在の権限 {{ $role }}</p>
@@ -88,30 +88,16 @@
             </table>
             <button type="submit">post</button>
         </form>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/webhook">webhook情報</a></h3>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/webhook">webhook</a></h3>
         <ul>
             @foreach ($app->webhooks as $webhook)
                 <li>{{ $webhook->type }}</li>
             @endforeach
         </ul>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/friend">友だち情報</a></h3>
-        <ul>
-            @foreach ($app->friends as $friend)
-                <li>{{ $friend->display_name }}</li>
-            @endforeach
-        </ul>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/reply">メッセ―ジ情報</a></h3>
-        <ul>
-            @foreach ($app->replies as $reply)
-                <li>{{ $reply->name }}</li>
-            @endforeach
-        </ul>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/send">送信情報</a></h3>
-        <ul>
-            @foreach ($app->sends as $send)
-                <li>{{ $send->status }}</li>
-            @endforeach
-        </ul>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/friend">友だち</a></h3>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/reply">自動返信</a></h3>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/send">送信</a></h3>
+        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/richmenu">リッチメニュー</a></h3>
     </x-slot>
     <x-slot name="footer">
     </x-slot>
