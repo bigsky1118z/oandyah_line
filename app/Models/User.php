@@ -93,8 +93,8 @@ class User extends Authenticatable
     public function get_name()
     {
         $name   =   "";
-        $name   =   $name == "" ? $this->get_config("nickname") : $name;
-        $name   =   $name == "" ? $this->get_config("last_name") . $this->get_config("first_name") : $name;
+        $name   =   $name == "" ? ($this->get_config("nickname")->value ?? "") : $name;
+        $name   =   $name == "" ? ($this->get_config("last_name")->value ?? "") . ($this->get_config("first_name")->value ?? "") : $name;
         $name   =   $name == "" ? $this->name : $name;
         return  $name;
     }
