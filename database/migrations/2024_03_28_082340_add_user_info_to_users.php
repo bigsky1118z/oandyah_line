@@ -13,11 +13,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unique("name");
-            $table->string("last_name")->nullable();
-            $table->string("first_name")->nullable();
-            $table->string("first_name_kana")->nullable();
-            $table->string("last_name_kana")->nullable();
-            $table->string("nickname")->nullable();
             $table->date("birthday");
         });
     }

@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
         $user->post_config("first_name","大空");
         $user->post_config("last_name_kana","キタズミ");
         $user->post_config("first_name_kana","オオゾラ");
+        $user->post_config("nickname","大空");
 
 
         $user   =   User::updateOrCreate(array(
