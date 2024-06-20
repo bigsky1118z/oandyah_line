@@ -73,19 +73,19 @@ body > header > a > h1 {
     text-align: center;
     font-size: 30px;
 }
-body > header > nav#header-nav {
+body > header > nav#header-nav-bar {
     width: 100%;
 }
-body > header > nav#header-nav > ul#header-nav-ul {
+body > header > nav#header-nav-bar > ul#header-nav-bar-ul {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
-body > header > nav#header-nav > ul#header-nav-ul > li {
+body > header > nav#header-nav-bar > ul#header-nav-bar-ul > li {
     width: 100%;
     text-align: center;
 }
-body > header > nav#header-nav > ul#header-nav-ul > li > a {
+body > header > nav#header-nav-bar > ul#header-nav-bar-ul > li > a {
     display: block;
     width: 100%;
     text-align: center;

@@ -1,10 +1,9 @@
-<nav id="header-nav">
-    <ul id="header-nav-ul">
+<nav id="header-nav-bar">
+    <ul id="header-nav-bar-ul">
         <li><a href="/">TOP</a></li>
         <li>メニュー1</li>
-        <li>メニュー2</li>
         @auth
-            <li><a href="/{{ auth()->user()->name }}">マイページ</a></li>
+            <li><a href="{{ asset(auth()->user()->name) }}">マイページ</a></li>
             <li>
                 <form action="logout" method="post" style="cursor: pointer">
                     @csrf

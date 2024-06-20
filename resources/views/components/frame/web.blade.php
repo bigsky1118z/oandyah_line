@@ -13,7 +13,7 @@
     <body id="{{ $id ?? null }}">
         <header>
             <a href="/"><h1>LINE公式アプリ応援屋</h1></a>
-            <x-web.web_header_nav />
+            <x-web.header.nav_bar />
             {{ $header ?? null }}
         </header>
         <main>
@@ -25,7 +25,7 @@
         </main>
         <footer>
             {{ $footer ?? null }}
-            <div id="copyright">エンターテイメント応援事業O&Yah &copy; {{ date("Y") }} All Rights Reserved</div>
+            <x-web.footer.copyright />
         </footer>
         {!! $script ?? null !!}
     </body>
