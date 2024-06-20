@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ isset($title) ? $title . " " : null }}LINE公式アプリ応援屋</title>
+        <title>{{ isset($title) && $title == "LINE公式アプリ応援屋" ? $title . " " : null }}LINE公式アプリ応援屋</title>
         <meta name="description" content="{{ $description ?? 'エンターテイメント応援事業O&Yahが運営する、LINE公式アカウントを用いたビジネスツールです。' }}" />
         <link rel="stylesheet" href="{{ asset("css/style.css") }}">
         {!! $head ?? null !!}

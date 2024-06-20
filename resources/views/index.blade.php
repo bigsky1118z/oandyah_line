@@ -1,6 +1,7 @@
 <x-frame.web>
+    <x-slot name="id">top</x-slot>
     <x-slot name="title">LINE公式アプリ応援屋</x-slot>
-    <x-slot name="description">『LINE公式アプリ応援屋』はLINE Messaging APIを簡単に利用できるようにするサービスです</x-slot>
+    <x-slot name="description">『LINE公式アプリ応援屋』はLINE公式アカウントを簡単に自分用にカスタマイズして利用できるようにするサービスです</x-slot>
     <x-slot name="head">
     </x-slot>
     <x-slot name="header">
