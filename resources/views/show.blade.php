@@ -9,7 +9,7 @@
         <h3><a href="{{ asset($user->name . '/app') }}">アプリ一覧</a></h3>
         <ul>
             @foreach ($user->apps as $app)
-                <li><a href="{{ asset( $user->name.'/app/'.$app->app->name.'/app/'.$app->app->name) }}" target="_blank" rel="noopener noreferrer">{{ $app->app->get_name() ?? null }}</a></li>
+                <li><a href="{{ asset( $user->name.'/app/'.$app->app->name) }}" target="_blank" rel="noopener noreferrer">{{ $app->app->get_name() ?? null }}</a></li>
             @endforeach
         </ul>
         <h3><a href="/{{ $user->name }}/news">お知らせ一覧</a></h3>
