@@ -1,11 +1,13 @@
 <x-frame.web>
-    <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
+    <x-slot name="id">user</x-slot>
+    <x-slot name="title">{{ $user->get_name() }}</x-slot>
+    <x-slot name="description"></x-slot>
     <x-slot name="head">
     </x-slot>
     <x-slot name="header">
     </x-slot>
     <x-slot name="main">
-        <h2>{{ $user->diplay_name ?? $user->name }}</h2>
+        <h2>{{ $user->get_name() }}</h2>
         <table>
             <thead>
                 <tr>

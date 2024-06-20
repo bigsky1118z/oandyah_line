@@ -89,4 +89,9 @@ class User extends Authenticatable
         $app    =   App::whereName($app_name)->first();
         return UserApp::whereUserId($this->id)->whereAppId($app->id)->first();
     }
+
+    public function get_name()
+    {
+        return  $this->nickname ?? $this->last_name . $this->first_name ?? $this->name;
+    }
 }
