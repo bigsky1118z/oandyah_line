@@ -91,7 +91,10 @@ class App extends Model
         return $this;
     }
 
-    
+    public function get_name()
+    {
+        return $this->display_name ?? $this->name;
+    }
 
 
     /* channel access token */
