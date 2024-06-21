@@ -37,10 +37,11 @@ class AppWebhook extends Model
 
     public function get_friend()
     {
+        $app        =   $this->app;
         $friend_id  =   $this->event["source"]["userId"] ?? null;
-        $friend     =   $friend_id
+        $friend     =   $app && $friend_id
                     ?   AppFriend::updateOrCreate(array(
-                            "app_id"    =>  $this->app->id,
+                            "app_id"    =>  $app->id,
                             "friend_id" =>  $friend_id,
                         ))
                     :   new AppFriend();
@@ -63,7 +64,7 @@ class AppWebhook extends Model
     }
 
     /** POST 時の functions */
-    public function response()
+    public function auto_response()
     {
         $app        =   $this->app;
         $type       =   $this->event["type"] ?? null;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Library\MessagingApi;
 use App\Models\App;
 use App\Models\App\AppFriend;
 use App\Models\App\AppWebhook;
@@ -10,11 +11,6 @@ use Illuminate\Http\Request;
 
 class AppWebhookController extends Controller
 {
-    public function get(Request $request, $app_name)
-    {
-        return $app_name;
-    }
-
     public function index(Request $request, $user_name, $app_name)
     {
         $user   =   User::find(auth()->user()->id);
@@ -38,16 +34,22 @@ class AppWebhookController extends Controller
         return AppWebhook::whereAppId($app->id)->whereId($id)->first();
     }
 
-    public function post(Request $request, $app_name)
+    /** 外部アクセス */
+    public function get(Request $request, $app_name)
     {
+        return $app_name;
+    }
+
+    public function post(Request $request, $client_id)
+    {
+        return response()->json([],200);
         /** 署名を検証 */
-        $app                =   App::whereName($app_name)->first();
-        $channel_secret     =   $app ? $app->channel_secret : null;
+        $app                =   App::where("client_id",$client_id)->first();
         $request_body       =   $request->getContent();
-        $hash               =   hash_hmac("sha256", $request_body, $channel_secret, true);
-        $signature          =   base64_encode($hash);
+        $channel_secret     =   $app->channel_secret ?? null;
         $x_line_signature   =   $request->header("x_line_signature");
-        if($signature == $x_line_signature && $request->exists("events")){
+        $validation         =   MessagingApi::signature_validation($request_body, $channel_secret, $x_line_signature);
+        if($validation && $request->exists("events")){
             $events =   $request->get("events");
             foreach($events as $event){
                 $webhook    =   AppWebhook::updateOrCreate(array(
@@ -62,13 +64,13 @@ class AppWebhookController extends Controller
                     "query_string"      =>  $request->get("query_string"),
                     "event"             =>  $event,
                 ));
-                // 友だち情報を最新にする
-                $webhook->get_friend()->latest();
-                $response   =   $webhook->response();
+                $friend     =   $webhook->get_friend()->latest();
+                $response   =   $webhook->auto_response();
                 // $webhook->response_status   =   $response;
                 // $webhook->save();
             }
-            return response()->json([],200);
+            $data   =   array();
+            return response()->json($data,200);
         } else {
             return back();
         }

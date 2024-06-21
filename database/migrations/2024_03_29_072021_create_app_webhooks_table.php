@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create("app_webhooks", function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+
             $table->string("ip_address")->nullable();
             $table->string("request_host")->nullable();
             $table->string("request_path")->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->integer("response_status")->nullable();
             $table->string("destination")->nullable();
             $table->string("query_string")->nullable();
+            
             $table->json("event")->nullable();
             $table->timestamps();
         });

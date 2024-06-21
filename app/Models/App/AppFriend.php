@@ -2,6 +2,7 @@
 
 namespace App\Models\App;
 
+use App\Library\MessagingApi;
 use App\Models\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,14 +29,16 @@ class AppFriend extends Model
 
     public function get_name()
     {
-        $name   =   $this->friend_id;
-        $name   =   $this->display_name ?? $name;
+        $name   =   "";
+        $name   =   $name == "" ? $this->display_name   : $name;
+        $name   =   $name == "" ? $this->friend_id      : $name;
         return $name;
     }
 
     public function latest()
     {
-        $response   =   $this->get_bot_profile_friend($this->friend_id);
+        $app        =   $this->app;
+        $response   =   MessagingApi::get_profile($this->friend_id, $app->channel_access_token);
         if($response->successful()){
             $this->status           =   "follow";
             $this->display_name     =   $response["displayName"]    ??  $this->display_name;
@@ -48,16 +51,4 @@ class AppFriend extends Model
         $this->save();
         return $this;
     }
-
-    public function get_bot_profile_friend($friend_id)
-    {
-        $headers    =   array(
-            "Authorization" =>  "Bearer " . $this->app->channel_access_token,
-            "Content-Type"  =>  "application/json",
-        );
-        $url        =   "https://api.line.me/v2/bot/profile/$friend_id";
-        $response   =   Http::withHeaders($headers)->get($url);
-        return $response;
-    }
-
 }

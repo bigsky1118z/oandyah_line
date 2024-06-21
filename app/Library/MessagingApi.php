@@ -56,5 +56,24 @@ class MessagingApi extends Facade
             $response   =   Http::withHeaders($headers)->put($url, $data);
             return $response;
         }
+    /** webhook */
+        static function signature_validation($request_body, $channel_secret, $x_line_signature)
+        {
+            $hash               =   hash_hmac("sha256", $request_body, $channel_secret, true);
+            $signature          =   base64_encode($hash);
+            return $signature === $x_line_signature;
+    
+        }
+    /** friend */
+        static function get_profile($friend_id, $channel_access_token)
+        {
+            $url    =   "https://api.line.me/v2/bot/profile/$friend_id";
+            $headers    =   array(
+                "Authorization" =>  "Bearer " . $channel_access_token,
+                "Content-Type"  =>  "application/json",
+            );
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response; 
+        }
 
 }
