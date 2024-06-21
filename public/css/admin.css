@@ -15,6 +15,29 @@ body {
     max-width: 1920px;
     margin: 0 auto;
 }
+input[type="submit"],button {
+    appearance: auto;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+    cursor: pointer;
+}
 
 /* color */
 body > header > a > h1 {
@@ -48,6 +71,19 @@ body > header > nav#admin-header-nav > ul#admin-header-nav-ul > li > a {
     width: 100%;
     text-align: center;
 }
+
+body > header > menu.page-transition > ul {
+    display: flex;
+    flex-wrap: nowrap;
+}
+body > header > menu.page-transition > ul > li::after {
+    padding: 0 10px;
+    content: "\003E";
+}
+body > header > menu.page-transition > ul > li:last-child:after {
+    content: unset;
+}
+
 
 /* footer */
 

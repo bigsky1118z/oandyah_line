@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Models\App\AppFriend;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,7 @@ class AppFriendController extends Controller
 {
     public function index(Request $request, $user_name, $client_id)
     {
+        return AppFriend::backup();
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($client_id)->app;
         $data   =   array(
@@ -22,7 +24,6 @@ class AppFriendController extends Controller
     {
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($client_id)->app;
-        return $app;
         $friend =   $app->friend($friend_id);
         $data       =   array(
             "user"      =>  $user,

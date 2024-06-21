@@ -2,9 +2,13 @@
 
 namespace App\Library;
 
+use App\Models\App;
+use App\Models\App\AppFriend;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Constraint\SameSize;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CsvFile extends Facade
@@ -18,10 +22,6 @@ class CsvFile extends Facade
         return $data;
     }
 
-    public static function to_csv_content($data){
-        $csv_content    =   collect($data)->map(fn($row) => implode(',', $row))->implode("\r\n");
-        return $csv_content;
-    }
 
     public static function rebuilding_database($data, $table_name)
     {
@@ -53,14 +53,21 @@ class CsvFile extends Facade
     }
 
 
-    public static function backup ($data, $table_name = null)
+    public static function backup ($data, $table_name)
     {
         // 配列をCSVの形式にする
         $csv_content    =   self::to_csv_content($data);
-        $path           =   ($table_name ? $table_name . "/" : null) . now()->format("YmdHis") . $table_name . ".csv";
-        Storage::disk("backup")->makeDirectory($table_name);
-        Storage::disk("backup")->put($path,$csv_content);
+        $directory      =   "private/backup/$table_name";
+        $path           =   $directory . "/". now()->format("YmdHis") . $table_name . ".csv";
+        Storage::makeDirectory($directory);
+        Storage::put($path,$csv_content);
+        return Storage::get($path);
     }
+        public static function to_csv_content($data){
+            $csv_content    =   collect($data)->map(fn($row) => implode(',', $row))->implode("\r\n");
+            return $csv_content;
+        }
+
 
     public static function download($data, $table_name = null)
     {
@@ -82,6 +89,25 @@ class CsvFile extends Facade
     public static function get_columns($table_name)
     {
         return Schema::getColumnListing($table_name);
+    }
 
+    public static $tables  =   array(
+        "apps"          =>  array(
+            "table_name"    =>  "apps",
+            "title"         =>  "アプリ",
+            "model"         =>  App::class,
+        ),
+        "app_friends"   =>  array(
+            "table_name"    =>  "app_friends",
+            "title"         =>  "友だち",
+            "model"         =>  AppFriend::class,
+        ),
+    );
+
+    public static function get_table($table_name)
+    {
+        $tables =   self::$tables;
+        $table  =   $tables[$table_name] ?? null;
+        return $table;
     }
 }

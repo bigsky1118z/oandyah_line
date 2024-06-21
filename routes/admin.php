@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAppController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,14 @@ Route::prefix("admin")->group(function(){
         Route::prefix("{user_id}")->group(function(){
             Route::get("/",[AdminAppController::class,"create"]);
             Route::post("/",[AdminAppController::class,"store"]);
+        });
+    });
+    Route::prefix("backup")->group(function(){
+        Route::get("/",[BackupController::class,"index"]);
+        Route::prefix("{table_name}")->group(function(){
+            Route::get("/",[BackupController::class,"show"]);
+            Route::get("backup",[BackupController::class,"backup"]);
+            Route::get("download",[BackupController::class,"download"]);
         });
     });
 

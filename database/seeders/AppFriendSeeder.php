@@ -14,9 +14,16 @@ class AppFriendSeeder extends Seeder
      */
     public function run(): void
     {
-        $app    =   App::where("client_id","1657119748")->first();
-        $friend =   AppFriend::updateOrCreate(array(
-
-        ));
+        $app        =   App::where("client_id","1657423958")->first();
+        $friend_ids =   array(
+            "Ubaabca160ab17a89e7ede64cc084cbb5",
+        );
+        foreach($friend_ids as $friend_id){
+            $friend =   AppFriend::updateOrCreate(array(
+                "app_id"    =>  $app->id,
+                "friend_id" =>  $friend_id,
+            ));
+            $friend->latest();
+        }
     }
 }

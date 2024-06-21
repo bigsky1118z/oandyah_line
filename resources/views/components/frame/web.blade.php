@@ -21,18 +21,18 @@
                     {{ $page_transition_list ?? null }}
                 </ul>
             </menu>
-            </header>
+        </header>
         <main>
             {{ $main ?? null }}
             {{ $slot }}
-            <div class="hidden" style="display: none;">
-                {{ $hidden ?? null }}
-            </div>
         </main>
         <footer>
             {{ $footer ?? null }}
             <x-web.footer.copyright />
         </footer>
+        <div class="hidden" style="display: none;">
+            {{ $hidden ?? null }}
+        </div>
         {!! $script ?? null !!}
     </body>
 </html>

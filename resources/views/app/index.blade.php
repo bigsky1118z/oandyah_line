@@ -1,5 +1,5 @@
 <x-frame.web>
-    <x-slot name="id">user-app</x-slot>
+    <x-slot name="id">user-app-index</x-slot>
     <x-slot name="title">{{ $user->get_name() }}さんのアプリ一覧</x-slot>
     <x-slot name="description"></x-slot>
     <x-slot name="head"></x-slot>

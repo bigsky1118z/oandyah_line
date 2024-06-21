@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Library\CsvFile;
 use App\Library\MessagingApi;
 use App\Models\App\AppFriend;
 use App\Models\App\AppReply;
@@ -41,8 +42,6 @@ class App extends Model
         {
             return $this->hasMany(AppWebhook::class,"app_id", "id");
         }
-
-
         public function friends()
         {
             return $this->hasMany(AppFriend::class);
@@ -50,7 +49,7 @@ class App extends Model
 
         public function friend($friend_id)
         {
-            return $this->hasOne(AppFriend::class)->whereFriendId($friend_id)->first();
+            return $this->hasOne(AppFriend::class)->where("friend_id",$friend_id)->first();
         }
 
         public function replies()
@@ -265,11 +264,43 @@ class App extends Model
 
 
     // 
+    /** backup */
+    static function get_data()
+    {
+        $table_name =   (new self)->getTable();
+        $columns    =   CsvFile::get_columns($table_name);
+        $add        =   array();
+        $headers    =   array_merge($columns, $add);
+        $all        =   self::all();
+        $data       =   array();
+        $data[]     =   $headers;
+        foreach($all as $one){
+            $data[] =   array_map(function($header) use ($one){
+                $value  =   "";
+                switch($header){
+                    default:
+                        $value  =   $one[$header];
+                }
+                return $value;
+            },$headers);
+        }
+        return $data;
+    }
 
-        
+    static function backup()
+    {
+        $table_name =   (new self)->getTable();
+        $data       =   self::get_data();
+        $storage    =   CsvFile::backup($data,$table_name);
+        return $table_name;
+    }
 
-        
-    
-    
+    static function download()
+    {
+        $table_name =   (new self)->getTable();
+        $data       =   self::get_data();
+        $download   =   CsvFile::download($data, $table_name);
+        return $download;
+    }
 
 }

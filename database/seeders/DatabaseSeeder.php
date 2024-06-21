@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             AppSeeder::class,
             
             UserAppSeeder::class,
-            
+            AppFriendSeeder::class,            
             // AppReplySeeder::class,
         ]);
 
