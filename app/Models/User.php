@@ -83,12 +83,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserApp::class,"user_id", "id");
     }
-
-    public function app($app_name)
+    public function app($client_id)
     {
-        $app    =   App::whereName($app_name)->first();
-        return UserApp::whereUserId($this->id)->whereAppId($app->id)->first();
+        $app    =   App::where("client_id",$client_id)->first();
+        return $this->hasOne(UserApp::class)->where("app_id",$app->id)->first();
     }
+    public function regist_app($app)
+    {
+        $role   =   $app->users()->count() ? "editor" : "admin";
+        $user_app = UserApp::updateOrCreate(array(
+            "user_id"   =>  $this->id,
+            "app_id"    =>  $app->id,
+            "role"      =>  $role,
+        ));
+        return $user_app;
+    }
+    
 
     public function get_name()
     {

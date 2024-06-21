@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->id();            
-            $table->string("name")->unique();
+            $table->string("client_id")->unique();
             $table->string("channel_access_token")->unique();
-            $table->string("channel_secret");
+            $table->string("channel_secret")->unique();
 
             $table->string("user_id")->nullable();
             $table->string("basic_id")->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text("picture_url")->nullable();
             $table->string("chat_mode")->nullable();
             $table->string("mark_as_read_mode")->nullable();
+            
             $table->string("status")->default("active");
             $table->timestamps();
         });

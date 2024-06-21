@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             
             UserAppSeeder::class,
             
-            AppReplySeeder::class,
+            // AppReplySeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

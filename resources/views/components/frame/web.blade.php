@@ -12,10 +12,16 @@
     </head>
     <body id="{{ $id ?? null }}">
         <header>
-            <a href="/"><h1>LINE公式アプリ応援屋</h1></a>
+            <a href="{{ asset('/') }}"><h1>LINE公式アプリ応援屋</h1></a>
             <x-web.header.nav_bar />
             {{ $header ?? null }}
-        </header>
+            <menu class="page-transition">
+                <ul>
+                    <li><a href="{{ asset("/") }}">TOP</a></li>
+                    {{ $page_transition_list ?? null }}
+                </ul>
+            </menu>
+            </header>
         <main>
             {{ $main ?? null }}
             {{ $slot }}

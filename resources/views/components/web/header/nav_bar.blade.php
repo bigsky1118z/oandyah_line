@@ -5,7 +5,7 @@
         @auth
             <li><a href="{{ asset(auth()->user()->name) }}">マイページ</a></li>
             <li>
-                <form action="logout" method="post" style="cursor: pointer">
+                <form action="{{ asset("logout") }}" method="post" style="cursor: pointer">
                     @csrf
                     <span onclick="this.closest('form').submit();">ログアウト</span>
                 </form>

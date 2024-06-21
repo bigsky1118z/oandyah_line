@@ -1,103 +1,86 @@
 <x-frame.web>
-    <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
-    <x-slot name="head">
-    </x-slot>
-    <x-slot name="header">
+    <x-slot name="id">user-app-show</x-slot>
+    <x-slot name="title">{{ $app->display_name ?? $app->client_id }}詳細</x-slot>
+    <x-slot name="head"></x-slot>
+    <x-slot name="header"></x-slot>
+    <x-slot name="page_transition_list">
+        <li><a href="{{ asset($user->name) }}">マイページ</a></li>
+        <li><a href="{{ asset($user->name.'/app') }}">アプリ一覧</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id ) }}">{{ $app->display_name ?? $app->client_id }}</a></li>
     </x-slot>
     <x-slot name="main">
-        <h2>{{ $app->diplay_name ?? $app->name }}</h2>
-        <h3>アプリ</h3>
-        <form action="/{{ $user->name }}/app/{{ $app->name }}" method="post">
-            @csrf
-            <p>現在の権限 {{ $role }}</p>
-            <table>
-                <tr>
-                    <th>アプリID</th>
-                    <td>
-                        @switch($role)
-                            @case("admin")
-                                <input type="text" name="name" value="{{ $app->name }}">
-                                @break
-                            @case("editor")
-                            @default
-                                {{ $app->name }}
-                                @break
-                        @endswitch
-                    </td>
-                </tr>
-                <tr>
-                    <th>endpoint</th>
-                    <td>{{ $app->get_bot_channel_webhook_endpoint()["endpoint"] ?? null }}</td>
-                </tr>
-                <tr>
-                    <th>channel_access_token</th>
-                    <td>
-                        @switch($role)
-                            @case("admin")
-                                <textarea name="channel_access_token" cols="40" rows="5" readonly>{{ $app->channel_access_token }}</textarea>
-                                <input type="checkbox" id="checkbox_channel_access_token" onchange="document.querySelector('textarea[name=channel_access_token]').readOnly = this.checked" checked>
-                                <label for="checkbox_channel_access_token">保護</label>
-                                @break
-                            @case("editor")
-                            @default
-                                {{ $app->channel_access_token }}
-                                @break
-                        @endswitch
-                    </td>
-                </tr>
-                <tr>
-                    <th>user_id</th>
-                    <td>{{ $app->user_id }}</td>
-                </tr>
-                <tr>
-                    <th>basic_id</th>
-                    <td>{{ $app->basic_id }}</td>
-                </tr>
-                <tr>
-                    <th>表示名</th>
-                    <td>{{ $app->display_name }}</td>
-                </tr>
-                <tr>
-                    <th>picture_url</th>
-                    <td>
-                        <dl>
-                            <dt><img src="{{ $app->picture_url }}" alt=""></dt>
-                            @switch($role)
-                                @case("admin")
-                                @case("editor")
-                                    <dd>
-                                        <input type="file" name="picture_url" value="{{ $app->picture_url }}">
-                                        <button type="button">画像変更</button>
-                                    </dd>
-                                    @break
-                                @default
-                                    <dd></dd>
-                                    @break
-                            @endswitch
-                        </dl>
-                    </td>
-                </tr>
-                <tr>
-                    <th>chat_mode</th>
-                    <td>{{ $app->chat_mode }}</td>
-                </tr>
-                <tr>
-                    <th>mark_as_read_mode</th>
-                    <td>{{ $app->mark_as_read_mode }}</td>
-                </tr>
-            </table>
-            <button type="submit">post</button>
-        </form>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/webhook">webhook</a></h3>
-        <ul>
-            @foreach ($app->webhooks as $webhook)
-                <li>{{ $webhook->type }}</li>
-            @endforeach
-        </ul>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/friend">友だち</a></h3>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/reply">自動返信</a></h3>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/send">送信</a></h3>
-        <h3><a href="/{{ $user->name }}/app/{{ $app->name }}/richmenu">リッチメニュー</a></h3>
+        <h2>{{ $app->display_name ?? $app->client_id }}</h2>
+        <section>
+            <h3>アプリ</h3>
+                <table>
+                    <tr>
+                        <th>アプリ権限</th>
+                        <td>{{ $role }}</td>
+                    </tr>
+                    <tr>
+                        <th>アプリID</th>
+                        <td>{{ $app->client_id }}</td>
+                    </tr>
+                    <tr>
+                        <th>チャンネルアクセストークン</th>
+                        <td>{{ $app->verify_channel_access_token()->successful() ? "有効" : "無効" }}</td>
+                    </tr>
+                    <tr>
+                        <th>ユーザーID</th>
+                        <td>{{ $app->user_id }}</td>
+                    </tr>
+                    <tr>
+                        <th>検索ID</th>
+                        <td>{{ $app->basic_id }}</td>
+                    </tr>
+                    <tr>
+                        <th>表示名</th>
+                        <td>{{ $app->display_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>アイコン</th>
+                        <td>
+                            <dl>
+                                <dt><img src="{{ $app->picture_url }}" alt="" width="100px" height="auto"></dt>
+                            </dl>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>チャットモード</th>
+                        <td>{{ $app->get_chat_mode() }}</td>
+                    </tr>
+                    <tr>
+                        <th>自動既読設定</th>
+                        <td>{{ $app->get_mark_as_read_mode() }}</td>
+                    </tr>
+                </table>
+        </section>
+        <section id="webhook">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/webhook") }}">webhook</a></h3>
+            <div>
+                <ul>
+                    @foreach ($app->webhooks as $webhook)
+                        <li>{{ $webhook->type }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </section>
+        <section id="friend">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/friend") }}">友だち</a></h3>
+            <div></div>
+        </section>
+        <section id="reply">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/reply") }}">自動返信</a></h3>
+            <div></div>
+        </section>
+        <section id="send">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/send") }}">送信</a></h3>
+            <div></div>
+        </section>
+        <section id="richmenu">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/richmenu") }}">リッチメニュー</a></h3>
+            <div></div>
+        </section>
     </x-slot>
     <x-slot name="footer">
     </x-slot>

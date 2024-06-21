@@ -11,19 +11,10 @@ class WebController extends Controller
     {
         return view("index");
     }
-    public function redirect(Request $request)
-    {
-        return view("redirect");
-    }
     public function create(Request $request)
     {
         return view("create");
     }
-    // public function store(Request $request)
-    // {
-    //     return $request->all();
-    //     return redirect("/");
-    // }
     public function show(Request $request, $user_name)
     {
         $user   =   User::find(auth()->user()->id);
@@ -32,5 +23,8 @@ class WebController extends Controller
         );
         return view("show", $data);
     }
-
+    public function redirect(Request $request)
+    {
+        return view("redirect");
+    }
 }

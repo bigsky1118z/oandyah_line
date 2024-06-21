@@ -26,7 +26,7 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
     Route::get("/",[AppController::class,"index"]);
     Route::get("create",[AppController::class,"create"]);
     Route::post("/",[AppController::class,"store"]);
-    Route::prefix("{app_name}")->group(function(){
+    Route::prefix("{client_id}")->group(function(){
         Route::get("/",[AppController::class,"show"]);
         Route::prefix("webhook")->group(function(){
             Route::get("/",[AppWebhookController::class,"index"]);

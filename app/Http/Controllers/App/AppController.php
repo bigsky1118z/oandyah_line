@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Library\MessagingApi;
 use App\Models\App;
 use App\Models\User;
 use App\Models\UserApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\Rule;
 
 use function PHPSTORM_META\elementType;
 
@@ -21,21 +23,7 @@ class AppController extends Controller
         return view("app.index", $data);
     }
 
-    public function show(Request $request,$user_name,$app_name)
-    {
-        $user                   =   User::find(auth()->user()->id);
-        $app                    =   $user->app($app_name)->app->latest();
-        $role                   =   $user->app($app_name)->role;
-        $data       =   array(
-            "user"  =>  $user,
-            "app"   =>  $app,
-            "role"  =>  $role,
-        );
-        return view("app.show", $data);
-    }
-
-
-    public function create(Request $request,$user_name, $app_name = null)
+    public function create(Request $request,$user_name, $client_id = null)
     {
         $user   =   User::find(auth()->user()->id);
         $data   =   array(
@@ -45,40 +33,37 @@ class AppController extends Controller
     }
 
 
-    public function store(Request $request, $user_name, $app_name = null)
+    public function store(Request $request, $user_name)
     {
-        $validated = $request->validate([
-            "name"                  => ["required","unique:apps,name","min:4","max:16"],
-            "channel_access_token"  => ["required","unique:apps,channel_access_token"],
-            "channel_secret"        => ["required"],
+        $request->validate([
+            "channel_access_token"  => ["required","string"],
+            "channel_secret"        => ["required","string"],
         ]);
-        $user                   =   auth()->user();
-        $name                   =   $request->get("name");
         $channel_access_token   =   $request->get("channel_access_token");
         $channel_secret         =   $request->get("channel_secret");
-        // $channel_access_token   =   "46jMDeKXz36hFGeefYyNJ906lND6bcTmn3E9BXy2dO5qvj1BqUmsCKF79g44eFk+0LyRD75pNGCVWw3PkVm948DZMFEifDfld+fhFvta4eWCIxfEpaMj8dF4EdWk0aw66BWCFsVkpRJu8nrAhQKgaAdB04t89/1O/w1cDnyilFU=";
-        // $channel_secret         =   "56b17adcc98c321d8f7fbaca5235ea55";
-        $response               =   App::post_oauth_verify_channel_access_token($channel_access_token);
-        if($response->successful()){
-            $app    =   App::updateOrCreate(array(
-                "channel_access_token"  =>  $channel_access_token,
-            ),array(
-                "name"                  =>  $name,
-                "channel_secret"        =>  $channel_secret,
-
-            ));
-            $app->latest();
-            UserApp::updateOrCreate(array(
-                "user_id"   =>  $user->id,
-                "app_id"    =>  $app->id,
-                "role"      =>  "admin",
-            ));
-            return redirect("$user->name/app/$app->name");
+        $app                    =   App::create_app($channel_access_token, $channel_secret);
+        $user                   =   User::find(auth()->user()->id);
+        if($app && $user){
+            $user->regist_app($app);
+            return redirect(asset("$user->name/app/$app->client_id"));
         } else {
             return back();
         }
-
     }
+
+    public function show(Request $request, $user_name, $client_id)
+    {
+        $user   =   User::find(auth()->user()->id);
+        $app    =   $user->app($client_id)->app->latest();
+        $role   =   $user->app($client_id)->role;
+        $data   =   array(
+            "user"  =>  $user,
+            "app"   =>  $app,
+            "role"  =>  $role,
+        );
+        return view("app.show", $data);
+    }
+
 
 
 }

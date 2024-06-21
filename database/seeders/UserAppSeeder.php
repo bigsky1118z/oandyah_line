@@ -18,13 +18,13 @@ class UserAppSeeder extends Seeder
         $user   =   User::whereName("bigsky1118z")->first();
         UserApp::updateOrCreate(array(
             "user_id"   =>  $user->id,
-            "app_id"    =>  App::whereName("gluten_free")->first()->id,
+            "app_id"    =>  App::where("client_id","1657423958")->first()->id,
         ),array(
             "role"      =>  "admin",
         ));
         UserApp::updateOrCreate(array(
             "user_id"   =>  $user->id,
-            "app_id"    =>  App::whereName("jinguji_ozora")->first()->id,
+            "app_id"    =>  App::where("client_id","1657119748")->first()->id,
         ),array(
             "role"      =>  "admin",
         ));
