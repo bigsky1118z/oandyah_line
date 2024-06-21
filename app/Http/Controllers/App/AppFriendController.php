@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class AppFriendController extends Controller
 {
-    public function index(Request $request, $user_name, $app_name)
+    public function index(Request $request, $user_name, $client_id)
     {
         $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name)->app;
+        $app    =   $user->app($client_id)->app;
         $data   =   array(
             "user"  =>  $user,
             "app"   =>  $app,
@@ -18,10 +18,11 @@ class AppFriendController extends Controller
         return view("app.friend.index", $data);
     }
 
-    public function show(Request $request,$user_name,$app_name, $friend_id)
+    public function show(Request $request,$user_name,$client_id, $friend_id)
     {
         $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name)->app;
+        $app    =   $user->app($client_id)->app;
+        return $app;
         $friend =   $app->friend($friend_id);
         $data       =   array(
             "user"      =>  $user,

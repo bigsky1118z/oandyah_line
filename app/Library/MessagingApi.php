@@ -75,5 +75,42 @@ class MessagingApi extends Facade
             $response   =   Http::withHeaders($headers)->get($url);
             return $response; 
         }
+    /** message */
+    // static function post_message($type, $target, $messages, $channel_access_token)
+    // {
+    //     $headers    =   array(
+    //         "Authorization" =>  "Bearer $channel_access_token",
+    //         "Content-Type"  =>  "application/json",
+    //     );
+    //     switch($type){
+    //         case("reply"):
+    //             $data["replyToken"] =   $target;
+    //             break;
+    //         case("push"):
+    //             $data["to"]         =   $target;
+    //             break;
+    //         }
+    //     $data       =   array(
+    //         "recipient"                 =>  $this->recipient                ??  null,
+    //         "filter"                    =>  $this->filter                   ??  null,
+    //         "limit"                     =>  $this->limit                    ??  null,
+    //         "messages"                  =>  $messages                       ??  null,
+    //         "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
+    //         "notificationDisabled"      =>  $this->notification_disabled    ??  false,
+    //     );
+    //     $endpoint               =   "https://api.line.me/v2/bot/message/" . $this->type;
+    //     $response               =   Http::withHeaders($headers)->post($endpoint, $data);
+    //     $this->response_code    =   $response->status();
+    //     if($response->successful()){
+    //         $this->sent_messages    =   $response["sentMessages"] ?? null;
+    //     } else {
+    //         $this->error_message    =   $response["message"];
+    //         $this->error_details    =   $response["details"];
+    //     }
+    //     $this->save();
+        
+    //     return $response;
+    // }
+
 
 }

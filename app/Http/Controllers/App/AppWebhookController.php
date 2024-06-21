@@ -63,8 +63,9 @@ class AppWebhookController extends Controller
                     "query_string"      =>  $request->get("query_string"),
                     "event"             =>  $event,
                 ));
-                $friend     =   $webhook->get_friend()->latest();
-                $response   =   $webhook->auto_response();
+                $friend     =   $webhook->get_friend();
+                $friend->latest();
+                // $response   =   $webhook->auto_response();
                 // $webhook->response_status   =   $response;
                 // $webhook->save();
             }
