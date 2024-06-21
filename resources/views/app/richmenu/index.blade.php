@@ -1,8 +1,12 @@
 <x-frame.web>
-    <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
-    <x-slot name="head">
-    </x-slot>
-    <x-slot name="header">
+    <x-slot name="id">user-app-richmenu</x-slot>
+    <x-slot name="title">{{ $user->get_name() }}さんのアプリ一覧</x-slot>
+    <x-slot name="description"></x-slot>
+    <x-slot name="head"></x-slot>
+    <x-slot name="header"></x-slot>
+    <x-slot name="page_transition_list">
+        <li><a href="{{ asset($user->name) }}">マイページ</a></li>
+        <li><a href="{{ asset($user->name . '/app') }}">アプリ一覧</a></li>
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->display_name }}</h2>
