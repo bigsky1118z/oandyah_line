@@ -11,6 +11,7 @@ class AppWebhook extends Model
     use HasFactory;
 
     protected $fillable =   [
+        "id",
         "app_id",
 
         "ip_address",

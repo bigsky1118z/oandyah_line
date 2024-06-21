@@ -9,6 +9,7 @@ class UserConfig extends Model
 {
     use HasFactory;
     protected $fillable = [
+        "id",
         "key",
         "value",
         "description",

@@ -11,6 +11,7 @@ class AppReply extends Model
 {
     use HasFactory;
     protected $fillable =   [
+        "id",
         "app_id",
         "name",
         "status",

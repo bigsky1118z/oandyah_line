@@ -10,6 +10,7 @@ class AppReplyCondition extends Model
 {
     use HasFactory;
     protected $fillable =   [
+        "id",
         "app_id",
         "app_reply_id",
         "type",

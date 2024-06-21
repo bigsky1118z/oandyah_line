@@ -21,12 +21,30 @@ class BackupController extends Controller
 
     public function show(Request $request, $table_name){
         $table      =   CsvFile::get_table($table_name);
+        $columns    =   CsvFile::get_columns($table_name);
+        $model      =   $table ? ($table["model"] ?? null) : null;
         $file_names =   Storage::files("private/backup/$table_name");
         $data       =   array(
+            "all"           =>  $model::all(),
+            "columns"       =>  $columns,
             "table"         =>  $table,
             "file_names"    =>  $file_names,
         );
         return view("admin.backup.show", $data);
+    }
+
+    public function restoration(Request $request, $table_name)
+    {
+        $table      =   CsvFile::get_table($table_name);
+        $model      =   $table ? ($table["model"] ?? null) : null;
+        $file_name  =   $request->input("file_name");
+        $file       =   Storage::get($file_name);
+        $data       =   CsvFile::to_array($file);
+        if($model){
+            $model::restoration($data);
+        }
+        return redirect(asset("admin/backup/$table_name"));
+
     }
 
     public function backup(Request $request, $table_name){

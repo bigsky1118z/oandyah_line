@@ -39,6 +39,7 @@ Route::prefix("admin")->group(function(){
         Route::get("/",[BackupController::class,"index"]);
         Route::prefix("{table_name}")->group(function(){
             Route::get("/",[BackupController::class,"show"]);
+            Route::post("/",[BackupController::class,"restoration"]);
             Route::get("backup",[BackupController::class,"backup"]);
             Route::get("download",[BackupController::class,"download"]);
         });

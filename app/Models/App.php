@@ -18,6 +18,8 @@ class App extends Model
     use HasFactory;
 
     protected $fillable =   [
+        "id",
+
         "client_id",
         "channel_access_token",
         "channel_secret",
@@ -301,6 +303,39 @@ class App extends Model
         $data       =   self::get_data();
         $download   =   CsvFile::download($data, $table_name);
         return $download;
+    }
+
+    static function seed()
+    {
+
+    }
+
+    static function restoration($data)
+    {
+        foreach($data as $datum){
+            if(self::where("client_id",($datum["client_id"] ?? null))->exists()){
+                continue;
+            }
+            if(self::where("channel_access_token",($datum["channel_access_token"] ?? null))->exists()){
+                continue;
+            }
+            $app    =   App::updateOrCreate(array(
+                "id"                    =>  $datum["id"]                    ?? null,
+            ),array(
+                "client_id"             =>  $datum["client_id"]             ?? null,
+                "channel_access_token"  =>  $datum["channel_access_token"]  ?? null,
+                "channel_secret"        =>  $datum["channel_secret"]        ?? null,
+                "user_id"               =>  $datum["user_id"]               ?? null,
+                "basic_id"              =>  $datum["basic_id"]              ?? null,
+                "display_name"          =>  $datum["display_name"]          ?? null,
+                "picture_url"           =>  $datum["picture_url"]           ?? null,
+                "chat_mode"             =>  $datum["chat_mode"]             ?? null,
+                "mark_as_read_mode"     =>  $datum["mark_as_read_mode"]     ?? null,
+                "status"                =>  $datum["status"]                ?? null,
+                "created_at"            =>  $datum["created_at"]            ?? null,
+                "updated_at"            =>  $datum["updated_at"]            ?? null,
+            ));
+        }
     }
 
 }

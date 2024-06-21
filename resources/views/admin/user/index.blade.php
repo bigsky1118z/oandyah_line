@@ -1,8 +1,11 @@
 <x-frame.admin>
-    <x-slot name="title">LINE公式アプリ応援屋</x-slot>
-    <x-slot name="head">
-    </x-slot>
-    <x-slot name="header">
+    <x-slot name="id">admin-user-index</x-slot>
+    <x-slot name="title">ユーザー</x-slot>
+    <x-slot name="description"></x-slot>
+    <x-slot name="head"></x-slot>
+    <x-slot name="header"></x-slot>
+    <x-slot name="page_transition_list">
+        <li><a href="{{ asset('admin' . '/user') }}">ユーザー</a></li>
     </x-slot>
     <x-slot name="main">
         <section>
@@ -11,8 +14,8 @@
                 <thead>
                     <tr>
                         <th>id</th>
+                        <th>name</th>
                         <th>email</th>
-                        <th>user name</th>
                         <th>birthday</th>
                         <th>apps</th>
                         <th></th>
@@ -22,13 +25,13 @@
                     @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td>{{ $user->email }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->birthday }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->birthday->format("Y-m-d") }}</td>
                             <td>
                                 <ul>
                                     @foreach ($user->apps as $app)
-                                        <li>{{ $app->app->name }}[{{ $app->role }}]</li>
+                                        <li>{{ $app->app->display_name }}[{{ $app->role }}]</li>
                                     @endforeach
                                 </ul>
                             </td>

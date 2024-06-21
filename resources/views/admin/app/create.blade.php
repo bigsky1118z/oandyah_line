@@ -1,8 +1,11 @@
 <x-frame.admin>
-    <x-slot name="title">LINE公式アプリ応援屋</x-slot>
-    <x-slot name="head">
-    </x-slot>
-    <x-slot name="header">
+    <x-slot name="id">admin-app-create</x-slot>
+    <x-slot name="title">アプリ</x-slot>
+    <x-slot name="description"></x-slot>
+    <x-slot name="head"></x-slot>
+    <x-slot name="header"></x-slot>
+    <x-slot name="page_transition_list">
+        <li><a href="{{ asset('admin' . '/app') }}">アプリ</a></li>
     </x-slot>
     <x-slot name="main">
         <section>

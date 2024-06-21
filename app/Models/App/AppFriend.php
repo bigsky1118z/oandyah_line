@@ -13,13 +13,18 @@ class AppFriend extends Model
 {
     use HasFactory;
     protected $fillable = [
+        "id",
+
         "app_id",
+
         "friend_id",
-        "status",
+        
         "display_name",
         "language",
         "picture_url",
         "status_message",
+
+        "status",
     ];
 
     public function app()
@@ -91,5 +96,29 @@ class AppFriend extends Model
             $download   =   CsvFile::download($data, $table_name);
             return $download;
         }
+        static function seed()
+        {
+        }
+    
+        static function restoration($data)
+        {
+            foreach($data as $datum){
+                if(self::where("friend_id",($datum["friend_id"] ?? null))->exists()){
+                    continue;
+                }
+                $friend =   AppFriend::updateOrCreate(array(
+                    "id"                =>  $datum["id"]                ?? null,
 
+                ),array(
+                    "app_id"            =>  $datum["app_id"]            ?? null,
+                    "friend_id"         =>  $datum["friend_id"]         ?? null,
+                    "display_name"      =>  $datum["display_name"]      ?? null,
+                    "language"          =>  $datum["language"]          ?? null,
+                    "picture_url"       =>  $datum["picture_url"]       ?? null,
+                    "status_message"    =>  $datum["status_message"]    ?? null,
+                    "status"            =>  $datum["status"]            ?? null,
+                ));
+            }
+        }
+    
 }

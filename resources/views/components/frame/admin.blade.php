@@ -17,7 +17,7 @@
             {{ $header ?? null }}
             <menu class="page-transition">
                 <ul>
-                    <li><a href="{{ asset("/") }}">TOP</a></li>
+                    <li><a href="{{ asset("admin") }}">管理画面TOP</a></li>
                     {{ $page_transition_list ?? null }}
                 </ul>
             </menu>

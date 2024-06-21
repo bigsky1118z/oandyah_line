@@ -91,6 +91,13 @@ class CsvFile extends Facade
         return Schema::getColumnListing($table_name);
     }
 
+
+    public static function get_table($table_name)
+    {
+        $tables =   self::$tables;
+        $table  =   $tables[$table_name] ?? null;
+        return $table;
+    }
     public static $tables  =   array(
         "apps"          =>  array(
             "table_name"    =>  "apps",
@@ -104,10 +111,4 @@ class CsvFile extends Facade
         ),
     );
 
-    public static function get_table($table_name)
-    {
-        $tables =   self::$tables;
-        $table  =   $tables[$table_name] ?? null;
-        return $table;
-    }
 }

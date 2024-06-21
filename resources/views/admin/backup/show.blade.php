@@ -5,7 +5,6 @@
     <x-slot name="head"></x-slot>
     <x-slot name="header"></x-slot>
     <x-slot name="page_transition_list">
-        <li><a href="{{ asset('admin') }}">TOP</a></li>
         <li><a href="{{ asset('admin'.'/backup') }}">バックアップ</a></li>
         <li><a href="{{ asset('admin'.'/backup/'.($table["table_name"] ?? null)) }}">{{ $table["title"] }}復元</a></li>
     </x-slot>
@@ -14,7 +13,7 @@
         <section>
             <form action="{{ asset('admin/backup/'.($table["table_name"] ?? null)) }}" method="post">
                 @csrf
-                <h3>{{ $table["title"] }}復元</h3>
+                <h3>復元</h3>
                 <table>
                     <tr>
                         <th>バックアップデータ</th>
@@ -29,6 +28,30 @@
                     </tr>
                 </table>
             </form>
+        </section>
+        <section>
+            @if ($all->count() > 0)
+                <h3></h3>
+                <table>
+                    <thead>
+                        <tr>
+                            @foreach ($all->first()->toArray() as $key => $value)
+                                <th>{{ mb_strimwidth($key, 0, 15, "...", "UTF-8") }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($all as $one)
+                            <tr>
+                                @foreach ($one->toArray() as $key => $value)
+                                    <td>{{ mb_strimwidth($value, 0, 15, "...", "UTF-8") }}</td>
+                                @endforeach
+                            </tr>         
+                        @endforeach
+                    </tbody>
+                </table>
+            @else               
+            @endif
         </section>
     </x-slot>
     <x-slot name="footer"></x-slot>
