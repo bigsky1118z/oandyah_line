@@ -42,7 +42,6 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $client_id)
     {
-        return response()->json([],200);
         /** 署名を検証 */
         $app                =   App::where("client_id",$client_id)->first();
         $request_body       =   $request->getContent();
