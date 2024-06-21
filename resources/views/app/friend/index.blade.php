@@ -21,7 +21,7 @@
                     <tr>
                         <td><img src="{{ $friend->picture_url }}" alt="" width="50px" height="50px"></td>
                         <td>{{ $friend->display_name }}</td>
-                        <td>{{ $friend->naming }}</td>
+                        <td>{{ $friend->friend_id }}</td>
                         <td>{{ $friend->status }}</td>
                         <td><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/friend/'.$friend->friend_id) }}'">詳細</button></td>
                     </tr>                    
