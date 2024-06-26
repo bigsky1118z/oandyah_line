@@ -42,15 +42,17 @@ class AppWebhookController extends Controller
 
     public function post(Request $request, $client_id)
     {
-        /** 署名を検証 */
         $app                =   App::where("client_id",$client_id)->first();
+        /** 署名を検証 */
         $request_body       =   $request->getContent();
         $channel_secret     =   $app->channel_secret ?? null;
         $x_line_signature   =   $request->header("x_line_signature");
         $validation         =   MessagingApi::signature_validation($request_body, $channel_secret, $x_line_signature);
+        /** eventsの処理 */
         if($validation && $request->exists("events")){
             $events =   $request->get("events");
             foreach($events as $event){
+                /** AppWebhookの作成 */
                 $webhook    =   AppWebhook::updateOrCreate(array(
                     "app_id"            =>  $app->id,
                     "ip_address"        =>  $request->header("x-forwarded-for"),
@@ -63,8 +65,10 @@ class AppWebhookController extends Controller
                     "query_string"      =>  $request->get("query_string"),
                     "event"             =>  $event,
                 ));
+                /** AppFriendの更新 */
                 $friend     =   $webhook->get_friend();
                 $friend->latest();
+                $auto       =   $webhook->reaction();
                 // $response   =   $webhook->auto_response();
                 // $webhook->response_status   =   $response;
                 // $webhook->save();

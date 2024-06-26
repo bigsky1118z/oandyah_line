@@ -62,7 +62,6 @@ class MessagingApi extends Facade
             $hash               =   hash_hmac("sha256", $request_body, $channel_secret, true);
             $signature          =   base64_encode($hash);
             return $signature === $x_line_signature;
-    
         }
     /** friend */
         static function get_profile($friend_id, $channel_access_token)

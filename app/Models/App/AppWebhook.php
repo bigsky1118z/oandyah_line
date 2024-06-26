@@ -65,7 +65,7 @@ class AppWebhook extends Model
     }
 
     /** POST 時の functions */
-    public function auto_response()
+    public function reaction()
     {
         $app        =   $this->app;
         $type       =   $this->event["type"] ?? null;

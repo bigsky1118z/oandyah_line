@@ -258,7 +258,6 @@
                     div.removeAttribute("id");
                     div.querySelectorAll("input,select,textarea").forEach(node=>{
                         const name  =   node.name;
-                        console.log(name);
                         node.name   =   name.replace("[{sumple}]","["+index+"]");
                     });
                     target.appendChild(div);

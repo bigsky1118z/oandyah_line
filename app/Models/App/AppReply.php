@@ -24,7 +24,6 @@ class AppReply extends Model
 
     protected $status   =   [
         "draft" =>  "下書き",
-        "draft" =>  "下書き",
     ];
 
     public function app()

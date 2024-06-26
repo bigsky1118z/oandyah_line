@@ -45,7 +45,9 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
         });
         Route::prefix("send")->group(function(){
             Route::get("/",[AppSendController::class,"index"]);
-            Route::get("{id}",[AppSendController::class,"show"]);
+            Route::get("create",[AppSendController::class,"create"]);
+            Route::get("{send_id}",[AppSendController::class,"show"]);
+            Route::post("{send_id?}",[AppSendController::class,"store"]);
         });
         Route::prefix("richmenu")->group(function(){
             Route::get("/",[AppRichmenuController::class,"index"]);

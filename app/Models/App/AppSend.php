@@ -97,31 +97,46 @@ class AppSend extends Model
         return $response;
     }
 
-    static function convert_messages($messages,$friend = null)
-    {
-        $name       =   $friend->display_name . "さん" ?? "あなた";
-        $messages   =   $messages->map(function($message) use($name) {
-            $type   =   $message["type"]    ??  null;
-            switch($type){
-                case("text"):
-                    if(isset($message["text"])){
-                        $message["text"] = str_replace("{name}", $name, $message["text"]);
-                    }
-                    break;
-                case("template"):
-                    if(isset($message["template"]["action"],$message["template"]["action"]["data"])){
-
-                    }
-                    if(isset($message["template"]["defaultAction"],$message["template"]["defaultAction"]["data"])){
-
-                    }
-                    if(isset($message["template"]["actions"])){
-
-                    }
-
-            }
-            return $message;
-        });
+    static function convert_messages($messages) {
+        $messages  =   $messages ?? array();
+        $messages  =   array_filter($messages,fn($area)=>self::validate_area($area));
+        $messages  =   array_values($messages);
         return $messages;
     }
+    static function validate_message($message)
+    {
+        $validation =   true;
+        $validation =   $validation ? ($message["type"] ?? null) != null    : $validation;
+        return $validation;
+    }
+
+
+
+    // static function convert_messages($messages,$friend = null)
+    // {
+    //     $name       =   $friend->display_name . "さん" ?? "あなた";
+    //     $messages   =   $messages->map(function($message) use($name) {
+    //         $type   =   $message["type"]    ??  null;
+    //         switch($type){
+    //             case("text"):
+    //                 if(isset($message["text"])){
+    //                     $message["text"] = str_replace("{name}", $name, $message["text"]);
+    //                 }
+    //                 break;
+    //             case("template"):
+    //                 if(isset($message["template"]["action"],$message["template"]["action"]["data"])){
+
+    //                 }
+    //                 if(isset($message["template"]["defaultAction"],$message["template"]["defaultAction"]["data"])){
+
+    //                 }
+    //                 if(isset($message["template"]["actions"])){
+
+    //                 }
+
+    //         }
+    //         return $message;
+    //     });
+    //     return $messages;
+    // }
 }
