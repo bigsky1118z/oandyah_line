@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             
             UserAppSeeder::class,
             AppFriendSeeder::class,            
+            AppRichmenuSeeder::class,            
             // AppReplySeeder::class,
         ]);
 

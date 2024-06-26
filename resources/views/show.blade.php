@@ -23,7 +23,7 @@
                     </tr>
                     <tr>
                         <th>誕生日</th>
-                        <td colspan="">{{ $user->birthday->format("Y-m-d") }}</td>
+                        <td colspan="2">{{ $user->birthday->format("Y-m-d") }}</td>
                     </tr>
                     <tr>
                         <th>名前</th>

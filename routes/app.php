@@ -49,9 +49,14 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
         });
         Route::prefix("richmenu")->group(function(){
             Route::get("/",[AppRichmenuController::class,"index"]);
-            Route::post("/",[AppRichmenuController::class,"store"]);
             Route::get("create",[AppRichmenuController::class,"create"]);
-            Route::get("{id}",[AppRichmenuController::class,"show"]);
+            Route::get("{app_richmenu_id}",[AppRichmenuController::class,"create"]);
+            Route::post("update",[AppRichmenuController::class,"update"]);
+            Route::post("{app_richmenu_id?}",[AppRichmenuController::class,"store"]);
+            Route::post("{app_richmenu_id}/upload",[AppRichmenuController::class,"upload"]);
+            Route::post("{app_richmenu_id}/default",[AppRichmenuController::class,"post_default"]);
+            Route::delete("default",[AppRichmenuController::class,"delete_default"]);
+            Route::delete("{app_richmenu_id}",[AppRichmenuController::class,"destroy"]);
         });
     });
 });

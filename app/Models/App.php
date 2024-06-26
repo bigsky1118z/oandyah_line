@@ -7,6 +7,7 @@ use App\Library\MessagingApi;
 use App\Models\App\AppFriend;
 use App\Models\App\AppReply;
 use App\Models\App\AppReplyCondition;
+use App\Models\App\AppRichmenu;
 use App\Models\App\AppSend;
 use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -79,6 +80,17 @@ class App extends Model
         {
             return $this->hasMany(AppSend::class);
         }
+
+        public function richmenus()
+        {
+            return $this->hasMany(AppRichmenu::class);
+        }
+        public function richmenu($app_richmenu_id)
+        {
+            return $this->hasOne(AppRichmenu::class)->where("id",$app_richmenu_id)->first();
+        }
+
+
     /** function */
         public function get_channel_access_token($option = null){
             $channel_access_token       =   $this->channel_access_token;

@@ -1,0 +1,1 @@
+<textarea name="{{ $name ?? "text" }}" id="{{ $id ?? "text" }}">{{ $text ?? null }}</textarea>

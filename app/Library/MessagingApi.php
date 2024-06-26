@@ -112,5 +112,109 @@ class MessagingApi extends Facade
     //     return $response;
     // }
 
+    /** richmenu */
+        static function get_richmenus($channel_access_token)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+            );
+            $url        =   "https://api.line.me/v2/bot/richmenu/list";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        static function get_richmenu($channel_access_token, $richmenu_id)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+            );
+            $url        =   "https://api.line.me/v2/bot/richmenu/$richmenu_id";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+        static function get_richmenu_content($channel_access_token, $richmenu_id)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+            );
+            $url        =   "https://api-data.line.me/v2/bot/richmenu/$richmenu_id/content";
+            $response   =   Http::withHeaders($headers)->get($url);
+            return $response;
+        }
+
+        static function validate_richmemu($channel_access_token, $data)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+                "Content-Type"  =>  "application/json",
+            );
+            $url        =   "https://api.line.me/v2/bot/richmenu/validate";
+            $response   =   Http::withHeaders($headers)->post($url, $data);
+            return $response;
+        }
+
+        static function post_richmemu($channel_access_token, $data)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+                "Content-Type"  =>  "application/json",
+            );
+            $url        =   "https://api.line.me/v2/bot/richmenu";
+            $response   =   Http::withHeaders($headers)->post($url, $data);
+            return $response;
+        }
+
+        static function post_richmenu_content($channel_access_token, $richmenu_id, $richmenu_content_file, $richmenu_content_mimetype)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+            );
+            $url        =   "https://api-data.line.me/v2/bot/richmenu/$richmenu_id/content";
+            $response   =   Http::withHeaders($headers)->withBody($richmenu_content_file, $richmenu_content_mimetype)->post($url);
+            return $response;
+        }
+
+        static function delete_richmemu($channel_access_token, $richmenu_id)
+        {
+            $headers    =   array(
+                "Authorization" =>  "Bearer $channel_access_token",
+                "Content-Type"  =>  "application/json",
+            );
+            $url        =   "https://api.line.me/v2/bot/richmenu/$richmenu_id";
+            $response   =   Http::withHeaders($headers)->delete($url);
+            return $response;
+        }
+        /** default menu */
+            static function get_richmemu_default($channel_access_token)
+            {
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/user/all/richmenu";
+                $response   =   Http::withHeaders($headers)->get($url);
+                return $response;
+            }
+            static function post_richmemu_default($channel_access_token, $richmenu_id)
+            {
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/user/all/richmenu/$richmenu_id";
+                $response   =   Http::withHeaders($headers)->post($url);
+                return $response;
+            }
+            static function delete_richmemu_default($channel_access_token)
+            {
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/user/all/richmenu";
+                $response   =   Http::withHeaders($headers)->delete($url);
+                return $response;
+            }
+            
 
 }

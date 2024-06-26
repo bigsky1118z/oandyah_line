@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\App;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,15 @@ return new class extends Migration
     {
         Schema::create('app_richmenus', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(App::class)->namespace()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string("richmenu_id")->nullable();
+            $table->string("name")->nullable();
+            $table->string("chat_bar_text")->nullable();
+            $table->boolean("selected")->default(true);
+            $table->json("size")->nullable();
+            $table->json("areas")->nullable();
+            $table->string("status")->default("draft");
+            $table->json("error")->nullable();
             $table->timestamps();
         });
     }
