@@ -13,26 +13,30 @@
     <x-slot name="main">
         <h2>{{ $app->display_name }}</h2>
         <section>
-            <h3>送信メッセージ一覧</h3>
+            <h3>送信メッセージ詳細</h3>
             <table>
                 <thead>
                     <tr>
                         <th>時間</th>
                         <th>ユーザー名</th>
                         <th>イベント</th>
-                        <th>操作</th>
                     </tr>
                 </thead>    
                 <tbody>
-                    @foreach ($webhooks as $webhook)
-                        <tr>
-                            <td>{{ $webhook->created_at }}</td>
-                            <td>{{ $webhook->get_friend()->get_name() }}</td>
-                            <td>{{ $webhook->get_event_type("title") }}</td>
-                            <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/webhook/{{ $webhook->id }}'">詳細</button></td>
-                        </tr>
-                    @endforeach
+                    <tr>
+                        <td>{{ $webhook->created_at }}</td>
+                        <td>{{ $webhook->get_friend()->get_name() }}</td>
+                        <td>{{ $webhook->get_event_type("title") }}</td>
+                    </tr>
                 </tbody>
+            </table>
+            <table>
+                @switch($webhook->get_event_type)
+                    @case("message")
+                        <tr><td>{{ $webhook->get_event_message_text() }}</td></tr>                    
+                        @break
+                    @default
+                @endswitch
             </table>
         </section>
     </x-slot>

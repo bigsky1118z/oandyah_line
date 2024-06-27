@@ -13,18 +13,15 @@ class AppWebhookController extends Controller
 {
     public function index(Request $request, $user_name, $client_id)
     {
-        $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($client_id)->app;
-        if($user && $app){
-            $data   =   array(
-                "user"      =>  $user,
-                "app"       =>  $app,
-                "webhooks"  =>  AppWebhook::whereAppId($app->id)->get(),
-            );
-            return view("app.webhook.index", $data);
-        } else {
-            return redirect("/");
-        }
+        $user       =   User::find(auth()->user()->id);
+        $app        =   $user->app($client_id)->app ?? new App();
+        $webhooks   =   $app->webhooks;
+        $data   =   array(
+            "user"      =>  $user,
+            "app"       =>  $app,
+            "webhooks"  =>  $webhooks,
+        );
+        return view("app.webhook.index", $data);
     }
 
     public function show(Request $request, $user_name, $client_id, $webhook_id)
@@ -32,7 +29,12 @@ class AppWebhookController extends Controller
         $user       =   User::find(auth()->user()->id);
         $app        =   $user->app($client_id)->app ?? new App();
         $webhook    =   $app->webhook($webhook_id);
-        return $webhook;
+        $data   =   array(
+            "user"      =>  $user,
+            "app"       =>  $app,
+            "webhook"   =>  $webhook,
+        );
+        return view("app.webhook.show", $data);
     }
 
     /** 外部アクセス */
