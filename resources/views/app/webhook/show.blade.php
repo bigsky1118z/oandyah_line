@@ -27,6 +27,7 @@
                         <td>{{ $webhook->created_at }}</td>
                         <td>{{ $webhook->get_friend()->get_name() }}</td>
                         <td>{{ $webhook->get_event_type("title") }}</td>
+                        <td>{{ $webhook->query_string }}</td>
                     </tr>
                 </tbody>
             </table>
