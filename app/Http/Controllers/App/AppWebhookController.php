@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class AppWebhookController extends Controller
 {
-    public function index(Request $request, $user_name, $app_name)
+    public function index(Request $request, $user_name, $client_id)
     {
         $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name)->app;
+        $app    =   $user->app($client_id)->app;
         if($user && $app){
             $data   =   array(
                 "user"      =>  $user,
@@ -27,17 +27,18 @@ class AppWebhookController extends Controller
         }
     }
 
-    public function show(Request $request, $user_name, $app_name, $id)
+    public function show(Request $request, $user_name, $client_id, $webhook_id)
     {
-        $user   =   User::find(auth()->user()->id);
-        $app    =   $user->app($app_name);
-        return AppWebhook::whereAppId($app->id)->whereId($id)->first();
+        $user       =   User::find(auth()->user()->id);
+        $app        =   $user->app($client_id) ?? new App();
+        $webhook    =   $app->webhook($webhook_id);
+        return $webhook;
     }
 
     /** 外部アクセス */
-    public function get(Request $request, $app_name)
+    public function get(Request $request, $client_id)
     {
-        return $app_name;
+        return $client_id;
     }
 
     public function post(Request $request, $client_id)
@@ -81,7 +82,7 @@ class AppWebhookController extends Controller
 
 
 
-    // public function webhook(Request $request, $user_name, $app_name)
+    // public function webhook(Request $request, $user_name, $client_id)
     // {
     //     if(isset($webhook->line_user_id) && $webhook->friend()->doesntExist()){
     //         $friend =   LineFriend::updateOrCreate(array(

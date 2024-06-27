@@ -45,6 +45,11 @@ class App extends Model
         {
             return $this->hasMany(AppWebhook::class,"app_id", "id");
         }
+        public function webhook($id)
+        {
+            return $this->hasOne(AppWebhook::class)->where("id",$id)->first();
+        }
+
         public function friends()
         {
             return $this->hasMany(AppFriend::class);
