@@ -48,17 +48,26 @@ class AppWebhook extends Model
                     :   new AppFriend();
         return $friend;
     }
+    
 
     /** event内の値を取得する */
         public function get_reply_token()
         {
             return $this->event["replyToken"] ?? null;
         }
-        public function get_type()
+        static $event_types    =   array(
+            "follow"    =>  "友だち追加",
+            "unfollow"  =>  "ブロック",
+            "message"   =>  "メッセージ",
+        );
+        public function get_event_type($mode)
         {
+            if($mode == "title"){
+                return self::$event_types[$this->event["type"]] ?? $this->event["type"] ?? null;
+            }
             return $this->event["type"] ?? null;
         }
-        public function get_text()
+        public function get_event_message_text()
         {
             return $this->event["message"]["text"] ?? null;
         }
@@ -74,7 +83,6 @@ class AppWebhook extends Model
             $app        =   $this->app;
             $type       =   $this->event["type"] ?? null;
             $friend     =   $this->get_friend();
-            $reply      =   new AppReply();
             switch($type){
                 case("follow")  :
                     $reply  =   AppReplyCondition::find_reply_follow($app->id);
@@ -87,7 +95,7 @@ class AppWebhook extends Model
                         ),
                         array(
                             "type"  =>  "text",
-                            "text"  =>  $this->get_text() ?? "取得失敗",
+                            "text"  =>  $this->get_event_message_text() ?? "取得失敗",
                         ),                        
                     );
                     $message    =   AppMessage::Create(array(
