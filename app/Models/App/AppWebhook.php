@@ -134,6 +134,7 @@ class AppWebhook extends Model
             //     //     "messages"          =>  $reply->messages,
             //     // ))->post_bot_message();
             // }
+            $this->responnse_status_code    =   $responnse_status_code;
             $this->save();
             return;
         }
