@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\App;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('app_replies', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("name")->nullable();
-            $table->string("status")->nullable();
-            $table->json("messages")->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('app_messages');
+        Schema::dropIfExists('app_replies');
     }
 };
