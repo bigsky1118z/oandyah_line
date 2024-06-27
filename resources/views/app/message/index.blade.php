@@ -53,6 +53,8 @@
                             @endswitch
                             <td>{{ count($message->messages ?? array()) }}</td>
                             <td>{{ $message->get_status() ?? null }}</td>
+                            <td>{{ json_encode($message->error_messages) ?? null }}</td>
+
                             <td>{{ $message->datetime ?? null }}</td>
                             <td>{{ $message->sends->count() }}</td>
                             <td>{{ $message->sends->where("response_code",200)->count() }}</td>
