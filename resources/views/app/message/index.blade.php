@@ -36,10 +36,13 @@
                             <td>{{ $message->get_type()  ??  null }}</td>
                             @switch($message->type)
                                 @case("push")
-                                    <td>{{ count(($message->push ?? array())) }}</td>
-                                    @break
                                 @case("reply")
-                                    <td>{{ $message->get_webhook()->get_friend()->get_name() ?? null  }}</td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($message->get_friends() as $friend)
+                                                <li>{{ $friend->get_name() ?? null  }}</li>
+                                            @endforeach
+                                        </ul>
                                     @break
                                 @case("narrowcast")
                                     <td></td>

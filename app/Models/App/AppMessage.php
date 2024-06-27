@@ -131,6 +131,17 @@ class AppMessage extends Model
         return self::$types[$this->type] ?? $this->type;
     }
 
+    public function get_friends()
+    {
+        $app        =   $this->app ?? new App();
+        $friends    =   array();
+        foreach(($this->push ?? array()) as $friend_id){
+            $friend =   AppFriend::where("app_id",$app->id)->where("friend_id",$friend_id)->first();
+            $friend ?   $friends[]  =   $friend :   null;
+        }
+        return $friends;
+    }
+
 
 
 
@@ -170,6 +181,7 @@ class AppMessage extends Model
                     break;
                 case("reply"):
                     $data["replyToken"] =   $this->reply_token;
+                    $data["to"]         =   $this->push[0] ?? null;
                     break;
             }
             return $data;

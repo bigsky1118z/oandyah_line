@@ -104,7 +104,7 @@ class AppWebhook extends Model
                         "type"          =>  "reply",
                         "datetime"      =>  null,
                         "reply_token"   =>  $this->get_reply_token(),
-                        "to"            =>  $friend->friend_id,
+                        "push"          =>  [$friend->friend_id],
                         "messages"      =>  $message_objects,
                     ));
                     $message->send_message();                            
