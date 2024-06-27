@@ -44,17 +44,20 @@ class AppFriend extends Model
     public function latest()
     {
         $app        =   $this->app;
-        $response   =   MessagingApi::get_profile($this->friend_id, $app->channel_access_token);
-        if($response->successful()){
-            $this->display_name     =   $response["displayName"]    ??  $this->display_name;
-            $this->language         =   $response["language"]       ??  $this->language;
-            $this->picture_url      =   $response["pictureUrl"]     ??  $this->picture_url;
-            $this->status_message   =   $response["statusMessage"]  ??  $this->status_message;
-            $this->status           =   "follow";
-        } else {
-            $this->status           =   "unfollow";
+        $friend_id  =   $this->friend_id;
+        if($app && $friend_id){
+            $response   =   MessagingApi::get_profile($app->channel_access_token, $this->friend_id);
+            if($response->successful()){
+                $this->display_name     =   $response["displayName"]    ??  $this->display_name;
+                $this->language         =   $response["language"]       ??  $this->language;
+                $this->picture_url      =   $response["pictureUrl"]     ??  $this->picture_url;
+                $this->status_message   =   $response["statusMessage"]  ??  $this->status_message;
+                $this->status           =   "follow";
+            } else {
+                $this->status           =   "unfollow";
+            }
+            $this->save();
         }
-        $this->save();
         return $this;
     }
 

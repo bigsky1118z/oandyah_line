@@ -68,10 +68,8 @@ class AppWebhookController extends Controller
                 /** AppFriendの更新 */
                 $friend     =   $webhook->get_friend();
                 $friend->latest();
-                $auto       =   $webhook->reaction();
-                // $response   =   $webhook->auto_response();
-                // $webhook->response_status   =   $response;
-                // $webhook->save();
+                /** 自動返信 */
+                $webhook->reaction();
             }
             $data   =   array();
             return response()->json($data,200);

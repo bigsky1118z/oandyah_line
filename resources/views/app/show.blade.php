@@ -73,8 +73,8 @@
             <h3><a href="{{ asset($user->name."/app/".$app->client_id."/reply") }}">自動返信</a></h3>
             <div></div>
         </section>
-        <section id="send">
-            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/send") }}">送信</a></h3>
+        <section id="message">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/message") }}">メッセージ</a></h3>
             <div></div>
         </section>
         <section id="richmenu">

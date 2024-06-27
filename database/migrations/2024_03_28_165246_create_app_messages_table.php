@@ -14,29 +14,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('app_sends', function (Blueprint $table) {
+        Schema::create('app_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string("type")->nullable();
-            
-            $table->integer("response_code")->nullable();
-            $table->string("x_line_request_id")->nullable();
+            $table->string("name")->nullable();
+            $table->string("status")->default("draft");
 
-            $table->string("x_line_retry_key")->nullable();
-    
-            $table->string("friend_id")->nullable();
+
+            $table->string("type")->nullable();
+            $table->dateTime("datetime")->nullable();
+            
+            /** typeごとに必要なプロパティ */
             $table->string("reply_token")->nullable();
+            $table->json("push")->nullable();
             $table->json("recipient")->nullable();
             $table->json("filter")->nullable();
             $table->json("limit")->nullable();
-
-            $table->json("messages")->nullable();
-    
+            
+            /** 送信オプション */
             $table->boolean("notification_disabled")->default(0);
             $table->string("custom_aggregation_units")->nullable();
-    
-            $table->json("sent_messages")->nullable();
-            $table->string("error_message")->nullable();
+            
+            /** 本文 */
+            $table->json("messages")->nullable();
+            
+            $table->json("error_messages")->nullable();
             $table->json("error_details")->nullable();
             $table->timestamps();
         });

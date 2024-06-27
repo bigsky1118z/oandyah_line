@@ -26,13 +26,14 @@ class AppRichmenu extends Model
         "areas",
         
         "status",
-        "error",
-    ];
+        "error_message",
+        "error_details",
+];
     protected $casts    =   [
-        "selected"  =>  "boolean",
-        "size"      =>  "json",
-        "areas"     =>  "json",
-        "error"     =>  "json",
+        "selected"      =>  "boolean",
+        "size"          =>  "json",
+        "areas"         =>  "json",
+        "error_details" =>  "json",
     ];
 
     static $types   =   array(
@@ -99,8 +100,8 @@ class AppRichmenu extends Model
                     }
                 }
             }
-            $this->status   =   $status;
-            $this->error    =   $errors;
+            $this->status           =   $status;
+            $this->error_details    =   $errors;
             $this->save();
         }
         return $this;

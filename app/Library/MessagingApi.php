@@ -64,52 +64,92 @@ class MessagingApi extends Facade
             return $signature === $x_line_signature;
         }
     /** friend */
-        static function get_profile($friend_id, $channel_access_token)
+        static function get_profile($channel_access_token, $friend_id)
         {
-            $url    =   "https://api.line.me/v2/bot/profile/$friend_id";
             $headers    =   array(
                 "Authorization" =>  "Bearer " . $channel_access_token,
                 "Content-Type"  =>  "application/json",
             );
+            $url    =   "https://api.line.me/v2/bot/profile/$friend_id";
             $response   =   Http::withHeaders($headers)->get($url);
             return $response; 
         }
     /** message */
-    // static function post_message($type, $target, $messages, $channel_access_token)
-    // {
-    //     $headers    =   array(
-    //         "Authorization" =>  "Bearer $channel_access_token",
-    //         "Content-Type"  =>  "application/json",
-    //     );
-    //     switch($type){
-    //         case("reply"):
-    //             $data["replyToken"] =   $target;
-    //             break;
-    //         case("push"):
-    //             $data["to"]         =   $target;
-    //             break;
-    //         }
-    //     $data       =   array(
-    //         "recipient"                 =>  $this->recipient                ??  null,
-    //         "filter"                    =>  $this->filter                   ??  null,
-    //         "limit"                     =>  $this->limit                    ??  null,
-    //         "messages"                  =>  $messages                       ??  null,
-    //         "customAggregationUnits"    =>  $this->custom_aggregation_units ?   array($this->custom_aggregation_units)  :   null,
-    //         "notificationDisabled"      =>  $this->notification_disabled    ??  false,
-    //     );
-    //     $endpoint               =   "https://api.line.me/v2/bot/message/" . $this->type;
-    //     $response               =   Http::withHeaders($headers)->post($endpoint, $data);
-    //     $this->response_code    =   $response->status();
-    //     if($response->successful()){
-    //         $this->sent_messages    =   $response["sentMessages"] ?? null;
-    //     } else {
-    //         $this->error_message    =   $response["message"];
-    //         $this->error_details    =   $response["details"];
-    //     }
-    //     $this->save();
-        
-    //     return $response;
-    // }
+        /** validate message */
+            static function velidate_message_reply($channel_access_token, $data){
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/validate/reply";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+            static function velidate_message_push($channel_access_token, $data){
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/validate/push";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+            static function velidate_message_multicast($channel_access_token, $data){
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/validate/multicast";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+            static function velidate_message_narrowcast($channel_access_token, $data){
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/validate/narrowcast";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+            static function velidate_message_broadcast($channel_access_token, $data){
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/validate/broadcast";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+        /** send message */
+            static function post_message_reply($channel_access_token, $data)
+            {
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/reply";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+
+            static function post_message_push($channel_access_token, $data)
+            {
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $url        =   "https://api.line.me/v2/bot/message/push";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
+            }
+
+            static function loading()
+            {
+                // POST https://api.line.me/v2/bot/chat/loading/start
+                // https://developers.line.biz/ja/reference/messaging-api/#display-a-loading-indicator
+            }
+
 
     /** richmenu */
         static function get_richmenus($channel_access_token)

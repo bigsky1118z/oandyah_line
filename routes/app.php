@@ -3,9 +3,9 @@
 use App\Http\Controllers\App\AppAutoController;
 use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\App\AppFriendController;
+use App\Http\Controllers\App\AppMessageController;
 use App\Http\Controllers\App\AppReplyController;
 use App\Http\Controllers\App\AppRichmenuController;
-use App\Http\Controllers\App\AppSendController;
 use App\Http\Controllers\App\AppWebhookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -43,11 +43,12 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
             Route::get("create",[AppReplyController::class,"create"]);
             Route::get("{id}",[AppReplyController::class,"show"]);
         });
-        Route::prefix("send")->group(function(){
-            Route::get("/",[AppSendController::class,"index"]);
-            Route::get("create",[AppSendController::class,"create"]);
-            Route::get("{send_id}",[AppSendController::class,"show"]);
-            Route::post("{send_id?}",[AppSendController::class,"store"]);
+        Route::prefix("message")->group(function(){
+            Route::get("/",[AppMessageController::class,"index"]);
+            Route::get("create",[AppMessageController::class,"create"]);
+            Route::get("{message_id}",[AppMessageController::class,"create"]);
+            Route::post("{message_id?}",[AppMessageController::class,"store"]);
+            Route::post("{message_id}/send",[AppMessageController::class,"send"]);
         });
         Route::prefix("richmenu")->group(function(){
             Route::get("/",[AppRichmenuController::class,"index"]);

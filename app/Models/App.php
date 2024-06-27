@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Library\CsvFile;
 use App\Library\MessagingApi;
 use App\Models\App\AppFriend;
+use App\Models\App\AppMessage;
 use App\Models\App\AppReply;
 use App\Models\App\AppReplyCondition;
 use App\Models\App\AppRichmenu;
-use App\Models\App\AppSend;
 use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -76,9 +76,13 @@ class App extends Model
         
 
 
-        public function sends()
+        public function messages()
         {
-            return $this->hasMany(AppSend::class);
+            return $this->hasMany(AppMessage::class);
+        }
+        public function message($app_message_id)
+        {
+            return $this->hasOne(AppMessage::class)->whereId($app_message_id)->first() ?? new AppMessage();
         }
 
         public function richmenus()

@@ -47,7 +47,7 @@
                         <td>{{ $richmenu->status            ?? null }}</td>
                         <td>
                             <ul>
-                                @foreach (($richmenu->error ?? array()) as $key => $error)
+                                @foreach (($richmenu->error_details ?? array()) as $key => $error)
                                 <li>{{ $key }}</li>
                                 @endforeach
                             </ul>

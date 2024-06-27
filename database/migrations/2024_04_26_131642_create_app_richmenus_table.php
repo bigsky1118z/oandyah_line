@@ -22,7 +22,8 @@ return new class extends Migration
             $table->json("size")->nullable();
             $table->json("areas")->nullable();
             $table->string("status")->default("draft");
-            $table->json("error")->nullable();
+            $table->json("error_messages")->nullable();
+            $table->json("error_details")->nullable();
             $table->timestamps();
         });
     }
