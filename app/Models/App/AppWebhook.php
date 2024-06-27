@@ -83,11 +83,16 @@ class AppWebhook extends Model
             $app        =   $this->app;
             $type       =   $this->event["type"] ?? null;
             $friend     =   $this->get_friend();
+            $this->query_string =   "0";
+            $this->save();
             switch($type){
                 case("follow")  :
                     $reply  =   AppReplyCondition::find_reply_follow($app->id);
                     break;
                 case("message") :
+                    $this->query_string =   "1";
+                    $this->save();
+        
                     $message_objects    =   array(
                         array(
                             "type"  =>  "text",
@@ -98,6 +103,9 @@ class AppWebhook extends Model
                             "text"  =>  $this->get_event_message_text() ?? "取得失敗",
                         ),                        
                     );
+                    $this->query_string =   "2";
+                    $this->save();
+        
                     $message    =   AppMessage::Create(array(
                         "app_id"        =>  $app->id,
                         "name"          =>  "[自動返信]",
@@ -106,7 +114,13 @@ class AppWebhook extends Model
                         "reply_token"   =>  $this->get_reply_token(),
                         "messages"      =>  $message_objects,
                     ));
-                    $message->send_message();            
+                    $this->query_string =   "3";
+                    $this->save();
+        
+                    $message->send_message();
+                    $this->query_string =   "4";
+                    $this->save();
+                            
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;
