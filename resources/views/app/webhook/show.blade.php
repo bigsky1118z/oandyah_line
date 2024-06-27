@@ -29,7 +29,7 @@
                             <td>{{ $webhook->created_at }}</td>
                             <td>{{ $webhook->get_friend()->get_name() }}</td>
                             <td>{{ $webhook->get_event_type("title") }}</td>
-                            <td><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/webhook/'.$webhook->id) }}'">詳細</button></td>
+                            <td><button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/webhook/{{ $webhook->id }}'">詳細</button></td>
                         </tr>
                     @endforeach
                 </tbody>
