@@ -60,7 +60,7 @@ class AppWebhook extends Model
             "unfollow"  =>  "ブロック",
             "message"   =>  "メッセージ",
         );
-        public function get_event_type($mode)
+        public function get_event_type($mode = null)
         {
             if($mode == "title"){
                 return self::$event_types[$this->event["type"]] ?? $this->event["type"] ?? null;
