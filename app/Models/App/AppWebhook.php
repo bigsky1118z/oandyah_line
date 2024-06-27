@@ -85,7 +85,7 @@ class AppWebhook extends Model
             $app                    =   $this->app;
             $type                   =   $this->event["type"] ?? null;
             $friend                 =   $this->get_friend();
-            $responnse_status_code  =   null;
+            $response_status_code   =   null;
             switch($type){
                 case("follow")  :
                     $reply  =   AppReplyCondition::find_reply_follow($app->id);
@@ -113,7 +113,7 @@ class AppWebhook extends Model
                         ));
                         $message                =   $message->latest();
                         $message->send_message();
-                        $responnse_status_code  =   $message->send->response_code ?? null;
+                        $response_status_code   =   $message->send->response_code ?? null;
                     }
                     break;
                 case("postback") :
@@ -134,7 +134,7 @@ class AppWebhook extends Model
             //     //     "messages"          =>  $reply->messages,
             //     // ))->post_bot_message();
             // }
-            $this->responnse_status_code    =   $responnse_status_code;
+            $this->response_status_code    =   $response_status_code;
             $this->save();
             return;
         }
