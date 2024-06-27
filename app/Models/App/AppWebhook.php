@@ -20,9 +20,11 @@ class AppWebhook extends Model
         "request_method",
         "request_body",
         "x_line_signature",
-        "response_status",
-        "destination",
         "query_string",
+
+        "response_status_code",
+        
+        "destination",
         "event",
     ];
 
@@ -80,9 +82,10 @@ class AppWebhook extends Model
     /** POST 時の functions */
         public function reaction()
         {
-            $app        =   $this->app;
-            $type       =   $this->event["type"] ?? null;
-            $friend     =   $this->get_friend();
+            $app                    =   $this->app;
+            $type                   =   $this->event["type"] ?? null;
+            $friend                 =   $this->get_friend();
+            $responnse_status_code  =   null;
             switch($type){
                 case("follow")  :
                     $reply  =   AppReplyCondition::find_reply_follow($app->id);
@@ -98,17 +101,20 @@ class AppWebhook extends Model
                             "text"  =>  $this->get_event_message_text() ?? "取得失敗",
                         ),                        
                     );
-                    $message    =   AppMessage::Create(array(
-                        "app_id"        =>  $app->id,
-                        "name"          =>  "[自動返信]",
-                        "type"          =>  "reply",
-                        "datetime"      =>  null,
-                        "reply_token"   =>  $this->get_reply_token(),
-                        "push"          =>  [$friend->friend_id],
-                        "messages"      =>  $message_objects,
-                    ));
-                    $message    =   $message->latest();
-                    $message->send_message();
+                    if($message_objects){
+                        $message    =   AppMessage::Create(array(
+                            "app_id"        =>  $app->id,
+                            "name"          =>  "[自動返信]",
+                            "type"          =>  "reply",
+                            "datetime"      =>  null,
+                            "reply_token"   =>  $this->get_reply_token(),
+                            "push"          =>  [$friend->friend_id],
+                            "messages"      =>  $message_objects,
+                        ));
+                        $message                =   $message->latest();
+                        $message->send_message();
+                        $responnse_status_code  =   $message->send->response_code ?? null;
+                    }
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;
@@ -128,6 +134,7 @@ class AppWebhook extends Model
             //     //     "messages"          =>  $reply->messages,
             //     // ))->post_bot_message();
             // }
+            $this->save();
             return;
         }
 

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("request_method")->nullable();
             $table->json("request_body")->nullable();
             $table->string("x_line_signature")->nullable();
-            $table->integer("response_status")->nullable();
+            $table->integer("response_status_code")->nullable();
             $table->string("destination")->nullable();
             $table->string("query_string")->nullable();
             

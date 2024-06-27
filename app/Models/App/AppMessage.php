@@ -64,7 +64,11 @@ class AppMessage extends Model
     {
         return $this->hasMany(AppMessageSend::class);
     }
-
+    public function send()
+    {
+        return $this->hasOne(AppMessageSend::class);
+    }
+    
     public function get_friend()
     {
         $friend_id  =   $this->friend_id ?? null;
@@ -233,7 +237,7 @@ class AppMessage extends Model
                 }
             }
             $this->save();
-
+            return $this;
         }
     
 
