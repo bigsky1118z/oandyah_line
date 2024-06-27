@@ -31,7 +31,7 @@
                 </tbody>
             </table>
             <table>
-                @switch($webhook->get_event_type)
+                @switch($webhook->get_event_type())
                     @case("message")
                         <tr><td>{{ $webhook->get_event_message_text() }}</td></tr>                    
                         @break
