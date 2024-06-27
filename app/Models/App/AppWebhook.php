@@ -107,7 +107,8 @@ class AppWebhook extends Model
                         "push"          =>  [$friend->friend_id],
                         "messages"      =>  $message_objects,
                     ));
-                    $message->send_message();                            
+                    $message->latest();
+                    $message->send_message();
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;

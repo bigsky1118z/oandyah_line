@@ -65,13 +65,6 @@ class AppMessage extends Model
         return $this->hasMany(AppMessageSend::class);
     }
 
-    // public function get_webhook()
-    // {
-    //     $app            =   $this->app;
-    //     $reply_token    =   $this->reply_token;
-    //     return AppWebhook::where("app_id",$app->id)->where("event.replyToken",$reply_token)->first();
-    // }
-
     public function get_friend()
     {
         $friend_id  =   $this->friend_id ?? null;
