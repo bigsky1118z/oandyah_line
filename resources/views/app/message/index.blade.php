@@ -55,7 +55,7 @@
                             <td>{{ $message->get_status() ?? null }}</td>
                             <td>{{ $message->datetime ?? null }}</td>
                             <td>{{ $message->sends->count() }}</td>
-                            <td>{{ json_encode($message->send->response_status_code) }}</td>
+                            <td>{{ $message->send }}</td>
                             <td>{{ $message->sends->where("response_code",200)->count() }}</td>
                             <td>{{ $message->sends->where("response_code","!=",200)->count() }}</td>
                             <td><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/message/'.$message->id) }}'">{{ $message->status == "sent" ? "詳細" : "編集" }}</button></td>
