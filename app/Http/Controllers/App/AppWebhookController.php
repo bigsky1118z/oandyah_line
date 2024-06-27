@@ -30,7 +30,7 @@ class AppWebhookController extends Controller
     public function show(Request $request, $user_name, $client_id, $webhook_id)
     {
         $user       =   User::find(auth()->user()->id);
-        $app        =   $user->app($client_id) ?? new App();
+        $app        =   $user->app($client_id)->app ?? new App();
         $webhook    =   $app->webhook($webhook_id);
         return $webhook;
     }
