@@ -24,10 +24,11 @@
                 </thead>    
                 <tbody>
                     <tr>
-                        <td>{{ $webhook->created_at }}</td>
-                        <td>{{ $webhook->get_friend()->get_name() }}</td>
-                        <td>{{ $webhook->get_event_type("title") }}</td>
-                        <td>{{ $webhook->query_string }}</td>
+                        <td>{{ $webhook->created_at ?? null }}</td>
+                        <td>{{ $webhook->get_friend()->get_name() ?? null }}</td>
+                        <td>{{ $webhook->get_event_type("title") ?? null }}</td>
+                        <td>{{ $webhook->query_string ?? null }}</td>
+                        <td>{{ $webhook->response_status_code ?? null }}</td>
                     </tr>
                 </tbody>
             </table>
