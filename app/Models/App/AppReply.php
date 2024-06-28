@@ -17,6 +17,7 @@ class AppReply extends Model
         "keyword",
         "status",
         "mode",
+        "match",
     ];
 
     protected $casts    =   [
@@ -46,8 +47,8 @@ class AppReply extends Model
     {
         $app_reply_message  =   AppReplyMessage::updateOrCreate(array(
             "app_reply_id"  =>  $this->id,
-            "name"          =>  $name ?? now()->format("YmdHi"),
         ),array(
+            "name"          =>  $name ?? now()->format("YmdHi"),
             "messages"      =>  $message_objects ?? array(),
             "status"        =>  "active",
         ));
@@ -64,10 +65,15 @@ class AppReply extends Model
             $this->create_message($name, $message_objects);
         }
 
-
-    static $matches    =   array(
+    static $types   =   array(
+        "follow"    =>  "友だち追加",
+        "message"   =>  "メッセージ",
+    );
+    
+    static $matches =   array(
         "exact"     =>  "完全一致",
         "partial"   =>  "部分一致",
+        "none"      =>  "一致なし",
         // "forward"   =>  "前方一致",
         // "backward"  =>  "後方一致",
     );
@@ -86,9 +92,9 @@ class AppReply extends Model
         return self::$statuses[$this->status] ?? $this->status;
     }
 
-    static $modes    =   array(
-        "latest"    =>  "最新メッセージ",
+    static $modes   =   array(
         "random"    =>  "ランダム返答",
+        "latest"    =>  "最新メッセージ",
     );
     public function get_mode()
     {
@@ -115,8 +121,9 @@ class AppReply extends Model
                     }
                 }    
             }
-            
-
+            if(!$reply){
+                $reply  =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->where('match', "none")->orderBy("updated_at")->first();
+            }
             if($reply){
                 $message_objects    =   $reply->message()->messages ?? array();
             }

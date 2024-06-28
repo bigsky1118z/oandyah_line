@@ -14,31 +14,40 @@
         <h2>{{ $app->display_name }}</h2>
         <section>
             <h3>自動返信一覧</h3>
+            <ul>
+                <li><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/create') }}'">作成</button></li>
+            </ul>
             <table>
-                <thead>
-                    <tr>
-                        <th>name</th>
-                        <th>type</th>
-                        <th>keyword</th>
-                        <th>status</th>
-                    </tr>
-                </thead>    
-                <tbody>
-                    @foreach ($app->replies as $reply)
+                    @foreach ($types as $type => $type_title)
+                    <thead>
                         <tr>
-                            <td>{{ $reply->name ?? null }}</td>
-                            <td>{{ $reply->type ?? null }}</td>
-                            <td>{{ $reply->get_match() ?? null }}</td>
-                            <td>{{ implode(",",($reply->keyword ?? array())) }}</td>
-                            <td>{{ $reply->get_status() ?? null }}</td> 
-                            <td>{{ $reply->messages->where("status","active")->count() ?? null }}</td>
-                            <td>
-                                <button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id) }}'">詳細</button>
-                            </td>
+                            <th colspan="6"><h4>{{ $type_title }}</h4></th>
                         </tr>
+                        <tr>
+                            <th>タイトル</th>
+                            <th>一致条件</th>
+                            <th>キーワード</th>
+                            <th>状態</th>
+                            <th>メッセージ数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>    
+                    <tbody>
+                        @foreach (($app->replies->groupBy("type")[$type] ?? array()) as $reply)
+                            <tr>
+                                <td>{{ $reply->name ?? null }}</td>
+                                <td>{{ $type == "follow" ? null : ($reply->get_match() ?? null) }}</td>
+                                <td>{{ $type == "follow" ? null : implode(",",($reply->keyword ?? array())) }}</td>
+                                <td>{{ $reply->get_status() ?? null }}</td> 
+                                <td>{{ $reply->messages->where("status","active")->count() ?? null }}</td>
+                                <td>
+                                    <button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id) }}'">詳細</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                     @endforeach
-                </tbody>
-            </table>
+                </table>       
         </section>
     </x-slot>
     <x-slot name="footer"></x-slot>

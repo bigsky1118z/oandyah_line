@@ -24,9 +24,14 @@ class AppReplyMessage extends Model
         "error_details"     =>  "json",
     ];
 
+    public function reply()
+    {
+        return $this->belongsTo(AppReply::class,"app_reply_id","id");
+    }
+
     public function latest()
     {
-        $error_message  =   "";
+        $error_message  =   null;
         $error_details  =   array();
         $validation     =   $this->validate_message();
         if($validation->successful()){
@@ -44,7 +49,8 @@ class AppReplyMessage extends Model
 
     public function validate_message()
     {
-        $app                    =   $this->app ?? new App();
+        $reply                  =   $this->reply    ?? new AppReply();
+        $app                    =   $reply->app     ?? new App();
         $channel_access_token   =   $app->channel_access_token;
         $data                   =   array(
             "messages"  =>  $this->messages,
