@@ -49,6 +49,7 @@ class AppReply extends Model
             "name"          =>  $name ?? now()->format("YmdHi"),
         ),array(
             "messages"      =>  $message_objects ?? array(),
+            "status"        =>  "active",
         ));
         // $app_reply_message->latest();
     }
