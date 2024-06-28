@@ -77,15 +77,15 @@ class AppReply extends Model
         $app                =   App::where("client_id", $client_id)->first() ?? new App();
         $message_objects    =   array();
         if($type == "follow"){
-            $reply              =   AppReply::where("type",$type)->where("status","active")->first();
+            $reply              =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->first();
             $message_objects    =   $reply->message()->messages ?? array();
         }
         if($type == "message"){
             /** 完全一致を探す */
-            $reply  =   AppReply::where("type",$type)->where("status","active")->where('match', "exact")->whereJsonContains("keyword",$text)->orderBy("updated_at")->first();
+            $reply  =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->where('match', "exact")->whereJsonContains("keyword",$text)->orderBy("updated_at")->first();
             /** 部分一致を探す */
             if(!$reply){
-                $replies    =   AppReply::where("type",$type)->where("status","active")->where('match', "partial")->orderBy("updated_at")->get();
+                $replies    =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->where('match', "partial")->orderBy("updated_at")->get();
                 foreach($replies as $reply_candidate){
                     $keywords   =   $reply_candidate->keyword ?? array();
                     foreach($keywords as $keyword){
