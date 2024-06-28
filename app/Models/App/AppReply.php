@@ -45,8 +45,8 @@ class AppReply extends Model
 
     static $matches    =   array(
         "exact"     =>  "完全一致",
-        "forward"   =>  "前方一致",
-        "backward"  =>  "後方一致",
+        // "forward"   =>  "前方一致",
+        // "backward"  =>  "後方一致",
         "partial"   =>  "部分一致",
     );
     public function get_match()
@@ -83,10 +83,25 @@ class AppReply extends Model
         }
         if($type == "message"){
             $reply      =   null;
-            $reply      =   $reply ? $reply :   $reply_query->where("match","partial")->whereJsonContains("keyword",$text)->first();
-            $reply      =   $reply ? $reply :   $reply_query->where("match","exact")->whereJsonContains("keyword",$text)->first();
-            // $reply      =   $reply ? $reply :   $reply_query->where("match","forward")->whereJsonContains("keyword",$text)->first();
-            // $reply      =   $reply ? $reply :   $reply_query->where("match","backward")->whereJsonContains("keyword",$text)->first();
+            /** self::$match = ["exact"=>"完全一致","partial","部分一致"]前方と後方はなくした */
+            /** textが「こんにちは、あかちゃん」のとき、match=>"partial",keyword=>["こんにちは","さようなら"]に引っかかる方法 */
+            foreach (self::$matches as $key => $value) {
+                $reply = $reply ? $reply : $reply_query->where('match', $key)->where(function ($query) use ($key, $text) {
+                    if ($key == 'exact') {
+                        $query->whereJsonContains('keyword', $text);
+                    }
+                    if ($key == 'partial') {
+                        $query->where(function ($query) use ($text) {
+                            $keywords = json_decode($query->pluck('keyword')->first(), true);
+                            if (is_array($keywords)) {
+                                foreach ($keywords as $keyword) {
+                                    $query->orWhere('keyword', 'like', '%' . $keyword . '%');
+                                }
+                            }
+                        });
+                    }
+                })->first();
+            }
             if($reply){
                 $message_objects    =   $reply->message()->messages ?? array();
             } else {
