@@ -42,6 +42,27 @@ class AppReply extends Model
         return $app_reply_message;
     }
 
+    public function create_message($name = null, $message_objects)
+    {
+        $app_reply_message  =   AppReplyMessage::updateOrCreate(array(
+            "app_reply_id"  =>  $this->id,
+            "name"          =>  $name ?? now()->format("YmdHi"),
+        ),array(
+            "messages"      =>  $message_objects ?? array(),
+        ));
+        $app_reply_message->latest();
+    }
+        public function create_simple_text_message($name = null, $text)
+        {
+            $message_objects    =   array(
+                array(
+                    "type"  =>  "text",
+                    "text"  =>  $text,
+                ),
+            );
+            $this->create_message($name, $message_objects);
+        }
+
 
     static $matches    =   array(
         "exact"     =>  "完全一致",

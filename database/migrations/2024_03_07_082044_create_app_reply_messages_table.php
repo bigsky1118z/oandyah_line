@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string("name")->nullable();
             $table->json("messages")->nullable();
             $table->string("status")->default("active");
+            $table->text("error_message")->nullable();
+            $table->json("error_details")->nullable();
             $table->timestamps();
         });
     }
