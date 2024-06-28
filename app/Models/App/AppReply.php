@@ -81,19 +81,20 @@ class AppReply extends Model
             $message_objects    =   $reply->message()->messages ?? array();
         }
         if($type == "message"){
-            $reply      =   null;
-            $reply = $reply ? $reply : AppReply::where("type",$type)->where("status","active")->where('match', "exact")->whereJsonContains('keyword', $text)->first();
-            $reply = $reply ? $reply : AppReply::where("type",$type)->where("status","active")->where('match', "partial")->whereJsonContains('keyword', $text)->first();
-
-            $query->where(function ($query) use ($text) {
-                            $keywords = json_decode($query->pluck('keyword')->first(), true);
-                            if (is_array($keywords)) {
-                                foreach ($keywords as $keyword) {
-                                    $query->orWhere('keyword', 'like', '%' . $keyword . '%');
-                                }
-                            }
-                        });
+            $replies    =   AppReply::where("type",$type)->where("status","active")->orderBy("updated_at")->get();
+            $reply      =   $replies->where('match', "exact")->whereJsonContains('keyword', $text)->first();
+            if(!$reply){
+                $replies    =   $replies->where('match', "partial")->get();
+                foreach($replies as $reply_candidate){
+                    $keywords   =   $reply_candidate->keyword ?? array();
+                    foreach($keywords as $keyword){
+                        if(str_contains($text, $keyword)){
+                            $reply  =   $reply_candidate;
+                            break 2;
+                        }
                     }
+                }    
+            }
             if($reply){
                 $message_objects    =   $reply->message()->messages ?? array();
             } else {
