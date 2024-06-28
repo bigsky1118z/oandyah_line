@@ -49,6 +49,7 @@ class AppReplyController extends Controller
                 "mode"      =>  $request->input("mode")     ?? null,
                 "match"     =>  $request->input("match")    ?? null,
                 "keyword"   =>  array_filter(($request->input("keyword")  ?? array()), fn($keyword)=> $keyword),
+                "status"    =>  $request->input("status")   ?? null,
             ));
             return redirect(asset("$user_name/app/$client_id/reply/$reply->id'"));
         } else {
