@@ -65,7 +65,7 @@ class AppReplySeeder extends Seeder
             "app_id"    =>  $app->id,
             "type"      =>  "message",
             "match"     =>  "partial",
-            "keyword"   =>  array("さようなら"),
+            "keyword"   =>  array("さようなら","またね"),
             "status"    =>  "active",
             "mode"      =>  "random",
         ));
