@@ -74,10 +74,10 @@ class AppWebhook extends Model
             return $this->event["message"]["text"] ?? null;
         }
 
-    public function get_event($key)
-    {
-        return $this->event[$key] ?? null;
-    }
+        public function get_event($key)
+        {
+            return $this->event[$key] ?? null;
+        }
 
     /** POST 時の functions */
         public function reaction()
@@ -88,9 +88,11 @@ class AppWebhook extends Model
             $response_status_code   =   null;
             switch($type){
                 case("follow")  :
-                    $reply  =   AppReplyCondition::find_reply_follow($app->id);
+                    $message_objects    =   AppReply::get_message_objects($type,null);
                     break;
                 case("message") :
+                    $text               =   $this->get_event_message_text();
+                    $message_objects    =   AppReply::get_message_objects($type,$text);
                     $message_objects    =   array(
                         array(
                             "type"  =>  "text",

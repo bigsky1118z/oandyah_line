@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AppReply extends Model
+class AppReplyMessage extends Model
 {
     use HasFactory;
 }

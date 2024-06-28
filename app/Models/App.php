@@ -66,7 +66,7 @@ class App extends Model
         }
         public function reply($id)
         {
-            return $this->hasOne(AppReply::class)->whereId($id)->first() ?? new AppReply();
+            return $this->hasOne(AppReply::class)->whereId($id)->first();
         }
 
 
@@ -87,7 +87,7 @@ class App extends Model
         }
         public function message($app_message_id)
         {
-            return $this->hasOne(AppMessage::class)->whereId($app_message_id)->first() ?? new AppMessage();
+            return $this->hasOne(AppMessage::class)->whereId($app_message_id)->first();
         }
 
         public function richmenus()

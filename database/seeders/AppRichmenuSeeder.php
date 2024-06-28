@@ -6,6 +6,7 @@ use App\Models\App;
 use App\Models\App\AppRichmenu;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class AppRichmenuSeeder extends Seeder
 {
@@ -15,10 +16,8 @@ class AppRichmenuSeeder extends Seeder
     public function run(): void
     {
         $app            =   App::where("client_id","1657423958")->first();
-        $app_richmenu   =   AppRichmenu::updateOrCreate(array(
-            "app_id"        =>  $app->id,
-            "richmenu_id"   =>  "richmenu-3894dc90047a4080e4cce5599feaae06",
-        ));
-        $app_richmenu->latest();
+        $files          =   Storage::disk("local")->files("public/app/1657423958/richmenu_content");
+        Storage::disk("local")->delete($files);
+        $app_richmenus  =   AppRichmenu::update_richmenus($app);
     }
 }

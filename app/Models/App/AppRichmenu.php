@@ -271,6 +271,7 @@ class AppRichmenu extends Model
                 }
             }
             $app->richmenus->each(fn($app_richmemu)=>$app_richmemu->latest());
+            return $app->richmenus;
         }
         /** defualt menu */
         public function is_default()

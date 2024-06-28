@@ -1,75 +1,47 @@
 <x-frame.web>
-    <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
-    <x-slot name="head">
-    </x-slot>
-    <x-slot name="header">
+    <x-slot name="id">user-app-reply-index</x-slot>
+    <x-slot name="title">自動返信一覧</x-slot>
+    <x-slot name="description"></x-slot>
+    <x-slot name="head"></x-slot>
+    <x-slot name="header"></x-slot>
+    <x-slot name="page_transition_list">
+        <li><a href="{{ asset($user->name) }}">マイページ</a></li>
+        <li><a href="{{ asset($user->name.'/app') }}">アプリ一覧</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id) }}">{{ $app->display_name ?? $app->client_id }}</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id.'/reply') }}">自動返信一覧</a></li>
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->display_name }}</h2>
-        <h3>自動返信 一覧</h3>
-        {{-- <h3>デフォルト返信</h3>
-        @foreach (["follow","message","postback"] as $type)
-            <p>{{ $type }}{{ $app->reply_condition_defaults->where("type",$type)->first() }}</p>
-        @endforeach --}}
-        <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create'">新規作成</button>
-        <h3></h3>
-        <table>
-            <thead>
-                <tr>
-                    <th style="width:100px;">名前</th>
-                    {{-- <th style="width:100px;">ステータス</th> --}}
-                    <th style="width:280px;">返答メッセージ</th>
-                    <th style="width:100px;">操作</th>
-                    <th style="width:300px;">条件</th>
-                </tr>
-            </thead>    
-            <tbody>
-                @foreach ($app->replies as $reply)
+        <section>
+            <h3>自動返信一覧</h3>
+            <table>
+                <thead>
                     <tr>
-                        <td>{{ $reply->name }}</td>
-                        {{-- <td>{{ $reply->status }}</td> --}}
-                        <td><x-web.messages :messages="$reply->messages" /></td>
-                        <td>
-                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/create?copy={{ $reply->id }}'">複製</button>
-                            <button type="button" onclick="location.href='/{{ $user->name }}/app/{{ $app->name }}/reply/{{ $reply->id }}'">詳細</button>
-                        </td>    
-                        <td>
-                            <ul>
-                                @foreach ($reply->conditions as $condition)
-                                    <li>
-                                        <dl style="display:flex;">
-                                            <dd style="width: 75px">{{ $condition->type }}</dd>
-                                            <dd style="width: 75px">{{ $condition->get_match() ?? null }}</dd>
-                                            <dd style="width: 100px">{{ $condition->condition["keyword"] ?? null }}</dd>
-                                            <dd style="width: 50px"><button type="button">編集</button></dd>
-                                        </dl>
-                                    </li>
-                                @endforeach
-                                <li><button type="button">新規条件追加</button></li>
-                            </ul>
-                        </td>
+                        <th>name</th>
+                        <th>type</th>
+                        <th>keyword</th>
+                        <th>status</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>    
+                <tbody>
+                    @foreach ($app->replies as $reply)
+                        <tr>
+                            <td>{{ $reply->name ?? null }}</td>
+                            <td>{{ $reply->type ?? null }}</td>
+                            <td>{{ $reply->get_match() ?? null }}</td>
+                            <td>{{ implode(",",($reply->keyword ?? array())) }}</td>
+                            <td>{{ $reply->get_status() ?? null }}</td> 
+                            <td>{{ $reply->messages->count() ?? null }}</td>
+                            <td>
+                                <button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id) }}'">詳細</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
     </x-slot>
-    <x-slot name="footer">
-    </x-slot>
-    <x-slot name="script">
-        <script>
-            function is_enable(input){
-            }
-            function is_default(button){
-                const id        =   button.getAttribute("data-reply-id");
-                const radio     =   document.querySelector("input[type=radio][data-reply-id='"+id+"']");
-                radio.checked   =   !radio.checked;
-                document.querySelectorAll("input[type=radio]").forEach(input=>{
-                    const id            =   input.getAttribute("data-reply-id");
-                    const button        =   document.querySelector("button[data-reply-id='"+id+"']");
-                    button.textContent  =   input.checked ? "解除" : "設定";
-                });
-                // 非同期通信
-            }
-        </script>
-    </x-slot>
+    <x-slot name="footer"></x-slot>
+    <x-slot name="hidden"></x-slot>
+    <x-slot name="script"></x-slot>
 </x-frame.web>
