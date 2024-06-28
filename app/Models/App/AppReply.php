@@ -47,7 +47,7 @@ class AppReply extends Model
         "exact"     =>  "完全一致",
         // "forward"   =>  "前方一致",
         // "backward"  =>  "後方一致",
-        "partial"   =>  "部分一致",
+        // "partial"   =>  "部分一致",
     );
     public function get_match()
     {

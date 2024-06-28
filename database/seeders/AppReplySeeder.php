@@ -38,7 +38,7 @@ class AppReplySeeder extends Seeder
         $app_reply      =   AppReply::updateOrCreate(array(
             "app_id"    =>  $app->id,
             "type"      =>  "message",
-            "match"     =>  "partial",
+            "match"     =>  "exact",
             "keyword"   =>  array("はじめまして","こんにちは","さようなら"),
             "status"    =>  "active",
             "mode"      =>  "random",
