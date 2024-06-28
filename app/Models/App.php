@@ -66,7 +66,7 @@ class App extends Model
         }
         public function reply($id)
         {
-            return $this->hasOne(AppReply::class)->whereId($id)->first();
+            return $this->hasOne(AppReply::class)->where("id",$id)->first();
         }
 
 

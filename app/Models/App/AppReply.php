@@ -15,16 +15,32 @@ class AppReply extends Model
         "type",
         "keyword",
         "status",
+        "mode",
     ];
 
     protected $casts    =   [
         "keyword" => "json",
     ];
 
-    public function message()
+    public function messages()
     {
         return $this->hasMany(AppReplyMessage::class);
     }
+    public function message($app_message_id = null)
+    {
+        $app_reply_message  =   $this->hasOne(AppReplyMessage::class)->where("id",$app_message_id)->first();
+        if(!$app_reply_message){
+            $messages_query =   $this->messages()->where("status","active");
+            if($this->mode == "latest"){
+                $app_reply_message  =   $messages_query->sortByDesc("updated_at")->first();
+            }
+            if ($this->mode == 'random') {
+                $app_reply_message = $messages_query->inRandomOrder()->first();
+            }
+        }
+        return $app_reply_message;
+    }
+
 
     static $matches    =   array(
         "exact"     =>  "完全一致",
@@ -46,9 +62,26 @@ class AppReply extends Model
     {
         return self::$statuses[$this->status] ?? $this->status;
     }
+    static $modes    =   array(
+        "latest"    =>  "最新メッセージ",
+        "random"    =>  "ランダム返答",
+    );
+    public function get_mode()
+    {
+        return self::$modes[$this->mode] ?? $this->mode;
+    }
 
     static function get_message_objects($type, $text = null)
     {
+        $message_objects    =   array();
+        if($type == "follow"){
+            $reply              =   AppReply::where("type",$type)->where("status","active")->first();
+            $message_objects    =   $reply->message()->messages ?? array();
+        }
         $replies    =   AppReply::where("type",$type)->where("status","active")->get();
+        if($type == "message"){
+            $replies;
+        }
+        return $message_objects;
     }
 }

@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             AppSeeder::class,
-            
             UserAppSeeder::class,
+            
+            AppFriendSeeder::class,
             AppReplySeeder::class,
-            AppFriendSeeder::class,            
             AppRichmenuSeeder::class,
         ]);
 

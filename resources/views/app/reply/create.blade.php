@@ -1,12 +1,21 @@
 <x-frame.web>
-    <x-slot name="title">TOP[LINE公式アプリ応援屋]</x-slot>
-    <x-slot name="head">
-    </x-slot>
-    <x-slot name="header">
+    <x-slot name="id">user-app-reply-create</x-slot>
+    <x-slot name="title">自動返信作成</x-slot>
+    <x-slot name="description"></x-slot>
+    <x-slot name="head"></x-slot>
+    <x-slot name="header"></x-slot>
+    <x-slot name="page_transition_list">
+        <li><a href="{{ asset($user->name) }}">マイページ</a></li>
+        <li><a href="{{ asset($user->name.'/app') }}">アプリ一覧</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id) }}">{{ $app->display_name ?? $app->client_id }}</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id.'/reply') }}">自動返信一覧</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id.'/reply') }}">自動返信{{ "作成" }}</a></li>
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->display_name }}</h2>
-        <h3>自動返信 新規作成</h3>
+        <section>
+        <h3>自動返信{{ "作成" }}</h3>
+        {{ json_encode($reply->message()->messages) }}
         <form action="/{{ $user->name }}/app/{{ $app->name }}/reply" method="post">
             @csrf
             <p><button type="submit">保存</button></p>

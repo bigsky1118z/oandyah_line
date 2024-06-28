@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("match")->nullable();
             $table->json("keyword")->nullable();
             $table->string("status")->default("active");
+            $table->string("mode")->default("latest");
             $table->timestamps();
         });
     }

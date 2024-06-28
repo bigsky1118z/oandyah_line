@@ -86,6 +86,8 @@ class AppWebhook extends Model
             $type                   =   $this->event["type"] ?? null;
             $friend                 =   $this->get_friend();
             $response_status_code   =   null;
+            $message_objects        =   array();
+            $name                   =   "";
             switch($type){
                 case("follow")  :
                     $message_objects    =   AppReply::get_message_objects($type,null);
@@ -103,26 +105,27 @@ class AppWebhook extends Model
                             "text"  =>  $this->get_event_message_text() ?? "取得失敗",
                         ),                        
                     );
-                    if($message_objects){
-                        $message    =   AppMessage::Create(array(
-                            "app_id"        =>  $app->id,
-                            "name"          =>  "[自動返信]",
-                            "type"          =>  "reply",
-                            "datetime"      =>  null,
-                            "reply_token"   =>  $this->get_reply_token(),
-                            "push"          =>  [$friend->friend_id],
-                            "messages"      =>  $message_objects,
-                        ));
-                        $message                =   $message->latest();
-                        $message->send_message();
-                        $response_status_code   =   $message->send->response_code ?? null;
-                    }
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;
                     $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
                     break;
             }
+            if($message_objects && !empty($message_objects)){
+                $message    =   AppMessage::Create(array(
+                    "app_id"        =>  $app->id,
+                    "name"          =>  "[自動返信]".$name,
+                    "type"          =>  "reply",
+                    "datetime"      =>  null,
+                    "reply_token"   =>  $this->get_reply_token(),
+                    "push"          =>  [$friend->friend_id],
+                    "messages"      =>  $message_objects,
+                ));
+                $message                =   $message->latest();
+                $message->send_message();
+                $response_status_code   =   $message->send->response_code ?? null;
+            }
+
             // if(!$reply->messages){
             //     $default    =   $app->reply_condition_defaults->where("type",$type)->first();
             //     $reply      =   $default ? $default->reply : new AppReply();

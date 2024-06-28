@@ -31,7 +31,7 @@
                             <td>{{ $reply->get_match() ?? null }}</td>
                             <td>{{ implode(",",($reply->keyword ?? array())) }}</td>
                             <td>{{ $reply->get_status() ?? null }}</td> 
-                            <td>{{ $reply->messages->count() ?? null }}</td>
+                            <td>{{ $reply->messages->where("status","active")->count() ?? null }}</td>
                             <td>
                                 <button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id) }}'">詳細</button>
                             </td>
