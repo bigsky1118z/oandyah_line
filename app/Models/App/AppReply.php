@@ -84,7 +84,7 @@ class AppReply extends Model
         if($type == "message"){
             $reply      =   null;
             $reply      =   $reply ? $reply :   $reply_query->where("match","exact")->whereJsonContains("keyword",$text)->first();
-            // $reply      =   $reply ? $reply :   $reply_query->where("match","partal")->whereJsonContains("keyword",$text)->first();
+            $reply      =   $reply ? $reply :   $reply_query->where("match","partal")->whereJsonContains("keyword",$text)->first();
             // $reply      =   $reply ? $reply :   $reply_query->where("match","forward")->whereJsonContains("keyword",$text)->first();
             // $reply      =   $reply ? $reply :   $reply_query->where("match","backward")->whereJsonContains("keyword",$text)->first();
             if($reply){
