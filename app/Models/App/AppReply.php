@@ -2,6 +2,7 @@
 
 namespace App\Models\App;
 
+use App\Models\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -71,20 +72,20 @@ class AppReply extends Model
         return self::$modes[$this->mode] ?? $this->mode;
     }
 
-    static function get_message_objects($type, $text = null)
+    static function get_message_objects($client_id, $type, $text = null)
     {
+        $app                =   App::where("client_id", $client_id)->first() ?? new App();
+        $reply_query        =   AppReply::where("type",$type)->where("status","active");
         $message_objects    =   array();
         if($type == "follow"){
-            $reply              =   AppReply::where("type",$type)->where("status","active")->first();
+            $reply              =   $reply_query->first();
             $message_objects    =   $reply->message()->messages ?? array();
         }
         if($type == "message"){
-            $replies    =   AppReply::where("type",$type)->where("status","active")->get()->groupBy("match");
-            $reply      =   null;
-            foreach(self::$matches as $key => $value){
-
-
-            }
+            // $replies    =   $reply_query->get()->groupBy("match");
+            // foreach(self::$matches as $key => $value){
+            // }
+            $reply  =   $reply_query->where("id",2)->first();
             if($reply){
                 $message_objects    =   $reply->message()->messages ?? array();
             } else {

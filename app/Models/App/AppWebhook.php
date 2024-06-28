@@ -90,11 +90,11 @@ class AppWebhook extends Model
             $name                   =   "";
             switch($type){
                 case("follow")  :
-                    $message_objects    =   AppReply::get_message_objects($type,null);
+                    $message_objects    =   AppReply::get_message_objects($app->client_id, $type, null);
                     break;
                 case("message") :
                     $text               =   $this->get_event_message_text();
-                    $message_objects    =   AppReply::get_message_objects($type,$text);
+                    $message_objects    =   AppReply::get_message_objects($app->client_id, $type, $text);
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;
