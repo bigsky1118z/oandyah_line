@@ -68,45 +68,16 @@ class AppReplySeeder extends Seeder
         foreach($replies as $reply){
             $app_reply  =   AppReply::Create(array(
                 "app_id"    =>  $app->id,
-                "type"      =>  $reply["type"] ?? null,
-                "name"      =>  $reply["name"] ?? null,
-                "mode"      =>  $reply["mode"] ?? null,
-                "match"     =>  $reply["match"] ?? null,
-                "keyword"   =>  $reply["keyword"] ?? array(),
+                "type"      =>  $reply["type"]      ?? null,
+                "name"      =>  $reply["name"]      ?? null,
+                "mode"      =>  $reply["mode"]      ?? null,
+                "match"     =>  $reply["match"]     ?? null,
+                "keyword"   =>  $reply["keyword"]   ?? array(),
                 "status"    =>  "active",
             ));
             foreach($reply["messages"] as $message){
                 $app_reply->create_simple_text_message(($message[0] ?? null),($message[1] ?? "失敗"));
             }
         }
-
-
-
-        $app_reply      =   AppReply::updateOrCreate(array(
-            "app_id"    =>  $app->id,
-            "type"      =>  "message",
-            "match"     =>  "partial",
-            "keyword"   =>  array(""),
-            "status"    =>  "active",
-            "mode"      =>  "random",
-        ));
-        $messages       =   array(
-            ["最終","おいーっす！"],
-        );
-        foreach($messages as $message){
-            AppReplyMessage::Create(array(
-                "app_reply_id"  =>  $app_reply->id,
-                "name"          =>  $message[0],
-                "messages"      =>  array(
-                    array(
-                        "type"  =>  "text",
-                        "text"  =>  $message[1],
-                    ),
-                ),
-                "status"        =>  "active",
-            ));
-        }
-
-
     }
 }

@@ -50,7 +50,7 @@ class AppReply extends Model
         ),array(
             "messages"      =>  $message_objects ?? array(),
         ));
-        $app_reply_message->latest();
+        // $app_reply_message->latest();
     }
         public function create_simple_text_message($name = null, $text)
         {
