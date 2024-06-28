@@ -45,9 +45,9 @@ class AppReply extends Model
 
     static $matches    =   array(
         "exact"     =>  "完全一致",
+        "partial"   =>  "部分一致",
         // "forward"   =>  "前方一致",
         // "backward"  =>  "後方一致",
-        "partial"   =>  "部分一致",
     );
     public function get_match()
     {
@@ -63,6 +63,7 @@ class AppReply extends Model
     {
         return self::$statuses[$this->status] ?? $this->status;
     }
+
     static $modes    =   array(
         "latest"    =>  "最新メッセージ",
         "random"    =>  "ランダム返答",
@@ -87,15 +88,13 @@ class AppReply extends Model
             if(!$reply){
                 $replies    =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->where('match', "partial")->orderBy("updated_at")->get();
                 foreach($replies as $reply_candidate){
-                    $keywords   =   $reply_candidate->keyword ?? array();
-                    foreach($keywords as $keyword){
-                        if(str_contains($text, $keyword)){
-                            $reply  =   $reply_candidate;
-                            break 2;
-                        }
+                    foreach(($reply_candidate->keyword ?? array()) as $keyword){
+                        $reply  =   $reply ? $reply : (str_contains($text, $keyword) ? $reply_candidate : $reply);
                     }
                 }    
             }
+            
+
             if($reply){
                 $message_objects    =   $reply->message()->messages ?? array();
             }
