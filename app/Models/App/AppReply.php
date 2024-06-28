@@ -47,7 +47,7 @@ class AppReply extends Model
         "exact"     =>  "完全一致",
         // "forward"   =>  "前方一致",
         // "backward"  =>  "後方一致",
-        // "partial"   =>  "部分一致",
+        "partial"   =>  "部分一致",
     );
     public function get_match()
     {
@@ -81,7 +81,9 @@ class AppReply extends Model
             $message_objects    =   $reply->message()->messages ?? array();
         }
         if($type == "message"){
+            /** 完全一致を探す */
             $reply  =   AppReply::where("type",$type)->where("status","active")->where('match', "exact")->whereJsonContains("keyword",$text)->orderBy("updated_at")->first();
+            /** 部分一致を探す */
             if(!$reply){
                 $replies    =   AppReply::where("type",$type)->where("status","active")->where('match', "partial")->orderBy("updated_at")->get();
                 foreach($replies as $reply_candidate){
@@ -96,17 +98,6 @@ class AppReply extends Model
             }
             if($reply){
                 $message_objects    =   $reply->message()->messages ?? array();
-            } else {
-                $message_objects    =   array(
-                    array(
-                        "type"  =>  "text",
-                        "text"  =>  "自動返信",
-                    ),
-                    array(
-                        "type"  =>  "text",
-                        "text"  =>  $text ?? "失敗",
-                    ),
-                );
             }
         }
         return $message_objects;
