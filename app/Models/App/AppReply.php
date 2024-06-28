@@ -81,10 +81,9 @@ class AppReply extends Model
             $message_objects    =   $reply->message()->messages ?? array();
         }
         if($type == "message"){
-            $replies    =   AppReply::where("type",$type)->where("status","active")->orderBy("updated_at")->get();
-            $reply      =   $replies()->where('match', "exact")->whereJsonContains('keyword', $text)->first();
+            $reply  =   AppReply::where("type",$type)->where("status","active")->where('match', "exact")->orderBy("updated_at")->first();
             if(!$reply){
-                $replies    =   $replies->where('match', "partial")->get();
+                $replies    =   AppReply::where("type",$type)->where("status","active")->where('match', "partial")->orderBy("updated_at")->get();
                 foreach($replies as $reply_candidate){
                     $keywords   =   $reply_candidate->keyword ?? array();
                     foreach($keywords as $keyword){
