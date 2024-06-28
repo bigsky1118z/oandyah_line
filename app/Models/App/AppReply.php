@@ -78,9 +78,27 @@ class AppReply extends Model
             $reply              =   AppReply::where("type",$type)->where("status","active")->first();
             $message_objects    =   $reply->message()->messages ?? array();
         }
-        $replies    =   AppReply::where("type",$type)->where("status","active")->get();
         if($type == "message"){
-            $replies;
+            $replies    =   AppReply::where("type",$type)->where("status","active")->get()->groupBy("match");
+            $reply      =   null;
+            foreach(self::$matches as $key => $value){
+
+
+            }
+            if($reply){
+                $message_objects    =   $reply->message()->messages ?? array();
+            } else {
+                $message_objects    =   array(
+                    array(
+                        "type"  =>  "text",
+                        "text"  =>  "自動返信",
+                    ),
+                    array(
+                        "type"  =>  "text",
+                        "text"  =>  $text ?? "失敗",
+                    ),
+                );
+            }
         }
         return $message_objects;
     }

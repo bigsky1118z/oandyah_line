@@ -95,16 +95,6 @@ class AppWebhook extends Model
                 case("message") :
                     $text               =   $this->get_event_message_text();
                     $message_objects    =   AppReply::get_message_objects($type,$text);
-                    $message_objects    =   array(
-                        array(
-                            "type"  =>  "text",
-                            "text"  =>  "自動返信",
-                        ),
-                        array(
-                            "type"  =>  "text",
-                            "text"  =>  $this->get_event_message_text() ?? "取得失敗",
-                        ),                        
-                    );
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;
