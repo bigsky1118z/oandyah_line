@@ -61,6 +61,32 @@ class AppReplySeeder extends Seeder
                 "status"        =>  "active",
             ));
         }
+        $app_reply      =   AppReply::updateOrCreate(array(
+            "app_id"    =>  $app->id,
+            "type"      =>  "message",
+            "match"     =>  "partial",
+            "keyword"   =>  array("さようなら"),
+            "status"    =>  "active",
+            "mode"      =>  "random",
+        ));
+        $messages       =   array(
+            ["またね","またいつか会いましょう"],
+            ["いつでも","いつでも帰ってきてね"],
+        );
+        foreach($messages as $message){
+            AppReplyMessage::Create(array(
+                "app_reply_id"  =>  $app_reply->id,
+                "name"          =>  $message[0],
+                "messages"      =>  array(
+                    array(
+                        "type"  =>  "text",
+                        "text"  =>  $message[1],
+                    ),
+                ),
+                "status"        =>  "active",
+            ));
+        }
+
 
     }
 }
