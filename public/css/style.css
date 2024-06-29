@@ -210,11 +210,7 @@ ul.image-file-index > li {
     margin: 5px 10px;
 }
 ul.image-file-index > li > dl > dd > img {
-    width: 200px;
-    height: auto;
-}
-ul.image-file-index > li > dl > dd > img {
-    width: 200px;
+    width: 150px;
     height: auto;
 }
 
