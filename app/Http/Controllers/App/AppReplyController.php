@@ -44,11 +44,12 @@ class AppReplyController extends Controller
             $reply  =   AppReply::updateOrCreate(array(
                 "id"        =>  $app_reply_id,
             ),array(
+                "app_id"    =>  $app->id,
                 "type"      =>  $request->input("type")     ?? null,
                 "name"      =>  $request->input("name")     ?? null,
                 "mode"      =>  $request->input("mode")     ?? null,
                 "match"     =>  $request->input("match")    ?? null,
-                "keyword"   =>  array_filter(($request->input("keyword")  ?? array()), fn($keyword)=> $keyword),
+                "keyword"   =>  array_unique(array_filter(($request->input("keyword")  ?? array()), fn($keyword)=> $keyword)),
                 "status"    =>  $request->input("status")   ?? null,
             ));
             return redirect(asset("$user_name/app/$client_id/reply/$reply->id'"));

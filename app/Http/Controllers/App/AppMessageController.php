@@ -49,6 +49,7 @@ class AppMessageController extends Controller
             "datetime"  =>  $request->input("datetime")     ?? null,
             "push"      =>  $request->input("push")         ?? null,
             "messages"  =>  AppMessage::convert_message_objects($request->input("messages")),
+            "status"    =>  "standby",
         ));
         $message    =   $message->latest();
         if($request->input("submit") == "send"){

@@ -98,7 +98,7 @@ class AppWebhook extends Model
                     break;
                 case("postback") :
                     $data   =   $this->event["postback"]["data"] ?? null;
-                    $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
+                    // $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
                     break;
             }
             if($message_objects && !empty($message_objects)){

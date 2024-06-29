@@ -2,7 +2,8 @@
     <x-slot name="id">user-app-message-show</x-slot>
     <x-slot name="title">送信メッセージ詳細</x-slot>
     <x-slot name="description"></x-slot>
-    <x-slot name="head"></x-slot>
+    <x-slot name="head"></style>
+    </x-slot>
     <x-slot name="header"></x-slot>
     <x-slot name="page_transition_list">
         <li><a href="{{ asset($user->name) }}">マイページ</a></li>
@@ -24,12 +25,16 @@
                     <tr>
                         <th>送信結果</th>
                         <td>
-                            <dl>
+                            <dl style="display: flex;">
                                 <dd>送信数 : {{ $message->sends->count() }}</dd>
                                 <dd>成功 : {{ $message->sends->where("response_code",200)->count() }}</dd>
                                 <dd>失敗 : {{ $message->sends->where("response_code","!=",200)->count() }}</dd>
                             </dl>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>メッセージ</th>
+                        <td><x-web.messages.show.message_objects :objects="$message->messages ?? array()" /></td>
                     </tr>
                 </tbody>
             </table>

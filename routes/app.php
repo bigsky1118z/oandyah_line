@@ -3,8 +3,10 @@
 use App\Http\Controllers\App\AppAutoController;
 use App\Http\Controllers\App\AppController;
 use App\Http\Controllers\App\AppFriendController;
+use App\Http\Controllers\App\AppImageController;
 use App\Http\Controllers\App\AppMessageController;
 use App\Http\Controllers\App\AppReplyController;
+use App\Http\Controllers\App\AppReplyMessageController;
 use App\Http\Controllers\App\AppRichmenuController;
 use App\Http\Controllers\App\AppWebhookController;
 use App\Http\Controllers\ProfileController;
@@ -42,6 +44,10 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
             Route::get("create",[AppReplyController::class,"create"]);
             Route::get("{reply_id}",[AppReplyController::class,"create"]);
             Route::post("{reply_id?}",[AppReplyController::class,"store"]);
+            Route::prefix("{reply_id}/message")->group(function(){
+                Route::get("{message_id?}",[AppReplyMessageController::class,"create"]);
+                Route::post("{message_id?}",[AppReplyMessageController::class,"store"]);
+            });
         });
         Route::prefix("message")->group(function(){
             Route::get("/",[AppMessageController::class,"index"]);
@@ -60,6 +66,11 @@ Route::prefix("app")->middleware("check_user_name")->group(function(){
             Route::post("{app_richmenu_id}/default",[AppRichmenuController::class,"post_default"]);
             Route::delete("default",[AppRichmenuController::class,"delete_default"]);
             Route::delete("{app_richmenu_id}",[AppRichmenuController::class,"destroy"]);
+        });
+        Route::prefix("image")->group(function(){
+            Route::get("{name1?}/{name2?}/{name3?}/{name4?}/{name5?}",[AppImageController::class,"index"]);
+            Route::post("{name1?}/{name2?}/{name3?}/{name4?}/{name5?}",[AppImageController::class,"store"]);
+            Route::delete("{name1?}/{name2?}/{name3?}/{name4?}/{name5?}",[AppImageController::class,"destroy"]);
         });
     });
 });

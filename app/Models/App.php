@@ -68,19 +68,7 @@ class App extends Model
         {
             return $this->hasOne(AppReply::class)->where("id",$id)->first();
         }
-
-
-        public function reply_conditions()
-        {
-            return $this->hasMany(AppReplyCondition::class);
-        }
-        public function reply_condition_defaults()
-        {
-            return $this->hasMany(AppReplyCondition::class)->whereEnable(true)->whereDefault(true)->orderBy("priority");
-        }
         
-
-
         public function messages()
         {
             return $this->hasMany(AppMessage::class);
@@ -109,6 +97,7 @@ class App extends Model
             }
             return $channel_access_token;
         }
+
         
         static $chat_modes  =   array(
             "chat"  =>  "オン",

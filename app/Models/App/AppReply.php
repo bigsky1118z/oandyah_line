@@ -30,8 +30,8 @@ class AppReply extends Model
     }
     public function message($app_message_id = null)
     {
-        $app_reply_message  =   $this->hasOne(AppReplyMessage::class)->where("id",$app_message_id)->first();
-        if(!$app_reply_message){
+        $app_reply_message  =   null;
+        if($app_message_id == "search"){
             $messages_query =   $this->messages()->where("status","active");
             if($this->mode == "latest"){
                 $app_reply_message  =   $messages_query->sortByDesc("updated_at")->first();
@@ -39,6 +39,8 @@ class AppReply extends Model
             if ($this->mode == 'random') {
                 $app_reply_message = $messages_query->inRandomOrder()->first();
             }
+        } else{
+            $app_reply_message  =   $this->hasOne(AppReplyMessage::class)->where("id",$app_message_id)->first();
         }
         return $app_reply_message;
     }
@@ -107,7 +109,7 @@ class AppReply extends Model
         $message_objects    =   array();
         if($type == "follow"){
             $reply              =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->first();
-            $message_objects    =   $reply->message()->messages ?? array();
+            $message_objects    =   $reply->message("search")->messages ?? array();
         }
         if($type == "message"){
             /** 完全一致を探す */
@@ -125,7 +127,7 @@ class AppReply extends Model
                 $reply  =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->where('match', "none")->orderBy("updated_at")->first();
             }
             if($reply){
-                $message_objects    =   $reply->message()->messages ?? array();
+                $message_objects    =   $reply->message("search")->messages ?? array();
             }
         }
         return $message_objects;

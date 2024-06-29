@@ -81,6 +81,10 @@
             <h3><a href="{{ asset($user->name."/app/".$app->client_id."/richmenu") }}">リッチメニュー</a></h3>
             <div></div>
         </section>
+        <section id="image">
+            <h3><a href="{{ asset($user->name."/app/".$app->client_id."/image") }}">画像</a></h3>
+            <div></div>
+        </section>
     </x-slot>
     <x-slot name="footer">
     </x-slot>

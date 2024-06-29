@@ -18,7 +18,7 @@
             <ul>
                 <li><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply') }}'">一覧へ戻る</button></li>
             </ul>
-            <form action="{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.($reply->id ?? 'create')) }}" method="post">
+            <form action="{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.($reply->id ?? null)) }}" method="post">
                 @csrf
                 <table>
                     <thead></thead>
@@ -52,40 +52,42 @@
                                 </select>
                             </td>
                         </tr>
-                        <tr>
-                            <th>一致条件</th>
-                            <td>
-                                <select name="match">
-                                    @foreach ($matches as $key => $value)
-                                        <option value="{{ $key }}"  @selected($key ==  ($reply->match ?? null))>{{ $value }}</option>
-                                    @endforeach
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>キーワード</th>
-                            <td>
-                                <table id="reply-keword">
-                                    <tbody>
-                                        @foreach (($reply->keyword ?? array()) as $keyword)
+                        @if (($reply->type ?? null) != "follow")
+                            <tr>
+                                <th>一致条件</th>
+                                <td>
+                                    <select name="match">
+                                        @foreach ($matches as $key => $value)
+                                            <option value="{{ $key }}"  @selected($key ==  ($reply->match ?? null))>{{ $value }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>キーワード</th>
+                                <td>
+                                    <table id="reply-keword">
+                                        <tbody>
+                                            @foreach (($reply->keyword ?? array()) as $keyword)
+                                                <tr>
+                                                    <td><input type="text" name="keyword[]" value="{{ $keyword }}"></td>
+                                                    <td><button type="button" onclick="remove_keyword(this);">削除</button></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
                                             <tr>
-                                                <td><input type="text" name="keyword[]" value="{{ $keyword }}"></td>
+                                                <td colspan="2"><button type="button" onclick="add_keyword();">追加</button></td>
+                                            </tr>
+                                            <tr id="sumple-reply-keyword-tr" class="hidden">
+                                                <td><input type="text" name="keyword[]"></td>
                                                 <td><button type="button" onclick="remove_keyword(this);">削除</button></td>
                                             </tr>
-                                        @endforeach                                        
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="2"><button type="button" onclick="add_keyword();">追加</button></td>
-                                        </tr>
-                                        <tr id="sumple-reply-keyword-tr" class="hidden">
-                                            <td><input type="text" name="keyword[]"></td>
-                                            <td><button type="button" onclick="remove_keyword(this);">削除</button></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </td>
-                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </td>
+                            </tr>
+                        @endif
                         <tr>
                             <th>status</th>
                             <td>
@@ -105,6 +107,40 @@
                 </table>
             </form>
         </section>
+        @if ($reply->id)
+            <section>
+                <h3>返答メッセージ</h3>
+                <ul>
+                    <li><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id.'/message') }}'">作成</button></li>
+                </ul>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>タイトル</th>
+                            <th>状態</th>
+                            <th>エラー</th>
+                            <th>メッセージ</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($reply->messages as $message)
+                            <tr>
+                                <td>{{ $message->name ?? null }}</td>
+                                <td>{{ $message->status ?? null }}</td>
+                                <td>{{ $message->error_message ?? null }}</td>
+                                <td><x-web.messages.show.message_objects :objects="$message->messages ?? array()" /></td>
+                                <td>
+                                    <ul>
+                                        <li><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id.'/message/'.$message->id) }}'">編集</button></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </section>
+        @endif
     </x-slot>
     <x-slot name="footer"></x-slot>
     <x-slot name="hidden"></x-slot>

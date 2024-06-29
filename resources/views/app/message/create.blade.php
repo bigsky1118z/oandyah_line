@@ -1,16 +1,9 @@
 <x-frame.web>
-    <x-slot name="id">user-app-message-create</x-slot>
+    <x-slot name="id">user-app-message-create<message_object./x-slot>
     <x-slot name="title">送信メッセージ{{ $message->id ? "編集" : "作成" }}</x-slot>
     <x-slot name="description"></x-slot>
     <x-slot name="head">
         <style>
-            textarea.message-messages-text-text {
-                width: 500px;
-                height: 100px;
-                background-color: greenyellow;
-                border: none;
-                border-radius: 10px;
-            }
             ul.ul-button-submit {
                 display: flex;
             }
@@ -47,7 +40,8 @@
                             </td>
                             <td id="message-type-option">
                                 @switch($message->type ?? null)
-                                    @case("push") <x-web.messages.create.push id="" :friends="$app->friends" :checked="$message->push" />    @break
+                                    @case("push")       <x-web.messages.create.type.push id="" :friends="$app->friends" :checked="$message->push" />    @break
+                                    {{-- @case("narrowcast") <x-web.messages.create.type.push id="" :friends="$app->friends" :checked="$message->push" />    @break --}}
                                 @endswitch
                             </td>
                         </tr>
@@ -75,25 +69,15 @@
                         </tr>
                     </tfoot>
                 </table>
-                <table id="message-messages">
+                <table id="message-messages" class="message-objects">
                     <tbody>
                         @for ($i = 0; $i < 5; $i++)
                             <tr>
                                 <td>
-                                    <select name="messages[{{ $i }}][type]" onchange="select_messages_type(this);" data-index="{{ $i }}">
-                                        <option value="">---</option>
-                                        <option value="text" @selected("text" == ($message->messages[$i]["type"] ?? null))>テキスト</option>
-                                    </select>
+                                    <x-web.messages.create.message_types    :index="$i" :object="($message->messages[$i] ?? array())" onchange="select_messages_type(this);" />
                                 </td>
-                                <td id="messages-{{ $i }}-property">
-                                    @switch($message->messages[$i]["type"] ?? null)
-                                        @case("text")           <x-web.messages.create.text            id="" :index="$i" :messages="($message->messages[$i] ?? array())" />  @break
-                                        {{-- @case("postback")       <x-web.messages.create.postback        id="" :index="$i" :messages="($message->messages[$i] ?? array())" />  @break
-                                        @case("message")        <x-web.messages.create.message         id="" :index="$i" :messages="($message->messages[$i] ?? array())" />  @break
-                                        @case("uri")            <x-web.messages.create.uri             id="" :index="$i" :messages="($message->messages[$i] ?? array())" />  @break
-                                        @case("datetimepicker") <x-web.messages.create.datetimepicker  id="" :index="$i" :messages="($message->messages[$i] ?? array())" />  @break
-                                        @case("richmenuswitch") <x-web.messages.create.richmenuswitch  id="" :index="$i" :messages="($message->messages[$i] ?? array())" />  @break --}}
-                                    @endswitch
+                                <td id="messages-{{ $i }}-object">
+                                    <x-web.messages.create.message_objects  :index="$i" :object="($message->messages[$i] ?? array())" />
                                 </td>
                             </tr>
                         @endfor
@@ -115,14 +99,10 @@
     <x-slot name="footer"></x-slot>
     <x-slot name="hidden">
         {{-- message-type --}}
-        <x-web.messages.create.push              id="sumple-message-type-push"                    :friends="($app->friends ?? array())" />
+        <x-web.messages.create.type.push    id="sumple-message-type-push"   :friends="($app->friends ?? array())" />
 
         {{-- message-type --}}
-        <x-web.messages.create.text            id="sumple-message-messages-type-text"              index="{sumple}" :messages="array()" />
-        {{-- <x-web.messages.create.message         id="sumple-message-messages-type-message"           index="{sumple}" :messages="array()" />
-        <x-web.messages.create.uri             id="sumple-message-messages-type-uri"               index="{sumple}" :messages="array()" />
-        <x-web.messages.create.datetimepicker  id="sumple-message-messages-type-datetimepicker"    index="{sumple}" :messages="array()" />
-        <x-web.messages.create.richmenuswitch  id="sumple-message-messages-type-richmenuswitch"    index="{sumple}" :messages="array()" /> --}}
+        <x-web.messages.create.message_object_sumples />
     </x-slot>
     <x-slot name="script">
         <script>
@@ -137,23 +117,8 @@
                     target.appendChild(div);
                 }
             }
-            function select_messages_type(select){
-                const value         =   select.value;
-                const index         =   select.getAttribute("data-index");
-                const target        =   document.getElementById("messages-"+index+"-property");
-                target.innerHTML    = '';
-                const sumple        =   document.getElementById("sumple-message-messages-type-" + value);
-                if(sumple){
-                    const div   =   sumple.cloneNode(true);
-                    div.removeAttribute("id");
-                    div.querySelectorAll("input,select,textarea").forEach(node=>{
-                        const name  =   node.name;
-                        node.name   =   name.replace("[{sumple}]","["+index+"]");
-                    });
-                    target.appendChild(div);
-                }
-            }
         </script>
+        <x-web.messages.create.message_scripts />
     </x-slot>
 </x-frame.web>
 

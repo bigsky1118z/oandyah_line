@@ -8,6 +8,7 @@
     background-color: #FFFFFF;
     text-decoration: none;
     list-style: none;
+    box-sizing: border-box;
 }
 
 .hidden {
@@ -152,7 +153,70 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
     cursor: pointer;
 }
 
+/* message-object */
+    table.message-objects > tbody > tr > td > div > ul  {
+        display: flex;
+    }
+    table.message-objects > tbody > tr > td > div > ul > li  {
+        margin: 0 25px;
+    }
+    /* type=text */
+    .message-object-text-text {
+        width: 450px;
+        height: 100px;
+        padding: 5px 10px;
+        background-color: greenyellow;
+        border: none;
+        border-radius: 10px;
+    }
+    .message-object-text-text.show {
+        height: auto;
+    }
+    /* type=image */
+    .message-object-image-original_content_url-input,
+    .message-object-image-preview_image_url-input {
+        width: 200px;
+    }
+    .message-object-image-original_content_url-img,
+    .message-object-image-preview_image_url-img {
+        width: 200px;
+        height: auto;
+    }
+    .message-object-image-original_content_url-message_box,
+    .message-object-image-preview_image_url-message_box {
+        width: 200px;
+        height: auto;
+    }
 
+    .message-object-image-preview_image_url-img.show {
+        width: auto;
+        height: 200px;
+        border-radius: 10px;
+    }
+
+/* user-app-image */
+ul.image-directory-index {
+    display: flex;
+    flex-wrap: wrap;
+}
+ul.image-directory-index > li {
+    margin: 5px 10px;
+}
+ul.image-file-index {
+    display: flex;
+    flex-wrap: wrap;
+}
+ul.image-file-index > li {
+    margin: 5px 10px;
+}
+ul.image-file-index > li > dl > dd > img {
+    width: 200px;
+    height: auto;
+}
+ul.image-file-index > li > dl > dd > img {
+    width: 200px;
+    height: auto;
+}
 
 /* footer */
 

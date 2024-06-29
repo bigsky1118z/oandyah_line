@@ -22,11 +22,13 @@
             <table>
                 <thead>
                     <tr>
-                        <th>name</th>
-                        <th>type</th>
-                        <th>to</th>
-                        <th>message objects</th>
-                        <th>status</th>
+                        <th>タイトル</th>
+                        <th>送信方法</th>
+                        <th>送信先</th>
+                        <th>メッセージ数</th>
+                        <th>ステータス</th>
+                        <th>送信日時（予定）</th>
+                        <th colspan="2">操作</th>
                     </tr>
                 </thead>    
                 <tbody>
@@ -34,29 +36,42 @@
                         <tr>
                             <td>{{ $message->name  ??  null }}</td>
                             <td>{{ $message->get_type()  ??  null }}</td>
-                            @switch($message->type)
-                                @case("push")
-                                @case("reply")
-                                    <td>
+                            <td>
+                                @switch($message->type)
+                                    @case("push")
+                                    @case("reply")
                                         <ul>
                                             @foreach ($message->get_friends() as $friend)
                                                 <li>{{ $friend->get_name() ?? null  }}</li>
                                             @endforeach
                                         </ul>
-                                    @break
-                                @case("narrowcast")
-                                    <td></td>
-                                    @break
-                                @case("multicast")
-                                @default
-                                    <td></td>
-                            @endswitch
-                            <td>{{ count($message->messages ?? array()) }}</td>
+                                        @break
+                                    @case("narrowcast")
+                                        @break
+                                    @case("multicast")
+                                    @default
+                                @endswitch
+                            </td>
+                            <td>{{ count($message->messages ?? array()) }} / 5</td>
                             <td>{{ $message->get_status() ?? null }}</td>
-                            <td>{{ $message->datetime ?? null }}</td>
-                            <td>{{ $message->sends->count() }}</td>
-                            <td>{{ $message->sends->where("response_code",200)->count() }}</td>
-                            <td>{{ $message->sends->where("response_code","!=",200)->count() }}</td>
+                            <td>
+                                @switch($message->status)
+                                    @case("sent")
+                                    @case("reserved")
+                                    @case("standby")
+                                        {{ $message->datetime ?? null }}
+                                        @break
+                                    @case("draft")
+                                        <ul>
+                                            @foreach (($message->error_details ?? array()) as $error)
+                                                <li>{{ $error["property"] ?? null }}:{{ $error["message"] ?? null }}</li>
+                                            @endforeach
+                                        </ul>
+                                        @break
+                                    @default
+                                        
+                                @endswitch
+                            </td>
                             <td><button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/message/'.$message->id) }}'">{{ $message->status == "sent" ? "詳細" : "編集" }}</button></td>
                             <td>
                                 @if ($message->status == "standby")

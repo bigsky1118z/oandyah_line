@@ -89,7 +89,7 @@ class AppMessage extends Model
         $validation     =   $this->validate_message();
         if($validation){
             if($validation->successful()){
-                if($this->status == "reserved" && $this->status == "sent"){
+                if($this->status == "reserved" || $this->status == "sent"){
                 } else {
                     $this->status   =   "standby";
                 }
@@ -98,8 +98,10 @@ class AppMessage extends Model
                 $error_messages[]   =   $validation->json("message");
                 $error_details      =   $validation->json("details");
             }
+        } else {
+            $this->status       =   "draft";
         }
-        $this->error_messages   =   $error_messages;
+    $this->error_messages   =   $error_messages;
         $this->error_details    =   $error_details;
         $this->save();
         return $this;
@@ -111,7 +113,6 @@ class AppMessage extends Model
         "reserved"  =>  "送信予約",
         "sent"      =>  "送信済み",
     );
-
     public function get_status()
     {
         return self::$statuses[$this->status] ?? $this->status;
@@ -246,13 +247,24 @@ class AppMessage extends Model
             $messages  =   $messages ?? array();
             $messages  =   array_filter($messages,fn($message)=>self::validate_message_object($message));
             $messages  =   array_values($messages);
+            $messages  =   array_slice($messages, 0, 5);
             return $messages;
         }
         static function validate_message_object($message)
         {
             $validation =   true;
-            $validation =   $validation ? ($message["type"] ?? null) != null    : $validation;
-            
+            switch(($message["type"] ?? null)){
+                case("text"):
+                    $validation =   $validation ?   ($message["text"] ?? null) != null  : $validation;
+                    break;
+                case("image"):
+                    $validation =   $validation ?   ($message["originalContentUrl"] ?? null) != null    : $validation;
+                    $validation =   $validation ?   ($message["previewImageUrl"]    ?? null) != null    : $validation;
+                    break;
+                    default:
+                    $validation =   false;
+                    break;
+            }
             return $validation;
         }
 
