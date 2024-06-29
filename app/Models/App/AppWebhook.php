@@ -61,6 +61,7 @@ class AppWebhook extends Model
             "follow"    =>  "友だち追加",
             "unfollow"  =>  "ブロック",
             "message"   =>  "メッセージ",
+            "postback"  =>  "機能",
         );
         public function get_event_type($mode = null)
         {
@@ -72,6 +73,12 @@ class AppWebhook extends Model
         public function get_event_message_text()
         {
             return $this->event["message"]["text"] ?? null;
+        }
+
+        public function get_event_postback_data()
+        {
+            $data   =   $this->event["postback"]["data"] ?? null;
+            return $data;
         }
 
         public function get_event($key)
