@@ -49,7 +49,6 @@ class AppReply extends Model
     {
         $app_reply_message  =   AppReplyMessage::updateOrCreate(array(
             "app_reply_id"  =>  $this->id,
-        ),array(
             "name"          =>  $name ?? now()->format("YmdHi"),
             "messages"      =>  $message_objects ?? array(),
             "status"        =>  "active",
