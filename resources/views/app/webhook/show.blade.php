@@ -38,7 +38,7 @@
                         <tr><td>{{ $webhook->get_event_message_text() }}</td></tr>
                         @break
                     @case("postback")
-                        <tr><td>{{ $webhook->get_event_postback_data() }}</td></tr>
+                        <tr><td>{{ json_encode($webhook->get_event_postback_data()) }}</td></tr>
                     @default
                 @endswitch
             </table>
