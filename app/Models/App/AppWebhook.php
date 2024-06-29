@@ -80,6 +80,8 @@ class AppWebhook extends Model
             $data           =   array();
             $postback_data  =   $this->event["postback"]["data"] ?? null;
             parse_str($postback_data, $data);
+            $friend_id          =   $this->get_friend()->friend_id;
+            $data["friend_id"]  =   $friend_id;
             return $data;
         }
 
