@@ -77,7 +77,9 @@ class AppWebhook extends Model
 
         public function get_event_postback_data()
         {
-            $data   =   $this->event["postback"]["data"] ?? null;
+            $data           =   array();
+            $postback_data  =   $this->event["postback"]["data"] ?? null;
+            parse_str($postback_data, $data);
             return $data;
         }
 
