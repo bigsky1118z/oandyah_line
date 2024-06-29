@@ -101,15 +101,21 @@ class AppWebhook extends Model
             $name                   =   "";
             switch($type){
                 case("follow")  :
-                    $message_objects    =   AppReply::get_message_objects($app->client_id, $type, null);
-                    break;
                 case("message") :
                     $text               =   $this->get_event_message_text();
                     $message_objects    =   AppReply::get_message_objects($app->client_id, $type, $text);
                     break;
                 case("postback") :
-                    $data   =   $this->event["postback"]["data"] ?? null;
-                    // $reply  =   AppReplyCondition::find_reply_postback($app->id, $data);
+                case("datetimepicker") :
+                case("richmenuswitch") :
+                    $data   =   $this->get_event_postback_data();
+                    switch($data["function"] ?? null){
+                        case("tarot"):
+                            $message_objects    =   AppReply::get_message_objects($app->client_id, "message", "タロット");
+                            break;
+                        case("richmenuswitch"):
+                            break;
+                    }
                     break;
             }
             if($message_objects && !empty($message_objects)){
