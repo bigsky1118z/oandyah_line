@@ -39,6 +39,7 @@
                     <button type="button" onclick="this.closest('form').querySelector(`input[name='images[]']`).click();">アップロード</button>
                 </form>
             </p>
+            <p>{{ count($files ?? array()) }}件</p>
             <ul class="image-file-index">
                     @foreach (($files ?? array()) as $file)
                         <li>
