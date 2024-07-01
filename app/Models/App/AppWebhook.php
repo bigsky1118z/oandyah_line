@@ -85,7 +85,7 @@ class AppWebhook extends Model
             $data["datetimepicker_datetime"]    =   $this->event["postback"]["params"]["datetime"]              ?? null;
             $data["richmenu_alias_id"]          =   $this->event["postback"]["params"]["newRichMenuAliasId"]    ?? null;
             $data["richmenu_status"]            =   $this->event["postback"]["params"]["status"]                ?? null;
-            $data                               =   array_filter($data,fn($datum)=>$datum);
+            $data                               =   array_filter($data,fn($value)=>!is_null($value));
             return $data;
         }
 
