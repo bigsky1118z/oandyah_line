@@ -77,11 +77,15 @@ class AppWebhook extends Model
 
         public function get_event_postback_data()
         {
-            $data           =   array();
-            $postback_data  =   $this->event["postback"]["data"] ?? null;
+            $data               =   array();
+            $postback_data      =   $this->event["postback"]["data"] ?? null;
             parse_str($postback_data, $data);
-            $friend_id          =   $this->get_friend()->friend_id;
-            $data["friend_id"]  =   $friend_id;
+            $data["friend_id"]                  =   $this->get_friend()->friend_id                              ?? null;
+            $data["datetimepicker_date"]        =   $this->event["postback"]["params"]["date"]                  ?? null;
+            $data["datetimepicker_time"]        =   $this->event["postback"]["params"]["time"]                  ?? null;
+            $data["datetimepicker_datetime"]    =   $this->event["postback"]["params"]["datetime"]              ?? null;
+            $data["richmenu_alias_id"]          =   $this->event["postback"]["params"]["newRichMenuAliasId"]    ?? null;
+            $data["richmenu_status"]            =   $this->event["postback"]["params"]["status"]                ?? null;
             return $data;
         }
 

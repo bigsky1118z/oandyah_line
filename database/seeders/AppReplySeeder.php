@@ -15,7 +15,7 @@ class AppReplySeeder extends Seeder
      */
     public function run(): void
     {
-        $app            =   App::where("client_id","1657423958")->first();
+        $app        =   App::where("client_id","1657423958")->first();
         $replies    =   array(
             array(
                 "type"      =>  "follow",
