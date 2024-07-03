@@ -165,18 +165,20 @@ class AppReplySeeder extends Seeder
                 ),
             ),
         );
-        foreach($replies as $type => $reply){
-            $app_reply  =   AppReply::Create(array(
-                "app_id"    =>  $app->id,
-                "type"      =>  $type               ?? null,
-                "name"      =>  $reply["name"]      ?? null,
-                "category"  =>  $reply["category"]  ?? "default",
-                "mode"      =>  $reply["mode"]      ?? null,
-                "query"     =>  $reply["query"]     ?? array(),
-                "status"    =>  "active",
-            ));
-            foreach($reply["messages"] as $message){
-                $app_reply->create_simple_text_message(($message[0] ?? null),($message[1] ?? "失敗"));
+        foreach($replies as $type => $reply_types){
+            foreach($reply_types as $reply){
+                $app_reply  =   AppReply::Create(array(
+                    "app_id"    =>  $app->id,
+                    "type"      =>  $type               ?? null,
+                    "name"      =>  $reply["name"]      ?? null,
+                    "category"  =>  $reply["category"]  ?? "default",
+                    "mode"      =>  $reply["mode"]      ?? "latest",
+                    "query"     =>  $reply["query"]     ?? array(),
+                    "status"    =>  "active",
+                ));
+                foreach(($reply["messages"] ?? array()) as $message){
+                    $app_reply->create_simple_text_message(($message[0] ?? null),($message[1] ?? "失敗"));
+                }
             }
         }
     }
