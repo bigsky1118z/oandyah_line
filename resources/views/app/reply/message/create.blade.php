@@ -31,9 +31,9 @@
                         @for ($i = 0; $i < 5; $i++)
                             <tr>
                                 <td>
-                                    <x-web.messages.create.message_types    :index="$i" :object="($message->messages[$i] ?? array())" onchange="select_messages_type(this);" />
+                                    <x-web.messages.create.message_types    :index="$i" :object="($message->messages[$i] ?? array())" parent="tr" onchange="select_message_type(this);" />
                                 </td>
-                                <td id="messages-{{ $i }}-object">
+                                <td id="messages-{{ $i }}-object" class="message-object">
                                     <x-web.messages.create.message_objects  :index="$i" :object="($message->messages[$i] ?? array())" />
                                 </td>
                             </tr>
@@ -54,7 +54,7 @@
     </x-slot>
     <x-slot name="footer"></x-slot>
     <x-slot name="hidden">
-        <x-web.messages.create.message_object_sumples />
+        <x-web.messages.create.sumples />
     </x-slot>
     <x-slot name="script">
         <x-web.messages.create.message_scripts />

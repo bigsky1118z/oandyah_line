@@ -111,22 +111,15 @@
                                 <td><input type="number"    name="areas[{{ $i }}][bounds][height]"  value="{{ $richmenu->areas[$i]["bounds"]["height"] ?? null }}"  min="1" max="2500"  data-index="{{ $i }}" onchange="richmenu_preview_area(this);"></td>
                                 <td><input type="text"      name="areas[{{ $i }}][action][label]"   value="{{ $richmenu->areas[$i]["action"]["label"] ?? null }}"                       data-index="{{ $i }}" onchange="richmenu_preview_area(this);"></td>
                                 <td>
-                                    <select name="areas[{{ $i }}][action][type]" data-index="{{ $i }}" onchange="select_action_type(this);">
+                                    <select name="areas[{{ $i }}][action][type]" data-index="{{ $i }}" data-parent="tr" onchange="select_action_type(this);">
                                         <option value="">---</option>
                                         @foreach ($types as $type => $type_title)
                                             <option value="{{ $type }}" @selected($type == ($richmenu->areas[$i]["action"]["type"] ?? null))>{{ $type_title }}</option>
                                         @endforeach
                                     </select>
                                 </td>
-                                <td id="areas-{{ $i }}-action-option">
-                                    @switch($richmenu->areas[$i]["action"]["type"] ?? null)
-                                        @case("postback")       <x-web.richmenus.create.postback        id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />  @break
-                                        @case("message")        <x-web.richmenus.create.message         id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />  @break
-                                        @case("uri")            <x-web.richmenus.create.uri             id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />  @break
-                                        @case("datetimepicker") <x-web.richmenus.create.datetimepicker  id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />  @break
-                                        @case("richmenuswitch") <x-web.richmenus.create.richmenuswitch  id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />  @break
-                                        @case("clipboard")      <x-web.richmenus.create.clipboard       id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />  @break
-                                    @endswitch
+                                <td class="action-object">
+                                    <x-web.richmenus.create.action_objects id="" :index="$i" :action="($richmenu->areas[$i]['action'] ?? array())" />
                                 </td>
                             </tr>
                         @endfor
@@ -147,12 +140,12 @@
         </section>
     </x-slot>
     <x-slot name="hidden">
-        <x-web.richmenus.create.postback        id="sumple-action-type-postback"        index="{sumple}" :action="array()" />
-        <x-web.richmenus.create.message         id="sumple-action-type-message"         index="{sumple}" :action="array()" />
-        <x-web.richmenus.create.uri             id="sumple-action-type-uri"             index="{sumple}" :action="array()" />
-        <x-web.richmenus.create.datetimepicker  id="sumple-action-type-datetimepicker"  index="{sumple}" :action="array()" />
-        <x-web.richmenus.create.richmenuswitch  id="sumple-action-type-richmenuswitch"  index="{sumple}" :action="array()" />
-        <x-web.richmenus.create.clipboard       id="sumple-action-type-clipboard"       index="{sumple}" :action="array()" />
+        <x-web.messages.create.action_object.postback       id="sumple-richmenu_action-type-postback"          area="richmenu_action" index="{index}" :action="array()" />
+        <x-web.messages.create.action_object.message        id="sumple-richmenu_action-type-message"           area="richmenu_action" index="{index}" :action="array()" />
+        <x-web.messages.create.action_object.uri            id="sumple-richmenu_action-type-uri"               area="richmenu_action" index="{index}" :action="array()" />
+        <x-web.messages.create.action_object.datetimepicker id="sumple-richmenu_action-type-datetimepicker"    area="richmenu_action" index="{index}" :action="array()" />
+        <x-web.messages.create.action_object.richmenuswitch id="sumple-richmenu_action-type-richmenuswitch"    area="richmenu_action" index="{index}" :action="array()" />
+        <x-web.messages.create.action_object.clipboard      id="sumple-richmenu_action-type-clipboard"         area="richmenu_action" index="{index}" :action="array()" />
     </x-slot>
     <x-slot name="footer">
     </x-slot>
@@ -165,7 +158,7 @@
                 }
                 resize_richmenu_preview_image();
             }
-
+            /** 画像 */
             function resize_richmenu_preview_image(){
                 const img   =   document.getElementById("richmenu-preview-content");
                 img.onload  =   function(){
@@ -222,6 +215,7 @@
                     resize_richmenu_preview();
                 };
             }
+
             function resize_richmenu_preview(){
                 const preview                       =   document.querySelector("div#richmenu-preview");
                 const preview_alternative           =   document.querySelector("div#richmenu-preview-alternative");
@@ -246,19 +240,20 @@
                 area.style.height   =   (height.value/2) + "px";
                 area.textContent    =   label.value;
             }
-
+            /** アクションタイプ */
             function select_action_type(select){
                 const value         =   select.value;
-                const index         =   select.getAttribute("data-index");
-                const target        =   document.getElementById("areas-"+index+"-action-option");
+                const parent        =   select.getAttribute("data-parent")  ?? null;
+                const target        =   select.closest(parent).querySelector(".action-object");
                 target.innerHTML    = '';
-                const sumple        =   document.getElementById("sumple-action-type-" + value);
+                const sumple        =   document.getElementById("sumple-richmenu_action-type-" + value);
                 if(sumple){
+                    const index =   select.getAttribute("data-index")   ?? null;
                     const div   =   sumple.cloneNode(true);
                     div.removeAttribute("id");
                     div.querySelectorAll("input,select,textarea").forEach(node=>{
                         const name  =   node.name;
-                        node.name   =   name.replace("[{sumple}]","["+index+"]");
+                        node.name   =   name.replace("[{index}]","["+index+"]");
                     });
                     target.appendChild(div);
                 }

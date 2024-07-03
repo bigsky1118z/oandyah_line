@@ -97,33 +97,31 @@ class AppWebhook extends Model
     /** POST 時の functions */
         public function reaction()
         {
-            $app                    =   $this->app;
-            $type                   =   $this->event["type"] ?? null;
-            $friend                 =   $this->get_friend();
-            $response_status_code   =   null;
-            $message_objects        =   array();
-            $name                   =   "";
+            $app    =   $this->app;
+            $type   =   $this->event["type"] ?? null;
+            $query  =   null;
+            /** queryをtype別で取得する */
             switch($type){
-                case("follow")  :
-                case("message") :
-                    $text               =   $this->get_event_message_text();
-                    $message_objects    =   AppReply::get_message_objects($app->client_id, $type, $text);
+                case("follow"):
+                case("message"):
+                    $query  =   $this->get_event_message_text();
                     break;
-                case("postback") :
-                case("datetimepicker") :
-                case("richmenuswitch") :
-                    $data   =   $this->get_event_postback_data();
-                    switch($data["function"] ?? null){
-                        case("tarot"):
-                            $message_objects    =   AppReply::get_message_objects($app->client_id, "message", "タロット");
-                            break;
-                        case("richmenuswitch"):
-                            break;
-                    }
+                case("postback"):
+                case("datetimepicker"):
+                case("richmenuswitch"):
+                    $query  =   $this->get_event_postback_data();
+                    break;
+                case("follow"):
+                default:
                     break;
             }
-            if($message_objects && !empty($message_objects)){
-                $message    =   AppMessage::Create(array(
+            /** replyを取得する */
+            $reply  =   AppReply::get_reply($app->client_id, $type, $query);
+            if($reply){
+                $friend             =   $this->get_friend();
+                $name               =   $reply->name ?? "";
+                $message_objects    =   $reply->get() ?? array();
+                $message            =   AppMessage::Create(array(
                     "app_id"        =>  $app->id,
                     "name"          =>  "[自動返信]".$name,
                     "type"          =>  "reply",
@@ -132,27 +130,11 @@ class AppWebhook extends Model
                     "push"          =>  [$friend->friend_id],
                     "messages"      =>  $message_objects,
                 ));
-                $message                =   $message->latest();
+                $message    =   $message->latest();
                 $message->send_message();
-                $response_status_code   =   $message->send->response_code ?? null;
+                $this->response_status_code =   $message->send->response_code ?? null;
             }
-
-            // if(!$reply->messages){
-            //     $default    =   $app->reply_condition_defaults->where("type",$type)->first();
-            //     $reply      =   $default ? $default->reply : new AppReply();
-            // }
-            // if($reply->messages){
-            //     // AppSend::Create(array(
-            //     //     "app_id"            =>  $app->id,
-            //     //     "friend_id"         =>  $friend->friend_id,
-            //     //     "type"              =>  "reply",
-            //     //     "reply_token"       =>  $this->get_reply_token(),
-            //     //     "messages"          =>  $reply->messages,
-            //     // ))->post_bot_message();
-            // }
-            $this->response_status_code    =   $response_status_code;
             $this->save();
-            return;
+            return $this;
         }
-
 }

@@ -1,5 +1,5 @@
 <x-frame.web>
-    <x-slot name="id">user-app-message-create<message_object./x-slot>
+    <x-slot name="id">user-app-message-create</x-slot>
     <x-slot name="title">送信メッセージ{{ $message->id ? "編集" : "作成" }}</x-slot>
     <x-slot name="description"></x-slot>
     <x-slot name="head">
@@ -73,10 +73,10 @@
                     <tbody>
                         @for ($i = 0; $i < 5; $i++)
                             <tr>
-                                <td>
-                                    <x-web.messages.create.message_types    :index="$i" :object="($message->messages[$i] ?? array())" onchange="select_messages_type(this);" />
-                                </td>
-                                <td id="messages-{{ $i }}-object">
+                                <td id="messages-{{ $i }}-type">
+                                    <x-web.messages.create.message_types    :index="$i" :object="($message->messages[$i] ?? array())" parent="tr" onchange="select_message_type(this);" />
+                                    </td>
+                                <td id="messages-{{ $i }}-object" class="message-object">
                                     <x-web.messages.create.message_objects  :index="$i" :object="($message->messages[$i] ?? array())" />
                                 </td>
                             </tr>
@@ -102,7 +102,7 @@
         <x-web.messages.create.type.push    id="sumple-message-type-push"   :friends="($app->friends ?? array())" />
 
         {{-- message-type --}}
-        <x-web.messages.create.message_object_sumples />
+        <x-web.messages.create.sumples />
     </x-slot>
     <x-slot name="script">
         <script>

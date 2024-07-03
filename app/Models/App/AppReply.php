@@ -12,38 +12,40 @@ class AppReply extends Model
     protected $fillable =   [
         "id",
         "app_id",
-        "name",
         "type",
-        "keyword",
-        "status",
+        "name",
+        "category",
         "mode",
-        "match",
+        "query",
+        "status",
     ];
 
     protected $casts    =   [
-        "keyword" => "json",
+        "query" => "json",
     ];
 
     public function messages()
     {
         return $this->hasMany(AppReplyMessage::class);
     }
-    public function message($app_message_id = null)
+    public function message($app_message_id)
     {
+        return $this->hasOne(AppReplyMessage::class)->where("id",$app_message_id)->first();
+    }
+    public function get_message(){
         $app_reply_message  =   null;
-        if($app_message_id == "search"){
-            $messages_query =   $this->messages()->where("status","active");
-            if($this->mode == "latest"){
-                $app_reply_message  =   $messages_query->sortByDesc("updated_at")->first();
-            }
-            if ($this->mode == 'random') {
-                $app_reply_message = $messages_query->inRandomOrder()->first();
-            }
-        } else{
-            $app_reply_message  =   $this->hasOne(AppReplyMessage::class)->where("id",$app_message_id)->first();
+        switch($this->mode){
+            case("random"):
+                $app_reply_message  =   $this->messages()->where("status","active")->inRandomOrder()->first();
+                break;
+            case("latest"):
+            default:
+                $app_reply_message  =   $this->messages()->where("status","active")->sortByDesc("updated_at")->first();
+                break;
         }
         return $app_reply_message;
     }
+
 
     public function create_message($name = null, $message_objects)
     {
@@ -70,6 +72,7 @@ class AppReply extends Model
     static $types   =   array(
         "follow"    =>  "友だち追加",
         "message"   =>  "メッセージ",
+        "postback"  =>  "機能",
     );
     
     static $matches =   array(
@@ -112,6 +115,7 @@ class AppReply extends Model
             $message_objects    =   $reply->message("search")->messages ?? array();
         }
         if($type == "message"){
+            $replies    =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->orderBy("updated_at")->get();
             /** 完全一致を探す */
             $reply  =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->where('match', "exact")->whereJsonContains("keyword",$text)->orderBy("updated_at")->first();
             /** 部分一致を探す */
@@ -132,4 +136,44 @@ class AppReply extends Model
         }
         return $message_objects;
     }
+
+    static function get_reply($client_id, $type, $query = null)
+    {
+        $app        =   App::where("client_id", $client_id)->first() ?? new App();
+        $replies    =   AppReply::where("app_id",$app->id)->where("type",$type)->where("status","active")->orderBy("updated_at")->get();
+        $reply      =   null;
+        switch($type){
+            case("follow"):
+                $reply  =   $replies->first();
+                break;
+            case("message"):
+                /** 完全一致 */
+                $reply  =   $reply  ?   $reply  :   $replies->first(function($reply_candidate) use($query){
+                    $match      =   $reply_candidate->query["match"]    ?? null;
+                    $keywords   =   $reply_candidate->query["keywords"] ?? array();
+                    return $match == "exact" && in_array($query, $keywords);
+                });
+                /** 部分一致 */
+                $reply  =   $reply  ?   $reply  :   $replies->first(function($reply_candidate) use($query){
+                    $match      =   $reply_candidate->query["match"]    ?? null;
+                    $keywords   =   $reply_candidate->query["keywords"] ?? array();
+                    return $match == "partial" && collect($keywords)->contains(fn($keyword)=>str_contains($query, $keyword));    
+                    // $judgement  =   false;
+                    // foreach($keywords as $keyword){
+                    //     $judgement  =   $judgement  ??  str_contains($query, $keyword);
+                    // }
+                    // return $match == "partial" && $judgement;
+                });
+                /** 一致なし */
+                $reply  =   $reply  ?   $reply  :   $replies->first(function($reply_candidate){
+                    $match      =   $reply_candidate->query["match"]    ?? null;
+                    return $match == "none";
+                });
+                break;
+            case("postback"):
+                break;
+        }
+        return $reply;
+    }
+
 }

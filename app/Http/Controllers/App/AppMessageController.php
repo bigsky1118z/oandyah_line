@@ -38,6 +38,7 @@ class AppMessageController extends Controller
     }
     public function store(Request $request, $user_name, $client_id, $app_message_id = null)
     {
+        // return AppMessage::convert_message_objects($request->input("messages"));
         $user       =   User::find(auth()->user()->id);
         $app        =   $user->app($client_id)->app;
         $message    =   AppMessage::updateOrCreate(array(

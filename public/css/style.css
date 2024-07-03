@@ -50,6 +50,7 @@ input[type="submit"],button {
 }
 
 textarea {
+    padding: 5px 10px;
     resize: none;
 }
 
@@ -164,7 +165,6 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
     .message-object-text-text {
         width: 450px;
         height: 100px;
-        padding: 5px 10px;
         background-color: greenyellow;
         border: none;
         border-radius: 10px;
@@ -174,25 +174,45 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
     }
     /* type=image */
     .message-object-image-original_content_url-input,
-    .message-object-image-preview_image_url-input {
+    .message-object-image-preview_image_url-input,
+    .message-object-template-buttons-thumbnail_image_url-input {
         width: 200px;
     }
     .message-object-image-original_content_url-img,
-    .message-object-image-preview_image_url-img {
+    .message-object-image-preview_image_url-img,
+    .message-object-template-buttons-thumbnail_image_url-img {
         width: 200px;
         height: auto;
     }
     .message-object-image-original_content_url-message_box,
-    .message-object-image-preview_image_url-message_box {
+    .message-object-image-preview_image_url-message_box,
+    .message-object-template-buttons-thumbnail_image_url-message_box {
         width: 200px;
         height: auto;
     }
-
     .message-object-image-preview_image_url-img.show {
         width: auto;
         height: 200px;
         border-radius: 10px;
     }
+
+    /* type=template */
+    .message-object-template-altText {
+        width: 200px;
+    }
+    /* type=template template_type=buttons */
+        .message-object-template-buttons {
+            border: 1px solid #000000;
+        }
+
+        .message-object-template-buttons-title {
+            border: none;
+        }
+        .message-object-template-buttons-text {
+            border: none;
+        }
+
+    /* template_type=buttons */
 
 /* user-app-image */
 ul.image-directory-index {

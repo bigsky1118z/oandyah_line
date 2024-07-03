@@ -17,8 +17,10 @@ return new class extends Migration
             $table->foreignIdFor(App::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("name")->nullable();
             $table->string("type")->nullable();
-            $table->string("match")->nullable();
-            $table->json("keyword")->nullable();
+            $table->json("query")->nullable();
+            $table->string("category")->default("default");
+            // $table->string("match")->nullable();
+            // $table->json("keyword")->nullable();
             $table->string("status")->default("active");
             $table->string("mode")->default("latest");
             $table->timestamps();
