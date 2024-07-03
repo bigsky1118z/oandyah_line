@@ -52,7 +52,7 @@
                                 <td>{{ $reply->get_status() ?? null }}</td> 
                                 <td>{{ $reply->messages->where("status","active")->count() ?? null }}</td>
                                 <td>
-                                    <button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id) }}'">詳細</button>
+                                    <button type="button" onclick="location.href='{{ asset($user->name.'/app/'.$app->client_id.'/reply/'.$reply->id) }}'">編集</button>
                                 </td>
                             </tr>
                         @endforeach

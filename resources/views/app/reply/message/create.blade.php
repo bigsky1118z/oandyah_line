@@ -14,7 +14,7 @@
         <li><a href="{{ asset($user->name) }}">マイページ</a></li>
         <li><a href="{{ asset($user->name.'/app') }}">アプリ一覧</a></li>
         <li><a href="{{ asset($user->name.'/app/'.$app->client_id) }}">{{ $app->display_name ?? $app->client_id }}</a></li>
-        <li><a href="{{ asset($user->name.'/app/'.$app->client_id.'/message') }}">送信メッセージ一覧</a></li>
+        <li><a href="{{ asset($user->name.'/app/'.$app->client_id.'/reply') }}">自動返信一覧</a></li>
     </x-slot>
     <x-slot name="main">
         <h2>{{ $app->display_name }}</h2>

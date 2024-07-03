@@ -133,6 +133,13 @@ class AppReply extends Model
         return $queries;
     }
 
+    static function convert_query($query)
+    {
+        if($query["keywords"] ?? null){
+            $query["keywords"]  =   array_unique(array_filter($query["keywords"],fn($keyword)=>$keyword));
+        }
+        return $query;
+    }
 
     static function get_message_objects($client_id, $type, $text = null)
     {

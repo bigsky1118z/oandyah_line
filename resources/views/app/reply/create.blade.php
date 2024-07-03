@@ -28,22 +28,40 @@
                             <td><input type="text" name="name" value="{{ $reply->name ?? null }}"></td>
                         </tr>
                         <tr>
+                            <th>カテゴリ</th>
+                            <td>
+                                <select name="category" onchange="select_cagetory(this);">
+                                    @foreach ($categories as $category => $category_title)
+                                        <option value="{{ $category }}" @selected($category ==  ($reply->category ?? null))>{{ $category_title ?? $category }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>メッセージタイプ</th>
                             <td>
-                                <select name="type">
-                                    @if (($reply->type ?? null) == "follow")
-                                        <option value="follow">友だち追加</option>
-                                    @elseif ($app->replies()->where("type","follow")->doesntExist())
-                                        <option value="follow"  @selected("follow" ==  ($reply->type ?? null))>友だち追加</option>
-                                        <option value="message" @selected("message" ==  ($reply->type ?? null))>メッセージ</option>
+                                <select name="type" onchange="select_message_type(this);">
+                                    @if ($reply->type != null)
+                                        <option value="{{ $reply->type }}">{{ $reply->get_type() }}</option>
                                     @else
-                                        <option value="message">メッセージ</option>
+                                        <option value="">---</option>
+                                        @foreach ($types as $type => $type_title)
+                                            <option value="{{ $type }}" @disabled($type == "follow" && $app->replies()->where("type","follow")->exists())>{{ $type_title ?? null }}</option>
+                                        @endforeach
                                     @endif
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <th>返信方法</th>
+                            <th>返信条件</th>
+                            <td id="reply-query">
+                                @switch(($reply->type ?? null))
+                                    @case("message")    <x-web.replies.create.message id="" :reply="$reply" />  @break
+                                @endswitch
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>メッセージ選択</th>
                             <td>
                                 <select name="mode">
                                     @foreach ($modes as $key => $value)
@@ -52,42 +70,6 @@
                                 </select>
                             </td>
                         </tr>
-                        @if (($reply->type ?? null) != "follow")
-                            <tr>
-                                <th>一致条件</th>
-                                <td>
-                                    <select name="match">
-                                        @foreach ($matches as $key => $value)
-                                            <option value="{{ $key }}"  @selected($key ==  ($reply->match ?? null))>{{ $value }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>キーワード</th>
-                                <td>
-                                    <table id="reply-keword">
-                                        <tbody>
-                                            @foreach (($reply->keyword ?? array()) as $keyword)
-                                                <tr>
-                                                    <td><input type="text" name="keyword[]" value="{{ $keyword }}"></td>
-                                                    <td><button type="button" onclick="remove_keyword(this);">削除</button></td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="2"><button type="button" onclick="add_keyword();">追加</button></td>
-                                            </tr>
-                                            <tr id="sumple-reply-keyword-tr" class="hidden">
-                                                <td><input type="text" name="keyword[]"></td>
-                                                <td><button type="button" onclick="remove_keyword(this);">削除</button></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </td>
-                            </tr>
-                        @endif
                         <tr>
                             <th>status</th>
                             <td>
@@ -143,14 +125,30 @@
         @endif
     </x-slot>
     <x-slot name="footer"></x-slot>
-    <x-slot name="hidden"></x-slot>
+    <x-slot name="hidden">
+        <x-web.replies.create.sumples :reply="$reply" />
+    </x-slot>
     <x-slot name="script">
         <script>
-            function add_keyword(){
-                const table =   document.getElementById("reply-keword");
+            function select_cagetory(select){
+
+            }
+            function select_message_type(select){
+                const value         =   select.value;
+                const target        =   document.getElementById("reply-query");
+                target.innerHTML    =   null;
+                const sumple        =   document.getElementById("sumple-reply-query-"+value);
+                if(sumple){
+                    const table         =   sumple.cloneNode(true);
+                    table.id            =   null;
+                    target.appendChild(table);
+                }
+            }
+            function add_keywords(button){
+                const table =   button.closest("table");
+                const tfoot =   table.querySelector("tfoot");
                 const tbody =   table.querySelector("tbody");
-                const tr    =   document.getElementById("sumple-reply-keyword-tr").cloneNode(true);
-                tr.removeAttribute("id");
+                const tr    =   tfoot.querySelector("tr.sumple-reply-query-keywords-tr").cloneNode(true);
                 tr.classList.remove("hidden");
                 tbody.appendChild(tr);
             }

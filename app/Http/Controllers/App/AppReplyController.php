@@ -13,13 +13,13 @@ class AppReplyController extends Controller
     {
         $user       =   User::find(auth()->user()->id);
         $app        =   $user->app($client_id)->app ??  new App();
-        $types      =   AppReply::$types            ??  array();
-        $categories =   AppReply::$categories       ??  array();
+        $types      =   
+        $categories =   
         $data   =   array(
             "user"          =>  $user,
             "app"           =>  $app,
-            "types"         =>  $types,
-            "categories"    =>  $categories,
+            "types"         =>  AppReply::$types        ??  array(),
+            "categories"    =>  AppReply::$categories   ??  array(),
         );
         return view("app.reply.index", $data);
     }
@@ -27,14 +27,16 @@ class AppReplyController extends Controller
     {
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($client_id)->app ?? new App();
-        $reply  =   $app->reply($app_reply_id) ?? new AppReply();
+        $reply  =   $app->reply($app_reply_id)  ?? new AppReply();
         $data   =   array(
-            "user"      =>  $user,
-            "app"       =>  $app,
-            "reply"     =>  $reply,
-            "modes"     =>  AppReply::$modes,
-            "matches"   =>  AppReply::$matches,
-            "statuses"  =>  AppReply::$statuses,
+            "user"          =>  $user,
+            "app"           =>  $app,
+            "reply"         =>  $reply,
+            "types"         =>  AppReply::$types        ??  array(),
+            "categories"    =>  AppReply::$categories   ??  array(),
+            "modes"         =>  AppReply::$modes        ??  array(),
+            "matches"       =>  AppReply::$matches      ??  array(),
+            "statuses"      =>  AppReply::$statuses     ??  array(),
         );
         return view("app.reply.create", $data);
     }
@@ -43,6 +45,8 @@ class AppReplyController extends Controller
         $user   =   User::find(auth()->user()->id);
         $app    =   $user->app($client_id)->app ?? new App();
         if($app->id){
+            $query  =   $request->input("query") ?? array();
+            $query  =   AppReply::convert_query($query);
             $reply  =   AppReply::updateOrCreate(array(
                 "id"        =>  $app_reply_id,
             ),array(
@@ -50,8 +54,7 @@ class AppReplyController extends Controller
                 "type"      =>  $request->input("type")     ?? null,
                 "name"      =>  $request->input("name")     ?? null,
                 "mode"      =>  $request->input("mode")     ?? null,
-                "match"     =>  $request->input("match")    ?? null,
-                "keyword"   =>  array_unique(array_filter(($request->input("keyword")  ?? array()), fn($keyword)=> $keyword)),
+                "query"     =>  $query,
                 "status"    =>  $request->input("status")   ?? null,
             ));
             return redirect(asset("$user_name/app/$client_id/reply/$reply->id'"));
