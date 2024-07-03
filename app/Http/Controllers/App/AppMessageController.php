@@ -26,6 +26,7 @@ class AppMessageController extends Controller
         $user       =   User::find(auth()->user()->id);
         $app        =   $user->app($client_id)->app;
         $message    =   $app->message($app_message_id) ?? new AppMessage();
+        return $message;
         $data       =   array(
             "user"      =>  $user,
             "app"       =>  $app,
