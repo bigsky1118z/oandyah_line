@@ -119,8 +119,9 @@ class AppWebhook extends Model
             $reply  =   AppReply::get_reply($app->client_id, $type, $query);
             if($reply){
                 $friend             =   $this->get_friend();
-                $name               =   $reply->name                    ??  "";
-                $message_objects    =   $reply->get_message()->messges  ??  array();
+                $name               =   $reply->name            ??  "";
+                $message            =   $reply->get_message()   ?? new AppReplyMessage();
+                $message_objects    =   $message->messages      ??  array();
                 $message            =   AppMessage::Create(array(
                     "app_id"        =>  $app->id,
                     "name"          =>  "[自動返信]".$name,
