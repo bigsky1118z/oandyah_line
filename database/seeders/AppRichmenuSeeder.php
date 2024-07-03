@@ -15,9 +15,11 @@ class AppRichmenuSeeder extends Seeder
      */
     public function run(): void
     {
-        $app            =   App::where("client_id","1657423958")->first();
-        $files          =   Storage::disk("local")->files("public/app/1657423958/richmenu_content");
+        $app        =   App::where("client_id","1657423958")->first();
+        $directory  =   "public/app/$app->client_id/richmenu_content";
+        Storage::makeDirectory($directory);
+        $files      =   Storage::disk("local")->files($directory);
         Storage::disk("local")->delete($files);
-        $app_richmenus  =   AppRichmenu::update_richmenus($app);
+        AppRichmenu::update_richmenus($app);
     }
 }
