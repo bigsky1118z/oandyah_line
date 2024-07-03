@@ -13,6 +13,7 @@ use App\Models\App\AppWebhook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class App extends Model
 {
@@ -134,9 +135,14 @@ class App extends Model
                 return new App();
             }
         }
+        public function make_directories(){
+            Storage::makeDirectory("public/app/$this->client_id/image");
+            Storage::makeDirectory("public/app/$this->client_id/richmenu_content");
+        }
 
         public function latest()
         {
+            $this->make_directories();
             $this->put_webhook_endpoint();
             $info                       =   $this->get_info();
             $this->user_id              =   $info["userId"]         ?? $this->user_id;
