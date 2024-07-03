@@ -12,12 +12,14 @@ class AppReplyController extends Controller
     public function index(Request $request, $user_name, $client_id)
     {
         $user       =   User::find(auth()->user()->id);
-        $app        =   $user->app($client_id)->app ?? new App();
-        $types      =   AppReply::$types;
+        $app        =   $user->app($client_id)->app ??  new App();
+        $types      =   AppReply::$types            ??  array();
+        $categories =   AppReply::$categories       ??  array();
         $data   =   array(
-            "user"  =>  $user,
-            "app"   =>  $app,
-            "types" =>  $types,
+            "user"          =>  $user,
+            "app"           =>  $app,
+            "types"         =>  $types,
+            "categories"    =>  $categories,
         );
         return view("app.reply.index", $data);
     }

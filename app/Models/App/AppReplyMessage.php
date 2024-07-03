@@ -29,6 +29,16 @@ class AppReplyMessage extends Model
         return $this->belongsTo(AppReply::class,"app_reply_id","id");
     }
 
+    static $statuses    =   array(
+        "active"    =>  "送信可能",
+        "private"   =>  "非公開",
+        "draft"     =>  "下書き",
+    );
+    public function get_status()
+    {
+        return self::$statuses[$this->status] ?? $this->status;
+    }
+
     public function latest()
     {
         $validation     =   $this->validate_message();

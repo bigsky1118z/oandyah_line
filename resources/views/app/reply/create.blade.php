@@ -127,7 +127,7 @@
                         @foreach ($reply->messages as $message)
                             <tr>
                                 <td>{{ $message->name ?? null }}</td>
-                                <td>{{ $message->status ?? null }}</td>
+                                <td>{{ $message->get_status() ?? null }}</td>
                                 <td>{{ $message->error_message ?? null }}</td>
                                 <td><x-web.messages.show.message_objects :objects="$message->messages ?? array()" /></td>
                                 <td>

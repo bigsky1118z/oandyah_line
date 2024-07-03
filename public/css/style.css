@@ -170,6 +170,7 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
         border-radius: 10px;
     }
     .message-object-text-text.show {
+        padding: 5px 10px;
         height: auto;
     }
     /* type=image */

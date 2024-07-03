@@ -77,19 +77,28 @@ class AppReply extends Model
         "message"   =>  "メッセージ",
         "postback"  =>  "機能",
     );
-    
+    public function get_type()
+    {
+        return self::$types[$this->type] ?? $this->type;
+    }
+
+    static $categories  =   array(
+        "default"   =>  "基本設定",
+        "tarot"     =>  "タロット",
+    );
+    public function get_category()
+    {
+        return self::$categories[$this->category] ?? $this->category;
+    }    
     static $matches =   array(
         "exact"     =>  "完全一致",
         "partial"   =>  "部分一致",
         "none"      =>  "一致なし",
-        // "forward"   =>  "前方一致",
-        // "backward"  =>  "後方一致",
     );
     public function get_match()
     {
-        return self::$matches[$this->match] ?? $this->match;
+        return self::$matches[($this->query["match"] ?? null)] ?? $this->match;
     }
-
     static $statuses    =   array(
         "active"    =>  "有効",
         "private"   =>  "無効",
@@ -99,15 +108,31 @@ class AppReply extends Model
     {
         return self::$statuses[$this->status] ?? $this->status;
     }
-
     static $modes   =   array(
-        "random"    =>  "ランダム返答",
         "latest"    =>  "最新メッセージ",
+        "random"    =>  "ランダム返答",
     );
     public function get_mode()
     {
         return self::$modes[$this->mode] ?? $this->mode;
     }
+    public function get_queries()
+    {
+        $queries  =   array();
+        foreach(($this->query ?? array()) as $key => $value){
+            switch($key){
+                case("match"):
+                    $value  =   $this->get_match();
+                    break;
+                case("keywords"):
+                default:
+                    $value  =   is_array($value)    ?   implode(",",$value) :   $value;                
+            }
+            $queries[$key]  =   $value;
+        }
+        return $queries;
+    }
+
 
     static function get_message_objects($client_id, $type, $text = null)
     {
