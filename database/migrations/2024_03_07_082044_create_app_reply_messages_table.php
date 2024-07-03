@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(AppReply::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("name")->nullable();
             $table->json("messages")->nullable();
-            $table->string("status")->default("active");
+            $table->string("status")->default("draft");
             $table->text("error_message")->nullable();
             $table->json("error_details")->nullable();
             $table->timestamps();

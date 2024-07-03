@@ -24,6 +24,11 @@ class AppReply extends Model
         "query" => "json",
     ];
 
+    public function app()
+    {
+        return $this->belongsTo(App::class);
+    }
+
     public function messages()
     {
         return $this->hasMany(AppReplyMessage::class);
@@ -49,14 +54,12 @@ class AppReply extends Model
 
     public function create_message($name = null, $message_objects)
     {
-        $app_reply_message  =   AppReplyMessage::updateOrCreate(array(
-        ),array(
+        $app_reply_message  =   AppReplyMessage::Create(array(
             "app_reply_id"  =>  $this->id,
             "name"          =>  $name ?? now()->format("YmdHi"),
             "messages"      =>  $message_objects ?? array(),
-            "status"        =>  "active",
         ));
-        // $app_reply_message->latest();
+        $app_reply_message->latest();
     }
         public function create_simple_text_message($name = null, $text)
         {

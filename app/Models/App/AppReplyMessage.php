@@ -31,31 +31,27 @@ class AppReplyMessage extends Model
 
     public function latest()
     {
-        $error_message  =   null;
-        $error_details  =   array();
         $validation     =   $this->validate_message();
         if($validation->successful()){
-            $this->status   =   $this->status != "private" ? "active" : $this->status;
+            $this->status   =   $this->status == "private" ? $this->status : "active";
         } else {
-            $this->status   =   "draft";
-            $error_message  =   $validation->json("message");
-            $error_details  =   $validation->json("details");
+            $this->status           =   "draft";
+            $this->error_message    =   $validation->json("message") ?? null;
+            $this->error_details    =   $validation->json("details") ?? array();
         }
-        $this->error_message    =   $error_message;
-        $this->error_details    =   $error_details;
         $this->save();
         return $this;
     }
 
     public function validate_message()
     {
-        $reply                  =   $this->reply    ?? new AppReply();
-        $app                    =   $reply->app     ?? new App();
-        $channel_access_token   =   $app->channel_access_token;
+        $reply                  =   $this->reply                ??  new AppReply();
+        $app                    =   $reply->app                 ??  new App();
+        $channel_access_token   =   $app->channel_access_token  ??  null;
         $data                   =   array(
             "messages"  =>  $this->messages,
         );
-        $response               =   MessagingApi::velidate_message_reply($channel_access_token, $data);
+        $response   =   MessagingApi::velidate_message_reply($channel_access_token, $data);
         return $response;
     }
 

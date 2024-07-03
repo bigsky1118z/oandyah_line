@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string("type")->nullable();
             $table->json("query")->nullable();
             $table->string("category")->default("default");
-            // $table->string("match")->nullable();
-            // $table->json("keyword")->nullable();
             $table->string("status")->default("active");
             $table->string("mode")->default("latest");
             $table->timestamps();
