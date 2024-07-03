@@ -170,7 +170,7 @@ class AppReplySeeder extends Seeder
                 "app_id"    =>  $app->id,
                 "type"      =>  $type               ?? null,
                 "name"      =>  $reply["name"]      ?? null,
-                "category"  =>  $reply["category"]  ?? null,
+                "category"  =>  $reply["category"]  ?? "default",
                 "mode"      =>  $reply["mode"]      ?? null,
                 "query"     =>  $reply["query"]     ?? array(),
                 "status"    =>  "active",
