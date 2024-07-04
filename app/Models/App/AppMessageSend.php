@@ -45,6 +45,8 @@ class AppMessageSend extends Model
         $app                    =   $message->app;
         $channel_access_token   =   $app->channel_access_token;
         $data                   =   $this->data;
+        $friend_id              =   $this->friend_id;
+        MessagingApi::post_loading_start($channel_access_token, $friend_id, 60);
         $response               =   null;
         switch($message->type){
             case("reply"):

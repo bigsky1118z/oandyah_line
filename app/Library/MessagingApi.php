@@ -144,8 +144,19 @@ class MessagingApi extends Facade
                 return $response;
             }
 
-            static function loading()
+            static function post_loading_start($channel_access_token, $friend_id, $seconds = 5)
             {
+                $headers    =   array(
+                    "Authorization" =>  "Bearer $channel_access_token",
+                    "Content-Type"  =>  "application/json",
+                );
+                $data       =   array(
+                    "chatId"            =>  $friend_id,
+                    "loadingSeconds"    =>  $seconds,
+                );
+                $url        =   "https://api.line.me/v2/bot/chat/loading/start";
+                $response   =   Http::withHeaders($headers)->post($url, $data);
+                return $response;
                 // POST https://api.line.me/v2/bot/chat/loading/start
                 // https://developers.line.biz/ja/reference/messaging-api/#display-a-loading-indicator
             }
