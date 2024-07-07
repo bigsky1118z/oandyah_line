@@ -23,10 +23,7 @@
 <div id="{{ $id ?? null }}">
     <ul>
         <li>
-            <dl>
-                <dt>リンク先</dt>
-                <dd><input type="text" name="{{ $name }}[uri]" value="{{ $action["uri"] ?? null }}"></dd>
-            </dl>
+            <textarea type="text" name="{{ $name }}[text]" placeholder="友だちから送信されるメッセージ" required>{{ $action["text"] ?? null }}</textarea>
         </li>
     </ul>
 </div>

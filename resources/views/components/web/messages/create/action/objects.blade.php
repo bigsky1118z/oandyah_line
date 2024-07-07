@@ -1,0 +1,8 @@
+@switch($action["type"] ?? null)
+    @case("postback")       <x-web.messages.create.action.postback        id=""  :area="($area ?? null)" :index="($index ?? null)"   :column="($column ?? null)" :choice="($choice ?? null)" :action="($action ?? array())" />  @break
+    @case("message")        <x-web.messages.create.action.message         id=""  :area="($area ?? null)" :index="($index ?? null)"   :column="($column ?? null)" :choice="($choice ?? null)" :action="($action ?? array())" />  @break
+    @case("uri")            <x-web.messages.create.action.uri             id=""  :area="($area ?? null)" :index="($index ?? null)"   :column="($column ?? null)" :choice="($choice ?? null)" :action="($action ?? array())" />  @break
+    @case("datetimepicker") <x-web.messages.create.action.datetimepicker  id=""  :area="($area ?? null)" :index="($index ?? null)"   :column="($column ?? null)" :choice="($choice ?? null)" :action="($action ?? array())" />  @break
+    @case("richmenuswitch") <x-web.messages.create.action.richmenuswitch  id=""  :area="($area ?? null)" :index="($index ?? null)"   :column="($column ?? null)" :choice="($choice ?? null)" :action="($action ?? array())" />  @break
+    @case("clipboard")      <x-web.messages.create.action.clipboard       id=""  :area="($area ?? null)" :index="($index ?? null)"   :column="($column ?? null)" :choice="($choice ?? null)" :action="($action ?? array())" />  @break
+@endswitch

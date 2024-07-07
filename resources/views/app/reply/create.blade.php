@@ -56,7 +56,7 @@
                             <th>返信条件</th>
                             <td id="reply-query">
                                 @switch(($reply->type ?? null))
-                                    @case("message")    <x-web.replies.create.message id="" :reply="$reply" />  @break
+                                    @case("message")    <x-web.replies.create.condition.message id="" :reply="$reply" />  @break
                                 @endswitch
                             </td>
                         </tr>
@@ -81,12 +81,12 @@
                             </td>
                         </tr>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2"><button type="submit">保存</button></td>
-                        </tr>
-                    </tfoot>
                 </table>
+                                <ul>
+                    <li>
+                        <button type="submit">保存</button></td>
+                    </li>
+                </ul>
             </form>
         </section>
         @if ($reply->id)

@@ -1,1 +1,1 @@
-<x-web.replies.create.message id="sumple-reply-query-message" :reply="$reply" />
+<x-web.replies.create.condition.message id="sumple-reply-query-message" :reply="$reply" />

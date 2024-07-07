@@ -35,6 +35,8 @@
     <option value="message"         @selected("message"         == ($action["type"] ?? null))>メッセージ</option>
     <option value="uri"             @selected("uri"             == ($action["type"] ?? null))>URL</option>
     <option value="datetimepicker"  @selected("datetimepicker"  == ($action["type"] ?? null))>日付選択</option>
-    <option value="richmenuswitch"  @selected("richmenuswitch"  == ($action["type"] ?? null))>メニュー切り替え</option>
+    @if (($area ?? null) == "richmenu_action")
+        <option value="richmenuswitch"  @selected("richmenuswitch"  == ($action["type"] ?? null))>メニュー切り替え</option>
+    @endif
     <option value="clipboard"       @selected("clipboard"       == ($action["type"] ?? null))>クリップボード</option>
 </select>

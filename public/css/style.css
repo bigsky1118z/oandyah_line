@@ -5,7 +5,7 @@
     size: 0;
     font-size: 14px;
     color: #000000;
-    background-color: #FFFFFF;
+    background-color: unset;
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
@@ -163,7 +163,7 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
     }
     /* type=text */
     .message-object-text-text {
-        width: 450px;
+        width: 400px;
         height: 100px;
         background-color: greenyellow;
         border: none;
@@ -177,18 +177,18 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
     .message-object-image-original_content_url-input,
     .message-object-image-preview_image_url-input,
     .message-object-template-buttons-thumbnail_image_url-input {
-        width: 200px;
+        width: 300px;
     }
     .message-object-image-original_content_url-img,
     .message-object-image-preview_image_url-img,
     .message-object-template-buttons-thumbnail_image_url-img {
-        width: 200px;
+        width: 300px;
         height: auto;
     }
     .message-object-image-original_content_url-message_box,
     .message-object-image-preview_image_url-message_box,
     .message-object-template-buttons-thumbnail_image_url-message_box {
-        width: 200px;
+        width: 300px;
         height: auto;
     }
     .message-object-image-preview_image_url-img.show {
@@ -199,21 +199,70 @@ body> main ul.ul-messages > li.li-messages-template > dl.dl-messages-template-bu
 
     /* type=template */
     .message-object-template-altText {
-        width: 200px;
+        width: 250px;
+    }
+    .message-object-template-border {
+        border-bottom: 2px solid #000000;
     }
     /* type=template template_type=buttons */
-        .message-object-template-buttons {
-            border: 1px solid #000000;
+        table.message-object-template-buttons {
+            border-spacing: 0;
+        }
+        table.message-object-template-buttons > tbody > tr:first-child >  td:nth-child(1) {
+            border-top: 2px solid #000000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
 
-        .message-object-template-buttons-title {
-            border: none;
+        table.message-object-template-buttons > tbody > tr >  td:nth-child(1) {
+            border-left: 2px solid #000000;
+            border-right: 2px solid #000000;
         }
-        .message-object-template-buttons-text {
+        table.message-object-template-buttons > tbody > tr:last-child >  td:nth-child(1) {
+            border-bottom: 2px solid #000000;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        table.message-object-template-buttons > tbody > tr >  td:nth-child(1) input,
+        table.message-object-template-buttons > tbody > tr >  td:nth-child(1) textarea,
+        table.message-object-template-buttons > tbody > tr >  td:nth-child(1) select {
+            width: 300px;
             border: none;
         }
 
-    /* template_type=buttons */
+
+    /* template_type=confirm */
+        table.message-object-template-confirm {
+            border-spacing: 0;
+        }
+        table.message-object-template-confirm > tbody > tr:first-child >  td:nth-child(1) {
+            border-top: 2px solid #000000;
+            border-left: 2px solid #000000;
+            border-right: 2px solid #000000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        table.message-object-template-confirm > tbody > tr:last-child >  td:nth-child(1) {
+            border-left: 2px solid #000000;
+            border-right: 1px solid #000000;
+            border-bottom: 2px solid #000000;
+            border-bottom-left-radius: 10px;
+        }
+        table.message-object-template-confirm > tbody > tr:last-child >  td:nth-child(2) {
+            border-bottom: 2px solid #000000;
+            border-right: 2px solid #000000;
+            border-bottom-right-radius: 10px;
+        }
+        table.message-object-template-confirm > tbody > tr > td input,
+        table.message-object-template-confirm > tbody > tr > td select,
+        table.message-object-template-confirm > tbody > tr > td textarea {
+            width: 150px;
+            border: none;
+        }
+        table.message-object-template-confirm > tbody > tr > td > textarea.message-object-template-confirm-text{
+            width: 300px;
+        }
+    
 
 /* user-app-image */
 ul.image-directory-index {

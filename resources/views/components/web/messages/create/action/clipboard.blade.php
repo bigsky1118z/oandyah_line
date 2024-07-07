@@ -6,6 +6,7 @@
             break;
         case("actions"):
             $name   =   "messages[".($index ?? 0)."][template][actions][".($choice ?? 0)."]";
+            $label  =   20;
             break;
         case("column_default_action"):
             $name   =   "messages[".($index ?? 0)."][template][column][".($column ?? 0)."][defaultAction]";
@@ -23,10 +24,7 @@
 <div id="{{ $id ?? null }}">
     <ul>
         <li>
-            <dl>
-                <dt>送信されるメッセージ</dt>
-                <dd><input type="text" name="{{ $name }}[text]" value="{{ $action["text"] ?? null }}"></dd>
-            </dl>
+            <textarea name="{{ $name }}[clipboardText]" placeholder="コピーされる文字" required>{{ $action["clipboardText"] ?? null }}</textarea>
         </li>
     </ul>
 </div>

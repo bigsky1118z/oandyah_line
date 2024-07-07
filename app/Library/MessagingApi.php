@@ -157,8 +157,6 @@ class MessagingApi extends Facade
                 $url        =   "https://api.line.me/v2/bot/chat/loading/start";
                 $response   =   Http::withHeaders($headers)->post($url, $data);
                 return $response;
-                // POST https://api.line.me/v2/bot/chat/loading/start
-                // https://developers.line.biz/ja/reference/messaging-api/#display-a-loading-indicator
             }
 
 

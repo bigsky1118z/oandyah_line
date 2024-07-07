@@ -1,9 +1,6 @@
-<div id="{{ $id ?? null }}">
-    <table>
+<div id="{{ $id ?? null }}" class="message-object-template-buttons">
+    <table class="message-object-template-buttons">
         <tr>
-        </tr>
-        <tr>
-            <th>画像URL</th>
             <td>
                 <dl>
                     <dd>
@@ -16,14 +13,11 @@
                             value="{{ $object["template"]["thumbnailImageUrl"] ?? null }}"
                         />
                     </dd>
-                    <dd>
-                        <img
-                            class="message-object-template-buttons-thumbnail_image_url-img"
-                            src="{{ $object["template"]["thumbnailImageUrl"] ?? null }}"
-                        />
-                    </dd>
+                    <dd><img class="message-object-template-buttons-thumbnail_image_url-img" src="{{ $object["template"]["thumbnailImageUrl"] ?? null }}" /></dd>
                     <dd><p class="message-object-template-buttons-thumbnail_image_url-message_box"></p></dd>
                 </dl>
+            </td>
+            <td>
                 <dl>
                     <dd>
                         <select name="messages[{{ $index ?? 0 }}][template][imageAspectRatio]">
@@ -44,23 +38,13 @@
             </td>
         </tr>
         <tr>
-            <th>タイトル</th>
             <td>
-                <input type="text" name="messages[{{ $index ?? 0 }}][template][title]" value="{{ $object["template"]["title"] ?? null }}">
+                <input type="text" class="message-object-template-buttons-title" name="messages[{{ $index ?? 0 }}][template][title]" value="{{ $object["template"]["title"] ?? null }}" placeholder="タイトル※任意">
             </td>
-        </tr>
-        <tr>
-            <th>文章</th>
-            <td>
-                <input type="text" name="messages[{{ $index ?? 0 }}][template][text]" value="{{ $object["template"]["text"] ?? null }}">
-            </td>
-        </tr>
-        <tr>
-            <th>本文選択時</th>
-            <td>
+            <td rowspan="2">
                 <ul>
                     <li class="action-type">
-                        <x-web.messages.create.action_types 
+                        <x-web.messages.create.action.types 
                             parent="ul"
                             area="default_action"
                             :index="$index"
@@ -68,7 +52,7 @@
                         />
                     </li>
                     <li class="action-object">
-                        <x-web.messages.create.action_objects
+                        <x-web.messages.create.action.objects
                             id=""
                             area="default_action"
                             :index="$index"
@@ -78,13 +62,18 @@
                 </ul>
             </td>
         </tr>
+        <tr>
+            <td class="message-object-template-border">
+                <input type="text" class="message-object-template-buttons-text" name="messages[{{ $index ?? 0 }}][template][text]" value="{{ $object["template"]["text"] ?? null }}" placeholder="本文" required>
+            </td>
+        </tr>
         @for ($i = 0; $i < 4; $i++)
             <tr>
-                <th>選択肢{{ $i+1 }}</th>
+                <td><input type="text" class="message-object-template-buttons-label" name="messages[{{ $index ?? 0 }}][template][actions][{{ $i ?? 0 }}][label]" placeholder="選択肢{{ $i+1 }}"></td>
                 <td>
                     <ul>
                         <li class="action-type">
-                            <x-web.messages.create.action_types
+                            <x-web.messages.create.action.types
                                 parent="ul"
                                 area="actions"
                                 :index="$index"
@@ -93,7 +82,7 @@
                             />
                         </li>
                         <li class="action-object">
-                            <x-web.messages.create.action_objects
+                            <x-web.messages.create.action.objects
                                 id="" 
                                 area="actions"
                                 :index="$index"

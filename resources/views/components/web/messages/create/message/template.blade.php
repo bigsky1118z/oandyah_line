@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td class="template-object">
-                    <x-web.messages.create.template_objects :index="$index ?? 0" :object="$object ?? array()" />
+                    <x-web.messages.create.template.objects :index="$index ?? 0" :object="$object ?? array()" />
                 </td>
             </tr>
         </tbody>

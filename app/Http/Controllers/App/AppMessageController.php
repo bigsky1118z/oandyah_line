@@ -30,6 +30,7 @@ class AppMessageController extends Controller
             "user"      =>  $user,
             "app"       =>  $app,
             "message"   =>  $message,
+            "types"     =>  AppMessage::$types ?? array(),
         );
         if($message->status == "sent"){
             return view("app.message.show", $data);
